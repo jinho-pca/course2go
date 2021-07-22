@@ -6,6 +6,7 @@ target/
 
 /Servers/
 /.metadata/
+
 ### STS ###
 .apt_generated
 .classpath
