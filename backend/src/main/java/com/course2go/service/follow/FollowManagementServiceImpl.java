@@ -9,7 +9,7 @@ import com.course2go.model.follow.Follow;
 import com.course2go.model.notice.Notice;
 
 @Service
-public class FollowAgreeServiceImpl implements FollowAgreeService {
+public class FollowManagementServiceImpl implements FollowManagementService {
 
 	@Autowired
     FollowDao followDao;
@@ -36,6 +36,13 @@ public class FollowAgreeServiceImpl implements FollowAgreeService {
 		
 		
 		
+	}
+
+	@Override
+	public boolean deny(Notice notice) {
+    	// Notice 삭제
+//    	noticeDao.deleteByNid(notice.getNid());
+		return true;
 	}
 	
 	
