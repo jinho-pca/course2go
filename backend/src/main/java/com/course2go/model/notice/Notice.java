@@ -1,4 +1,4 @@
-package com.course2go.model.user;
+package com.course2go.model.notice;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -17,19 +17,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class User {
+public class Notice{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String uid;
+    private int nid;
 
-    private String userName;
-    private String userEmail;
-    @JsonIgnore
-    private String userPassword;
-    private String userNickname;
-    private String userBirthday;
-    private boolean userGender;
-    private String userComment;
-    private String userImage;
+    private String noticeUid;
+    private int noticeType;
+    private String noticeFromUid;
+    private int noticeNnid;
+    private boolean noticeIsnew;
 
 }
