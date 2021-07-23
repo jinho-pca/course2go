@@ -1,5 +1,7 @@
 package com.course2go.service.user;
 
+import java.time.LocalDate;
+
 public class SignupRequest {
 
 	String userName;
@@ -10,9 +12,9 @@ public class SignupRequest {
 	
 	String userNickname;
     
-	String userBirthday;
+	LocalDate userBirthday;
     
-	int userGender;
+	boolean userGender;
 
 	public String getUserEmail() {
 		return userEmail;
@@ -46,19 +48,19 @@ public class SignupRequest {
 		this.userNickname = userNickname;
 	}
 	
-	public String getUserBirthday() {
+	public LocalDate getUserBirthday() {
 		return userBirthday;
 	}
 
-	public void setUserBirthday(String userBirthday) {
+	public void setUserBirthday(LocalDate userBirthday) {
 		this.userBirthday = userBirthday;
 	}
 
-	public int getUserGender() {
+	public boolean getUserGender() {
 		return userGender;
 	}
 
-	public void setUserGender(int userGender) {
+	public void setUserGender(boolean userGender) {
 		this.userGender = userGender;
 	}
 	

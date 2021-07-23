@@ -1,5 +1,7 @@
 package com.course2go.controller;
 
+import java.util.UUID;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 
-//@ApiResponses(value = { @ApiResponse(code = 401, message = "Unauthorized", response = BasicResponse.class),
-//        @ApiResponse(code = 403, message = "Forbidden", response = BasicResponse.class),
-//        @ApiResponse(code = 404, message = "Not Found", response = BasicResponse.class),
-//        @ApiResponse(code = 500, message = "Failure", response = BasicResponse.class) })
+@ApiResponses(value = { @ApiResponse(code = 401, message = "Unauthorized", response = BasicResponse.class),
+        @ApiResponse(code = 403, message = "Forbidden", response = BasicResponse.class),
+        @ApiResponse(code = 404, message = "Not Found", response = BasicResponse.class),
+        @ApiResponse(code = 500, message = "Failure", response = BasicResponse.class) })
 
 @CrossOrigin(origins = { "http://localhost:3000" })
 @RestController
@@ -35,13 +37,12 @@ import io.swagger.annotations.ApiOperation;
 public class UserController {
 
     @Autowired
-    UserDao userDao;
     UserRegisterService userRegisterService;
 
     @PostMapping("/signup")
     @ApiOperation(value = "회원가입")
     public Object signup(@Valid @RequestBody SignupRequest request) {
-    	System.out.println("회원가입 요청 확인");
+    	
         final BasicResponse result = new BasicResponse();
         HttpStatus status = HttpStatus.CONFLICT;
         
@@ -54,6 +55,7 @@ public class UserController {
         user.setUserGender(request.getUserGender());
         
         int registerResult = userRegisterService.userRegister(user);
+        
         switch(registerResult) {
         // 이메일 중복
         case 0:

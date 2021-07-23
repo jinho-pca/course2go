@@ -1,5 +1,8 @@
 package com.course2go.model.user;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +23,6 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String uid;
 	
 	@Column(name = "user_name")
@@ -39,11 +41,12 @@ public class User {
 	@Column(name = "user_salt")
 	private String userSalt;
 	
+	
 	@Column(name = "user_birthday")
-	private String userBirthday;
+	private LocalDate userBirthday;
 	
 	@Column(name = "user_gender")
-	private int userGender;
+	private boolean userGender;
 	
 	@Column(name = "user_image")
 	private String userImage;

@@ -1,10 +1,14 @@
 package com.course2go.service.user;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.course2go.dao.UserDao;
 import com.course2go.model.user.User;
 
+@Service
 public class UserRegisterServiceImpl implements UserRegisterService{
 
 	@Autowired
@@ -12,7 +16,6 @@ public class UserRegisterServiceImpl implements UserRegisterService{
 	
 	@Override
 	public int userRegister(User user) {
-		User result = new User();
 		
 		// 이메일 중복인 경우
 		if(userEmailCheck(user.getUserEmail())) {
@@ -25,13 +28,9 @@ public class UserRegisterServiceImpl implements UserRegisterService{
 		}
 		
 		// 중복이 없고 가입이 가능한 경우
-		result.setUserEmail(user.getUserEmail());
-		result.setUserPassword(user.getUserPassword());
-		result.setUserNickname(user.getUserNickname());
-		result.setUserName(user.getUserName());
-		result.setUserGender(user.getUserGender());
-		result.setUserBirthday(user.getUserBirthday());
-		userDao.save(result);
+		// salt 값 -> null : 암호화 작업 후에 설정할 것!
+		user.setUid(UUID.randomUUID().toString());
+		userDao.save(user);
 		return 1;
 	}
 
