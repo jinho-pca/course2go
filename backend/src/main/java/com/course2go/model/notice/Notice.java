@@ -1,5 +1,8 @@
 package com.course2go.model.notice;
 
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,5 +30,8 @@ public class Notice{
     private int noticeFromUid;
     private int noticeNnid;
     private boolean noticeIsnew;
+    
+    @Column(insertable = false, updatable = false)
+    private LocalDateTime noticeTime;
 
 }

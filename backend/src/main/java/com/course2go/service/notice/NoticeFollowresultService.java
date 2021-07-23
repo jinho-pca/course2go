@@ -6,7 +6,7 @@ import com.course2go.model.notice.Notice;
 
 public interface NoticeFollowresultService {
 
-	public List<Notice> noticeNewFollowresult(int noticeUid);
+	public List<Notice> noticeNewFollowresult(String noticeUid);
 
-	public List<Notice> noticeOldFollowresult(int noticeUid);
+	public List<Notice> noticeOldFollowresult(String noticeUid);
 }

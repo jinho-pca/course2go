@@ -5,7 +5,7 @@ import java.util.List;
 import com.course2go.model.notice.Notice;
 
 public interface NoticeFollowcallService {
-	public List<Notice> noticeNewFollowcall(int noticeUid);
+	public List<Notice> noticeNewFollowcall(String noticeUid);
 
-	public List<Notice> noticeOldFollowcall(int noticeUid);
+	public List<Notice> noticeOldFollowcall(String noticeUid);
 }

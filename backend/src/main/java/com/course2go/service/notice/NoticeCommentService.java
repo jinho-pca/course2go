@@ -6,7 +6,7 @@ import com.course2go.model.notice.Notice;
 
 public interface NoticeCommentService {
 
-	public List<Notice> noticeNewComment(int noticeUid);
+	public List<Notice> noticeNewComment(String noticeUid);
 
-	public List<Notice> noticeOldComment(int noticeUid);
+	public List<Notice> noticeOldComment(String noticeUid);
 }

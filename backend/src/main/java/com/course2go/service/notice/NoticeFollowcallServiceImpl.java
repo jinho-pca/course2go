@@ -21,11 +21,11 @@ public class NoticeFollowcallServiceImpl implements NoticeFollowcallService{
 	private final int comment=4;
 	
 	@Override
-	public List<Notice> noticeNewFollowcall(int noticeUid){		
-		return noticeDao.findAllByIsnewAndNoticeTypeAndNoticeUid(isnew, followcall, noticeUid);
+	public List<Notice> noticeNewFollowcall(String noticeUid){		
+		return noticeDao.findAllByNoticeIsnewAndNoticeTypeAndNoticeUid(isnew, followcall, noticeUid);
 	}
 	@Override
-	public List<Notice> noticeOldFollowcall(int noticeUid){		
-		return noticeDao.findAllByIsnewAndNoticeTypeAndNoticeUid(!isnew, followcall, noticeUid);
+	public List<Notice> noticeOldFollowcall(String noticeUid){		
+		return noticeDao.findAllByNoticeIsnewAndNoticeTypeAndNoticeUid(!isnew, followcall, noticeUid);
 	}
 }
