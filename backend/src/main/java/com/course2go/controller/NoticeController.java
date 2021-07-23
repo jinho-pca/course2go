@@ -42,7 +42,7 @@ public class NoticeController {
 	NoticeScrapService noticeScrapService;
 	@Autowired
 	NoticeCommentService noticeCommentService;
-	
+		
 	@GetMapping("/followcall/new")
     @ApiOperation(value = "새 팔로우 요청")
 	public Object newfollowcall(@RequestParam(required = true) final String uid) {

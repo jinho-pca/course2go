@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.course2go.model.notice.Notice;
 
-public interface NoticeDao extends JpaRepository<Notice, String> {
+public interface NoticeDao extends JpaRepository<Notice, Integer> {
 	
 	List<Notice> findAllByNoticeIsnewAndNoticeTypeAndNoticeUid(boolean isnew, int noticeType, String noticeUid);
 

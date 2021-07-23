@@ -23,12 +23,12 @@ import lombok.NoArgsConstructor;
 public class Notice{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int nid;
+    private Integer id;
 
-    private int noticeUid;
-    private int noticeType;
-    private int noticeFromUid;
-    private int noticeNnid;
+    private String noticeUid;
+    private Integer noticeType;
+    private String noticeFromUid;
+    private Integer noticeNnid;
     private boolean noticeIsnew;
     
     @Column(insertable = false, updatable = false)
