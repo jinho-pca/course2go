@@ -1,4 +1,4 @@
-package com.course2go.service.user;
+package com.course2go.model.user;
 
 import java.time.LocalDate;
 

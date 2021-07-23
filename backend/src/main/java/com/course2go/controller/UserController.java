@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.course2go.dao.UserDao;
 import com.course2go.model.BasicResponse;
+import com.course2go.model.user.SignupRequest;
 import com.course2go.model.user.User;
-import com.course2go.service.user.SignupRequest;
 import com.course2go.service.user.UserRegisterService;
 
 import io.swagger.annotations.ApiResponse;
