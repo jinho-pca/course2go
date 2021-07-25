@@ -12,14 +12,14 @@ import com.course2go.model.user.User;
 
 public interface FollowDao extends JpaRepository<Follow, String>{
 	
-	@Query(
-			value = "SELECT uid, user_name, user_email, user_password ,user_nickname, user_salt, user_birthday, user_gender, user_comment, user_image" +
-					" FROM follow f " + 
-					" JOIN user u ON f.follow_to_uid = u.uid" +
-					" WHERE f.follow_to_uid = :uid"
-			, nativeQuery = true
-			)
-	List<User> getFollowers(@Param("uid") String uid); 
+//	@Query(
+//			value = "SELECT u.uid, u.user_name, u.user_email, u.user_password ,u.user_nickname, u.user_salt, u.user_birthday, u.user_gender, u.user_comment, u.user_image" +
+//					" FROM follow f " + 
+//					" JOIN user u ON f.follow_to_uid = u.uid" +
+//					" WHERE f.follow_to_uid = :uid"
+//			, nativeQuery = true
+//			)
+//	List<User> getFollowers(@Param("uid") String uid); 
 	
 	
 	@Query(value = "SELECT * FROM follow", nativeQuery = true)

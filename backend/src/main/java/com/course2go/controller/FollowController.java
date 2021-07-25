@@ -40,8 +40,14 @@ public class FollowController {
 	public Object getFollowerList(@RequestParam(required = true) final String email) {
 		ResponseEntity<BasicResponse> response = null;
 		List<User> userList = null;
-	
 		userList = followListService.getFollowerList(email);
+		
+		BasicResponse result = new BasicResponse();
+		result.status = true;
+		result.data = "success";
+		result.object = userList;
+		response = new ResponseEntity<>(result, HttpStatus.OK);
+		
 		return response;
 	}
 	
@@ -49,12 +55,13 @@ public class FollowController {
 	public Object getFollowingList(@RequestParam(required = true) final String email) {
 		ResponseEntity<BasicResponse> response = null;
 		List<User> userList = null;
-		try {
-			userList = followListService.getFollowerList(email);
-			// 성공시 response 설정 필요
-		} catch (Exception e) {
-			// 실패시 응답 필요. 
-		}
+		userList = followListService.getFollowingList(email);
+		
+		BasicResponse result = new BasicResponse();
+		result.status = true;
+		result.data = "success";
+		result.object = userList;
+		response = new ResponseEntity<>(result, HttpStatus.OK);
 		
 		return response;
 	}
