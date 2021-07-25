@@ -3,6 +3,7 @@ package com.course2go.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.course2go.dao.FollowDao;
+import com.course2go.model.BasicResponse;
 import com.course2go.model.follow.Follow;
 import com.course2go.model.notice.Notice;
 import com.course2go.model.user.User;
@@ -36,21 +38,16 @@ public class FollowController {
 	
 	@GetMapping("/follow/follower")
 	public Object getFollowerList(@RequestParam(required = true) final String email) {
-		ResponseEntity response = null;
+		ResponseEntity<BasicResponse> response = null;
 		List<User> userList = null;
-		try {
-			userList = followListService.getFollowerList(email);
-			// 성공시 response 설정 필요
-		} catch (Exception e) {
-			// 실패시 응답 필요. 
-		}
-		
+	
+		userList = followListService.getFollowerList(email);
 		return response;
 	}
 	
 	@GetMapping("/follow/following")
 	public Object getFollowingList(@RequestParam(required = true) final String email) {
-		ResponseEntity response = null;
+		ResponseEntity<BasicResponse> response = null;
 		List<User> userList = null;
 		try {
 			userList = followListService.getFollowerList(email);
@@ -64,28 +61,52 @@ public class FollowController {
 	
     @PostMapping("/follow")
     public Object agreeFollow(@RequestBody Notice notice) {
-    	ResponseEntity response = null;
     	
-    	try {
-    		followManagementService.agree(notice);
-    		// 성공 시 response 설정 필요
-		} catch (Exception e) {
-			// 실패 시 응답 필요.
-		}
-    	return response;
+    	/*
+    	 * JWT 토큰을 이용하여 실제 자기가 보낸 요청인지 확인해야함
+    	*/
+    	
+    	ResponseEntity<BasicResponse> response = null;
+    	
+    	if(followManagementService.agree(notice)) {
+    		BasicResponse result = new BasicResponse();
+    		result.status = true;
+    		result.data = "success";
+    		response = new ResponseEntity<>(result, HttpStatus.OK);
+    		return response;
+    	} else {
+    		BasicResponse result = new BasicResponse();
+    		result.status = true;
+    		result.data = "fail";
+    		response = new ResponseEntity<>(result, HttpStatus.OK);
+    		return response;
+    	}
     }
     
     @DeleteMapping("/follow")
     public Object denyFollow(@RequestBody Notice notice) {
-    	ResponseEntity response = null;
     	
-    	try {
-    		followManagementService.deny(notice);
-    		// 성공 시 response 설정 필요
-		} catch (Exception e) {
-			// 실패 시 응답 필요.
-		}
-    	return response;
+    	/*
+    	 * JWT 토큰을 이용하여 실제 자기가 보낸 요청인지 확인해야함
+    	*/
+    	
+    	ResponseEntity<BasicResponse> response = null;
+    	
+    	if(followManagementService.deny(notice)) {
+    		BasicResponse result = new BasicResponse();
+    		result.status = true;
+    		result.data = "success";
+    		response = new ResponseEntity<>(result, HttpStatus.OK);
+    		return response;
+    	} else {
+    		BasicResponse result = new BasicResponse();
+    		result.status = true;
+    		result.data = "fail";
+    		response = new ResponseEntity<>(result, HttpStatus.OK);
+    		return response;
+    	}
+    	
+    	
     }
     
 }
