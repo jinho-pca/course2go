@@ -29,25 +29,25 @@ public class FollowManagementServiceImpl implements FollowManagementService {
 	public boolean agree(Notice notice) {
 		
 
-    	String followToUid = notice.getNoticeUid();
-    	String followFromUid = notice.getNoticeFromUid();
-    	
-    	// 아래 두 기능을 Transaction하게 관리해야함.
-
-		// Notice 삭제
-		noticeDao.delete(notice);
-		
-		// 완료 Notice 생성
-		Notice resultNotice = new Notice();
-		resultNotice.setNoticeFromUid(notice.getNoticeUid());
-		resultNotice.setNoticeUid(notice.getNoticeFromUid());
-		resultNotice.setNoticeIsnew(true);
-		resultNotice.setNoticeType(2);
-		noticeDao.save(resultNotice);
-		
-		
-		// Follow 추가
-		followDao.save(Follow.builder(followFromUid, followToUid).build());
+//    	String followToUid = notice.getNoticeUid();
+//    	String followFromUid = notice.getNoticeFromUid();
+//    	
+//    	// 아래 두 기능을 Transaction하게 관리해야함.
+//
+//		// Notice 삭제
+//		noticeDao.delete(notice);
+//		
+//		// 완료 Notice 생성
+//		Notice resultNotice = new Notice();
+//		resultNotice.setNoticeFromUid(notice.getNoticeUid());
+//		resultNotice.setNoticeUid(notice.getNoticeFromUid());
+//		resultNotice.setNoticeIsnew(true);
+//		resultNotice.setNoticeType(2);
+//		noticeDao.save(resultNotice);
+//		
+//		
+//		// Follow 추가
+//		followDao.save(Follow.builder(followFromUid, followToUid).build());
 		return true;
 			
 		
