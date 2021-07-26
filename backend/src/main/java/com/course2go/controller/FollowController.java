@@ -118,5 +118,19 @@ public class FollowController {
     	}
     }
 
-    
+    @DeleteMapping("/follow/unfollow")
+    public Object unfollow(@RequestParam String followFromNickname, @RequestParam String followToNickname) {
+    	
+    	/*
+    	 * JWT 토큰을 이용하여 실제 자기가 보낸 요청인지 확인해야함
+    	*/
+    	
+    	ResponseEntity<BasicResponse> response = null;
+    	BasicResponse result = new BasicResponse();
+    	followManagementService.unfollow(followFromNickname, followToNickname);
+    	result.status = true;
+		result.data = "success";
+		response = new ResponseEntity<>(result, HttpStatus.OK);
+		return response;
+    }
 }

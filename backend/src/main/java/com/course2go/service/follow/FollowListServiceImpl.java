@@ -22,7 +22,7 @@ public class FollowListServiceImpl implements FollowListService{
 	
 	@Override
 	public List<String> getFollowerList(String email) {
-		String uid = userDao.getUserByUserEmail(email).getUid();
+		String uid = userDao.getUserByUserEmail(email).get().getUid();
 		System.out.println(uid);
 		List<String> list = followDao.getFollowers(uid);
 		for (String string : list) {
@@ -33,7 +33,7 @@ public class FollowListServiceImpl implements FollowListService{
 
 	@Override
 	public List<String> getFollowingList(String email) {
-		String uid = userDao.getUserByUserEmail(email).getUid();
+		String uid = userDao.getUserByUserEmail(email).get().getUid();
 		List<String> list = followDao.getFollowings(uid);
 		return list;
 	}
