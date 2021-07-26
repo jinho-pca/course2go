@@ -5,7 +5,7 @@ import com.course2go.model.user.User;
 
 public interface FollowListService {
 	
-	public List<User> getFollowerList(String uid);
-	public List<User> getFollowingList(String uid);
+	public List<String> getFollowerList(String uid);
+	public List<String> getFollowingList(String uid);
 	
 }

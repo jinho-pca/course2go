@@ -36,10 +36,12 @@ public class FollowController {
 	@Autowired
 	FollowListService followListService;
 	
+	
+	
 	@GetMapping("/follow/follower")
 	public Object getFollowerList(@RequestParam(required = true) final String email) {
 		ResponseEntity<BasicResponse> response = null;
-		List<User> userList = null;
+		List<String> userList = null;
 		userList = followListService.getFollowerList(email);
 		
 		BasicResponse result = new BasicResponse();
@@ -51,10 +53,12 @@ public class FollowController {
 		return response;
 	}
 	
+	
+	
 	@GetMapping("/follow/following")
 	public Object getFollowingList(@RequestParam(required = true) final String email) {
 		ResponseEntity<BasicResponse> response = null;
-		List<User> userList = null;
+		List<String> userList = null;
 		userList = followListService.getFollowingList(email);
 		
 		BasicResponse result = new BasicResponse();
@@ -112,8 +116,7 @@ public class FollowController {
     		response = new ResponseEntity<>(result, HttpStatus.OK);
     		return response;
     	}
-    	
-    	
     }
+
     
 }

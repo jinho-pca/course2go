@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.course2go.dao.FollowDao;
 import com.course2go.dao.UserDao;
 import com.course2go.model.follow.Follow;
+import com.course2go.model.follow.MappedFollow;
 import com.course2go.model.user.User;
 
 @Service
@@ -19,19 +20,21 @@ public class FollowListServiceImpl implements FollowListService{
 	@Autowired
 	FollowDao followDao;
 	
-	
 	@Override
-	public List<User> getFollowerList(String email) {
+	public List<String> getFollowerList(String email) {
 		String uid = userDao.getUserByUserEmail(email).getUid();
 		System.out.println(uid);
-		List<User> list = userDao.getFollowers(uid);
+		List<String> list = followDao.getFollowers(uid);
+		for (String string : list) {
+			System.out.println(string);
+		}
 		return list;
 	}
 
 	@Override
-	public List<User> getFollowingList(String email) {
+	public List<String> getFollowingList(String email) {
 		String uid = userDao.getUserByUserEmail(email).getUid();
-		List<User> list = userDao.getFollowings(uid);
+		List<String> list = followDao.getFollowings(uid);
 		return list;
 	}
 	

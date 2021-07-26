@@ -28,7 +28,6 @@ public class FollowManagementServiceImpl implements FollowManagementService {
     	
     	// 아래 두 기능을 Transaction하게 관리해야함.
 
-    	
 		// Notice 삭제
 		noticeDao.delete(notice);
 		Notice resultNotice = new Notice();
