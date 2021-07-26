@@ -2,24 +2,15 @@ package com.course2go.model.place;
 
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class Place {
-    @Id
+public class PlaceDto {
     private Integer pid;
-    
     private String placeName;
     private String placeAddress;
     private float placeLat;

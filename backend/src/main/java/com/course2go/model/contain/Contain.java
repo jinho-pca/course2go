@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder(builderMethodName = "ContainBuilder")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Contain {
     @Id
@@ -24,4 +26,11 @@ public class Contain {
     private Integer containRid;
     private Integer containPid;
     private Integer containOrder;
+    
+    public static ContainBuilder builder(Integer containRid, Integer containPid, Integer containOrder) {
+		return ContainBuilder()
+				.containRid(containRid)
+				.containPid(containPid)
+				.containOrder(containOrder);
+	}
 }

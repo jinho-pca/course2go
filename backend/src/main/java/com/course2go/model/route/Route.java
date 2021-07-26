@@ -1,24 +1,24 @@
 package com.course2go.model.route;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.course2go.model.notice.Notice;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder(builderMethodName = "RouteBuilder")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Route {
     @Id
@@ -28,4 +28,11 @@ public class Route {
     private LocalDate routeStartDate;
     private LocalDate routeEndDate;
     private String routeContent;
+    
+    public static RouteBuilder builder(LocalDate routeStartDate, LocalDate routeEndDate, String routeContent) {
+		return RouteBuilder()
+				.routeStartDate(routeStartDate)
+				.routeEndDate(routeEndDate)
+				.routeContent(routeContent);
+	}
 }

@@ -38,9 +38,7 @@ public class NoticeFollowServiceImpl implements NoticeFollowService {
 	@Override
 	public List<NoticeDto> noticeNewFollow(String noticeUid) {
 		List<Notice> newFollowList = noticeDao.findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(isnew, follow, noticeUid);
-		System.out.println(newFollowList.toString());
 		List<NoticeDto> newFollowListDto = newFollowList.stream().map(entityList -> modelmapper.map(entityList, NoticeDto.class)).collect(Collectors.toList());
-		System.out.println(newFollowListDto.toString());
 		return newFollowListDto;
 	}
 	@Override
