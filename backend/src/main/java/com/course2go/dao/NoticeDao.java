@@ -9,5 +9,7 @@ import com.course2go.model.notice.Notice;
 public interface NoticeDao extends JpaRepository<Notice, Integer> {
 	
 	List<Notice> findAllByNoticeIsnewAndNoticeTypeAndNoticeUid(boolean isnew, int noticeType, String noticeUid);
+	
+	List<Notice> findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(boolean isnew, Iterable<Integer> noticeType, String noticeUid);
 
 }

@@ -4,9 +4,14 @@ import java.util.List;
 
 import com.course2go.model.notice.Notice;
 
-public interface NoticeScrapService {
+public interface NoticeBoardService {
+
+	public List<Notice> noticeNewComment(String noticeUid);
+
+	public List<Notice> noticeOldComment(String noticeUid);
 
 	public List<Notice> noticeNewScrap(String noticeUid);
 
 	public List<Notice> noticeOldScrap(String noticeUid);
+
 }
