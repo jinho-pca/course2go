@@ -1,13 +1,13 @@
 package com.course2go.service.board;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.course2go.dao.BoardDao;
 import com.course2go.model.board.Board;
 import com.course2go.model.board.BoardResponse;
 
+@Service
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
@@ -20,6 +20,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardResponse readBoard(int bid) {
+		System.out.println(bid);
+		System.out.println(boardDao.findAllByBid(bid));
 		Board board = boardDao.findById(bid).get();
 		BoardResponse boardResponse = new BoardResponse();
 		boardResponse.setBoardLike(board.getBoardLike());
