@@ -1,4 +1,4 @@
-package com.course2go.model.notice;
+package com.course2go.model.board;
 
 import java.time.LocalDateTime;
 
@@ -20,31 +20,29 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder(builderMethodName = "NoticeBuilder")
+@Builder(builderMethodName = "BoardBuilder")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Notice{
+public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer bid;
 
-    private Integer id;
+    private String boardWriterUid;
+    private Integer boardLike;
+    private Integer boardStar;
+    private Integer boardTid;
+    private boolean	boardType;
 
-    private String noticeUid;
-    private Integer noticeType;
-    private String noticeFromUid;
-    private Integer noticeNnid;
-    private boolean noticeIsnew;
-
-    
     @Column(insertable = false, updatable = false)
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
-    private LocalDateTime noticeTime;
+    private LocalDateTime boardTime;
     
-    public static NoticeBuilder builder(String noticeUid, Integer noticeType, String noticeFromUid, Integer noticeNnid, boolean noticeIsnew) {
-		return NoticeBuilder()
-				.noticeUid(noticeUid)
-				.noticeType(noticeType)
-				.noticeFromUid(noticeFromUid)
-				.noticeNnid(noticeNnid)
-				.noticeIsnew(noticeIsnew);
+    public static BoardBuilder builder(String boardWriterUid, Integer boardLike , Integer boardStar , Integer boardTid , boolean boardType) {
+		return BoardBuilder()
+				.boardWriterUid(boardWriterUid)
+				.boardLike(boardLike)
+				.boardStar(boardStar)
+				.boardTid(boardTid)
+				.boardType(boardType);
 	}
 }
