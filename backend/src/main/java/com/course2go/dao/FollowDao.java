@@ -1,14 +1,13 @@
 package com.course2go.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.course2go.model.follow.Follow;
-import com.course2go.model.user.User;
-
 
 public interface FollowDao extends JpaRepository<Follow, String>{
 	
@@ -29,5 +28,7 @@ public interface FollowDao extends JpaRepository<Follow, String>{
 			, nativeQuery = true
 			)
 	List<String> getFollowings(@Param("uid") String uid); 
-
+	
+	Optional<Follow> getFollowByFollowFromUidAndFollowToUid(String followFromId, String followToId);
+	
 }
