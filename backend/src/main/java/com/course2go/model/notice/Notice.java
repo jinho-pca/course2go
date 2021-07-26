@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+<<<<<<< HEAD
+=======
+import com.fasterxml.jackson.annotation.JsonFormat;
+>>>>>>> develop
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
@@ -22,15 +26,18 @@ import lombok.NoArgsConstructor;
 public class Notice{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
 
     private String noticeUid;
     private Integer noticeType;
     private String noticeFromUid;
     private Integer noticeNnid;
+
     private boolean noticeIsnew;
+
     
     @Column(insertable = false, updatable = false)
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
     private LocalDateTime noticeTime;
-
 }
