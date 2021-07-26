@@ -41,7 +41,6 @@ public class User {
 	@Column(name = "user_salt")
 	private String userSalt;
 	
-	
 	@Column(name = "user_birthday")
 	private LocalDate userBirthday;
 	
