@@ -1,7 +1,7 @@
 <template>
   <div id="login-wrap">
     <div class="login-html">
-      <input id="tab-1" type="radio" name="tab" class="sign-in"><label for="tab-1" class="tab">Sign In</label>
+      <input id="tab-1" type="radio" name="tab" class="sign-in"><label for="tab-1" class="tab">로그인</label>
       <div class="login-form">
         <div class="sign-in-htm">
           <div class="group">
@@ -39,14 +39,17 @@
           <div class="group">
             <input type="submit" @click="login" value="login" class="button">
           </div>
-          <div class="group">
-            <input type="submit" @click="signup" value="회원가입" class="button">
-          </div>
+          <router-link to="/signup" class="group">
+            <input type="submit" value="회원가입" class="button">
+          </router-link>
         </div>
       </div>
       <div class="hr"></div>
       <div class="foot-lnk">
-        <a href="">Forgot Password?</a>
+        <router-link to="/email">Forgot Email?</router-link>
+        <br>
+        <br>
+        <router-link to="/password">Forgot Password?</router-link>
       </div>
     </div>
   </div>
@@ -54,30 +57,23 @@
 
 <script>
 import { watchEffect } from 'vue';
-import { useRouter } from 'vue-router'
 import { userLogin } from '@/compositions/user';
 
 export default {
   name: 'login',
   setup() {
-    const { email, password, error, isSubmit, component, passwordSchema, login, checkForm } = userLogin();
-    const router = useRouter();
-    const signup = () => {
-      router.push('/signup')
-    }
+    const { email, password, error, isSubmit, passwordSchema, login, checkLoginForm } = userLogin();
     /* 이메일과 비밀번호에 변화가 있을 때 watch */
-    watchEffect(() => checkForm({ password: password.value, email: email.value}))
+    watchEffect(() => checkLoginForm({ password: password.value, email: email.value}))
 
     return { 
       email,
       password,
       error,
       isSubmit,
-      component,
       passwordSchema,
       login,
-      checkForm,
-      signup
+      checkLoginForm
     };
   }
 }

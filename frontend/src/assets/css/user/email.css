@@ -1,0 +1,92 @@
+/*  */
+/* Signup START */
+/*  */
+.error-text {
+  width: 100%;
+  text-align: start;
+  float: left;
+  color: #EE4B55;
+  margin-top: 0; 
+  font-size: 5px;
+}
+
+body {
+  font: 600 16px/18px "Open Sans", sans-serif;
+  padding-bottom: 30px;
+}
+
+/* 전체적인 padding */
+.signup-html {
+  width: 100%;
+  padding: 90px 30px 10px 30px;
+}
+
+.signup-html .tab,
+.signup-form .group .label,
+.signup-form .group .button {
+  text-transform: uppercase;
+}
+
+/* 회원가입 맨 위 글씨 디자인 */
+.signup-html .tab {
+  font-size: 22px;
+  margin-right: 15px;
+  padding-bottom: 5px;
+  margin: 0 15px 10px 0;
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+  font-weight: bold;
+  color: black;
+  border-color: #1161ee;
+}
+
+.signup-form .group {
+  margin-bottom: 25px;
+}
+
+/* input */
+.signup-form .group .input {
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+/* input의 border과 위치 조정 */
+.signup-form .group .input-border {
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* button 디자인 */
+.signup-form .group .button {
+  color: #fff;
+  border: none;
+  display: inline;
+  padding: 13px 40px;
+  border-radius: 30px;
+  background: #3177f0;
+}
+
+/* label css */
+.signup-form .group .label {
+  width: 100%;
+  color: rgb(139, 139, 139);
+  font-size: 12px;
+  text-align: start;
+  margin: 0 0 2px 0;
+}
+
+/* 확인/취소 버튼 정렬 */
+.align-buttons {
+  width:100%;
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0 0 0; 
+}
+/*  */
+/* Signup END */
+/*  */
