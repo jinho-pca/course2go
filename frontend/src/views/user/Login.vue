@@ -6,6 +6,7 @@
       <!-- <h2 name="tab">로그인</h2> -->
       <div class="sign-in-htm">
         <div class="group">
+          <label for="email" class="label">이메일</label>
           <input
           v-model="email"
           v-bind:class="{error: error.email, complete: !error.email&&email.length!==0}"
@@ -16,10 +17,10 @@
           class="input"
           autocapitalize="off"
           >
-          <label for="email" class="label">이메일</label>
           <div class="error-text" v-if="error.email">{{error.email}}</div>
         </div>
         <div class="group">
+          <label for="password" class="label">비밀번호</label>
           <input
           v-model="password"
           type="password"
@@ -30,15 +31,18 @@
           @keyup.enter="login"
           placeholder="비밀번호를 입력하세요."
           >
-          <label for="password" class="label">비밀번호</label>
           <div class="error-text" v-if="error.password">{{error.password}}</div>
         </div>
         <div class="group">
+					<input id="check" type="checkbox" class="check" checked>
+					<label for="check"><span class="icon"></span> Keep me Signed in</label>
+				</div>
+        <div class="group">
           <input type="submit" @click="login" value="login" class="button">
         </div>
-        <div class="group">
-          <input type="submit" @click="login" value="회원가입" class="button">
-        </div>
+        <router-link to="/signup" class="group">
+          <input type="submit" @click="signup" value="회원가입" class="button">
+        </router-link>
       </div>
     </div>
     <div class="hr"></div>
@@ -46,7 +50,7 @@
       <a href="">Forgot Password?</a>
     </div>
   </div>
-</div>
+  </div>
 </template>
 
 <script>

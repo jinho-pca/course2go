@@ -1905,3 +1905,16 @@ const store = createStore({
   * 여러 가지 css
 * https://codepen.io/khadkamhn/pen/ZGvPLo
   * 원하던 디자인
+
+
+
+## PJT 진행 사항
+
+### 수정 필요 사항
+
+#### Login
+
+* CSS 수정
+  * label이 input 위로
+  * Signup은 figma대로 만들 예정인데 그걸로 따라가는게 나을 것 같다...
+* 
