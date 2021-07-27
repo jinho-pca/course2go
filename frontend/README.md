@@ -62,10 +62,6 @@ $ yarn add email-validator
 
 
 
-
-
-
-
 ## Router
 
 ### 0. Getting Started
@@ -1915,6 +1911,13 @@ const store = createStore({
 #### Login
 
 * CSS 수정
-  * label이 input 위로
   * Signup은 figma대로 만들 예정인데 그걸로 따라가는게 나을 것 같다...
-* 
+  * Sign in에서 `input` 태그로 제목 들어있는거 해결하기
+    * Sign up에서 한거 옮기기
+
+
+
+#### Sign up
+
+* 로그인과 회원가입 글자를 가운데 둘지 왼쪽으로 옮길지 정하기
+
