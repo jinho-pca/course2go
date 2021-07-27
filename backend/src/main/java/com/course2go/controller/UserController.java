@@ -46,15 +46,15 @@ public class UserController {
         final BasicResponse result = new BasicResponse();
         HttpStatus status = HttpStatus.CONFLICT;
         
-        User user = new User();
-        user.setUserName(request.getUserName());
-        user.setUserEmail(request.getUserEmail());
-        user.setUserPassword(request.getUserPassword());
-        user.setUserNickname(request.getUserNickname());
-        user.setUserBirthday(request.getUserBirthday());
-        user.setUserGender(request.getUserGender());
+//        User user = new User();
+//        user.setUserName(request.getUserName());
+//        user.setUserEmail(request.getUserEmail());
+//        user.setUserPassword(request.getUserPassword());
+//        user.setUserNickname(request.getUserNickname());
+//        user.setUserBirthday(request.getUserBirthday());
+//        user.setUserGender(request.getUserGender());
         
-        int registerResult = userRegisterService.userRegister(user);
+        int registerResult = userRegisterService.userRegister(request);
         
         switch(registerResult) {
         // 이메일 중복
@@ -77,4 +77,7 @@ public class UserController {
         
         return new ResponseEntity<>(result, status);
     }
+    
+    
+    
 }
