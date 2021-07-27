@@ -38,4 +38,9 @@ public class PlaceServiceImpl implements PlaceService {
 		PlaceDto placeDto = new PlaceDto(place.getPid(), place.getPlaceName(), place.getPlaceAddress(), place.getPlaceLat(), place.getPlaceLng(), place.getPlaceDataDate(), place.getPlaceType());
 		return placeDto;
 	}
+	@Override
+	public List<PlaceDto> searchPlaceByType(String type) {
+		return placeDao.findAllByPlaceTypeLike(type).stream().map(place -> modelmapper.map(place, PlaceDto.class)).collect(Collectors.toList());
+	}
+	
 }
