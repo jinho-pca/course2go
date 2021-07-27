@@ -22,16 +22,11 @@ public class NoticeFollowServiceImpl implements NoticeFollowService {
 	private final boolean isnew=true;
 	private final int followcall=1;
 	private final int followresult=2;
-	private final int scrap=3;
-	private final int comment=4;
 	private final ArrayList<Integer> follow = new ArrayList<Integer>();
-	private final ArrayList<Integer> board = new ArrayList<Integer>();
 	public NoticeFollowServiceImpl() {
 		modelmapper = new ModelMapper();
 		follow.add(1);
 		follow.add(2);
-		board.add(3);
-		board.add(4);
 	}
 	
 	
@@ -43,7 +38,7 @@ public class NoticeFollowServiceImpl implements NoticeFollowService {
 	}
 	@Override
 	public List<NoticeDto> noticeOldFollow(String noticeUid) {
-		List<Notice> newBoardList = noticeDao.findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(isnew, board, noticeUid);
+		List<Notice> newBoardList = noticeDao.findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(!isnew, follow, noticeUid);
 		List<NoticeDto> newBoardListDto = newBoardList.stream().map(entityList -> modelmapper.map(entityList, NoticeDto.class)).collect(Collectors.toList());
 		return newBoardListDto;
 	}
