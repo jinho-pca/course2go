@@ -32,4 +32,10 @@ public class PlaceServiceImpl implements PlaceService {
 		word = "%" + word + "%"; // 프론트에서 해오는게 나을 듯. js가 문자열은 더 좋으니
 		return placeDao.findAllByPlaceNameLike(word).stream().map(place -> modelmapper.map(place, PlaceDto.class)).collect(Collectors.toList());
 	}
+	@Override
+	public PlaceDto getPlace(Integer pid) {
+		Place place = placeDao.findById(pid).get();
+		PlaceDto placeDto = new PlaceDto(place.getPid(), place.getPlaceName(), place.getPlaceAddress(), place.getPlaceLat(), place.getPlaceLng(), place.getPlaceDataDate(), place.getPlaceType());
+		return placeDto;
+	}
 }
