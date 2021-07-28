@@ -22,7 +22,6 @@ public class UserProfileModifyServiceImpl implements UserProfileModifyService{
 			Optional<User> result = userDao.findUserByUserNickname(user.getUserNickname());
 			result.get().setUserImage(user.getUserImage());
 			result.get().setUserComment(user.getUserComment());
-			System.out.println(user);
 			userDao.save(result.get());
 			
 			return 1;

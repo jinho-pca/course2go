@@ -27,7 +27,9 @@ public class PlaceServiceImpl implements PlaceService {
 		List<Place> placeList = placeDao.findAllById(pids);
 		return placeList.stream().map(entityList -> modelmapper.map(entityList, PlaceDto.class)).collect(Collectors.toList());
 	}
-	
-	
-
+	@Override
+	public List<PlaceDto> searchPlace(String word) {
+		word = "%" + word + "%"; // 프론트에서 해오는게 나을 듯. js가 문자열은 더 좋으니
+		return placeDao.findAllByPlaceNameLike(word).stream().map(place -> modelmapper.map(place, PlaceDto.class)).collect(Collectors.toList());
+	}
 }

@@ -21,7 +21,7 @@ public class UserEmailFindServiceImpl implements UserEmailFindService{
 		if(userDao.findUserByUserNicknameAndUserBirthday(userNickname, userBirthday).isPresent()) {
 			// 닉네임과 생일이 일치하는 유저가 존재하는 경우
 			Optional<User> result = userDao.findUserByUserNicknameAndUserBirthday(userNickname, userBirthday);
-			return result.get().getUserPassword();
+			return result.get().getUserEmail();
 		}else return "fail";
 	}
 }

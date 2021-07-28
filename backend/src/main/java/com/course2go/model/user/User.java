@@ -1,12 +1,9 @@
 package com.course2go.model.user;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -38,12 +35,14 @@ public class User {
 	@Column(name = "user_nickname")
 	private String userNickname;
 	
+	@JsonIgnore
 	@Column(name = "user_salt")
 	private String userSalt;
 	
 	@Column(name = "user_birthday")
 	private LocalDate userBirthday;
 	
+	@JsonIgnore
 	@Column(name = "user_gender")
 	private boolean userGender;
 	
