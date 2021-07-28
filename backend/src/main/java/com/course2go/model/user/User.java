@@ -1,5 +1,6 @@
 package com.course2go.model.user;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -24,7 +25,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Builder(builderMethodName = "UserBuilder")
-public class User {
+public class User implements Serializable {
 	@Id
 	private String uid;
 	
