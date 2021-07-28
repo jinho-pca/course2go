@@ -20,6 +20,16 @@ const routes = [
     path: '/map',
     name: 'map',
     component: () => import('../components/maps/kakaomap/Kakaomap.vue')
+  }
+  {
+    path: '/email',
+    name: 'Email',
+    component: () => import(/* webpackChunkName: "EMail" */ '../views/user/Email.vue')
+  },
+  {
+    path: '/password',
+    name: 'Password',
+    component: () => import(/* webpackChunkName: "Password" */ '../views/user/Password.vue')
   },
 ]
 
