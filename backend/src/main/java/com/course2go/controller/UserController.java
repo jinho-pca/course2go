@@ -1,5 +1,7 @@
 package com.course2go.controller;
 
+import java.io.IOException;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +15,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.course2go.model.BasicResponse;
 import com.course2go.model.user.SignupRequest;
 import com.course2go.model.user.User;
 import com.course2go.model.user.UserEmailFindRequest;
+import com.course2go.model.user.UserEmailRequest;
 import com.course2go.model.user.UserModifyRequest;
 import com.course2go.model.user.UserProfileModifyRequest;
+import com.course2go.service.image.S3Uploader;
 import com.course2go.service.user.UserDeleteService;
 import com.course2go.service.user.UserEmailFindService;
 import com.course2go.service.user.UserModifyService;
+import com.course2go.service.user.UserPasswordFindService;
 import com.course2go.service.user.UserProfileModifyService;
 import com.course2go.service.user.UserProfileService;
 import com.course2go.service.user.UserRegisterService;
@@ -181,17 +189,26 @@ public class UserController {
     @Autowired
     UserProfileModifyService userProfileModifyService;
     
+    @Autowired
+	S3Uploader s3Uploader;
+    
     @PutMapping("/edit")
     @ApiOperation("프로필수정")
-    public Object edit(@Valid @RequestBody UserProfileModifyRequest request) {
+    public Object edit(@RequestParam("nickname") String nickname, @RequestParam("comment") String comment, @RequestParam("image") MultipartFile multipartFile) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.BAD_REQUEST;
+    	String imageUrl = null;
+    	// S3에 사진전송하고 url 받아오기
+    	try {
+    		imageUrl = s3Uploader.upload(multipartFile, "profile");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     	
     	User user = new User();
-    	user.setUserNickname(request.getUserNickname());
-    	user.setUserImage(request.getUserImage());
-    	user.setUserComment(request.getUserComment());
-    	System.out.println(user.toString());
+    	user.setUserNickname(nickname);
+    	user.setUserImage(imageUrl);
+    	user.setUserComment(comment);
     	int editResult = userProfileModifyService.userProfileModify(user);
     	
     	switch(editResult) {
@@ -205,7 +222,6 @@ public class UserController {
     		result.data = "success";
     		result.status = true;
     		result.object = user;
-    		System.out.println(user.getUserImage());
     		status = HttpStatus.OK;
     		break;
     	}
@@ -234,5 +250,32 @@ public class UserController {
     	
     	return new ResponseEntity<>(result, status);
     	
+    }
+    
+    @Autowired
+    UserPasswordFindService userPasswordFindService;
+    
+    @PostMapping("/find-pw")
+    @ApiOperation("임시비밀번호전송")
+    public Object sendEmail(@Valid @RequestBody UserEmailRequest request) {
+    	final BasicResponse result = new BasicResponse();
+    	HttpStatus status = HttpStatus.BAD_REQUEST;
+    	
+    	int findPasswordResult = userPasswordFindService.userPasswordFind(request.getUserEmail(), request.getUserNickname(), request.getUserBirthday());
+    	
+    	switch(findPasswordResult) {
+    	// 해당하는 유저가 없는 경우
+    	case 0:
+    		result.data = "unpresent user";
+    		result.status = false;
+    		break;
+    	// 임시 비밀번호 전송 성공
+    	case 1:
+    		result.data = "success";
+    		result.status = true;
+    		break;
+    	}
+    	
+    	return new ResponseEntity<>(result, status);
     }
 }

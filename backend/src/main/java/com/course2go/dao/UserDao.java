@@ -19,6 +19,8 @@ public interface UserDao extends JpaRepository<User, String> {
 
 	Optional<User> findUserByUserNicknameAndUserBirthday(String userNickname, LocalDate userBirthday);
 
+	Optional<User> findUserByUserEmailAndUserNicknameAndUserBirthday(String userEmail, String userNickname, LocalDate userBirthday);
+	
 	boolean existsByUserEmail(String userEmail);
 
 	boolean existsByUserNickname(String userNickname);
