@@ -1,0 +1,19 @@
+.nav-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 7%;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid black;
+}
+
+.nav-bottom .nav-items {
+  width: 95%;
+  padding: 15px 0 15px 0;
+}
+
+.nav-bottom .far {
+  width: 20%;
+  color: black;
+}

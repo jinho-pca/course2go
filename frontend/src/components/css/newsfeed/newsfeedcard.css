@@ -1,0 +1,48 @@
+.newsfeed-card {
+  margin: 10px 10% 10px 10%;
+  border-bottom: 1px solid black;
+}
+
+.newsfeed-card .newsfeed-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3px 0 3px;
+  margin: 5px 0 5px 0;
+}
+
+.newsfeed-card .newsfeed-title {
+  font-weight: bold;
+}
+
+..newsfeed-title .newsfeed-title .fa-star {
+  color: yellow;
+  background-color: yellow;
+}
+
+.newsfeed-card .newsfeed-image {
+  width: 100%;
+}
+
+.newsfeed-description {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 5px 0 10px 0;
+}
+
+.newsfeed-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(128, 128, 128, 0.5);
+  font-size: 13px;
+  padding: 8px 0 8px 0;
+}
+
+.newsfeed-card-bottom .comment-writer {
+  color: black;
+  font-weight: bold;
+}
+
+.newsfeed-card-bottom .fas {
+  margin: 5px;
+}

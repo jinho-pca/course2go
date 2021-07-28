@@ -1,0 +1,15 @@
+.newsfeed-list {
+  text-align: start;
+  width: 100%;
+  margin: 15% 0 0 0;
+}
+
+.tab {
+  font-size: 22px;
+  margin: 0 0 0 10%;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 80%;
+  border-bottom: 2px solid transparent;
+  border-color: #071835;
+}

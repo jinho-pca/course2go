@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    <div v-if="user">nav가 들어갈 자리</div>
     <router-view></router-view>
+    <NavBottom />
   </div>
 </template>
 
 <script>
 import "./assets/css/style.css"
+import NavBottom from '@/components/navbar/NavBottom.vue'
 export default {
-  name: "app"
+  name: "app",
+  components: {
+    NavBottom
+  }
 }
 </script>

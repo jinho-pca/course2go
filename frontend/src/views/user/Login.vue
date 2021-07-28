@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import '../../assets/css/user/login.css';
 import { watchEffect } from 'vue';
 import { userLogin } from '@/compositions/user';
 
@@ -78,6 +79,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-@import '../../assets/css/user/login.css';
-</style>
