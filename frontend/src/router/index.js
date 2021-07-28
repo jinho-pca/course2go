@@ -20,7 +20,7 @@ const routes = [
     path: '/map',
     name: 'map',
     component: () => import('../components/maps/kakaomap/Kakaomap.vue')
-  }
+  },
   {
     path: '/email',
     name: 'Email',
