@@ -1,4 +1,4 @@
-package com.course2go.config;
+package com.course2go.config.utils;
 
 import java.security.SecureRandom;
 import java.util.Random;

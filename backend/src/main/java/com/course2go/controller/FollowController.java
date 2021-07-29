@@ -1,7 +1,11 @@
 package com.course2go.controller;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,15 +14,23 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.course2go.authentication.AuthConstants;
+import com.course2go.authentication.TokenUtils;
 import com.course2go.dao.FollowDao;
+import com.course2go.exception.UserUnmatchedException;
 import com.course2go.model.BasicResponse;
 import com.course2go.model.follow.Follow;
 import com.course2go.model.notice.Notice;
 import com.course2go.model.user.User;
 import com.course2go.service.follow.FollowManagementService;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Header;
+
 import com.course2go.service.follow.FollowListService;
 
 //@ApiResponses(value = { @ApiResponse(code = 401, message = "Unauthorized", response = BasicResponse.class),
@@ -36,7 +48,7 @@ public class FollowController {
 	@Autowired
 	FollowListService followListService;
 	
-	
+	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	
 	@GetMapping("/follow/follower")
 	public Object getFollowerList(@RequestParam(required = true) final String email) {
@@ -71,59 +83,47 @@ public class FollowController {
 	}
 	
     @PostMapping("/follow")
-    public Object agreeFollow(@RequestBody Notice notice) {
+    public Object agreeFollow(@RequestBody Notice notice, @RequestHeader Map<String, Object> header) {
     	
-    	/*
-    	 * JWT 토큰을 이용하여 실제 자기가 보낸 요청인지 확인해야함
-    	*/
+    	if(!TokenUtils.isSameUid((String)header.get("authorization"), notice.getNoticeUid())) {
+    		throw new UserUnmatchedException(notice.getNoticeUid());
+    	}
     	
     	ResponseEntity<BasicResponse> response = null;
     	
-    	if(followManagementService.agree(notice)) {
-    		BasicResponse result = new BasicResponse();
-    		result.status = true;
-    		result.data = "success";
-    		response = new ResponseEntity<>(result, HttpStatus.OK);
-    		return response;
-    	} else {
-    		BasicResponse result = new BasicResponse();
-    		result.status = true;
-    		result.data = "fail";
-    		response = new ResponseEntity<>(result, HttpStatus.OK);
-    		return response;
-    	}
+    	followManagementService.agree(notice);
+		BasicResponse result = new BasicResponse();
+		result.status = true;
+		result.data = "success";
+		response = new ResponseEntity<>(result, HttpStatus.OK);
+		return response;
+    	
     }
     
     @DeleteMapping("/follow")
-    public Object denyFollow(@RequestBody Notice notice) {
+    public Object denyFollow(@RequestBody Notice notice, @RequestHeader Map<String, Object> header) {
     	
-    	/*
-    	 * JWT 토큰을 이용하여 실제 자기가 보낸 요청인지 확인해야함
-    	*/
+    	if(!TokenUtils.isSameUid((String)header.get("authorization"), notice.getNoticeUid())) {
+    		throw new UserUnmatchedException(notice.getNoticeUid());
+    	}
     	
     	ResponseEntity<BasicResponse> response = null;
     	
-    	if(followManagementService.deny(notice)) {
-    		BasicResponse result = new BasicResponse();
-    		result.status = true;
-    		result.data = "success";
-    		response = new ResponseEntity<>(result, HttpStatus.OK);
-    		return response;
-    	} else {
-    		BasicResponse result = new BasicResponse();
-    		result.status = true;
-    		result.data = "fail";
-    		response = new ResponseEntity<>(result, HttpStatus.OK);
-    		return response;
-    	}
+    	followManagementService.deny(notice);
+		BasicResponse result = new BasicResponse();
+		result.status = true;
+		result.data = "success";
+		response = new ResponseEntity<>(result, HttpStatus.OK);
+		return response;
+    	
     }
 
     @DeleteMapping("/follow/unfollow")
-    public Object unfollow(@RequestParam String followFromNickname, @RequestParam String followToNickname) {
+    public Object unfollow(@RequestParam String followFromNickname, @RequestParam String followToNickname, @RequestHeader Map<String, Object> header) {
     	
-    	/*
-    	 * JWT 토큰을 이용하여 실제 자기가 보낸 요청인지 확인해야함
-    	*/
+    	if(!TokenUtils.isSameNickname((String)header.get("authorization"), followFromNickname)) {
+    		throw new UserUnmatchedException(followFromNickname);
+    	}
     	
     	ResponseEntity<BasicResponse> response = null;
     	BasicResponse result = new BasicResponse();

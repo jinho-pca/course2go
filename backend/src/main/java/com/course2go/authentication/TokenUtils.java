@@ -44,7 +44,7 @@ public final class TokenUtils {
 
     public static boolean isValidToken(String token) {
         try {
-            Claims claims = getClaimsFormToken(token);
+            Claims claims = getClaimsFromToken(token);
             logger.info("expireTime :" + claims.getExpiration());
             logger.info("email :" + claims.get("userEmail"));
             logger.info("nickname :" + claims.get("userNickname"));
@@ -87,6 +87,7 @@ public final class TokenUtils {
         // 공개 클레임에 사용자의 이름과 이메일을 설정하여 정보를 조회할 수 있다.
         Map<String, Object> claims = new HashMap<>();
         logger.debug(user.getUserEmail());
+        claims.put("uid", user.getUid());
         claims.put("userEmail", user.getUserEmail());
         claims.put("userNickname", user.getUserNickname());
 
@@ -98,17 +99,29 @@ public final class TokenUtils {
         return new SecretKeySpec(apiKeySecretBytes, SignatureAlgorithm.HS256.getJcaName());
     }
 
-    private static Claims getClaimsFormToken(String token) {
+    public static Claims getClaimsFromToken(String token) {
+    	logger.info(token);
         return Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(secretKey))
-                .parseClaimsJws(token).getBody();
+                .parseClaimsJws(getTokenFromHeader(token)).getBody();
     }
 
     private static String getUserEmailFromToken(String token) {
-        Claims claims = getClaimsFormToken(token);
+        Claims claims = getClaimsFromToken(token);
         return (String) claims.get("email");
     }
 
-   
+    public static boolean isSameUid(String header, String uid) {
+    	logger.info(header);
+    	Claims claims = TokenUtils.getClaimsFromToken(header);
+    	String tokenUid = (String) claims.get("uid");
+    	return tokenUid.equals(uid) ? true : false;
+    }
 	
+    public static boolean isSameNickname(String header, String userNickname) {
+    	logger.info(header);
+    	Claims claims = TokenUtils.getClaimsFromToken(header);
+    	String tokenUserNickname = (String) claims.get("userNickname");
+    	return tokenUserNickname.equals(userNickname) ? true : false;
+    }
 	
 }
