@@ -1,5 +1,7 @@
 package com.course2go.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.course2go.authentication.CustomAuthenticationFilter;
 import com.course2go.authentication.CustomAuthenticationProvider;
-import com.course2go.authentication.CustomLoginFailureHandler;
-import com.course2go.authentication.CustomLoginSuccessHandler;
+import com.course2go.config.handler.CustomLoginSuccessHandler;
 
 import lombok.RequiredArgsConstructor;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -27,12 +28,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	private final UserDetailsService userDetailsService;
 
     // 정적 자원에 대해서는 Security 설정을 적용하지 않음.
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+//        web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
     @Override
@@ -58,22 +61,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public CustomAuthenticationFilter customAuthenticationFilter() throws Exception {
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManager());
+        customAuthenticationFilter.setAuthenticationManager(this.authenticationManagerBean());
         customAuthenticationFilter.setFilterProcessesUrl("/user/login");
         customAuthenticationFilter.setAuthenticationSuccessHandler(customLoginSuccessHandler());
-        customAuthenticationFilter.setAuthenticationFailureHandler(customLoginFailureHandler());
+//        customAuthenticationFilter.setAuthenticationFailureHandler(customLoginFailureHandler());
+        
         customAuthenticationFilter.afterPropertiesSet();
+        logger.info("Here is Set Filter");
         return customAuthenticationFilter;
     }
 
     @Bean
     public CustomLoginSuccessHandler customLoginSuccessHandler() {
-        return new CustomLoginSuccessHandler();
+    	CustomLoginSuccessHandler handler = new CustomLoginSuccessHandler();
+//    	handler.setDefaultTargetUrl("/user/login");
+        return handler;
     }
     
-    @Bean
-    public CustomLoginFailureHandler customLoginFailureHandler() {
-        return new CustomLoginFailureHandler();
-    }
+//    @Bean
+//    public CustomLoginFailureHandler customLoginFailureHandler() {
+//        return new CustomLoginFailureHandler();
+//    }
 
     @Bean
     public CustomAuthenticationProvider customAuthenticationProvider() {

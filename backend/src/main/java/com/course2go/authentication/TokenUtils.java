@@ -9,6 +9,9 @@ import java.util.Map;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.course2go.model.user.User;
 
 
@@ -24,7 +27,8 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @NoArgsConstructor
 public final class TokenUtils {
-	
+
+	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	private static final String secretKey = "giuhawekbh28h78i3Hviu3h";
 	
 	public static String generateJwtToken(User user) {
@@ -41,8 +45,9 @@ public final class TokenUtils {
     public static boolean isValidToken(String token) {
         try {
             Claims claims = getClaimsFormToken(token);
-            log.info("expireTime :" + claims.getExpiration());
-            log.info("email :" + claims.get("useremail"));
+            logger.info("expireTime :" + claims.getExpiration());
+            logger.info("email :" + claims.get("userEmail"));
+            logger.info("nickname :" + claims.get("userNickname"));
             return true;
 
         } catch (ExpiredJwtException exception) {
@@ -81,9 +86,9 @@ public final class TokenUtils {
     private static Map<String, Object> createClaims(User user) {
         // 공개 클레임에 사용자의 이름과 이메일을 설정하여 정보를 조회할 수 있다.
         Map<String, Object> claims = new HashMap<>();
-
-        claims.put("email", user.getUserEmail());
-        claims.put("role", user.getUserNickname());
+        logger.debug(user.getUserEmail());
+        claims.put("userEmail", user.getUserEmail());
+        claims.put("userNickname", user.getUserNickname());
 
         return claims;
     }

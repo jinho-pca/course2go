@@ -25,9 +25,6 @@ public class FollowListServiceImpl implements FollowListService{
 		String uid = userDao.getUserByUserEmail(email).get().getUid();
 		System.out.println(uid);
 		List<String> list = followDao.getFollowers(uid);
-		for (String string : list) {
-			System.out.println(string);
-		}
 		return list;
 	}
 

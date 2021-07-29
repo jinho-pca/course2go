@@ -38,7 +38,7 @@ public class UserRegisterServiceImpl implements UserRegisterService{
 		// salt 값 -> null : 암호화 작업 후에 설정할 것!
 		String salt =  RandomSaltGenerator.getNextSalt().toString();
 		
-		User user = User.builder(UUID.randomUUID().toString().substring(0,18),signupRequest.getUserName(), signupRequest.getUserEmail(), 
+		User user = User.builder(UUID.randomUUID().toString(),signupRequest.getUserName(), signupRequest.getUserEmail(), 
 				passwordEncoder.encode(signupRequest.getUserPassword()+salt) ,
 				signupRequest.getUserNickname(), salt, signupRequest.getUserBirthday(),
 				signupRequest.getUserGender()).build();
