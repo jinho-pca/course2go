@@ -40,9 +40,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 		if (!passwordEncoder.matches(userPassword+userDetails.getUserSalt(), userDetails.getPassword())) {
 			throw new BadCredentialsException(userDetails.getUsername() + "Invalid password");
 		}
-		System.out.println("Match");
-		
-		System.out.println(userDetails.getAuthorities().toString());
 		
 		return new UsernamePasswordAuthenticationToken(userDetails, userPassword, userDetails.getAuthorities());
 		

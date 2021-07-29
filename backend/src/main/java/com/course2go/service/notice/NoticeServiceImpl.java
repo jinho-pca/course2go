@@ -21,4 +21,11 @@ public class NoticeServiceImpl implements NoticeService{
 	public void writeNotice(String noticeUid, int noticeType, String noticeFromUid, boolean noticeIsnew) {
 		noticeDao.save(Notice.builder(noticeUid, noticeType, noticeFromUid, null, noticeIsnew).build());
 	}
+
+	@Override
+	public void deleteNotice(Notice notice) {
+		noticeDao.delete(notice);
+	}
+	
+	
 }

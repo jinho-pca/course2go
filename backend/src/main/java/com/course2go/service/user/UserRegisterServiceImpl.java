@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.course2go.config.RandomSaltGenerator;
+import com.course2go.config.utils.RandomSaltGenerator;
 import com.course2go.dao.UserDao;
 import com.course2go.model.user.SignupRequest;
 import com.course2go.model.user.User;
