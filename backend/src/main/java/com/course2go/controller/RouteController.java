@@ -37,12 +37,12 @@ import io.swagger.annotations.ApiOperation;
 public class RouteController {
 
 	@Autowired
-	RouteService routeWriteService;
+	RouteService routeService;
 	
     @PostMapping("/write")
     @ApiOperation(value = "동선작성")
     public Object writeRoute(@RequestParam String uid,@Valid @RequestBody RouteWriteRequest request) {
-    	routeWriteService.writeRoute(uid, request);
+    	routeService.writeRoute(uid, request);
 		final BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "success";
@@ -52,7 +52,7 @@ public class RouteController {
     @PostMapping("/read")
     @ApiOperation(value = "동선작성")
     public Object readRoute(@RequestParam Integer bid) {
-    	RouteReadResponse response = routeWriteService.readRouteBoard(bid);
+    	RouteReadResponse response = routeService.readRouteBoard(bid);
 		final BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "success";
