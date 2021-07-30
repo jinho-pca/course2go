@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+/Servers/
+/.metadata/
+
 ### STS ###
 .apt_generated
 .classpath
@@ -12,7 +15,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
-
+backend/src/main/resources/application.properties
 ### IntelliJ IDEA ###
 .idea
 *.iws

@@ -1,0 +1,13 @@
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  /* container 속성 */
+  width: 100%;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 7%; /* 하단 navbar와 겹치지 않도록 */
+}
