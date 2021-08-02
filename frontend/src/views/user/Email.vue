@@ -53,7 +53,7 @@ import { watchEffect } from 'vue';
 import { userEmail } from '@/compositions/user';
 
 export default {
-  name: 'email',
+  name: 'Email',
   setup() {
     const { nickname, birth, error, isSubmit, checkEmailForm, findEmail } = userEmail();
     /* 이메일과 비밀번호에 변화가 있을 때 watch */

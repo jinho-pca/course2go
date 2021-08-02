@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   border-top: 1px solid black;
+  background: white;
 }
 
 .nav-bottom .nav-items {
@@ -15,5 +16,5 @@
 
 .nav-bottom .far {
   width: 20%;
-  color: black;
+  color: rgb(0, 0, 0);
 }

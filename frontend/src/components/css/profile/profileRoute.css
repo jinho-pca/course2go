@@ -1,0 +1,12 @@
+.profile-route {
+  margin: 0 10px 20px 10px;
+}
+
+.profile-route .route-namebox {
+  text-align: start;
+  margin: 0 0 10px 0;
+}
+
+.profile-route .route-name {
+  color: orange;
+}

@@ -1,0 +1,12 @@
+.profile-place {
+  margin: 0 10px 20px 10px;
+}
+
+.profile-place .place-namebox {
+  text-align: start;
+  margin: 0 0 10px 0;
+}
+
+.profile-place .place-name {
+  color: orange;
+}
