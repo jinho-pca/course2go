@@ -6,10 +6,10 @@
 
 .tab {
   font-size: 22px;
-  margin: 0 0 0 10%;
+  margin: 0 0 0 5%;
   padding-bottom: 5px;
   display: inline-block;
-  width: 80%;
+  width: 90%;
   border-bottom: 2px solid transparent;
   border-color: #071835;
 }

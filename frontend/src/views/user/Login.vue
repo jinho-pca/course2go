@@ -61,7 +61,7 @@ import { watchEffect } from 'vue';
 import { userLogin } from '@/compositions/user';
 
 export default {
-  name: 'login',
+  name: 'Login',
   setup() {
     const { email, password, error, isSubmit, passwordSchema, login, checkLoginForm } = userLogin();
     /* 이메일과 비밀번호에 변화가 있을 때 watch */
