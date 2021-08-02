@@ -42,6 +42,7 @@ public class NoticeController {
     @ApiOperation(value = "새 팔로우")
 	public Object newfollow(@RequestHeader Map<String, Object> header) {
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
+		System.out.println(uid);
 		List<NoticeDto> noticeList = noticeFollowService.noticeNewFollow(uid);
 		System.out.println(noticeList);
 		final BasicResponse result = new BasicResponse();
