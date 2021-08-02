@@ -41,9 +41,11 @@ $ vue add vuex
 $ vue add router
 
  WARN  There are uncommitted changes in the current repository, it's recommended to commit or stash them first.
-? Still proceed? Yes
+? Still proceed?
+Y
 
-? Use history mode for router? (Requires proper server setup for index fallback in production) Yes
+? Use history mode for router? (Requires proper server setup for index fallback in production)
+Y
 ```
 
 
@@ -51,9 +53,18 @@ $ vue add router
 ### Settings
 
 ```bash
-$ yarn add axios
-$ yarn add password-validator
-$ yarn add email-validator
+$ yarn add axios # npm install axios
+$ yarn add password-validator # npm install password-validator
+$ yarn add email-validator # npm install email-validator
+```
+
+
+
+### Run Server
+
+```bash
+# 포트 변경을 위해서는 yarn 필요
+$ yarn server --port 3000
 ```
 
 
@@ -1907,7 +1918,7 @@ const store = createStore({
 ### 알아볼 것
 
 * compositions 구조를 `user/login.js`, `user/signup.js` 로 놓을지 `user` 아래에 user 기능을 다 둘지
-* 
+* 여행을 위한 QR 기능
 
 
 
@@ -1987,4 +1998,27 @@ const store = createStore({
 * `더보기` 버튼 작동방법
 * font 크기 조정 필요
 * 뉴스피드 글에 나오는 대표 댓글을 어떻게 가져오는가
+
+
+
+#### Profile
+
+* `object-fit`
+  * 전체 사진이 나오는 fill로 설정했다.
+* 팔로우나 프로필 편집 버튼을 좀 더 버튼같이 변경하기
+* 폰트 크기를 상대적으로 맞춰서 만들면 여러 종류의 모바일에 비슷한 환경을 제공할 수 있을 것 같다.
+* 내 프로필인지, 타인 프로필인지 확인 후 누구 게시물인지 하위 component로 `props`
+* `Route, Place card`를 각각의 `List Component`에 넣어서 관리하는게 좋을까?
+  * 일단 props의 귀찮음 때문에 빠른 연결을 위해 바로 Card로 연결
+  * 다시 보니까 `ProfileRoute`에서 따로 관리하기 때문에 굳이 할 필요가 없을 것 같다(?)
+* 프로필->동선 전체보기, 장소 전체보기가 없다.
+  * 동선과 장소가 많은 경우에 불편해질 것 같음
+* 내 프로필이냐, 다른 사람 프로필이냐에 따라 다른 레이아웃을 보여줘야 한다면 `div`가 아닌 그 위에서 애초에 다른 `component`를 보내주고 `user` 데이터를 뿌려주면 되지 않을까?
+
+* https://blueshw.github.io/2019/06/07/expandable-list-by-pure-css/
+  * 게시물 작성할 때 사용할 드롭다운 css
+    * 다른거 누르면 열려있던건 접히고, 열린걸 누르면 그대로 닫힘
+* 내 페이지의 `설정(톱니바퀴)` vertical-align이 되어있지 않음
+
+
 

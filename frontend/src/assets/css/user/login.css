@@ -24,9 +24,9 @@ a {
 .login-html {
   width: 100%;
   height: 100%;
-  position: absolute;
-  padding: 90px 70px 50px 70px;
-  background: rgba(10, 17, 160, 0.7);
+  /* position: absolute; */
+  padding: 90px 50px 50px 50px;
+  background: rgb(77, 187, 252);
   /* background: white; */
 }
 
