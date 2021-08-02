@@ -131,7 +131,7 @@ import { watchEffect } from 'vue';
 import { userSignup } from '@/compositions/user';
 
 export default {
-  name: 'singup',
+  name: 'Singup',
   setup() {
     const { 
       email, name, password, passwordConfirm, nickname, birth, gender, 

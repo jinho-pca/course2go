@@ -6,7 +6,7 @@
       </router-link>
       <i class="far fa-comment-alt"></i>
       <i class="far fa-plus"></i>
-      <i class="far fa-map"></i>
+      <i class="far fa-bell"></i>
       <router-link to="/profile">
         <i class="far fa-user"></i>
       </router-link>
@@ -15,12 +15,8 @@
 </template>
 
 <script>
-import '@/components/css/navbar/navbottom.css'
+import '@/components/css/navbar/navBottom.css'
 export default {
   name: 'navbottom'
 }
 </script>
-
-<style>
-
-</style>

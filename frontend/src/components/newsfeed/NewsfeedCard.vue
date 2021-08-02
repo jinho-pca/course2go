@@ -31,12 +31,8 @@
 </template>
 
 <script>
-import '../css/newsfeed/newsfeedcard.css'
+import '../css/newsfeed/newsfeedCard.css'
 export default {
   name: 'newsfeedcard'
 }
 </script>
-
-<style>
-
-</style>

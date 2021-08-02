@@ -69,7 +69,7 @@ import { watchEffect } from 'vue';
 import { userPassword } from '@/compositions/user';
 
 export default {
-  name: 'password',
+  name: 'Password',
   setup() {
     const { email, nickname, birth, error, checkPasswordForm, findPassword } = userPassword();
     /* 이메일과 비밀번호에 변화가 있을 때 watch */
