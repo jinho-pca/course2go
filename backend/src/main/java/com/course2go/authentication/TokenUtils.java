@@ -124,4 +124,9 @@ public final class TokenUtils {
     	return tokenUserNickname.equals(userNickname) ? true : false;
     }
 	
+    public static String getUidFromToken(String header) {
+    	Claims claims = TokenUtils.getClaimsFromToken(header);
+    	String tokenUid = (String) claims.get("uid");
+    	return tokenUid;
+    }
 }
