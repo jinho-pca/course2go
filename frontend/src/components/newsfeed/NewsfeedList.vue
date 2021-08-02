@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import '../css/newsfeed/newsfeedlist.css'
+import '../css/newsfeed/newsfeedList.css'
 import NewsfeedCard from '@/components/newsfeed/NewsfeedCard.vue'
 export default {
   name: 'newsfeedlist',
@@ -15,7 +15,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

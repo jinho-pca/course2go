@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import '@/components/css/navbar/navtop.css'
+import '@/components/css/navbar/navTop.css'
 export default {
   name: 'navtop',
 }
