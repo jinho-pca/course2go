@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import '../css/newsfeed/newsfeedList.css'
+import '../css/newsfeed/newsfeed-list.css'
 import NewsfeedCard from '@/components/newsfeed/NewsfeedCard.vue'
 export default {
   name: 'newsfeedlist',
