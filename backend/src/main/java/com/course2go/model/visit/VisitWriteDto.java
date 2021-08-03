@@ -1,7 +1,5 @@
 package com.course2go.model.visit;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,12 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VisitWriteRequest {
+public class VisitWriteDto {
     private Integer visitPid;
     private String visitContent;
     private Integer visitTime;
     private Integer visitCost;
-    private MultipartFile visitImage1;
-    private MultipartFile visitImage2;
-    private MultipartFile visitImage3;
+    private String visitImage1;
+    private String visitImage2;
+    private String visitImage3;
+
 }

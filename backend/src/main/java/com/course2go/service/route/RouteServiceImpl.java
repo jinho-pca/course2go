@@ -36,7 +36,7 @@ public class RouteServiceImpl implements RouteService {
 		boardService.writeBoard(uid, 0, 0, boardRid, true);
 		int order = 1;
 		for (Integer pid : routePid) {
-			containService.writeContain(boardRid, pid, order++);
+			containService.writeContain(boardRid, pid, null, order++);
 		}
 	}
 
@@ -45,7 +45,7 @@ public class RouteServiceImpl implements RouteService {
 		RouteReadResponse routeReadResponse= new RouteReadResponse();
 		routeReadResponse.setBoardResponse(boardService.readBoard(bid));
 		routeReadResponse.setRouteResponse(readRoute(routeReadResponse.getBoardResponse().getBoardTid()));
-		routeReadResponse.setContainPlaces(containService.listContain(routeReadResponse.getBoardResponse().getBoardTid()));
+		routeReadResponse.setContainSpots(containService.listContain(routeReadResponse.getBoardResponse().getBoardTid()));
 		return routeReadResponse;
 	}
 

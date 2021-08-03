@@ -49,7 +49,7 @@ public class RouteController {
     }
     
     @PostMapping("/read")
-    @ApiOperation(value = "동선작성")
+    @ApiOperation(value = "동선읽기")
     public Object readRoute(@RequestParam Integer bid) {
     	RouteReadResponse response = routeService.readRouteBoard(bid);
 		final BasicResponse result = new BasicResponse();
