@@ -29,6 +29,7 @@ public interface FollowDao extends JpaRepository<Follow, Integer>{
 			)
 	List<String> getFollowings(@Param("uid") String uid); 
 	
-	Optional<Follow> getFollowByFollowFromUidAndFollowToUid(String followFromId, String followToId);
-	
+	Optional<Follow> getFollowByFollowFromUidAndFollowToUid(String followFromUid, String followToUid);
+
+	boolean existsByFollowFromUidAndFollowToUid(String followFromUid, String followToUid);
 }
