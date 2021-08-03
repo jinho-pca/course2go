@@ -186,7 +186,7 @@ public class UserController {
     
     @PutMapping("/edit")
     @ApiOperation("프로필수정")
-    public Object edit(@RequestHeader Map<String, Object> requestHeader, @RequestParam("comment") String requestComment, @RequestParam("image") MultipartFile multipartFile) {
+    public Object edit(@RequestHeader Map<String, Object> requestHeader, @RequestParam("comment") String requestComment, @RequestParam(required = false, value = "image")MultipartFile multipartFile) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.BAD_REQUEST;
     	String imageUrl = null;
@@ -196,10 +196,12 @@ public class UserController {
     	String tokenEmail = (String) claims.get("userEmail");
 
     	// S3에 사진전송하고 url 받아오기
-    	try {
-    		imageUrl = s3Uploader.upload(multipartFile, "profile");
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(!multipartFile.isEmpty()){
+			try {
+				imageUrl = s3Uploader.upload(multipartFile, "profile");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
     	int editResult = userProfileModifyService.userProfileModify(tokenEmail, requestComment, imageUrl);
