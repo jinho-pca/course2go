@@ -9,8 +9,8 @@ import com.course2go.model.visit.VisitDto;
 import com.course2go.model.visit.VisitReadResponse;
 import com.course2go.model.visit.VisitResponse;
 import com.course2go.model.visit.VisitWriteDto;
-import com.course2go.model.visit.VisitWriteRequest;
 import com.course2go.service.board.BoardService;
+import com.course2go.service.contain.ContainService;
 import com.course2go.service.place.PlaceService;
 
 @Service
@@ -22,16 +22,25 @@ public class VisitServiceImpl implements VisitService {
 	BoardService boardService;
 	@Autowired
 	PlaceService placeService;
+	@Autowired
+	ContainService containService;
 	
 	@Override
-	public void writeVisit(String uid, VisitWriteDto dto) {
-		writeVisit(uid, dto.getVisitPid(), dto.getVisitContent(), dto.getVisitTime(), dto.getVisitCost(), dto.getVisitImage1(), dto.getVisitImage2(), dto.getVisitImage3());
+	public void writeVisit(String uid, String title, VisitWriteDto dto, Integer rid) {
+		int vid = writeVisit(uid, title, dto.getVisitPid(), dto.getVisitContent(), dto.getVisitTime(), dto.getVisitCost(), dto.getVisitImage1(), dto.getVisitImage2(), dto.getVisitImage3());
+		containService.modifyContain(rid, dto.getVisitPid(), vid);
+	}
+	
+	@Override
+	public void writeVisit(String uid, String title, VisitWriteDto dto) {
+		writeVisit(uid, title, dto.getVisitPid(), dto.getVisitContent(), dto.getVisitTime(), dto.getVisitCost(), dto.getVisitImage1(), dto.getVisitImage2(), dto.getVisitImage3());
 	}
 
 	@Override
-	public void writeVisit(String uid, Integer visitPid, String visitContent, Integer visitTime, Integer visitCost, String visitImage1, String visitImage2, String visitImage3) {
+	public Integer writeVisit(String uid, String title, Integer visitPid, String visitContent, Integer visitTime, Integer visitCost, String visitImage1, String visitImage2, String visitImage3) {
 		int boardvid = visitDao.save(Visit.builder(visitPid, visitContent, visitTime, visitCost, visitImage1, visitImage2, visitImage3).build()).getVid();
-		boardService.writeBoard(uid, 0, 0, boardvid, false);
+		boardService.writeBoard(uid, title, 0, 0, boardvid, false);
+		return boardvid;
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.course2go.model.follow.Follow;
 
-public interface FollowDao extends JpaRepository<Follow, String>{
+public interface FollowDao extends JpaRepository<Follow, Integer>{
 	
 	@Query(
 			value = "SELECT u.user_nickname" +
