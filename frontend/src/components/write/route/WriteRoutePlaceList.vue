@@ -3,24 +3,34 @@
 		장소 목록
 	</div>
   <!-- v-for -->
-  <WriteRoutePlace/>
+ 
+	<SearchPlace class="search-modal" v-if="showModal" @close="showModal = false" @place="addPlace"/>
+	<div class="place-list" v-for="place in placeList" :key="place">
+		<div class="place-items">
+			{{place}}
+		</div>
+	</div>
   <button @click="showModal = true">+</button>
-	<SearchPlace class="search-modal" v-if="showModal" @close="showModal = false" >
-		
-	</SearchPlace>
 </template>
 
 <script>
-import WriteRoutePlace from '@/components/write/route/WriteRoutePlace.vue'
 import SearchPlace from '@/components/search/SearchPlace.vue'
 export default {
 	components: {
-		WriteRoutePlace,
     SearchPlace
   },
+	methods: {
+		addPlace(place){
+			this.showModal=false;
+			this.placeList.push(place);
+			console.log(this.placeList[0]);
+		}
+	}
+	,
 	data: function(){
 		return{
-			showModal : false
+			showModal : false,
+			placeList : []
 		}
 	}
 }
