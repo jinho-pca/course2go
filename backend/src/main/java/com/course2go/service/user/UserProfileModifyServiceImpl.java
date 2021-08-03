@@ -15,17 +15,18 @@ public class UserProfileModifyServiceImpl implements UserProfileModifyService{
 	private UserDao userDao;
 	
 	@Override
-	public int userProfileModify(User user) {
+	public int userProfileModify(String tokenEmail, String requestComment, String imageUrl) {
 		
-		if(userDao.findUserByUserNickname(user.getUserNickname()).isPresent()) {
-			// 프로필 수정 요청한 유저가 존재 한다면
-			Optional<User> result = userDao.findUserByUserNickname(user.getUserNickname());
-			result.get().setUserImage(user.getUserImage());
-			result.get().setUserComment(user.getUserComment());
+		if(userDao.findUserByUserEmail(tokenEmail).isPresent()) {
+			// 프로필 수정 요청한 유저가 존재 하는 경우
+
+			Optional<User> result = userDao.findUserByUserEmail(tokenEmail);
+			result.get().setUserImage(imageUrl);
+			result.get().setUserComment(requestComment);
 			userDao.save(result.get());
 			
 			return 1;
-		}else return 0;
+		}else return 0; // 프로필 수정 요청한 유저가 존재하지 않는 경우
 		
 	}
 
