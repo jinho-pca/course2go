@@ -1,6 +1,7 @@
 package com.course2go.dao;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,5 +29,7 @@ public interface UserDao extends JpaRepository<User, String> {
 	Optional<User> getUserByUserEmail(String userEmail);
 
 	Optional<User> getUserByUserNickname(String userNickname);
+
+	List<User> findAllByUserName(String userName);
 
 }
