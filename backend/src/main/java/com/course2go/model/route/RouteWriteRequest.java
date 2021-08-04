@@ -16,6 +16,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RouteWriteRequest {
+	private String title;
     private LocalDate routeStartDate;
     private LocalDate routeEndDate;
     private String routeContent;

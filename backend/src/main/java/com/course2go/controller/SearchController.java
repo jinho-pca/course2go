@@ -1,19 +1,18 @@
 package com.course2go.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
+import com.course2go.authentication.TokenUtils;
+import com.course2go.model.user.UserDto;
+import com.course2go.service.user.UserService;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.course2go.model.BasicResponse;
 import com.course2go.model.place.PlaceDto;
@@ -37,4 +36,17 @@ public class SearchController {
     public List<PlaceDto> searchPlace(@PathVariable String word) {
 		return placeService.searchPlace(word);
     }
+
+    @Autowired
+	UserService userService;
+
+	@GetMapping("/user/{userName}")
+	@ApiOperation(value = "유저검색")
+	public List<UserDto> searchUser(@PathVariable String userName, @RequestHeader Map<String, Object> requestHeader){
+
+		final String token = (String) requestHeader.get("authorization");
+		Claims claims = TokenUtils.getClaimsFromToken(token);
+		String requestNickname = (String) claims.get("userNickname");
+		return userService.searchUser(requestNickname, userName);
+	}
 }

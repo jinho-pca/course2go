@@ -25,10 +25,21 @@ public class Visit {
     
     private Integer visitPid;
     private String visitContent;
+    private Integer visitTime;
+    private Integer visitCost;
     
-    public static VisitBuilder builder(Integer visitPid, String visitContent) {
+    private String visitImage1;
+    private String visitImage2;
+    private String visitImage3;
+    
+    public static VisitBuilder builder(Integer visitPid, String visitContent, Integer visitTime, Integer visitCost, String visitImage1, String visitImage2, String visitImage3) {
 		return VisitBuilder()
 				.visitPid(visitPid)
-				.visitContent(visitContent);
+				.visitContent(visitContent)
+				.visitTime(visitTime)
+				.visitCost(visitCost)
+				.visitImage1(visitImage1)
+				.visitImage2(visitImage2)
+				.visitImage3(visitImage3);
 	}
 }

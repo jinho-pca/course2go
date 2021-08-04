@@ -1,33 +1,26 @@
 package com.course2go.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
+import com.course2go.authentication.TokenUtils;
+import com.course2go.model.user.*;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.course2go.model.BasicResponse;
-import com.course2go.model.user.SignupRequest;
-import com.course2go.model.user.User;
-import com.course2go.model.user.UserEmailFindRequest;
-import com.course2go.model.user.UserEmailRequest;
-import com.course2go.model.user.UserModifyRequest;
-import com.course2go.model.user.UserProfileModifyRequest;
+import com.course2go.model.board.BoardMyList;
+import com.course2go.model.route.RouteReadResponse;
+import com.course2go.service.board.BoardService;
 import com.course2go.service.image.S3Uploader;
+import com.course2go.service.route.RouteService;
 import com.course2go.service.user.UserDeleteService;
 import com.course2go.service.user.UserEmailFindService;
 import com.course2go.service.user.UserModifyService;
@@ -62,16 +55,8 @@ public class UserController {
     	
         final BasicResponse result = new BasicResponse();
         HttpStatus status = HttpStatus.CONFLICT;
-        
-        User user = new User();
-        user.setUserName(request.getUserName());
-        user.setUserEmail(request.getUserEmail());
-        user.setUserPassword(request.getUserPassword());
-        user.setUserNickname(request.getUserNickname());
-        user.setUserBirthday(request.getUserBirthday());
-        user.setUserGender(request.getUserGender());
-        
-        int registerResult = userRegisterService.userRegister(user);
+
+        int registerResult = userRegisterService.userRegister(request);
         
         switch(registerResult) {
         // 이메일 중복
@@ -95,21 +80,24 @@ public class UserController {
         return new ResponseEntity<>(result, status);
     }
     
+
     @Autowired
     UserModifyService userModifyService;
     
     @PutMapping("/modify")
     @ApiOperation("회원정보수정")
-    public Object modify(@Valid @RequestBody UserModifyRequest request) {
+    public Object modify(@Valid @RequestBody UserModifyRequest request, @RequestHeader Map<String, Object> requestHeader) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.CONFLICT;
-    	
-    	User user = new User();
-    	user.setUserEmail(request.getUserEmail());
-    	user.setUserNickname(request.getUserNickname());
-    	user.setUserPassword(request.getUserPassword());
+
+    	final String token = (String) requestHeader.get("authorization");
+		Claims claims = TokenUtils.getClaimsFromToken(token);
+		String tokenEmail = (String) claims.get("userEmail");
+		System.out.println("token.toString() : " + token);
+		System.out.println("claims : " + claims);
+		System.out.println("tokenEmail : " + tokenEmail);
     	    	
-    	int modifyResult = userModifyService.userModify(user);
+    	int modifyResult = userModifyService.userModify(tokenEmail, request.getUserNickname(), request.getUserPassword());
     	
     	switch(modifyResult) {
     	// // 회원정보 수정을 요청한 유저가 존재하지 않는 경우 
@@ -137,20 +125,29 @@ public class UserController {
     @Autowired
     UserDeleteService userDeleteService;
     
-    @DeleteMapping("/delete/{userNickname}")
+    @DeleteMapping("/delete")
     @ApiOperation("회원탈퇴")
-    public Object delete(@PathVariable("userNickname") String userNickname) {
+    public Object delete(@RequestBody Map<String, String> request, @RequestHeader Map<String, Object> requestHeader) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.BAD_REQUEST;
-    	
-    	int deleteResult = userDeleteService.userDelete(userNickname);
-    	
+
+    	final String token = (String) requestHeader.get("authorization");
+    	Claims claims = TokenUtils.getClaimsFromToken(token);
+    	String tokenEmail = (String) claims.get("userEmail");
+    	String requestPassword = (String) request.get("requestPassword");
+    	int deleteResult = userDeleteService.userDelete(tokenEmail, requestPassword);
+
     	switch(deleteResult) {
     	// 회원탈퇴 요청한 유저가 존재하지 않는 경우
-    	case 0:
+    	case -1:
     		result.data = "unpresent user";
     		result.status = false;
     		break;
+    	// 비밀번호가 일치하지 않는 경우
+		case 0:
+				result.data = "incorrect password";
+				result.status = false;
+				break;
     	// 회원탈퇴 완료
     	case 1:
     		result.data = "success";
@@ -194,22 +191,25 @@ public class UserController {
     
     @PutMapping("/edit")
     @ApiOperation("프로필수정")
-    public Object edit(@RequestParam("nickname") String nickname, @RequestParam("comment") String comment, @RequestParam("image") MultipartFile multipartFile) {
+    public Object edit(@RequestHeader Map<String, Object> requestHeader, @RequestParam("comment") String requestComment, @RequestParam(required = false, value = "image")MultipartFile multipartFile) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.BAD_REQUEST;
     	String imageUrl = null;
+
+    	final String token = (String) requestHeader.get("authorization");
+    	Claims claims = TokenUtils.getClaimsFromToken(token);
+    	String tokenEmail = (String) claims.get("userEmail");
+
     	// S3에 사진전송하고 url 받아오기
-    	try {
-    		imageUrl = s3Uploader.upload(multipartFile, "profile");
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(!multipartFile.isEmpty()){
+			try {
+				imageUrl = s3Uploader.upload(multipartFile, "profile");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-    	
-    	User user = new User();
-    	user.setUserNickname(nickname);
-    	user.setUserImage(imageUrl);
-    	user.setUserComment(comment);
-    	int editResult = userProfileModifyService.userProfileModify(user);
+
+    	int editResult = userProfileModifyService.userProfileModify(tokenEmail, requestComment, imageUrl);
     	
     	switch(editResult) {
     	// 프로필 수정 요청한 유저가 존재하지 않는 경우
@@ -221,7 +221,6 @@ public class UserController {
     	case 1:
     		result.data = "success";
     		result.status = true;
-    		result.object = user;
     		status = HttpStatus.OK;
     		break;
     	}
@@ -257,11 +256,11 @@ public class UserController {
     
     @PostMapping("/find-pw")
     @ApiOperation("임시비밀번호전송")
-    public Object sendEmail(@Valid @RequestBody UserEmailRequest request) {
+    public Object sendEmail(@Valid @RequestBody UserEmailRequest userEmailRequest, @RequestHeader Map<String, Object> requestHeader) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.BAD_REQUEST;
-    	
-    	int findPasswordResult = userPasswordFindService.userPasswordFind(request.getUserEmail(), request.getUserNickname(), request.getUserBirthday());
+
+    	int findPasswordResult = userPasswordFindService.userPasswordFind(userEmailRequest);
     	
     	switch(findPasswordResult) {
     	// 해당하는 유저가 없는 경우
@@ -277,5 +276,20 @@ public class UserController {
     	}
     	
     	return new ResponseEntity<>(result, status);
+    }
+
+    @Autowired
+    BoardService boardService;
+    
+    @PostMapping("/list-post")
+    @ApiOperation("내가 쓴 글 목록")
+    public Object getListRoute(@RequestHeader Map<String, Object> header) {
+		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
+		BoardMyList response = boardService.getMyList(uid);
+    	final BasicResponse result = new BasicResponse();
+        result.status = true;
+        result.data = "success";
+        result.object = response;
+    	return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
