@@ -4,7 +4,7 @@
     <WriteRoutePlaceList/>
     <WriteRouteMap/>
     <WriteRouteContent/>
-    <button>글 쓰기</button>
+    <button @click="wirteRoute">글 쓰기</button>
 </template>
 
 <script>
@@ -22,11 +22,12 @@ export default {
     WriteRoutePlaceList,
     WriteRouteMap,
     WriteRouteContent
+  },
+  method: {
+      writeRoute(){
+
+      }
   }
 
 }
 </script>
-
-<style>
-
-</style>

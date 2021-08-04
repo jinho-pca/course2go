@@ -11,8 +11,7 @@ export default {
 
 <style>
 .map{
-	width: 600px;
-	height: 320px;
+	height: 200px;
 	border: solid;
 	text-align: center;
 }
