@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BoardResponse {
     private String boardWriterUid;
+    private String boardTitle;
     private Integer boardLike;
     private Integer boardStar;
     private Integer boardTid;

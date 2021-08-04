@@ -25,12 +25,14 @@ public class Contain {
 
     private Integer containRid;
     private Integer containPid;
+    private Integer containVid;
     private Integer containOrder;
     
-    public static ContainBuilder builder(Integer containRid, Integer containPid, Integer containOrder) {
+    public static ContainBuilder builder(Integer containRid, Integer containPid, Integer containVid, Integer containOrder) {
 		return ContainBuilder()
 				.containRid(containRid)
 				.containPid(containPid)
+				.containVid(containVid)
 				.containOrder(containOrder);
 	}
 }

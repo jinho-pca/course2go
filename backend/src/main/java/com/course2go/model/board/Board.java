@@ -28,6 +28,7 @@ public class Board {
     private Integer bid;
 
     private String boardWriterUid;
+    private String boardTitle;
     private Integer boardLike;
     private Integer boardStar;
     private Integer boardTid;
@@ -37,9 +38,10 @@ public class Board {
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
     private LocalDateTime boardTime;
     
-    public static BoardBuilder builder(String boardWriterUid, Integer boardLike , Integer boardStar , Integer boardTid , boolean boardType) {
+    public static BoardBuilder builder(String boardWriterUid, String boardTitle, Integer boardLike , Integer boardStar , Integer boardTid , boolean boardType) {
 		return BoardBuilder()
 				.boardWriterUid(boardWriterUid)
+				.boardTitle(boardTitle)
 				.boardLike(boardLike)
 				.boardStar(boardStar)
 				.boardTid(boardTid)

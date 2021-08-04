@@ -24,8 +24,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public void writeBoard(String boardWriterUid, Integer boardLike , Integer boardStar , Integer boardTid , boolean boardType) {
-		boardDao.save(Board.builder(boardWriterUid, boardLike, boardStar, boardTid, boardType).build());
+	public void writeBoard(String boardWriterUid, String boardTitle, Integer boardLike , Integer boardStar , Integer boardTid , boolean boardType) {
+		boardDao.save(Board.builder(boardWriterUid, boardTitle, boardLike, boardStar, boardTid, boardType).build());
 	}
 
 	@Override
