@@ -81,7 +81,48 @@ public class UserController {
         
         return new ResponseEntity<>(result, status);
     }
-    
+
+    @GetMapping("/signup/check/email")
+	@ApiOperation(value = "이메일중복체크")
+	public Object checkEmail(@RequestParam("userEmail") String requestEmail){
+		final BasicResponse result = new BasicResponse();
+		HttpStatus status = HttpStatus.CONFLICT;
+
+    	boolean checkEmailResult = userRegisterService.userEmailCheck(requestEmail);
+    	if(!checkEmailResult){
+    		// 이메일 중복이 아닌 경우
+			result.data = "success";
+			result.status = true;
+			status = HttpStatus.OK;
+		}else{
+    		// 이메일 중복인 경우
+			result.data = "email overlap";
+			result.status = false;
+		}
+
+    	return new ResponseEntity<>(result, status);
+	}
+
+	@GetMapping("/signup/check/nickname")
+	@ApiOperation(value = "닉네임중복체크")
+	public Object checkNickname(@RequestParam("userNickname") String requestNickname){
+		final BasicResponse result = new BasicResponse();
+		HttpStatus status = HttpStatus.CONFLICT;
+
+		boolean checkNicknameResult = userRegisterService.userNicknameCheck(requestNickname);
+		if(!checkNicknameResult){
+			// 닉네임 중복이 아닌 경우
+			result.data = "success";
+			result.status = true;
+			status = HttpStatus.OK;
+		}else{
+			// 닉네임 중복인 경우
+			result.data = "nickname overlap";
+			result.status = false;
+		}
+
+		return new ResponseEntity<>(result, status);
+	}
 
     @Autowired
     UserModifyService userModifyService;
