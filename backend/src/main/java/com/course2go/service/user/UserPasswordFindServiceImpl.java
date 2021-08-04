@@ -5,47 +5,54 @@ import java.time.LocalDate;
 
 import javax.mail.internet.MimeMessage;
 
+import com.course2go.config.utils.RandomSaltGenerator;
+import com.course2go.model.user.UserEmailRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.course2go.dao.UserDao;
 import com.course2go.model.user.User;
 import com.course2go.model.user.UserEmailResponse;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class UserPasswordFindServiceImpl implements UserPasswordFindService{
 
 	@Autowired
 	private UserDao userDao;
-	
+
 	@Autowired
 	private JavaMailSender mailSender;
 	private static final String FROM_ADDRESS = "ssafy.course2go@gmail.com";
-	
+
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+
 	@Override
-	public int userPasswordFind(String userEmail, String userNickname, LocalDate userBirthday) {
-		
-		System.out.println(userEmail);
-		System.out.println(userNickname);
-		System.out.println(userBirthday);
-		
+	public int userPasswordFind(@RequestBody UserEmailRequest userEmailRequest) {
+		String requestEmail = userEmailRequest.getUserEmail();
+		String requestNickname = userEmailRequest.getUserNickname();
+		LocalDate requestBirthday = userEmailRequest.getUserBirthday();
 		// 임시비밀번호 전송을 요청한 유저가 존재하는 지 체크
-		if(userDao.findUserByUserEmailAndUserNicknameAndUserBirthday(userEmail, userNickname, userBirthday).isPresent()) {
+		if(userDao.findUserByUserEmailAndUserNicknameAndUserBirthday(requestEmail, requestNickname, requestBirthday).isPresent()) {
 			// 임시비밀번호 전송을 요청한 유저가 존재하는 경우
-			User user = userDao.findUserByUserEmailAndUserNicknameAndUserBirthday(userEmail, userNickname, userBirthday).get();
-			
+			User user = userDao.findUserByUserEmailAndUserNicknameAndUserBirthday(requestEmail, requestNickname, requestBirthday).get();
+
 			// 임시 비밀번호 발급
 			String tmpPassword = getTempPassword();
+			String salt = RandomSaltGenerator.getNextSalt().toString();
 			
 			// 이메일 생성
-			UserEmailResponse result = createEmail(userEmail, userNickname, userBirthday, tmpPassword);
+			UserEmailResponse result = createEmail(requestEmail, requestNickname, requestBirthday, tmpPassword);
 			
 			// 임시 비밀번호로 회원정보 수정
-			user.setUserPassword(tmpPassword);
+			user.setUserPassword(passwordEncoder.encode(tmpPassword+salt));
+			user.setUserSalt(salt);
 			userDao.save(user);
 			
 			// 이메일 전송
@@ -78,7 +85,7 @@ public class UserPasswordFindServiceImpl implements UserPasswordFindService{
 			idx = (int) (charSet.length * Math.random());
 			str += charSet[idx];
 		}
-		str += "!@";
+		str += "@!";
 		return str;
 	}
 	

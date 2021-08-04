@@ -105,7 +105,7 @@ public final class TokenUtils {
                 .parseClaimsJws(getTokenFromHeader(token)).getBody();
     }
 
-    private static String getUserEmailFromToken(String token) {
+    public static String getUserEmailFromToken(String token) {
         Claims claims = getClaimsFromToken(token);
         return (String) claims.get("email");
     }
@@ -124,4 +124,9 @@ public final class TokenUtils {
     	return tokenUserNickname.equals(userNickname) ? true : false;
     }
 	
+    public static String getUidFromToken(String header) {
+    	Claims claims = TokenUtils.getClaimsFromToken(header);
+    	String tokenUid = (String) claims.get("uid");
+    	return tokenUid;
+    }
 }
