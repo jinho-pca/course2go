@@ -1,10 +1,14 @@
 <template>
-    <WriteRouteHeader/>
-    <WriteRouteTitle/>
-    <WriteRoutePlaceList/>
+    
+
+    <WriteRouteHeader @routeStartDate = "getRouteStartDate" @routeEndDate = "getRouteEndDate"/> 
+    <WriteRouteTitle @title="getTitle"/>
+    <WriteRoutePlaceList @routePid="pushRoutePid"/>
     <WriteRouteMap/>
-    <WriteRouteContent/>
-    <button @click="wirteRoute">글 쓰기</button>
+    <WriteRouteContent @routeContent="getRouteContent"/>
+    <div>
+      <button @click="write">글 쓰기</button>
+    </div>
 </template>
 
 <script>
@@ -13,6 +17,8 @@ import WriteRouteTitle from '@/components/write/route/WriteRouteTitle.vue'
 import WriteRoutePlaceList from '@/components/write/route/WriteRoutePlaceList.vue'
 import WriteRouteMap from '@/components/write/route/WriteRouteMap.vue'
 import WriteRouteContent from '@/components/write/route/WriteRouteContent.vue'
+
+import { writeRoute} from '@/compositions/write';
 
 export default {
   name: 'WriteRoute',
@@ -23,11 +29,45 @@ export default {
     WriteRouteMap,
     WriteRouteContent
   },
-  method: {
-      writeRoute(){
+  methods: {
+		write(){
+      console.log("글 작성 ============================\n" + 
+      "제목 : " + this.title + "\n" +
+      "시작일 : " + this.routeStartDate + "\n" +
+      "종료일 : " + this.routeEndDate + "\n" +
+      "내  용 : " + this.routeContent + "\n" +
+      "PID : " + this.routepid + "\n"
+      + "=============================")
 
-      }
-  }
+      writeRoute(this.title, this.routeStartDate, this.routeEndDate, this.routeContent, this.routePid);
+
+		},
+    getTitle(title){
+      this.title = title;
+    },
+    getRouteStartDate(routeStartDate){
+      this.routeStartDate = routeStartDate;
+    },
+    getRouteEndDate(routeEndDate){
+      this.routeEndDate = routeEndDate;
+    },
+    getRouteContent(routeContent){
+      this.routeContent = routeContent;
+    },
+    pushRoutePid(routePid){
+      this.routePid.push(routePid);
+    }
+  },
+  data: function(){
+		return{
+			title : "",
+      routeStartDate : "",
+      routeEndDate : "",
+      routeContent : "",
+      routePid : [],
+		}
+	}
+  
 
 }
 </script>

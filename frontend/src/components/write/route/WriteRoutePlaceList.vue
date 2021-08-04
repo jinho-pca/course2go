@@ -7,7 +7,7 @@
 	<SearchPlace class="search-modal" v-if="showModal" @close="showModal = false" @place="addPlace"/>
 	<div class="place-list" v-for="place in placeList" :key="place">
 		<div class="place-items">
-			{{place}}
+			{{place.placeName}}
 		</div>
 	</div>
   <button @click="showModal = true">+</button>
@@ -16,6 +16,7 @@
 <script>
 import SearchPlace from '@/components/search/SearchPlace.vue'
 export default {
+	emits: ["routePid"],
 	components: {
     SearchPlace
   },
@@ -23,10 +24,9 @@ export default {
 		addPlace(place){
 			this.showModal=false;
 			this.placeList.push(place);
-			console.log(this.placeList[0]);
-		}
-	}
-	,
+			this.$emit('routePid', place.pid)
+		},
+	}	,
 	data: function(){
 		return{
 			showModal : false,

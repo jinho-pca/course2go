@@ -29,10 +29,7 @@
 							<button class="modal-default-button" @click="$emit('close')">
                 취소하기
               </button>
-              <!-- <button class="modal-default-button" @click="$emit('place',this.placeList[this.selectBox].placeName)>
-                추가하기
-              </button> -->
-							<button class="modal-default-button" @click="$emit('place',this.placeList[this.selectBox].placeName);">
+							<button class="modal-default-button" @click="$emit('place',this.placeList[this.selectBox]);">
 								추가하기
 							</button>
             </slot>
@@ -50,6 +47,8 @@ import "@/components/css/modal/modal.css"
 import "@/components/css/search/searchPlace.css"
 import { searchPlace } from '@/compositions/search';
 export default {
+	
+	emits: ["close", "place"],
 	
 	methods: {
 		search(searchKey){
