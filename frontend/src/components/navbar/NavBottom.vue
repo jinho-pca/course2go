@@ -5,7 +5,9 @@
         <i class="far fa-home"></i>
       </router-link>
       <i class="far fa-comment-alt"></i>
-      <i class="far fa-plus"></i>
+      <router-link to="/write/route">
+        <i class="far fa-plus"></i>
+      </router-link>  
       <i class="far fa-bell"></i>
       <router-link to="/profile">
         <i class="far fa-user"></i>

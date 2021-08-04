@@ -70,9 +70,6 @@ $ yarn server --port 3000
 
 
 
-
-
-
 ## Router
 
 ### 0. Getting Started
@@ -2033,7 +2030,6 @@ container {
 * 프로필->동선 전체보기, 장소 전체보기가 없다.
   * 동선과 장소가 많은 경우에 불편해질 것 같음
 * 내 프로필이냐, 다른 사람 프로필이냐에 따라 다른 레이아웃을 보여줘야 한다면 `div`가 아닌 그 위에서 애초에 다른 `component`를 보내주고 `user` 데이터를 뿌려주면 되지 않을까?
-
 * https://blueshw.github.io/2019/06/07/expandable-list-by-pure-css/
   * 게시물 작성할 때 사용할 드롭다운 css
     * 다른거 누르면 열려있던건 접히고, 열린걸 누르면 그대로 닫힘
@@ -2044,6 +2040,8 @@ container {
 * 프로필 수정 css명 일단 안 바꾸고 `signup` 가져다 썼음
 
 
+<<<<<<< HEAD
+=======
 
 #### Follow
 
@@ -2059,3 +2057,4 @@ container {
 * 고르기 전엔 회색, 고른 후에는 검정색으로 맞춰주기
   * `select:hover` 속성 수정
 * 
+>>>>>>> develop

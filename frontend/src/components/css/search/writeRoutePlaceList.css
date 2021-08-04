@@ -1,0 +1,45 @@
+.wirte-route-place-list{
+	text-align: left;
+}
+
+.write-route-place-list-label{
+	text-align: left;
+	padding: 15px 0 0 0;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.write-route-place-item{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+	
+	border: 1px;
+	padding: 3px 0px;
+	margin: 5px;
+	
+}
+
+.write-route-place-item-name{
+	border-radius: 20px / 100%;
+	border-style: solid;
+	border-color: #fafafa;
+	background-color: #fafafa;
+}
+
+.write-route-add-place-btn{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  border-radius: 20px / 100%;
+  position: relative;
+  min-width: 5rem;
+	height: auto;
+  overflow: hidden;
+  border: 0;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 5px 0;
+}
+

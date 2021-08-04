@@ -1,0 +1,24 @@
+.write-route-title{
+    text-align: left;
+    padding-top: 20px;
+    font-size: 16px;
+		font-weight: bold;
+}
+
+.write-route-title-box{
+	text-align: left;
+}
+
+.write-route-title-input{
+	line-height: 30px;
+  /* background: #fafafa; */
+  border: none;
+  border-bottom: solid;
+  padding-left: 0;
+  /* border-radius: 5px; */
+  margin: 10px 0;
+  padding: 0 20px;
+  font-size: 20px;
+  color: #666;
+  width: 100%;
+}
