@@ -1,5 +1,4 @@
 <template>
-    
     <div class="write-route">
       <WriteRouteHeader/> 
       <WriteRouteTitle @title="getTitle"/>
@@ -7,8 +6,11 @@
       <WriteRoutePlaceList @routePid="pushRoutePid"/>
       <WriteRouteMap/>
       <WriteRouteContent @routeContent="getRouteContent"/>
-      <div>
-        <button @click="write">글 쓰기</button>
+      <div style="text-align: center">
+        <button class="write-route-btn" @click="write">글 쓰기</button>
+      </div>
+      <div class="empty-box">
+        
       </div>
     </div>
 </template>
@@ -22,6 +24,8 @@ import WriteRouteContent from '@/components/write/route/WriteRouteContent.vue'
 import WriteRouteDate from '@/components/write/route/WriteRouteDate.vue'
 
 import { writeRoute} from '@/compositions/write';
+
+import "@/components/css/search/writeRoute.css"
 
 export default {
   name: 'WriteRoute',

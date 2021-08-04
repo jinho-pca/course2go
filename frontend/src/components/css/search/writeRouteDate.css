@@ -4,4 +4,12 @@
 
 .write-route-date{
     background-color: #fafafa;
+    width: 45%;
+}
+
+.write-route-date-label{
+	text-align: left;
+	padding: 0 0 5px;
+	font-size: 16px;
+	font-weight: bold;
 }

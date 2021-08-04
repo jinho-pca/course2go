@@ -1,13 +1,14 @@
 <template>
   
   <div class="write-route-calendar">
+    <div class="write-route-date-label">
+      기간
+    </div>
     <span class="route-start-date">
-      
       <input class="write-route-date" type="date" v-model="routeStartDate" @input="changeStartDate">
     </span>
     ~
     <span class="route-end-date">
-      
       <input class="write-route-date" type="date" v-model="routeEndDate" @input="changeEndDate">
     </span>
   </div>

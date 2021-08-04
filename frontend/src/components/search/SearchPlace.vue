@@ -66,8 +66,8 @@ export default {
 		setColor(index){
 			if(this.selectBox == index){
 				return{
-					backgroundColor : 'rgb(154, 122, 241)',
-					color : '#fafafa'
+					backgroundColor : 'aqua',
+					color : 'black'
 				}
 			} else{
 				return{

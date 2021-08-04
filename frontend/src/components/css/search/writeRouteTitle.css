@@ -1,7 +1,7 @@
 .write-route-title{
     text-align: left;
     padding-top: 20px;
-    font-size: 20px;
+    font-size: 16px;
 		font-weight: bold;
 }
 
@@ -10,20 +10,15 @@
 }
 
 .write-route-title-input{
-	line-height: 50px;
-  background: #fafafa;
-  -webkit-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
-  -moz-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
-  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+	line-height: 30px;
+  /* background: #fafafa; */
+  border: none;
+  border-bottom: solid;
+  padding-left: 0;
+  /* border-radius: 5px; */
+  margin: 10px 0;
   padding: 0 20px;
-  font-size: 16px;
+  font-size: 20px;
   color: #666;
-  -webkit-transition: all 0.4s ease;
-  -o-transition: all 0.4s ease;
-  -moz-transition: all 0.4s ease;
-  transition: all 0.4s ease;
-  position: inherit;
+  width: 100%;
 }

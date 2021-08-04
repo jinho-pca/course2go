@@ -5,10 +5,12 @@
 			장소 목록
 		</div>
 		<SearchPlace class="search-modal" v-if="showModal" @close="showModal = false" @place="addPlace"/>
-		<div class="place-list" v-for="place in placeList" :key="place">
-			<span class="write-route-place-item">
-				{{place.placeName}}
-			</span>
+		<div class="place-list">
+			<div class="write-route-place-item" v-for="place in placeList" :key="place">
+				<span class="write-route-place-item-name">
+					{{place.placeName}}
+				</span>
+			</div>
 		</div>
 		<button class="write-route-add-place-btn" @click="showModal = true">+</button>
 	</div>
