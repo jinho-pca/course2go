@@ -7,7 +7,8 @@ export const searchPlace = async (key) => {
 	
 	await axios({
 		method: 'get',
-		url: 'http://13.209.13.47:8080/search/place/' + key,
+		// url: 'http://13.209.13.47:8080/search/place/' + key,
+		url: 'http://localhost:8095/search/place/' + key,
 	})
 	.then((res) => {
 		result = res.data;

@@ -1,5 +1,5 @@
 <template>
-  <div class="map"></div>
+  <div class="map">MAP</div>
 	
 </template>
 

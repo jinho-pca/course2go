@@ -37,8 +37,30 @@
   
   .modal-default-button {
     float: right;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    border-radius: 20px / 100%;
+    position: relative;
+    min-width: 5rem;
+    height: auto;
+    overflow: hidden;
+    border: 0;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 2px 0;
   }
   
+  .modal-button-cancel{
+    background-color: rgb(245, 122, 122);
+    margin-right: 10px;
+  }
+
+  .modal-button-submit{
+    background-color: rgb(154, 122, 241);
+  }
+
   /*
    * The following styles are auto-applied to elements with
    * transition="modal" when their visibility is toggled

@@ -1,13 +1,15 @@
 <template>
     
-
-    <WriteRouteHeader @routeStartDate = "getRouteStartDate" @routeEndDate = "getRouteEndDate"/> 
-    <WriteRouteTitle @title="getTitle"/>
-    <WriteRoutePlaceList @routePid="pushRoutePid"/>
-    <WriteRouteMap/>
-    <WriteRouteContent @routeContent="getRouteContent"/>
-    <div>
-      <button @click="write">글 쓰기</button>
+    <div class="write-route">
+      <WriteRouteHeader/> 
+      <WriteRouteTitle @title="getTitle"/>
+      <WriteRouteDate @routeStartDate = "getRouteStartDate" @routeEndDate = "getRouteEndDate"/> 
+      <WriteRoutePlaceList @routePid="pushRoutePid"/>
+      <WriteRouteMap/>
+      <WriteRouteContent @routeContent="getRouteContent"/>
+      <div>
+        <button @click="write">글 쓰기</button>
+      </div>
     </div>
 </template>
 
@@ -17,6 +19,7 @@ import WriteRouteTitle from '@/components/write/route/WriteRouteTitle.vue'
 import WriteRoutePlaceList from '@/components/write/route/WriteRoutePlaceList.vue'
 import WriteRouteMap from '@/components/write/route/WriteRouteMap.vue'
 import WriteRouteContent from '@/components/write/route/WriteRouteContent.vue'
+import WriteRouteDate from '@/components/write/route/WriteRouteDate.vue'
 
 import { writeRoute} from '@/compositions/write';
 
@@ -27,7 +30,8 @@ export default {
     WriteRouteTitle,
     WriteRoutePlaceList,
     WriteRouteMap,
-    WriteRouteContent
+    WriteRouteContent,
+    WriteRouteDate
   },
   methods: {
 		write(){

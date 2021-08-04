@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <div> 제목 </div>
-    <input type="text" v-model="title" @input="changeTitle" class = "write-route-title">
-    
+  <div class = "write-route-title-box">
+    <div class="write-route-title"> 제목 </div>
+    <input class = "write-route-title-input" type="text" v-model="title" @input="changeTitle">
   </div>
   
 </template>
 
 <script>
+import "@/components/css/search/writeRouteTitle.css"
+
 export default {
   emits: ["title"],
 

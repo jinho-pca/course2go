@@ -1,13 +1,15 @@
 <template>
-	<div>
-		<div>내용</div>
-		<textarea name="" id="" cols="30" rows="10" @input="changeRouteContent" v-model="routeContent"></textarea>
+	<div class="write-route-content">
+		<div class="write-route-content-label">내용</div>
+		<textarea class="write-route-content-textarea" rows="5" @input="changeRouteContent" v-model="routeContent"></textarea>
 	</div>
 </template>
 
 <script>
-
+import "@/components/css/search/writeRouteContent.css"
 export default {
+	
+
 	emits: ["routeContent"],
 
 	methods: {
