@@ -1,0 +1,77 @@
+/* '프로필 편집'  글씨 */
+.update-profile {
+  text-align: start;
+  margin: 30px 20px 0 20px;
+}
+
+.update-profile > a {
+  text-decoration: none;
+  color: black;
+}
+
+.update-profile .fa-chevron-left {
+  margin: 0 10px 30px 0;
+}
+/*  */
+
+/* 프로필 닉네임, 사진, 사진 바꾸기 START */
+.update-profile > span {
+  font-size: 22px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.update-profile .update-image {
+  margin: 0 0 40px 0;
+}
+
+.update-profile .update-image > div {
+  display: flex;
+  justify-content: center;
+}
+
+.update-profile .update-image > div:first-child {
+  font-size: 15px;
+}
+
+.update-profile .update-image > div:nth-child(2) > div {
+  margin: 5px 0 20px 0;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  justify-content: end;
+}
+
+.update-profile .update-image > div:nth-child(2) > div > img {
+  border-radius: 100%;
+  object-fit: fill;
+  width: 100%;
+  height: 100%;
+}
+
+.update-profile .update-image > div:last-child > span {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 3px 4px 3px 4px;
+  border: 1px solid rgb(165, 159, 159);
+  border-radius: 10px;
+}
+/* 프로필 닉네임, 사진, 사진 바꾸기 END */
+
+/* 상태 메시지 변경 */
+.update-profile .update-message > div:first-child {
+  text-align: start;
+  font-weight: bolder;
+  margin: 0 0 10px 0;
+}
+
+.update-profile .update-message > div:last-child {
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 2px 3px;
+}
+
+.update-profile .update-message > div:last-child {
+  
+}

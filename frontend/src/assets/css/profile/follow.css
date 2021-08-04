@@ -1,0 +1,28 @@
+.follow {
+  padding: 0;
+}
+
+.follow-tab {
+  text-align: start;
+  margin: 5px 10px 0 10px;
+}
+
+.follow-tab > span {
+  position: fixed;
+  top: 5px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.follow-tab > .follow-button {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px 0 20px 0;
+}
+
+.follow-button > button {
+  padding: 2px 30px 2px 30px;
+  border: 1px solid rgba(112, 112, 112, 0.692);
+  background: rgb(238, 238, 238);
+  border-radius: 10px;
+}

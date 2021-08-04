@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VisitWriteRequest {
+	private String title;
     private Integer visitPid;
     private String visitContent;
+    private Integer visitTime;
+    private Integer visitCost;
 }

@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import '@/components/css/navbar/navBottom.css'
+import '@/components/css/navbar/nav-bottom.css'
 export default {
   name: 'navbottom'
 }

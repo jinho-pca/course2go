@@ -1880,6 +1880,25 @@ const store = createStore({
 
 
 
+* css에서 `&`
+
+> 상위에 있는 것을 가져다 쓴다. 아래와 같은 경우에는 `container:before` 로 동작
+
+```css
+container {
+    width: 200px;
+    height: 200px;
+  
+    &:before {
+        
+    }
+}
+```
+
+
+
+
+
 ### 잊지 말 것
 
 * store.js는 너무 복잡해지기 전에 모듈화
@@ -2014,5 +2033,28 @@ const store = createStore({
 * https://blueshw.github.io/2019/06/07/expandable-list-by-pure-css/
   * 게시물 작성할 때 사용할 드롭다운 css
     * 다른거 누르면 열려있던건 접히고, 열린걸 누르면 그대로 닫힘
-* 내 페이지의 `설정(톱니바퀴)` vertical-align이 되어있지 않음
+* ~~내 페이지의 `설정(톱니바퀴)` vertical-align이 되어있지 않음~~
 
+* `프로필 편집`으로 갈 때는 글씨를 좀 더 작게, `line height`는 같게
+
+* 프로필 수정 css명 일단 안 바꾸고 `signup` 가져다 썼음
+
+
+<<<<<<< HEAD
+=======
+
+#### Follow
+
+* 팔로잉/팔로워 버튼 active 속성
+* 이미지 크기 조정 필요할듯
+* `navbar search`에서 어떤걸 찾을 것인가?
+* 팔로워/팔로잉 검색 기능 없애기
+
+
+
+#### Dropdown
+
+* 고르기 전엔 회색, 고른 후에는 검정색으로 맞춰주기
+  * `select:hover` 속성 수정
+* 
+>>>>>>> develop

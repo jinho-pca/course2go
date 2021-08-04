@@ -4,7 +4,13 @@
   margin: 30px 20px 0 20px;
 }
 
-.profile-page .tab {
+.profile-page a {
+  text-decoration: none;
+  color: rgb(90, 90, 90);
+}
+
+.profile .my-profile,
+.profile .other-profile {
   font-size: 22px;
   margin-right: 15px;
   padding-bottom: 5px;

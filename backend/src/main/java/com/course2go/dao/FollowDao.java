@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.course2go.model.follow.Follow;
 
-public interface FollowDao extends JpaRepository<Follow, String>{
+public interface FollowDao extends JpaRepository<Follow, Integer>{
 	
 	@Query(
 			value = "SELECT u.user_nickname" +
@@ -29,6 +29,7 @@ public interface FollowDao extends JpaRepository<Follow, String>{
 			)
 	List<String> getFollowings(@Param("uid") String uid); 
 	
-	Optional<Follow> getFollowByFollowFromUidAndFollowToUid(String followFromId, String followToId);
-	
+	Optional<Follow> getFollowByFollowFromUidAndFollowToUid(String followFromUid, String followToUid);
+
+	boolean existsByFollowFromUidAndFollowToUid(String followFromUid, String followToUid);
 }

@@ -1,0 +1,23 @@
+.request-card {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 5px;
+  padding: 3px 8px 3px 8px;
+  margin: 0 0 5px 0;
+}
+
+.request-card > .request-message {
+  font-size: 10px;
+}
+
+.request-card .request-name {
+  font-weight: bold;
+}
+
+.request-card > .request-message > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  margin: auto 3px auto 0;
+}
