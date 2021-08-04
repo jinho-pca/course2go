@@ -29,7 +29,27 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: () => import(/* webpackChunkName: "Profile" */ '../views/Profile.vue')
+    component: () => import(/* webpackChunkName: "Profile" */ '../views/profile/Profile.vue')
+  },
+  {
+    path: '/profile/modify',
+    name: 'UpdateProfile',
+    component: () => import(/* webpackChunkName: "UpdateProfile" */ '../views/profile/UpdateProfile.vue')
+  },
+  {
+    path: '/modify',
+    name: 'UpdateUser',
+    component: () => import(/* webpackChunkName: "UpdateUser" */ '../views/profile/UpdateUser.vue')
+  },
+  {
+    path: '/follow',
+    name: 'Follow',
+    component: () => import(/* webpackChunkName: "Follow" */ '../views/profile/Follow.vue')
+  },
+  {
+    path: '/alert',
+    name: 'Alert',
+    component: () => import(/* webpackChunkName: "Alert" */ '../views/Alert.vue')
   },
   {
     path: '/routeArticle',

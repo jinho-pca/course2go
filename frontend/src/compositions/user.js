@@ -8,6 +8,8 @@ import * as EmailValidator from 'email-validator';
 /*  */
 // 로그인
 /*  */
+const URL = 'http://localhost:8080/'
+
 export const userLogin = () => {
   const router = useRouter()
   const store = useStore()
@@ -43,7 +45,7 @@ export const userLogin = () => {
 
       await axios({
         method: 'post',
-        url: 'http://localhost:8080/user/login/',
+        url: URL + 'user/login/',
         data: data,
       })
       .then((res) => {
@@ -174,7 +176,7 @@ export const userSignup = () => {
 
       await axios({
         method: 'post',
-        url: 'http://localhost:8080/accounts/signup/',
+        url: URL + 'accounts/signup/',
         data: data,
       })
       .then((res) => {
@@ -259,7 +261,7 @@ export const userSignup = () => {
     }
     axios({
       method: 'post',
-      url: 'http://localhost:8080/user/email/',
+      url: URL + 'user/email/',
       data: data,
     })
     .then((res) => {
@@ -284,7 +286,7 @@ export const userSignup = () => {
     }
     axios({
       method: 'post',
-      url: 'http://localhost:8080/user/nickname/',
+      url: URL + 'user/nickname/',
       data: data,
     })
     .then((res) => {
@@ -355,7 +357,7 @@ export const userEmail = () => {
 
       await axios({
         method: 'post',
-        url: 'http://localhost:8080/user/email/',
+        url: URL + 'user/email/',
         data: data,
       })
       .then((res) => {
@@ -445,7 +447,7 @@ export const userPassword = () => {
 
       await axios({
         method: 'post',
-        url: 'http://localhost:8080/user/password/',
+        url: URL + 'user/password/',
         data: data,
       })
       .then((res) => {

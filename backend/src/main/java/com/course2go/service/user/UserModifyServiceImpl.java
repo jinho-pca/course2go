@@ -2,6 +2,7 @@ package com.course2go.service.user;
 
 import java.util.Optional;
 
+import com.course2go.authentication.TokenUtils;
 import com.course2go.config.utils.RandomSaltGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -45,6 +46,14 @@ public class UserModifyServiceImpl implements UserModifyService{
 		}
 		
 		
+	}
+
+	@Override
+	public String updateToken(String tokenEmail) {
+		User user = userDao.getUserByUserEmail(tokenEmail).get();
+		final String resultToken = TokenUtils.generateJwtToken(user);
+
+		return resultToken;
 	}
 
 }

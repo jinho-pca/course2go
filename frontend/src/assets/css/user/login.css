@@ -11,8 +11,8 @@
 }
 
 body {
-  margin: 0;
   font: 600 16px/18px "Open Sans", sans-serif;
+  padding-bottom: 30px;
 }
 
 a {
@@ -23,14 +23,10 @@ a {
 /* 전체적인 디자인 */
 .login-html {
   width: 100%;
-  height: 100%;
-  /* position: absolute; */
-  padding: 90px 50px 50px 50px;
-  background: rgb(77, 187, 252);
-  /* background: white; */
+  padding: 90px 20px 10px 20px;
 }
 
-/* Sign in 디자인 Start */
+/* 로그인 이름 디자인 Start */
 .login-html .sign-in {
   display: none;
 }
@@ -48,12 +44,11 @@ a {
   margin: 0 15px 10px 0;
   display: inline-block;
   border-bottom: 2px solid transparent;
-}
-
-.login-html .sign-in + .tab {
-  color: #fff;
+  font-weight: bold;
+  color: black;
   border-color: #1161ee;
 }
+
 /* Sign in 디자인 End */
 .login-form .group .check {
   display: none;
@@ -78,12 +73,24 @@ a {
   display: block;
 }
 
-.login-form .group .input,
+.login-form .group .input {
+  border: 1px solid #aaa;
+  padding: 15px 20px;
+  border-radius: 10px;
+}
+
 .login-form .group .button {
   border: none;
   padding: 15px 20px;
-  border-radius: 25px;
-  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.signup-form .group .input-border {
+  border: 1px solid rgb(20, 17, 17);
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .login-form .group .label {
@@ -91,6 +98,7 @@ a {
   font-size: 12px;
   text-align: start;
 }
+
 .login-form .group .button {
   background: #1161ee;
 }
@@ -98,11 +106,21 @@ a {
 .login-form .group label .icon {
   width: 15px;
   height: 15px;
+  border: 1px solid black;
   border-radius: 2px;
   position: relative;
   display: inline-block;
   background: rgba(255, 255, 255, 0.1);
 }
+
+.login-form .group .check-content {
+  color: rgb(143, 142, 142);
+}
+
+.login-form .check-group {
+  text-align: start;
+}
+
 .login-form .group label .icon:before,
 .login-form .group label .icon:after {
   content: "";
@@ -113,9 +131,9 @@ a {
   transition: all 0.2s ease-in-out 0s;
 }
 .login-form .group label .icon:before {
-  left: 3px;
+  left: 1px;
   width: 5px;
-  bottom: 6px;
+  bottom: 4px;
   transform: scale(0) rotate(0);
 }
 .login-form .group label .icon:after {
@@ -124,7 +142,7 @@ a {
   transform: scale(0) rotate(0);
 }
 .login-form .group .check:checked + label {
-  color: #fff;
+  color: black;
 }
 .login-form .group .check:checked + label .icon {
   background: #1161ee;
@@ -150,12 +168,8 @@ a {
   transform: rotate(0);
 }
 
-.hr {
-  height: 2px;
-  margin: 60px 0 50px 0;
-  background: rgba(255, 255, 255, 0.2);
-}
 .foot-lnk {
+  margin: 30px;
   text-align: center;
 }
 /*  */
