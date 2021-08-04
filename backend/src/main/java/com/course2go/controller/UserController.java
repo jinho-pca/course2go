@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.course2go.authentication.AuthConstants;
 import com.course2go.authentication.TokenUtils;
 import com.course2go.model.user.*;
 import io.jsonwebtoken.Claims;
@@ -86,16 +88,13 @@ public class UserController {
     
     @PutMapping("/modify")
     @ApiOperation("회원정보수정")
-    public Object modify(@Valid @RequestBody UserModifyRequest request, @RequestHeader Map<String, Object> requestHeader) {
+    public Object modify(@Valid @RequestBody UserModifyRequest request, @RequestHeader Map<String, Object> requestHeader, final HttpServletResponse response) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.CONFLICT;
 
     	final String token = (String) requestHeader.get("authorization");
 		Claims claims = TokenUtils.getClaimsFromToken(token);
 		String tokenEmail = (String) claims.get("userEmail");
-		System.out.println("token.toString() : " + token);
-		System.out.println("claims : " + claims);
-		System.out.println("tokenEmail : " + tokenEmail);
     	    	
     	int modifyResult = userModifyService.userModify(tokenEmail, request.getUserNickname(), request.getUserPassword());
     	
@@ -113,6 +112,8 @@ public class UserController {
     		break;
     	// 회원정보 수정 완료
     	case 1:
+			final String updateToken = userModifyService.updateToken(tokenEmail);
+			response.setHeader(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE + " " + updateToken);
     		result.data = "success";
     		result.status = true;
     		status = HttpStatus.OK;
@@ -167,7 +168,7 @@ public class UserController {
     public Object findEmail(@Valid @RequestBody UserEmailFindRequest request) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.BAD_REQUEST;
-    	    	
+
     	String findEmailResult = userEmailFindService.userEmailFind(request.getUserNickname(), request.getUserBirthday());
     	
     	if(!findEmailResult.equals("fail")) {
