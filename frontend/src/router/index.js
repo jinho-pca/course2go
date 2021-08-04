@@ -51,6 +51,11 @@ const routes = [
     name: 'Alert',
     component: () => import(/* webpackChunkName: "Alert" */ '../views/Alert.vue')
   },
+  {
+    path: '/write/route',
+    name: 'WriteRoute',
+    component: () => import(/* webpackChunkName: "WriteRoute" */ '../views/WriteRoute.vue')
+  },
 ]
 
 const router = createRouter({
