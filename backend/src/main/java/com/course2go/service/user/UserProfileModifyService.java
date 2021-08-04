@@ -6,4 +6,5 @@ public interface UserProfileModifyService {
 	
 	// 프로필 수정
 	public int userProfileModify(String tokenEmail, String requestComment, String imageUrl);
+
 }

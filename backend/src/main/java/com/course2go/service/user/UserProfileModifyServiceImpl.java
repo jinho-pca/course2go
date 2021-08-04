@@ -2,6 +2,7 @@ package com.course2go.service.user;
 
 import java.util.Optional;
 
+import com.course2go.authentication.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
