@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
 			if(tmpUser.getUserNickname().equals(requestNickname)){
 				// 유저검색에서 받아온 유저가 요청한 본인인 경우
 				userList.remove(i);
+				continue;
 			}else{
 				userDto.setUserName(tmpUser.getUserName());
 				userDto.setUserNickname(tmpUser.getUserNickname());
