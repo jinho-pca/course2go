@@ -1,0 +1,10 @@
+.request-list {
+  margin: 0;
+}
+
+.request-list .new-request-title,
+.request-list .checked-request-title {
+  text-align: start;
+  font-size: 15px;
+  font-weight: bold;
+}

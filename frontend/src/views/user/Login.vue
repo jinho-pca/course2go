@@ -1,40 +1,44 @@
 <template>
   <div id="login-wrap">
     <div class="login-html">
-      <input id="tab-1" type="radio" name="tab" class="sign-in"><label for="tab-1" class="tab">로그인</label>
+      <h3 id="tab-1" name="tab" class="tab">로그인</h3>
       <div class="login-form">
         <div class="sign-in-htm">
           <div class="group">
             <label for="email" class="label">이메일</label>
-            <input
-            v-model="email"
-            v-bind:class="{error: error.email, complete: !error.email&&email.length!==0}"
-            placeholder="이메일을 입력하세요"
-            type="text" 
-            id="email"
-            name="email"
-            class="input"
-            autocapitalize="off"
-            >
+            <div class="input-border">
+              <input
+              v-model="email"
+              v-bind:class="{error: error.email, complete: !error.email&&email.length!==0}"
+              placeholder="이메일을 입력하세요"
+              type="text" 
+              id="email"
+              name="email"
+              class="input"
+              autocapitalize="off"
+              >
+            </div>
             <div class="error-text" v-if="error.email">{{error.email}}</div>
           </div>
           <div class="group">
             <label for="password" class="label">비밀번호</label>
-            <input
-            v-model="password"
-            type="password"
-            v-bind:class="{error : error.password, complete:!error.password&&password.length!==0}"
-            id="password"
-            name="password"
-            class="input"
-            @keyup.enter="login"
-            placeholder="비밀번호를 입력하세요."
-            >
+            <div>
+              <input
+              v-model="password"
+              type="password"
+              v-bind:class="{error : error.password, complete:!error.password&&password.length!==0}"
+              id="password"
+              name="password"
+              class="input"
+              @keyup.enter="login"
+              placeholder="비밀번호를 입력하세요."
+              >
+            </div>
             <div class="error-text" v-if="error.password">{{error.password}}</div>
           </div>
-          <div class="group">
+          <div class="group check-group">
             <input id="check" type="checkbox" class="check" checked>
-            <label for="check"><span class="icon"></span> Keep me Signed in</label>
+            <label for="check" class="check-content"><span class="icon"></span> Keep me Signed in</label>
           </div>
           <div class="group">
             <input type="submit" @click="login" value="login" class="button">
@@ -44,7 +48,6 @@
           </router-link>
         </div>
       </div>
-      <div class="hr"></div>
       <div class="foot-lnk">
         <router-link to="/email">Forgot Email?</router-link>
         <br>

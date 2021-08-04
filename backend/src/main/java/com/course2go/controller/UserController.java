@@ -168,6 +168,7 @@ public class UserController {
     public Object findEmail(@Valid @RequestBody UserEmailFindRequest request) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.BAD_REQUEST;
+    	    	
 
     	String findEmailResult = userEmailFindService.userEmailFind(request.getUserNickname(), request.getUserBirthday());
     	

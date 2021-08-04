@@ -1,0 +1,10 @@
+.alert-list {
+  margin: 0;
+}
+
+.alert-list .new-alert-title,
+.alert-list .checked-alert-title {
+  text-align: start;
+  font-size: 15px;
+  font-weight: bold;
+}

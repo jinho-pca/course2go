@@ -1,0 +1,19 @@
+.follow-search {
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 0 0;
+}
+
+.follow-search > input {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+}
+
+.follow-search > i {
+  border-left: 1px solid rgb(184, 184, 184);
+  padding: 0 2px 0 2px;
+  margin: auto;
+}
