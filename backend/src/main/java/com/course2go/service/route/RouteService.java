@@ -13,5 +13,5 @@ public interface RouteService {
 	public void writeRoute(String uid, String title, LocalDate routeStartDate, LocalDate routeEndDate, String routeContent, List<Integer> routePid);
 	public RouteReadResponse readRouteBoard(Integer bid);
 	public RouteResponse readRoute(Integer rid);
-	public List<RouteReadResponse> getRouteList(String uid);
+	public List<RouteReadResponse> getMyRouteList(String uid);
 }

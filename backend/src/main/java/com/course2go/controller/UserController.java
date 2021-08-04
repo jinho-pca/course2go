@@ -1,6 +1,7 @@
 package com.course2go.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -15,7 +16,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.course2go.model.BasicResponse;
+import com.course2go.model.board.BoardMyList;
+import com.course2go.model.route.RouteReadResponse;
+import com.course2go.service.board.BoardService;
 import com.course2go.service.image.S3Uploader;
+import com.course2go.service.route.RouteService;
 import com.course2go.service.user.UserDeleteService;
 import com.course2go.service.user.UserEmailFindService;
 import com.course2go.service.user.UserModifyService;
@@ -273,4 +278,18 @@ public class UserController {
     	return new ResponseEntity<>(result, status);
     }
 
+    @Autowired
+    BoardService boardService;
+    
+    @PostMapping("/list-post")
+    @ApiOperation("내가 쓴 글 목록")
+    public Object getListRoute(@RequestHeader Map<String, Object> header) {
+		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
+		BoardMyList response = boardService.getMyList(uid);
+    	final BasicResponse result = new BasicResponse();
+        result.status = true;
+        result.data = "success";
+        result.object = response;
+    	return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

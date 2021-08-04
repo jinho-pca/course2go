@@ -10,13 +10,20 @@ import org.springframework.stereotype.Service;
 import com.course2go.dao.BoardDao;
 import com.course2go.model.board.Board;
 import com.course2go.model.board.BoardDto;
+import com.course2go.model.board.BoardMyList;
 import com.course2go.model.board.BoardResponse;
+import com.course2go.service.route.RouteService;
+import com.course2go.service.visit.VisitService;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	BoardDao boardDao;
+	@Autowired
+	RouteService routeService;
+	@Autowired
+	VisitService visitService;
 
 	ModelMapper modelmapper;
 	public BoardServiceImpl() {
@@ -47,5 +54,25 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardDto> getListbyUids(Iterable<String> uids) {
 		List<Board> list = boardDao.findAllByBoardWriterUidIn(uids);
 		return list.stream().map(board -> modelmapper.map(board, BoardDto.class)).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<BoardDto> getListbyUid(String uid) {
+		List<Board> list = boardDao.findAllByBoardWriterUid(uid);
+		return list.stream().map(board -> modelmapper.map(board, BoardDto.class)).collect(Collectors.toList());
+	}
+
+	@Override
+	public BoardMyList getMyList(String uid) {
+		List<Board> list = boardDao.findAllByBoardWriterUid(uid);
+		BoardMyList mylist = new BoardMyList();
+		for (Board board : list) {
+			if (board.isBoardType()) {
+				mylist.addroute(routeService.readRouteBoard(board.getBid()));
+			} else {
+				mylist.addvisit(visitService.readVisitBoard(board.getBid()));
+			}
+		}
+		return mylist;
 	}
 }

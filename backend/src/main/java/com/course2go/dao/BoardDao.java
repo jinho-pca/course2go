@@ -9,4 +9,5 @@ import com.course2go.model.board.Board;
 public interface BoardDao extends JpaRepository<Board, Integer>  {
 	public Board findAllByBid(Integer bid);
 	public List<Board> findAllByBoardWriterUidIn(Iterable<String> uids);
+	public List<Board> findAllByBoardWriterUid(String uid);
 }

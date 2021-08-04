@@ -1,9 +1,14 @@
 package com.course2go.service.visit;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.course2go.dao.VisitDao;
+import com.course2go.model.board.BoardDto;
+import com.course2go.model.board.BoardResponse;
 import com.course2go.model.visit.Visit;
 import com.course2go.model.visit.VisitDto;
 import com.course2go.model.visit.VisitReadResponse;
@@ -67,4 +72,17 @@ public class VisitServiceImpl implements VisitService {
 		return new VisitDto(visit.getVid(), visit.getVisitPid(), visit.getVisitContent(), visit.getVisitTime(), visit.getVisitCost(), visit.getVisitImage1(), visit.getVisitImage2(), visit.getVisitImage3());
 	}
 
+	@Override
+	public List<VisitReadResponse> getMyVisitList(String uid) {
+		List<VisitReadResponse> visitList = new LinkedList<VisitReadResponse>();
+		List<BoardDto> list = boardService.getListbyUid(uid);
+		for (BoardDto boardDto : list) {
+			VisitReadResponse visitReadResponse = new VisitReadResponse();
+			visitReadResponse.setBoardResponse(new BoardResponse(boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime()));
+			visitReadResponse.setVisitResponse(readVisit(boardDto.getBoardTid()));
+			visitReadResponse.setPlace(placeService.getPlace(visitReadResponse.getVisitResponse().getVisitPid()));
+			visitList.add(visitReadResponse);
+		}
+		return visitList;
+	}
 }

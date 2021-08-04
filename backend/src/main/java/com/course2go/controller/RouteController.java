@@ -1,5 +1,6 @@
 package com.course2go.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -19,6 +20,7 @@ import com.course2go.authentication.TokenUtils;
 import com.course2go.model.BasicResponse;
 import com.course2go.model.route.RouteReadResponse;
 import com.course2go.model.route.RouteWriteRequest;
+import com.course2go.model.visit.VisitReadResponse;
 import com.course2go.service.route.RouteService;
 
 import io.swagger.annotations.Api;
@@ -57,5 +59,17 @@ public class RouteController {
         result.data = "success";
         result.object = response;
 		return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+
+    @PostMapping("/mylist")
+    @ApiOperation("내가 쓴 동선글 목록")
+    public Object getListRoute(@RequestHeader Map<String, Object> header) {
+		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
+		List<RouteReadResponse> response = routeService.getMyRouteList(uid);
+    	final BasicResponse result = new BasicResponse();
+        result.status = true;
+        result.data = "success";
+        result.object = response;
+    	return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

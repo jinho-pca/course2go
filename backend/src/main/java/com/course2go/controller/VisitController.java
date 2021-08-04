@@ -1,6 +1,7 @@
 package com.course2go.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.course2go.authentication.TokenUtils;
 import com.course2go.model.BasicResponse;
+import com.course2go.model.board.BoardMyList;
 import com.course2go.model.visit.VisitReadResponse;
 import com.course2go.model.visit.VisitWriteDto;
 import com.course2go.model.visit.VisitWriteRequest;
@@ -100,5 +102,16 @@ public class VisitController {
         result.object = response;
 		return new ResponseEntity<>(result,HttpStatus.OK);
     }
-    
+
+    @PostMapping("/mylist")
+    @ApiOperation("내가 쓴 장소글 목록")
+    public Object getListRoute(@RequestHeader Map<String, Object> header) {
+		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
+		List<VisitReadResponse> response = visitService.getMyVisitList(uid);
+    	final BasicResponse result = new BasicResponse();
+        result.status = true;
+        result.data = "success";
+        result.object = response;
+    	return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

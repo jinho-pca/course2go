@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.course2go.dao.RouteDao;
+import com.course2go.model.board.BoardDto;
+import com.course2go.model.board.BoardResponse;
 import com.course2go.model.route.Route;
-import com.course2go.model.route.RouteProfileResponse;
 import com.course2go.model.route.RouteReadResponse;
 import com.course2go.model.route.RouteResponse;
 import com.course2go.model.route.RouteWriteRequest;
@@ -62,8 +63,17 @@ public class RouteServiceImpl implements RouteService {
 	}
 
 	@Override
-	public List<RouteReadResponse> getRouteList(String uid) {
-		return null;
+	public List<RouteReadResponse> getMyRouteList(String uid) {
+		List<RouteReadResponse> routeList = new LinkedList<RouteReadResponse>();
+		List<BoardDto> list = boardService.getListbyUid(uid);
+		for (BoardDto boardDto : list) {
+			RouteReadResponse routeReadResponse= new RouteReadResponse();
+			routeReadResponse.setBoardResponse(new BoardResponse(boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime()));
+			routeReadResponse.setRouteResponse(readRoute(boardDto.getBid()));
+			routeReadResponse.setContainSpots(containService.listContain(boardDto.getBoardTid()));
+			routeList.add(routeReadResponse);
+		}
+		return routeList;
 	}
 
 }

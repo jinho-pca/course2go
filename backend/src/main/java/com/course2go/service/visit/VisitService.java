@@ -1,5 +1,7 @@
 package com.course2go.service.visit;
 
+import java.util.List;
+
 import com.course2go.model.visit.VisitDto;
 import com.course2go.model.visit.VisitReadResponse;
 import com.course2go.model.visit.VisitResponse;
@@ -12,4 +14,5 @@ public interface VisitService {
 	public VisitReadResponse readVisitBoard(Integer bid);
 	public VisitResponse readVisit(Integer vid);
 	public VisitDto getVisit(Integer vid);
+	public List<VisitReadResponse> getMyVisitList(String uid);
 }
