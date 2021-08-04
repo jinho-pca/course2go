@@ -12,6 +12,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "Signup" */ '../views/user/Signup.vue')
   },
   {
+    path: '/map',
+    name: 'map',
+    component: () => import('../components/maps/kakaomap/Kakaomap.vue')
+  },
+  {
     path: '/email',
     name: 'Email',
     component: () => import(/* webpackChunkName: "EMail" */ '../views/user/Email.vue')
