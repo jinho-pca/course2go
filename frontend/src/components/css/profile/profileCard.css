@@ -46,6 +46,11 @@
   font-weight: bold;
 }
 
+.profile-content .profile-follow a {
+  text-decoration: none;
+  color: black
+}
+
 .profile-content .profile-introduction {
   float: left;
   font-size: 11px;

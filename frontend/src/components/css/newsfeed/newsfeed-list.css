@@ -1,0 +1,64 @@
+.newsfeed-list {
+  text-align: start;
+  width: 100%;
+  margin: 15% 0 0 0;
+}
+
+.tab {
+  font-size: 22px;
+  margin: 0 0 0 5%;
+  padding-bottom: 5px;
+  display: inline-block;
+  width: 90%;
+  border-bottom: 2px solid transparent;
+  border-color: #071835;
+}
+
+/* DropDown CSS */
+.select {
+  position: relative;
+  display: inline;
+}
+
+.select .text {
+  display: inline;
+}
+
+.select .option-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  max-height: 0;
+}
+
+.select.active .option-list {
+  max-height: none;
+}
+
+/* 테마 적용하기 */
+.select {
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  color: grey;
+  margin: 0 5px 0 0;
+}
+.select:hover {
+  color: rgb(53, 52, 52);
+  transition: all .3s;
+}
+.select .option-list {
+  list-style: none;
+  padding: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.3);
+  background: white;
+}
+.select .option-list .option {
+  text-align: center;
+}
+/* .select .option-list .option:hover {
+  background-color: #4e4949;
+} */

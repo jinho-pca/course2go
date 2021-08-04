@@ -8,7 +8,9 @@
         <div class="profile-namebox">
           <div class="profile-name">Goki</div>
           <!-- v-if(나){프로필 편집} v-elseif(팔로우){팔로우취소} v-else -->
-          <div class="profile-follow">팔로우</div>
+          <div class="profile-follow">
+            <router-link to="/profile/modify">프로필 편집</router-link>
+          </div>
         </div>
         <div class="profile-introduction">
           <span>버그를 잡아라</span>

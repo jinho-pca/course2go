@@ -2,11 +2,15 @@
   <div class="profile">
     <!-- v-if -->
     <div class="profile-page">
-      <span class="tab">내 프로필</span>
-      <i class="fas fa-cog"></i>
+      <span class="my-profile">내 프로필</span>
+      <router-link to="/modify">
+        <i class="fas fa-cog"></i>
+      </router-link>
     </div>
-    <div>
-      타인 프로필
+    <div class="profile-page">
+      <span class="other-profile">
+        타인 프로필
+      </span>
     </div>
     <!-- endif -->
     <ProfileCard />
@@ -16,7 +20,7 @@
 </template>
 
 <script>
-import '@/assets/css/profile.css';
+import '@/assets/css/profile/profile.css';
 import ProfileCard from '@/components/profile/ProfileCard.vue'
 import ProfileRoute from '@/components/profile/ProfileRoute.vue'
 import ProfilePlace from '@/components/profile/ProfilePlace.vue'
@@ -29,7 +33,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

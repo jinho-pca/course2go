@@ -40,7 +40,7 @@ body {
   border-color: #1161ee;
 }
 
-/* input 간의 거리 조절 */
+/* Forgot Password와 거리 조절 */
 .signup-form .group {
   margin-bottom: 25px;
 }
