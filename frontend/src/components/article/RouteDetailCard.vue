@@ -19,7 +19,7 @@
             <span v-on:click="goVisit(index)">글 보러가기</span>
           </details>
         </div>
-        <RouteMap />
+        <RouteMap :containSpots="routeReadResponse.containSpots"/>
       </div>
     </details>
   </div>

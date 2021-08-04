@@ -15,6 +15,7 @@ details summary{
   left: 50%;
   transform: translateX(-50%);
 }
+
 .novisitsummery{
   list-style-type: none;
   text-align: center;
