@@ -50,7 +50,7 @@
 <script>
 import '@/assets/css/user/email.css';
 import { watchEffect } from 'vue';
-import { userEmail } from '@/compositions/user';
+import { userEmail } from '@/compositions/user/email.js';
 
 export default {
   name: 'Email',

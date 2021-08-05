@@ -21,11 +21,11 @@ body {
   padding: 90px 20px 10px 20px;
 }
 
-.signup-html .tab,
+/* .signup-html .tab,
 .signup-form .group .label,
 .signup-form .group .button {
   text-transform: uppercase;
-}
+} */
 
 /* 회원가입 맨 위 글씨 디자인 */
 .signup-html .tab {

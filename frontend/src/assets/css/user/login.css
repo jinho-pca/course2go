@@ -31,11 +31,11 @@ a {
   display: none;
 }
 
-.login-html .tab,
+/* .login-html .tab,
 .login-form .group .label,
 .login-form .group .button {
   text-transform: uppercase;
-}
+} */
 
 .login-html .tab {
   font-size: 22px;
@@ -66,10 +66,15 @@ a {
 }
 
 .login-form .group .label,
-.login-form .group .input,
 .login-form .group .button {
   width: 100%;
   color: #fff;
+  display: block;
+}
+
+.login-form .group .input {
+  width: 100%;
+  color: black;
   display: block;
 }
 

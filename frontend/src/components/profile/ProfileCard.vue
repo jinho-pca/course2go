@@ -18,14 +18,18 @@
       </div>
     </div>
     <div class="profile-bottom">
-      <div>
-        <span class="tag">팔로잉</span>
-        <span>2789</span>
-      </div>
-      <div>
-        <span class="tag">팔로워</span>
-        <span>153</span>
-      </div>
+      <router-link :to="{ path: '/follow' }">
+        <div>
+          <span class="tag">팔로잉</span>
+          <span>2789</span>
+        </div>
+      </router-link>
+      <router-link to="/follow">
+        <div>
+          <span class="tag">팔로워</span>
+          <span>153</span>
+        </div>
+      </router-link>
       <div>
         <span class="tag">좋아요</span>
         <span>1000</span>
