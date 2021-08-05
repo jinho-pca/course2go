@@ -55,21 +55,21 @@ public class VisitController {
     	String imageUrl1 = null;
     	String imageUrl2 = null;
     	String imageUrl3 = null;
-    	if (!image1.isEmpty()) {
+    	if (image1 != null) {
 	    	try {
 	    		imageUrl1 = s3Uploader.upload(image1, "visitimage");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
     	}
-    	if (!image2.isEmpty()) {
+    	if (image2 != null) {
     		try {
         		imageUrl2 = s3Uploader.upload(image2, "visitimage");
     		} catch (IOException e) {
     			e.printStackTrace();
     		}
 		}
-    	if (!image3.isEmpty()) {
+    	if (image3 != null) {
     		try {
         		imageUrl3 = s3Uploader.upload(image3, "visitimage");
     		} catch (IOException e) {

@@ -32,7 +32,7 @@
       </router-link>
       <div>
         <span class="tag">좋아요</span>
-        <span>1000</span>
+        <span>806</span>
       </div>
     </div>
   </div>

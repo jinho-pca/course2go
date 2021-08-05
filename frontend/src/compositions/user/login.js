@@ -1,16 +1,17 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-// import { useStore } from 'vuex';
+import { useStore } from 'vuex';
 import axios from 'axios';
+import jwt from 'jsonwebtoken'
 import PV from 'password-validator';
 import * as EmailValidator from 'email-validator';
 import { BASE_URL } from '@/compositions/global.js'
 
-const URL = BASE_URL()
+const { URL } = BASE_URL();
 
 export const userLogin = () => {
   const router = useRouter()
-  // const store = useStore()
+  const store = useStore()
 
   const passwordSchema = ref(new PV());
   const error = ref({
@@ -38,7 +39,6 @@ export const userLogin = () => {
         userEmail: email.value,
         userPassword: password.value
       };
-
       isSubmit.value = false;
 
       await axios({
@@ -51,19 +51,26 @@ export const userLogin = () => {
         }
       })
       .then((res) => {
-        // return받은 user data를 store로 전달해 저장
-        // store.dispatch('getUser', res.data)
-        // 토큰 저장
-        console.log(res)
-        console.log(res.headers)
+        isSubmit.value = true;
+        const token = res.headers.authorization.substr(7)
+        localStorage.setItem('Authorization', token)
+        const data = jwt.decode(token)
+        return data
+      })
+      .then((res) => {
+        const user = {
+          userEmail: res.userEmail,
+          userNickname: res.userNickname
+        }
+        store.dispatch('getUser', user)
         return res
       })
       .then((res) => {
-        isSubmit.value = true;
         router.push("/newsfeed")
         return res
       })
       .catch((err) => {
+        console.log(err)
         isSubmit.value = true;
         alert('Email 혹은 Password가 틀렸습니다')
         return err

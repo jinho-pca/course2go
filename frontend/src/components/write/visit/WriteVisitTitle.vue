@@ -1,7 +1,7 @@
 <template>
   <div class = "write-route-title-box">
     <div class="write-visit-label"> 제목 </div>
-    <input class = "write-route-title-input" type="text" v-model="title" @input="changeTitle">
+    <input class = "write-input" type="text" v-model="title" @input="changeTitle">
   </div>
   
 </template>
