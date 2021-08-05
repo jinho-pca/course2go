@@ -41,5 +41,16 @@ public class FollowListServiceImpl implements FollowListService{
 	public List<String> getFollowingListByUid(String uid) {
 		return followDao.getFollowings(uid);
 	}
-	
+
+	@Override
+	public int getFollowerCount(String userNickname) {
+		String uid = userDao.getUserByUserNickname(userNickname).get().getUid();
+		return getFollowerListByUid(uid).size();
+	}
+
+	@Override
+	public int getFollowingCount(String userNickname) {
+		String uid = userDao.getUserByUserNickname(userNickname).get().getUid();
+		return getFollowingListByUid(uid).size();
+	}
 }
