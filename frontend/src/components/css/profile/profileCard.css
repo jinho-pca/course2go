@@ -62,6 +62,11 @@
   font-size: 13px;
 }
 
+.profile-card .profile-bottom > a {
+  text-decoration: none;
+  color: black;
+}
+
 .profile-bottom .tag {
   margin: 0 8px 0 0;
   font-weight: bold;

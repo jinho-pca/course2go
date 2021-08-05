@@ -2,18 +2,18 @@
   <div class="profile-card">
     <div class="profile-top">
       <div class="profile-imagebox">
-        <img src="@/assets/images/map.jpg" alt="profile image" class="profile-image">
+        <img :src="profileData.userImage" alt="profile image" class="profile-image">
       </div>
       <div class="profile-content">
         <div class="profile-namebox">
-          <div class="profile-name">Goki</div>
+          <div class="profile-name">{{ profileData.userNickname }}</div>
           <!-- v-if(나){프로필 편집} v-elseif(팔로우){팔로우취소} v-else -->
           <div class="profile-follow">
             <router-link to="/profile/modify">프로필 편집</router-link>
           </div>
         </div>
         <div class="profile-introduction">
-          <span>버그를 잡아라</span>
+          <span>{{ profileData.userComment }}</span>
         </div>
       </div>
     </div>
@@ -21,13 +21,13 @@
       <router-link :to="{ path: '/follow' }">
         <div>
           <span class="tag">팔로잉</span>
-          <span>2789</span>
+          <span>{{ profileData.userFollowing }}</span>
         </div>
       </router-link>
       <router-link to="/follow">
         <div>
           <span class="tag">팔로워</span>
-          <span>153</span>
+          <span>{{ profileData.userFollower }}</span>
         </div>
       </router-link>
       <div>
@@ -41,6 +41,14 @@
 <script>
 import "@/components/css/profile/profileCard.css"
 export default {
-  name: 'ProfileCard'
+  name: 'ProfileCard',
+  props: {
+    profileData: {
+      type: Object,
+    }
+  },
+  mounted: function() {
+    console.log(this.profileData)
+  }
 }
 </script>

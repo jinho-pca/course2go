@@ -21,7 +21,4 @@ export const searchPlace = async (key) => {
 		return err
 	})
 	return result;
-	
-	
-
 }

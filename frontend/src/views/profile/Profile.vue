@@ -13,7 +13,7 @@
       </span>
     </div>
     <!-- endif -->
-    <ProfileCard />
+    <ProfileCard :profileData="profileData" />
     <ProfileRoute />
     <ProfilePlace />
   </div>
@@ -25,6 +25,7 @@ import ProfileCard from '@/components/profile/ProfileCard.vue'
 import ProfileRoute from '@/components/profile/ProfileRoute.vue'
 import ProfilePlace from '@/components/profile/ProfilePlace.vue'
 import { profile } from '@/compositions/profile.js';
+import { onMounted } from 'vue'
 
 export default {
   name: 'Profile',
@@ -34,9 +35,11 @@ export default {
     ProfilePlace,
   },
   setup() {
-    const { myProfile } = profile();
-    myProfile();
-    return { myProfile }
+    const { myProfile, who, profileData } = profile();
+    onMounted(() => {
+      myProfile();
+    })
+    return { myProfile, who, profileData }
   }
 
 }

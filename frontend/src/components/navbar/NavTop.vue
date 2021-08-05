@@ -9,7 +9,7 @@
           <i class="fas fa-pen"></i>
         </span>
         <span>
-          <i class="fas fa-unlock-alt"></i>
+          <i class="fas fa-unlock-alt" @click="logout"></i>
         </span>
       </div>
     </div>
@@ -18,7 +18,13 @@
 
 <script>
 import '@/components/css/navbar/nav-top.css'
+import { userLogout } from '@/compositions/user/logout';
+
 export default {
   name: 'navtop',
+  setup() {
+    const { logout } = userLogout();
+    return { logout }
+  }
 }
 </script>

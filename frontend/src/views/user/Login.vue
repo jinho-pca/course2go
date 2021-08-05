@@ -60,8 +60,10 @@
 
 <script>
 import '../../assets/css/user/login.css';
-import { watchEffect } from 'vue';
+import { watchEffect, onMounted } from 'vue';
 import { userLogin } from '@/compositions/user/login.js';
+import { useRouter } from 'vue-router';
+import { BASE_URL } from '@/compositions/global.js'
 
 export default {
   name: 'Login',
@@ -69,6 +71,14 @@ export default {
     const { email, password, error, isSubmit, passwordSchema, login, checkLoginForm } = userLogin();
     /* 이메일과 비밀번호에 변화가 있을 때 watch */
     watchEffect(() => checkLoginForm({ password: password.value, email: email.value}))
+
+    onMounted(() => {
+      const router = useRouter()
+      const { token } = BASE_URL();
+      if (token) {
+        router.push('/newsfeed')
+      }
+    })
 
     return { 
       email,

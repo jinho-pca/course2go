@@ -5,6 +5,7 @@
         <div class="text">선택</div>
         <span>▼</span>
         <ul class="option-list">
+          <li class="option" @click="onClickOption">전체</li>
           <li class="option" @click="onClickOption">동선</li>
           <li class="option" @click="onClickOption">장소</li>
         </ul>
