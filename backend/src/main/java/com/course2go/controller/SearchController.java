@@ -31,10 +31,10 @@ public class SearchController {
 	@Autowired
 	PlaceService placeService;
 	
-	@GetMapping("/place/{word}")
+	@GetMapping("/place/{word}/{page}")
     @ApiOperation(value = "장소검색")
-    public List<PlaceDto> searchPlace(@PathVariable String word) {
-		return placeService.searchPlace(word);
+    public List<PlaceDto> searchPlace(@PathVariable String word, @PathVariable Integer page) {
+		return placeService.searchPlace(word, page);
     }
 
     @Autowired

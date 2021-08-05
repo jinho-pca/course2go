@@ -7,21 +7,36 @@
           <div class="modal-header">
             <slot name="header">
 							<input class="modal-default-input" v-model="searchKey" type="text">
-							<button class="modal-default-button"  @click="search(searchKey)">검색</button>
+							<button class="modal-default-button"  @click="search">검색</button>
             </slot>
           </div>
 
           <div class="modal-body">
             <slot name="body">
-							<div class="place-item" 
-							@click="select(index)" 
-							v-for="(place, index) in placeList" :key="place"
-							:style="setColor(index)">
-								<div class="place-name">{{place.placeName}}</div>
-								<div class="place-address" v-if="selectBox == index">{{place.placeAddress}}</div>
-								<div class="place-pid" style="display:none">{{place.pid}}</div>
-								<div class="place-index" style="display:none">{{index}}</div>
+							<div class="place-item-list">
+								<div class="place-item" 
+								@click="select(index)" 
+								v-for="(place, index) in placeList" :key="place"
+								:style="setColor(index)">
+									<div class="place-name">{{place.placeName}}</div>
+									<div class="place-address" v-if="selectBox == index">{{place.placeAddress}}</div>
+									<div class="place-pid" style="display:none">{{place.pid}}</div>
+									<div class="place-index" style="display:none">{{index}}</div>
+								</div>
 							</div>
+
+							<div class="place-page">
+								<div class="place-page-btn" @click="prevPage" :style="prevClickable()">
+									&lt; 
+								</div>
+								<div class="place-page-num">
+									{{page+1}}
+								</div>
+								<div class="place-page-btn" @click="nextPage" :style="nextClickable()">
+									&gt;
+								</div>
+							</div>
+
             </slot>
           </div>
 
@@ -52,11 +67,57 @@ export default {
 	emits: ["close", "place"],
 	
 	methods: {
-		search(searchKey){
-			searchPlace(searchKey).then( res => {
+		search(){
+			this.page = 0;
+			searchPlace(this.searchKey, this.page).then( res => {
 				this.placeList = res;
 			});	
 		},
+
+		nextPage(){
+			if(this.placeList.length < 7){
+				return;
+			}
+			this.page++;
+			searchPlace(this.searchKey, this.page).then( res => {
+				this.placeList = res;
+			});	
+		},
+
+		prevPage(){
+			if(this.page <= 0){
+				return;
+			}
+			this.page--;
+			searchPlace(this.searchKey, this.page).then( res => {
+				this.placeList = res;
+			});	
+		},
+
+		prevClickable(){
+			if(this.page <= 0){
+				return{
+					color : '#dddddd'
+				}
+			} else{
+				return{
+					color : 'black'
+				}
+			}
+		},
+
+		nextClickable(){
+			if(this.placeList.length < 7){
+				return{
+					color : '#dddddd'
+				}
+			} else{
+				return{
+					color : 'black'
+				}
+			}
+		},
+
 
 		select(index){
 			this.selectBox = index;
@@ -82,6 +143,7 @@ export default {
 			searchKey : "",
 			placeList : [],
 			selectBox : -1,
+			page : 0,
 		}
 	}
 }
