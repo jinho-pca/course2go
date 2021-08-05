@@ -3,7 +3,7 @@ import { BASE_URL } from '@/compositions/global.js'
 
 export const list = async (bid) => {
     var list = [];
-    const URL = BASE_URL()
+    const { URL } = BASE_URL()
     await axios({
         method: 'post',
         url: URL+'comment/read',

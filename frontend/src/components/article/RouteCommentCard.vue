@@ -1,7 +1,7 @@
 <template>
   <div>
-    <span>ㄴ</span>
-    <span>{{comment.commentWriterUid}}</span> <span>{{comment.commentContent}}</span>
+    <span v-if="comment.commentDepth>0">ㄴ</span>
+    <span>{{comment.commentWriterNickName}}</span> <span>{{comment.commentContent}}</span>
   </div>
 </template>
 

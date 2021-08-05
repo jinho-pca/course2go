@@ -12,11 +12,15 @@ export default {
     // name: "RouteComment", 
     created() {
         // this.commentlist = list(5);
-        console.log(list(5))
+        console.log("코멘트 시작")
+        list(this.bid).then( res => {
+				this.commentlist = res;
+			});	
+        console.log()
     },
     props: {
         bid:{
-            type : number
+            type : Number
         }
     },
     data() {
