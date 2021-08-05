@@ -17,4 +17,7 @@ public class CommentDto {
     private String commentContent;
     private String commentWriterUid;
     private LocalDateTime commentTime;
+    
+    private Integer commentDepth;
+    private String commentWriterNickname;
 }

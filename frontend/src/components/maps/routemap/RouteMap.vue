@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-on:click="click()">버튼</div>
+    <!-- <div v-on:click="click()">버튼</div> -->
     <div id="map"></div>
   </div>
 </template>
@@ -8,7 +8,6 @@
 <script>
 export default {
   mounted() { 
-    this.makeStyle();
     window.kakao && window.kakao.maps ? this.initMap() : this.addScript(); 
   }, 
   props: {
@@ -16,16 +15,24 @@ export default {
       type: Array,
     },
   },
+  watch: {
+    containSpots: {
+      deep: true,
+      handler(){
+        this.click();
+      }
+    }
+  },
   data() {
     return {
       mapview: {
-        lattitude: 33,
-        langtitude: 126.562554,
+        lattitude: 33.37,
+        langtitude: 126.54,
         latbig: 0,
         latsmall: 0,
         lngbig: 0,
         lngsmall: 0,
-        level:7,
+        level:11,
         height: 300,
         heightcss: "500px",
         start: true,
@@ -66,23 +73,64 @@ export default {
       this.levelMeasure();
     },
     initMap() { 
-      console.log("이닛맵");
+      // console.log("이닛맵");
       var container = document.getElementById('map'); 
       var options = { 
         center: new kakao.maps.LatLng(this.mapview.lattitude, this.mapview.langtitude), 
         level: this.mapview.level }; 
         var map = new kakao.maps.Map(container, options); 
         
+        var linePath = []; /* 선긋기용 */
+
+        const size = this.containSpots.length;
+        var index = 1;
+
         this.containSpots.forEach(spot => {
-          var marker = new kakao.maps.Marker({ 
-            map: map,
-            position: new kakao.maps.LatLng(spot.place.placeLat,spot.place.placeLng) ,
-          }); 
-          marker.setMap(map); 
+          var point = new kakao.maps.LatLng(spot.place.placeLat,spot.place.placeLng)
+          this.setmarker(map,point,index,size);
+          // var marker = new kakao.maps.Marker({ 
+          //   map: map,
+          //   position: point,
+          // }); 
+          // marker.setMap(map); 
+          linePath.push(point)
+          index++;
         });
+        /* 선긋기 */
+        var polyline = new kakao.maps.Polyline({
+          path: linePath, // 선을 구성하는 좌표배열 입니다
+          strokeWeight: 5, // 선의 두께 입니다
+          strokeColor: '#dd5230', // 선의 색깔입니다
+          strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+          strokeStyle: 'solid' // 선의 스타일입니다
+        });
+        polyline.setMap(map);
     }, 
+    setmarker(map,point,index,size){
+      var image = 'https://ssafy-5th.s3.ap-northeast-2.amazonaws.com/visitimage/9653b759-51c1-431b-b858-8c5bfa48e672grayheadhareubangping.png'
+      if (index==size) {
+        image = 'https://ssafy-5th.s3.ap-northeast-2.amazonaws.com/visitimage/2ac2b486-34df-4170-a8be-30865020bd96blueheadhareubangping.png'
+      }
+      if (index==1) {
+        image = 'https://ssafy-5th.s3.ap-northeast-2.amazonaws.com/visitimage/7e31e78c-4e06-448e-8aff-7aff2a1cea57redheadhareubangping.png'
+      }
+      const height = document.getElementById('map').clientHeight/6;
+
+      var imageSize = new kakao.maps.Size(height/2, height*10/11),
+        imageOptions = {  
+        spriteOrigin: new kakao.maps.Point(0, 0),    
+        spriteSize: new kakao.maps.Size(height/2, height)  
+      };     
+
+      var marker = new kakao.maps.Marker({ 
+        map: map,
+        position: point,
+        image: new kakao.maps.MarkerImage(image,imageSize,imageOptions),
+      }); 
+      marker.setMap(map);
+    },
     addScript() { 
-      console.log("애드스크립트");
+      // console.log("애드스크립트");
       const script = document.createElement('script'); 
       /* global kakao */ 
       script.onload = () => kakao.maps.load(this.initMap); 
@@ -107,22 +155,21 @@ export default {
       /* h 픽셀 높이 안에 위도차 height가 들어가도록 하는 level의 값을 구하는 함수 */
       var h_meter = height*88800;
       var meter_per_px = h_meter/(h_px*0.95);
-      console.log(h_meter);
-      console.log(h_px);
-      console.log(meter_per_px);
+      // console.log(h_meter);
+      // console.log(h_px);
+      // console.log(meter_per_px);
       /* 3레벨에서 1m=1px */
       var level = 1;
       var mpp_thislevel = 0.25;
       while (mpp_thislevel<meter_per_px) {
         level++;
         mpp_thislevel *=2;
-        console.log(level);
       }
-      console.log("결정");
-      return level;
+      // console.log("결정");
+      return level>14?14:level;
     }, 
     click(){
-      this.levelMeasure();
+      this.makeStyle();
       this.initMap();
     }
   } 
