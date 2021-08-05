@@ -33,7 +33,6 @@ export default {
     places: {
       deep: true,
       handler(){
-        console.log("이건 되나");
         this.click();
       }
     }
@@ -61,10 +60,10 @@ export default {
         if(lngsmall>place.placeLng) lngsmall = place.placeLng;
       });
 
-      console.log(latbig);
-      console.log(latsmall);
-      console.log(lngbig);
-      console.log(lngsmall);
+      // console.log(latbig);
+      // console.log(latsmall);
+      // console.log(lngbig);
+      // console.log(lngsmall);
       this.mapview.latbig = latbig;
       this.mapview.latsmall = latsmall;
       this.mapview.lngbig = lngbig;
@@ -84,9 +83,11 @@ export default {
         center: new kakao.maps.LatLng(this.mapview.lattitude, this.mapview.langtitude), 
         level: this.mapview.level }; 
         var map = new kakao.maps.Map(container, options); 
+
         var linePath = []; /* 선긋기용 */
+
         this.places.forEach(place => {
-            var point = new kakao.maps.LatLng(place.placeLat,place.placeLng)
+          var point = new kakao.maps.LatLng(place.placeLat,place.placeLng)
           var marker = new kakao.maps.Marker({ 
             map: map,
             position: point,
