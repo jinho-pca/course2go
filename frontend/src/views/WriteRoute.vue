@@ -47,7 +47,22 @@ export default {
       "PID : " + this.routepid + "\n"
       + "=============================")
 
-      writeRoute(this.title, this.routeStartDate, this.routeEndDate, this.routeContent, this.routePid);
+      if(!this.title){
+        alert("제목을 입력하세요.");
+        return;
+      } else if(!this.routeStartDate){
+        alert("출발일을 입력하세요.");
+        return;
+      } else if(!this.routeEndDate){
+        alert("출발일을 입력하세요.");
+        return;
+      } else if(this.routePid){
+        alert("여행 경로를 하나 이상 입력하세요.");
+        return;
+      } else{
+        writeRoute(this.title, this.routeStartDate, this.routeEndDate, this.routeContent, this.routePid);
+      }
+
 
 		},
     getTitle(title){
