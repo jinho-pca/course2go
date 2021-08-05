@@ -61,7 +61,7 @@
 <script>
 import '../../assets/css/user/login.css';
 import { watchEffect } from 'vue';
-import { userLogin } from '@/compositions/user';
+import { userLogin } from '@/compositions/user/login.js';
 
 export default {
   name: 'Login',

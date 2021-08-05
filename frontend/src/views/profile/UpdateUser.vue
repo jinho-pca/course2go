@@ -127,43 +127,9 @@
 
 <script>
 import '@/assets/css/user/update-user.css';
-import { watchEffect } from 'vue';
-import { userSignup } from '@/compositions/user';
 export default {
   name: 'UpdateUser',
   setup() {
-    const { 
-      email, name, password, passwordConfirm, nickname, birth, gender, 
-      error, isSubmit, passwordSchema, signup, checkSignupForm, checkEmail, checkNickname 
-      } = userSignup();
-    /* 이메일과 비밀번호에 변화가 있을 때 watch */
-    watchEffect(() => checkSignupForm({ 
-      email: email.value,
-      name: name.value,
-      password: password.value,
-      passwordConfirm: passwordConfirm.value,
-      nickname: nickname.value,
-      birth: birth.value,
-      gender: gender.value
-      })
-      )
-
-    return {
-      email,
-      name, 
-      password, 
-      passwordConfirm,
-      nickname,
-      birth,
-      gender,
-      error,
-      isSubmit,
-      passwordSchema, 
-      signup, 
-      checkSignupForm,
-      checkEmail,
-      checkNickname
-    };
   }
 }
 </script>

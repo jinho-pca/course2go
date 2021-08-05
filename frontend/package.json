@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "cors": "^2.8.5",
     "email-validator": "^2.0.4",
     "password-validator": "^5.1.1",
     "sass-loader": "^12.1.0",
