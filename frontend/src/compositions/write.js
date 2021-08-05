@@ -58,7 +58,7 @@ export const writeVisit = (rid, title, visitPid, visitCost, visitTime, visitCont
 	axios({
 		method: 'post',
 		headers: headers,
-		url: 'http://13.209.13.47:8080/visit/write',
+		url: URL + 'visit/write',
 		data : frm,
 		// data: {
 		// 	request : JSON.stringify(req),

@@ -1,6 +1,24 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
 
 .place-item{
-    border-style: none none solid none;
-    border-color: aquamarine;
+    /* border: solid 1px; */
+    border-color: gray;
+    box-shadow: 1px 1px 1px 1px inset;
+    line-height: 30px;
+    font-family: 'Jeju Myeongjo', serif;
+    
+    padding-left: 5px;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
 }
 
+.place-name{
+    display: inline-block;
+}
+
+.place-address{
+    display: inline-block;
+    font-size: 12px;
+}

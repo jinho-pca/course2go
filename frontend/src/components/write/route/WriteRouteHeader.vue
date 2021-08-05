@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import "@/components/css/search/writeRouteHeader.css"
+import "@/components/css/write/route/writeRouteHeader.css"
 
 export default {
   
