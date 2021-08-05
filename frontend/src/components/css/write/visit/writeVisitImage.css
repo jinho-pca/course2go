@@ -1,0 +1,43 @@
+.write-visit-images{
+    width: 100%;
+    height: 100px;
+    display: inline-flex;
+}
+
+.write-visit-image-box{
+    border-radius: 5px;
+    border: solid 1px;
+    
+    width: 32%;
+    height: 100%;
+}
+
+.write-visit-image{
+    width: 95%;
+    height: 95%;
+    object-fit: contain;
+    
+}
+
+.write-visit-between-block{
+    width: 2%;
+    display: inline-block;
+    height: 100%;
+}
+
+.write-visit-image-add{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 85px;
+    width: 100%;
+    height: 100%;
+    position: static;
+    
+    padding: 6px 25px;
+    background-color:aqua;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+      
+}

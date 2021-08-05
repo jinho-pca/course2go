@@ -12,29 +12,36 @@
 				</span>
 			</div>
 		</div>
-		<button class="write-route-add-place-btn" @click="showModal = true">+</button>
+		<button class="write-route-add-place-btn" @click="showModal = true" v-if="placeList.length < 9">+</button>
 	</div>
 </template>
 
 <script>
 import SearchPlace from '@/components/search/SearchPlace.vue'
-import "@/components/css/search/writeRoutePlaceList.css"
+import "@/components/css/write/route/writeRoutePlaceList.css"
 export default {
-	emits: ["routePid"],
+	emits: ["routePid", "routePlace"],
 	components: {
     SearchPlace
-  },
+	},
 	methods: {
 		addPlace(place){
 			this.showModal=false;
+			if(this.placePidList.includes(place.pid)){
+				alert('이미 추가한 장소 입니다.');
+				return;
+			}
+			this.placePidList.push(place.pid);
 			this.placeList.push(place);
-			this.$emit('routePid', place.pid)
+			this.$emit('routePlace', place);
+			this.$emit('routePid', place.pid);
 		},
 	}	,
 	data: function(){
 		return{
 			showModal : false,
-			placeList : []
+			placeList : [],
+			placePidList: [],
 		}
 	}
 }

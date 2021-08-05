@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import "@/components/css/search/writeRouteContent.css"
+import "@/components/css/write/route/writeRouteContent.css"
 export default {
 	
 

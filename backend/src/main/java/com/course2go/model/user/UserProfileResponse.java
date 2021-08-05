@@ -10,6 +10,10 @@ public class UserProfileResponse {
 
     String userComment;
 
+    int userFollowing;
+
+    int userFollower;
+
     public String getUserName() {
         return userName;
     }
@@ -41,4 +45,12 @@ public class UserProfileResponse {
     public void setUserComment(String userComment) {
         this.userComment = userComment;
     }
+
+    public int getUserFollowing() { return userFollowing; }
+
+    public void setUserFollowing(int userFollowing) { this.userFollowing = userFollowing; }
+
+    public int getUserFollower() { return userFollower; }
+
+    public void setUserFollower(int userFollower) { this.userFollower = userFollower; }
 }

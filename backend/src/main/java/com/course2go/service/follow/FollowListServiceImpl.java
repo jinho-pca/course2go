@@ -21,14 +21,14 @@ public class FollowListServiceImpl implements FollowListService{
 	FollowDao followDao;
 
 	@Override
-	public List<String> getFollowerList(String email) {
-		String uid = userDao.getUserByUserEmail(email).get().getUid();
+	public List<String> getFollowerListByNickname(String nickname) {
+		String uid = userDao.getUserByUserNickname(nickname).get().getUid();
 		return getFollowerListByUid(uid);
 	}
 
 	@Override
-	public List<String> getFollowingList(String email) {
-		String uid = userDao.getUserByUserEmail(email).get().getUid();
+	public List<String> getFollowingListByNickname(String nickname) {
+		String uid = userDao.getUserByUserNickname(nickname).get().getUid();
 		return getFollowingListByUid(uid);
 	}
 
@@ -41,5 +41,16 @@ public class FollowListServiceImpl implements FollowListService{
 	public List<String> getFollowingListByUid(String uid) {
 		return followDao.getFollowings(uid);
 	}
-	
+
+	@Override
+	public int getFollowerCount(String userNickname) {
+		String uid = userDao.getUserByUserNickname(userNickname).get().getUid();
+		return getFollowerListByUid(uid).size();
+	}
+
+	@Override
+	public int getFollowingCount(String userNickname) {
+		String uid = userDao.getUserByUserNickname(userNickname).get().getUid();
+		return getFollowingListByUid(uid).size();
+	}
 }

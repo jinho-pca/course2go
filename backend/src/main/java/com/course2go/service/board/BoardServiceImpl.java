@@ -59,6 +59,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardDto> getListbyUid(String uid) {
 		List<Board> list = boardDao.findAllByBoardWriterUid(uid);
+		System.out.println(list.toString());
 		return list.stream().map(board -> modelmapper.map(board, BoardDto.class)).collect(Collectors.toList());
 	}
 

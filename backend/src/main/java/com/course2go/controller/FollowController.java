@@ -51,10 +51,10 @@ public class FollowController {
 	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	
 	@GetMapping("/follow/follower")
-	public Object getFollowerList(@RequestParam(required = true) final String email) {
+	public Object getFollowerList(@RequestParam(required = true) final String nickname) {
 		ResponseEntity<BasicResponse> response = null;
 		List<String> userList = null;
-		userList = followListService.getFollowerList(email);
+		userList = followListService.getFollowerListByNickname(nickname);
 		
 		BasicResponse result = new BasicResponse();
 		result.status = true;
@@ -68,10 +68,10 @@ public class FollowController {
 	
 	
 	@GetMapping("/follow/following")
-	public Object getFollowingList(@RequestParam(required = true) final String email) {
+	public Object getFollowingList(@RequestParam(required = true) final String nickname) {
 		ResponseEntity<BasicResponse> response = null;
 		List<String> userList = null;
-		userList = followListService.getFollowingList(email);
+		userList = followListService.getFollowingListByNickname(nickname);
 		
 		BasicResponse result = new BasicResponse();
 		result.status = true;

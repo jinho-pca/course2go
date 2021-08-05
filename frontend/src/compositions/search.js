@@ -10,7 +10,6 @@ export const searchPlace = async (key) => {
 	await axios({
 		method: 'get',
 		url: URL + 'search/place/' + key,
-		// url: 'http://localhost:8095/search/place/' + key,
 	})
 	.then((res) => {
 		result = res.data;
