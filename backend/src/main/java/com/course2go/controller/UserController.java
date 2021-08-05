@@ -315,6 +315,7 @@ public class UserController {
     	case 1:
     		result.data = "success";
     		result.status = true;
+    		status = HttpStatus.OK;
     		break;
     	}
     	
