@@ -3,8 +3,8 @@
       <WriteRouteHeader/> 
       <WriteRouteTitle @title="getTitle"/>
       <WriteRouteDate @routeStartDate = "getRouteStartDate" @routeEndDate = "getRouteEndDate"/> 
-      <WriteRoutePlaceList @routePid="pushRoutePid"/>
-      <WriteRouteMap/>
+      <WriteRoutePlaceList @routePid="pushRoutePid" @routePlace="pushRoutePlace"/>
+      <WriteRouteMap :places="routePlaces"/>
       <WriteRouteContent @routeContent="getRouteContent"/>
       <div style="text-align: center">
         <button class="write-route-btn" @click="write">글 쓰기</button>
@@ -19,7 +19,7 @@
 import WriteRouteHeader from '@/components/write/route/WriteRouteHeader.vue'
 import WriteRouteTitle from '@/components/write/route/WriteRouteTitle.vue'
 import WriteRoutePlaceList from '@/components/write/route/WriteRoutePlaceList.vue'
-import WriteRouteMap from '@/components/write/route/WriteRouteMap.vue'
+import WriteRouteMap from '@/components/maps/routemap/WriteRouteMap.vue'
 import WriteRouteContent from '@/components/write/route/WriteRouteContent.vue'
 import WriteRouteDate from '@/components/write/route/WriteRouteDate.vue'
 
@@ -79,6 +79,11 @@ export default {
     },
     pushRoutePid(routePid){
       this.routePid.push(routePid);
+    },
+    pushRoutePlace(routePlace){
+      console.log(routePlace);
+      console.log(this.routePlaces);
+      this.routePlaces.push(routePlace);
     }
   },
   data: function(){
@@ -88,6 +93,7 @@ export default {
       routeEndDate : "",
       routeContent : "",
       routePid : [],
+      routePlaces : [],
 		}
 	}
   
