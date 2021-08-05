@@ -24,12 +24,20 @@ import '@/assets/css/profile/profile.css';
 import ProfileCard from '@/components/profile/ProfileCard.vue'
 import ProfileRoute from '@/components/profile/ProfileRoute.vue'
 import ProfilePlace from '@/components/profile/ProfilePlace.vue'
+import { profile } from '@/compositions/profile.js';
+
 export default {
   name: 'Profile',
   components: {
     ProfileCard,
     ProfileRoute,
     ProfilePlace,
+  },
+  setup() {
+    const { myProfile } = profile();
+    myProfile();
+    return { myProfile }
   }
+
 }
 </script>

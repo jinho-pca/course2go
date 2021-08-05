@@ -8,7 +8,7 @@ import * as EmailValidator from 'email-validator';
 /*  */
 // 로그인
 /*  */
-const URL = 'http://localhost:8080/'
+const URL = 'http://13.209.13.47:8080/'
 
 export const userLogin = () => {
   const router = useRouter()
@@ -37,8 +37,8 @@ export const userLogin = () => {
   const login = async ()=> {
     if(isSubmit.value) {
       const data = {
-        email,
-        password
+        email: email.value,
+        password: password.value
       };
 
       isSubmit.value = false;
@@ -55,11 +55,12 @@ export const userLogin = () => {
       })
       .then((res) => {
         isSubmit.value = true;
-        router.push("/home")
+        router.push("/newsfeed")
         return res
       })
       .catch((err) => {
         isSubmit.value = true;
+        console.log(err)
         alert('Email 혹은 Password가 틀렸습니다')
         return err
       })
@@ -142,8 +143,6 @@ export const userSignup = () => {
     .min(2)
     .is()
     .max(10)
-    .has()
-    .letters()
     .not()
     .digits();
 
@@ -160,23 +159,22 @@ export const userSignup = () => {
   // 나중에 눈 아이콘을 클릭했을 때 비밀번호가 보이도록 하기 위함
   // const passwordType = ref('password');
   // const passwordConfirmType = ref('password');
-
+  
   const signup = async ()=> {
     if(isSubmit.value) {
       const data = {
-        email,
-        password,
-        name,
-        nickname,
-        birth,
-        gender
+        email: email.value,
+        password: password.value,
+        name: name.value,
+        nickname: nickname.value,
+        birth: birth.value,
+        gender: gender.value
       };
-
       isSubmit.value = false;
 
       await axios({
         method: 'post',
-        url: URL + 'accounts/signup/',
+        url: URL + 'user/signup/',
         data: data,
       })
       .then((res) => {
@@ -187,12 +185,12 @@ export const userSignup = () => {
       .then((res) => {
         isSubmit.value = true;
         alert('회원가입이 완료되었습니다.')
-        router.push("/home")
+        router.push("/newsfeed")
         return res
       })
       .catch((err) => {
-        alert(email)
         isSubmit.value = true;
+        console.log(err)
         alert('회원가입에 실패했습니다.')
         return err
       })

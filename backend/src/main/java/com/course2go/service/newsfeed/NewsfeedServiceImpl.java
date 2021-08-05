@@ -31,7 +31,7 @@ public class NewsfeedServiceImpl implements NewsfeedService{
 	@Override
 	public List<NewsfeedDto> getListNewsfeed(String uid) {
 		List<NewsfeedDto> list = new LinkedList<NewsfeedDto>();
-		Iterable<String> uids = followlistService.getFollowingList(uid);
+		Iterable<String> uids = followlistService.getFollowingListByUid(uid);
 		List<BoardDto> boards = boardService.getListbyUids(uids);
 		for (BoardDto boardDto : boards) {
 			NewsfeedDto newsfeed = new NewsfeedDto();

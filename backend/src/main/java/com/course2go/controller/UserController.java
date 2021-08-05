@@ -276,19 +276,33 @@ public class UserController {
     
     @GetMapping("/profile/{userNickname}")
     @ApiOperation(value = "프로필보기")
-    public Object showProfile(@PathVariable("userNickname") String userNickname) {
+    public Object showProfile(@PathVariable("userNickname") String userNickname, @RequestHeader Map<String, Object> requestHeader) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.BAD_REQUEST;
-    	
-    	if(!userProfileService.userProfileShow(userNickname).equals("fail")) { // 프로필 보기를 요청한 유저의 정보를 정상적으로 받아온 경우
-    		result.data = "success";
-    		result.status = true;
-    		result.object = userProfileService.userProfileShow(userNickname);
-    		status = HttpStatus.OK;
-    	}else { // 프로필 보기를 요청한 유저의 정보를 찾을 수 없는 경우
-    		result.data = "nonpresent user";
+
+    	final String token = (String) requestHeader.get("authorization");
+    	Claims claims = TokenUtils.getClaimsFromToken(token);
+    	String tokenNickname = (String) claims.get("userNickname");
+		System.out.println("프로필 보기 요청(Controller) : " + tokenNickname + " -> " + userNickname);
+
+		Object userProfileShowResult = userProfileService.userProfileShow(tokenNickname, userNickname);
+
+    	if(userProfileShowResult.equals("nonexistent user")) { // 검색한 유저가 존재하지 않는 경우
+			result.data = "존재하지 않는 사용자 입니다.";
+			result.status = false;
+    	}else if(userProfileShowResult.equals("fail")){ // 프로필 보기를 요청한 유저의 정보를 찾을 수 없는 경우
+    		result.data = "잘못된 header 값 (요청한 유저의 정보를 찾을 수 없음)";
     		result.status = false;
-    	}
+    	}else{ // 프로필 보기를 요청한 유저의 정보를 정상적으로 받아온 경우
+			if(tokenNickname.equals(userNickname)){ // 자기 프로필 보기인 경우
+				result.data = "본인 프로필 보기 성공";
+			}else{ // 타인 프로필 보기인 경우
+				result.data = "타인 프로필 보기 성공";
+			}
+			result.status = true;
+			result.object = userProfileShowResult;
+			status = HttpStatus.OK;
+		}
     	
     	return new ResponseEntity<>(result, status);
     	
@@ -299,7 +313,7 @@ public class UserController {
     
     @PostMapping("/find-pw")
     @ApiOperation("임시비밀번호전송")
-    public Object sendEmail(@Valid @RequestBody UserEmailRequest userEmailRequest, @RequestHeader Map<String, Object> requestHeader) {
+    public Object sendEmail(@Valid @RequestBody UserEmailRequest userEmailRequest) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.BAD_REQUEST;
 
@@ -315,6 +329,7 @@ public class UserController {
     	case 1:
     		result.data = "success";
     		result.status = true;
+    		status = HttpStatus.OK;
     		break;
     	}
     	

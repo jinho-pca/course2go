@@ -2,7 +2,10 @@
   <div class="newsfeed-card">
     <div class="newsfeed-card-top">
       <div class="newsfeed-title">
-        Goki 님의 08.19 ~ 08.24 여행
+        <router-link to="/profile">
+          <span>Goki</span>
+        </router-link>
+        <span> 님의 08.19 ~ 08.24 여행</span>
       </div>
       <i class="far fa-star">23</i>
     </div>

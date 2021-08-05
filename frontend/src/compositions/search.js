@@ -1,5 +1,7 @@
-
 import axios from 'axios';
+import { BASE_URL } from '@/compositions/global.js'
+
+const { URL } = BASE_URL();
 
 export const searchPlace = async (key) => {
 
@@ -7,7 +9,7 @@ export const searchPlace = async (key) => {
 	
 	await axios({
 		method: 'get',
-		url: 'http://13.209.13.47:8080/search/place/' + key,
+		url: URL + 'search/place/' + key,
 		// url: 'http://localhost:8095/search/place/' + key,
 	})
 	.then((res) => {

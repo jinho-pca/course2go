@@ -11,7 +11,7 @@
               v-model="email"
               v-bind:class="{error: error.email, complete: !error.email&&email.length!==0}"
               placeholder="이메일을 입력하세요"
-              type="text" 
+              type="email" 
               id="email"
               name="email"
               class="input"
@@ -104,8 +104,8 @@
           <div class="group">
             <label for="gender" class="label">성별</label>
             <div class="toggle-radio">
-              <input type="radio" name="gender" id="male" v-model="gender" value="male">
-              <input type="radio" name="gender" id="female" v-model="gender" value="female">
+              <input type="radio" name="gender" id="male" v-model="gender" value='true'>
+              <input type="radio" name="gender" id="female" v-model="gender" value='false'>
               <div class="switch">
                 <label for="male">남성</label>
                 <label for="female">여성</label>
@@ -128,7 +128,7 @@
 <script>
 import '@/assets/css/user/signup.css';
 import { watchEffect } from 'vue';
-import { userSignup } from '@/compositions/user';
+import { userSignup } from '@/compositions/user/signup.js';
 
 export default {
   name: 'Singup',
@@ -147,7 +147,7 @@ export default {
       birth: birth.value,
       gender: gender.value
       })
-      )
+    )
 
     return {
       email,

@@ -1897,6 +1897,25 @@ container {
 
 
 
+* **CORS 에러**
+
+```javascript
+Error: Network Error
+    at createError (createError.js?2d83:16)
+    at XMLHttpRequest.handleError (xhr.js?b50d:84)
+```
+
+> cors 에러가 나타났을 때 headers를 추가해줘야 한다.
+
+```javascript
+headers:{
+    'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json'}
+})
+```
+
+
+
 
 
 ### 잊지 말 것
@@ -1949,16 +1968,16 @@ container {
 #### Login
 
 * CSS 수정
-  * Signup은 figma대로 만들 예정인데 그걸로 따라가는게 나을 것 같다...
-  * Sign in에서 `input` 태그로 제목 들어있는거 해결하기
-    * Sign up에서 한거 옮기기
-  * Forgot Email/Password쪽 디자인도 수정해주기
-  * 다른 페이지에 갔다가 Login 페이지로 돌아오면 밑에 여백이 남는 것 수정하기
-    * absolute로 화면 고정시켜 일단은 해결
-    * body보다 화면이 작아서 일어나는 버그
+  * ~~Signup은 figma대로 만들 예정인데 그걸로 따라가는게 나을 것 같다...~~
+  * ~~Sign in에서 `input` 태그로 제목 들어있는거 해결하기~~
+    * ~~Sign up에서 한거 옮기기~~
+  * ~~Forgot Email/Password쪽 디자인도 수정해주기~~
+  * ~~다른 페이지에 갔다가 Login 페이지로 돌아오면 밑에 여백이 남는 것 수정하기~~
+    * ~~absolute로 화면 고정시켜 일단은 해결~~
+    * ~~body보다 화면이 작아서 일어나는 버그~~
   * 로그인이라 써있는 제목의 밑줄을 지우고 다르게 보여줄 수 있는 방법이 뭐가 있을지 생각해보기
 * Keep me Signed in 기능 추가하기
-* 
+* `x` 표시로 내용 지우는거 추가
 
 
 
@@ -2034,14 +2053,10 @@ container {
   * 게시물 작성할 때 사용할 드롭다운 css
     * 다른거 누르면 열려있던건 접히고, 열린걸 누르면 그대로 닫힘
 * ~~내 페이지의 `설정(톱니바퀴)` vertical-align이 되어있지 않음~~
-
 * `프로필 편집`으로 갈 때는 글씨를 좀 더 작게, `line height`는 같게
-
 * 프로필 수정 css명 일단 안 바꾸고 `signup` 가져다 썼음
 
 
-<<<<<<< HEAD
-=======
 
 #### Follow
 
@@ -2056,5 +2071,6 @@ container {
 
 * 고르기 전엔 회색, 고른 후에는 검정색으로 맞춰주기
   * `select:hover` 속성 수정
-* 
->>>>>>> develop
+
+
+

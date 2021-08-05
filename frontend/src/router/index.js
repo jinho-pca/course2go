@@ -59,7 +59,7 @@ const routes = [
   {
     path: '/routeArticle',
     name: 'RouteArticle',
-    component: () => import(/* webpackChunkName: "Profile" */ '../views/article/RouteArticle.vue')
+    component: () => import(/* webpackChunkName: "RouteArticle" */ '../views/article/RouteArticle.vue')
   },
   {
     path: '/write/route',
