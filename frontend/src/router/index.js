@@ -66,6 +66,11 @@ const routes = [
     name: 'WriteRoute',
     component: () => import(/* webpackChunkName: "WriteRoute" */ '../views/WriteRoute.vue')
   },
+  {
+    path: '/write/visit',
+    name: 'WriteVisit',
+    component: () => import(/* webpackChunkName: "WriteVisit" */ '../views/WriteVisit.vue')
+  },
 ]
 
 const router = createRouter({

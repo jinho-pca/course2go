@@ -23,7 +23,7 @@ export default {
 	emits: ["routePid"],
 	components: {
     SearchPlace
-  },
+	},
 	methods: {
 		addPlace(place){
 			this.showModal=false;

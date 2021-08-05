@@ -1,0 +1,32 @@
+.write-visit-images{
+    width: 100%;
+    height: 100px;
+}
+
+.write-visit-image-box{
+    border-radius: 10px;
+    border: solid 1px;
+    
+    display: inline-block;
+    width: 32%;
+    height: 90px;
+}
+
+.write-visit-image{
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+}
+
+.write-visit-between-block{
+    width: 2%;
+    display: inline-block;
+    height: 90px;
+}
+
+.write-visit-image-add{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 85px;
+}
