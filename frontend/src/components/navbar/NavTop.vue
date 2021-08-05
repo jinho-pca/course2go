@@ -1,10 +1,17 @@
 <template>
   <div class="nav-top">
     <div class="nav-items">
-      <i class="fas fa-home"></i>
-      <input type="text" class="search-input">
-      <i class="fas fa-search"></i>
-      <i class="fas fa-pen"></i>
+      <div class="nav-left">
+        <i class="fas fa-home"></i>
+      </div>
+      <div class="nav-right">
+        <span>
+          <i class="fas fa-pen"></i>
+        </span>
+        <span>
+          <i class="fas fa-unlock-alt"></i>
+        </span>
+      </div>
     </div>
   </div>
 </template>

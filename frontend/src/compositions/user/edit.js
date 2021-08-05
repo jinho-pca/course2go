@@ -6,7 +6,7 @@ import PV from 'password-validator';
 import * as EmailValidator from 'email-validator';
 import { BASE_URL } from '@/compositions/global.js';
 
-const URL = BASE_URL()
+const { URL } = BASE_URL()
 
 export const userSignup = () => {
   const router = useRouter();

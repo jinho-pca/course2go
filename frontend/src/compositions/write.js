@@ -1,5 +1,7 @@
-
 import axios from 'axios';
+import { BASE_URL } from '@/compositions/global.js'
+
+const { URL, token } = BASE_URL();
 
 export const writeRoute = (title, routeStartDate, routeEndDate, routeContent, routePid) => {
 	const data = {
@@ -11,13 +13,13 @@ export const writeRoute = (title, routeStartDate, routeEndDate, routeContent, ro
 	};
   
 	const headers = {
-		'Authorization' : localStorage.getItem('Authorization')
+		'Authorization' : token
 	}
 
 	axios({
 	method: 'post',
 	headers: headers,
-	url: 'http://13.209.13.47:8080/route/write',
+	url: URL + 'route/write',
 			data: data
 	})
 	.then((res) => {

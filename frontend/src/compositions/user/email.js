@@ -4,7 +4,7 @@ import axios from 'axios';
 import PV from 'password-validator';
 import { BASE_URL } from '@/compositions/global.js'
 
-const URL = BASE_URL()
+const { URL } = BASE_URL()
 export const userEmail = () => {
   const router = useRouter();
 
@@ -38,7 +38,7 @@ export const userEmail = () => {
         data: data,
       })
       .then((res) => {
-        alert(`${data.nickname}님의 이메일은 ${res.data} 입니다.`)
+        alert(`${data.userNickname}님의 이메일은 ${res.data.object} 입니다.`)
         return res
       })
       .then((res) => {

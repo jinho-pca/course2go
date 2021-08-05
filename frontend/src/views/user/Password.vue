@@ -52,7 +52,7 @@
             <div class="error-text" v-if="error.birth">{{error.birth}}</div>
           </div>
           <div class="group align-buttons">
-            <input type="submit" @click="signup" value="확인" class="button">
+            <input type="button" @click="findPassword" value="확인" class="button">
             <router-link to="/">
               <input type="submit" value="취소" class="button">
             </router-link>
