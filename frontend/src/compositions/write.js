@@ -29,3 +29,50 @@ export const writeRoute = (title, routeStartDate, routeEndDate, routeContent, ro
 		return err
 	})
 }
+
+export const writeVisit = (rid, title, visitPid, visitCost, visitTime, visitContent, visitImage1, visitImage2, visitImage3) => {
+	const req = {
+		"title" : title, 
+		"visitPid" : visitPid,
+		"visitCost" : visitCost, 
+		"visitTime" : visitTime, 
+		"visitContent" : visitContent,
+	}
+	
+	const headers = {
+		'Authorization' : localStorage.getItem('Authorization')
+	}
+
+	console.log(visitImage1);
+	console.log(visitImage2);
+	console.log(visitImage3);
+	
+	let frm = new FormData();
+	frm.append("image1", visitImage1);
+	frm.append("image2", visitImage2);
+	frm.append("image3", visitImage3);
+	frm.append("rid", rid);
+	frm.append("request", JSON.stringify(req));
+	axios({
+		method: 'post',
+		headers: headers,
+		url: 'http://13.209.13.47:8080/visit/write',
+		data : frm,
+		// data: {
+		// 	request : JSON.stringify(req),
+		// 	rid : rid, 
+		// 	image1 : visitImage1, 
+		// 	image2 : visitImage2, 
+		// 	image3 : visitImage3
+		// },
+		
+	})
+	.then((res) => {
+		console.log(res.data);
+		return res
+	})
+	.catch((err) => {
+		alert(err)
+		return err
+	})
+}

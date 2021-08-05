@@ -15,18 +15,33 @@
 		<div class="write-visit-image-box" v-if="imageNum > 2">
 			<img class="write-visit-image" :src="imageAddress[2].preview" alt="">
 		</div>
-		
-		<input class="write-visit-image-box write-visit-image-add" type="file" id="file" ref="files" @change="addImage" v-if="imageNum < 3"/>
+		<div class="write-visit-image-box " v-if="imageNum < 3" style="border: none">
+			<label class="write-visit-image-add" for="write-visit-image-btn">
+				+
+			</label>
+			<input 
+				
+				type="file" 
+				id="write-visit-image-btn" 
+				ref="files"
+				style="display:none"
+				accept="image/jpeg, image/jpg, image/png"
+				@change="addImage"
+				/>
+		</div>
   </div>
 </template>
 
 <script>
 import "@/components/css/write/visit/writeVisitImage.css"
 export default {
+	emits: ["visitImage"],
 	methods: {
 		addImage(){
-			console.log(this.$refs.files.files);
-			console.log(this.imageNum);
+			console.log(this.$refs.files);
+			var photoFile = document.getElementById("file");
+			console.log(photoFile);
+
 			let file = 
 			{
 				file: this.$refs.files.files[0],
@@ -35,6 +50,7 @@ export default {
 			}
 			this.imageAddress.push(file);
 			this.imageNum++;
+			this.$emit('visitImage', file.file);
 		},
 	}	,
 	data: function(){
