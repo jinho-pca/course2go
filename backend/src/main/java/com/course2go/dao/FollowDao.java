@@ -12,7 +12,7 @@ import com.course2go.model.follow.Follow;
 public interface FollowDao extends JpaRepository<Follow, Integer>{
 	
 	@Query(
-			value = "SELECT u.user_nickname" +
+			value = "SELECT u.uid" +
 					" FROM follow f " + 
 					" JOIN user u ON f.follow_from_uid = u.uid" +
 					" WHERE f.follow_to_uid = :uid"
@@ -21,7 +21,7 @@ public interface FollowDao extends JpaRepository<Follow, Integer>{
 	List<String> getFollowers(@Param("uid") String uid); 
 	
 	@Query(
-			value = "SELECT u.user_nickname" +
+			value = "SELECT u.uid" +
 					" FROM follow f " + 
 					" JOIN user u ON f.follow_to_uid = u.uid" +
 					" WHERE f.follow_from_uid = :uid"
