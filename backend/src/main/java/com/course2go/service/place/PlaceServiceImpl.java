@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.course2go.dao.PlaceDao;
@@ -28,9 +30,10 @@ public class PlaceServiceImpl implements PlaceService {
 		return placeList.stream().map(entityList -> modelmapper.map(entityList, PlaceDto.class)).collect(Collectors.toList());
 	}
 	@Override
-	public List<PlaceDto> searchPlace(String word) {
+	public List<PlaceDto> searchPlace(String word, Integer page) {
 		word = "%" + word + "%"; // 프론트에서 해오는게 나을 듯. js가 문자열은 더 좋으니
-		return placeDao.findAllByPlaceNameLike(word).stream().map(place -> modelmapper.map(place, PlaceDto.class)).collect(Collectors.toList());
+		PageRequest pageRequest = PageRequest.of(page,7);
+		return placeDao.findAllByPlaceNameLike(word,pageRequest).stream().map(place -> modelmapper.map(place, PlaceDto.class)).collect(Collectors.toList());
 	}
 	@Override
 	public PlaceDto getPlace(Integer pid) {

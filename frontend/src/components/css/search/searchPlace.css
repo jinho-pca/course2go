@@ -14,11 +14,19 @@
     width: 100%;
 }
 
-.place-name{
-    display: inline-block;
+.place-address{
+    font-size: 12px;
 }
 
-.place-address{
-    display: inline-block;
-    font-size: 12px;
+.place-page{
+    display: inline-flex;
+}
+
+.place-page-btn{
+    font-size: 20px;
+    padding: 0 20px;
+}
+
+.place-page-num{
+    font-size: 20px;
 }
