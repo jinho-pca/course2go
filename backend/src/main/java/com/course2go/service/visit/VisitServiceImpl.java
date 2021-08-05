@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.course2go.dao.VisitDao;
+import com.course2go.model.ExtraData;
 import com.course2go.model.board.BoardDto;
 import com.course2go.model.board.BoardResponse;
 import com.course2go.model.visit.Visit;
@@ -17,6 +18,7 @@ import com.course2go.model.visit.VisitWriteDto;
 import com.course2go.service.board.BoardService;
 import com.course2go.service.contain.ContainService;
 import com.course2go.service.place.PlaceService;
+import com.course2go.service.user.UserService;
 
 @Service
 public class VisitServiceImpl implements VisitService {
@@ -29,6 +31,8 @@ public class VisitServiceImpl implements VisitService {
 	PlaceService placeService;
 	@Autowired
 	ContainService containService;
+	@Autowired
+	UserService userService;
 	
 	@Override
 	public void writeVisit(String uid, String title, VisitWriteDto dto, Integer rid) {
@@ -54,6 +58,7 @@ public class VisitServiceImpl implements VisitService {
 		visitReadResponse.setBoardResponse(boardService.readBoard(bid));
 		visitReadResponse.setVisitResponse(readVisit(visitReadResponse.getBoardResponse().getBoardTid()));
 		visitReadResponse.setPlace(placeService.getPlace(visitReadResponse.getVisitResponse().getVisitPid()));
+		visitReadResponse.setExtraData(new ExtraData(userService.getUserNicknameByUid(visitReadResponse.getBoardResponse().getBoardWriterUid())));
 		return visitReadResponse;
 	}
 

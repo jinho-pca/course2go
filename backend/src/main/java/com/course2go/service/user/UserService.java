@@ -10,4 +10,6 @@ public interface UserService {
 	Optional<User> getUserByUserNickname(String nickname);
 
 	List<UserDto> searchUser(String requestNickname, String userName);
+	
+	String getUserNicknameByUid(String uid);
 }

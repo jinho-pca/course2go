@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.course2go.dao.RouteDao;
+import com.course2go.model.ExtraData;
 import com.course2go.model.board.BoardDto;
 import com.course2go.model.board.BoardResponse;
 import com.course2go.model.route.Route;
@@ -16,6 +17,7 @@ import com.course2go.model.route.RouteResponse;
 import com.course2go.model.route.RouteWriteRequest;
 import com.course2go.service.board.BoardService;
 import com.course2go.service.contain.ContainService;
+import com.course2go.service.user.UserService;
 
 @Service
 public class RouteServiceImpl implements RouteService {
@@ -26,6 +28,8 @@ public class RouteServiceImpl implements RouteService {
 	BoardService boardService;
 	@Autowired
 	ContainService containService;
+	@Autowired
+	UserService userService;
 	
 	@Override
 	public void writeRoute(String uid, RouteWriteRequest request) {
@@ -49,6 +53,7 @@ public class RouteServiceImpl implements RouteService {
 		routeReadResponse.setBoardResponse(boardService.readBoard(bid));
 		routeReadResponse.setRouteResponse(readRoute(routeReadResponse.getBoardResponse().getBoardTid()));
 		routeReadResponse.setContainSpots(containService.listContain(routeReadResponse.getBoardResponse().getBoardTid()));
+		routeReadResponse.setExtraData(new ExtraData(userService.getUserNicknameByUid(routeReadResponse.getBoardResponse().getBoardWriterUid())));
 		return routeReadResponse;
 	}
 
