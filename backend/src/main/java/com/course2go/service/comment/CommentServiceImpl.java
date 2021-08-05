@@ -12,12 +12,15 @@ import com.course2go.dao.CommentDao;
 import com.course2go.model.comment.Comment;
 import com.course2go.model.comment.CommentDto;
 import com.course2go.model.comment.CommentWriteRequest;
+import com.course2go.service.user.UserService;
 
 @Service
 public class CommentServiceImpl implements CommentService {
 
 	@Autowired
 	CommentDao commentDao;
+	@Autowired
+	UserService userService;
 
 	ModelMapper modelmapper;
 	public CommentServiceImpl() {
@@ -41,6 +44,7 @@ public class CommentServiceImpl implements CommentService {
 		for (CommentDto commentDto : rawList) {
 			int parent = commentDto.getCommentParent();
 			if (parent==-1) {
+				commentDto.setCommentDepth(0);
 				commentList.add(commentDto);
 				continue;
 			}
@@ -55,6 +59,8 @@ public class CommentServiceImpl implements CommentService {
 				} else {
 					if (sortedCommentDto.getCid()==parent) {
 						sawParent=true;
+						commentDto.setCommentDepth(sortedCommentDto.getCommentDepth()+1);
+						commentDto.setCommentWriterNickname(userService.getUserNicknameByUid(commentDto.getCommentWriterUid()));
 					}
 					index++;
 				}
@@ -77,7 +83,7 @@ public class CommentServiceImpl implements CommentService {
 			return null;			
 		}
 		Comment comment = list.get(0);
-		return new CommentDto(comment.getCid(), comment.getCommentParent(), comment.getCommentBid(), comment.getCommentLike(), comment.getCommentContent(), comment.getCommentWriterUid(), comment.getCommentTime());
+		return new CommentDto(comment.getCid(), comment.getCommentParent(), comment.getCommentBid(), comment.getCommentLike(), comment.getCommentContent(), comment.getCommentWriterUid(), comment.getCommentTime(), null, userService.getUserNicknameByUid(comment.getCommentWriterUid()));
 	}
 
 }
