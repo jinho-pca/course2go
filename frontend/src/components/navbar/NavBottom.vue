@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-bottom">
+  <div class="nav-bottom" id="nav-bottom">
     <div class="nav-items">
       <router-link to="/newsfeed">
         <i class="far fa-home"></i>
@@ -18,19 +18,21 @@
 
 <script>
 import '@/components/css/navbar/nav-bottom.css'
-import { BASE_URL } from '@/compositions/global.js'
-import { onMounted } from 'vue'
+// import { onMounted } from 'vue'
 
 export default {
   name: 'navbottom',
-  setup() {
-    onMounted(() => {
-      const { token } = BASE_URL();
-      if (!token) {
-        const nav = document.querySelector('.navBottom')
-        nav.style.hidden;
-      }
-    })
-  }
+  // setup() {
+  //   onMounted(() => {
+  //     const { token } = BASE_URL();
+  //     if (!token) {
+  //       const nav = document.querySelector('#nav-bottom')
+  //       nav.style.display = 'hidden';
+  //     } else {
+  //       const nav = document.querySelector('#nav-bottom')
+  //       nav.style.display = 'block';
+  //     }
+  //   })
+  // }
 }
 </script>

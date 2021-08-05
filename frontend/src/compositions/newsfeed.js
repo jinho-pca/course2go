@@ -8,7 +8,7 @@ export const newsfeed = () => {
   // const router = useRouter()
   // const store = useStore()
   const newsfeeds = ref({});
-  let filteredArticle = ref([])
+  // let filteredArticle = ref([])
 
   const getNewsfeed = () => {
     axios({
@@ -19,7 +19,8 @@ export const newsfeed = () => {
       }// mode: 'cors',
     })
     .then((res) => {
-      console.log(res)
+      newsfeeds.value = res.data.object
+      console.log(newsfeeds.value)
       return res
     })
     .catch((err) => {
@@ -28,11 +29,13 @@ export const newsfeed = () => {
     })
   }
 
-  const articleFilter = (filter) => {
-    filteredArticle.value = newsfeeds.value.filter(x => {
-      return x === filter
-    })
-  }
+  // const articleFilter = (filter) => {
+  //   filteredArticle.value = newsfeeds.value.filter(x => {
+  //     return x === filter
+  //   })
+  // }
 
-  return { getNewsfeed, articleFilter, filteredArticle }
+  return { getNewsfeed, newsfeeds
+    //, articleFilter, filteredArticle 
+  }
 }
