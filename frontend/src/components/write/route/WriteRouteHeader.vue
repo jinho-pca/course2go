@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="backward">
 
   </div>
@@ -6,7 +7,7 @@
   <div class="write-title"> 
     글쓰기
   </div>
-  
+</div>
 </template>
 
 <script>

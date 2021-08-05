@@ -20,7 +20,7 @@
 import SearchPlace from '@/components/search/SearchPlace.vue'
 import "@/components/css/search/writeRoutePlaceList.css"
 export default {
-	emits: ["routePid"],
+	emits: ["routePid", "routePlace"],
 	components: {
     SearchPlace
 	},
@@ -28,7 +28,8 @@ export default {
 		addPlace(place){
 			this.showModal=false;
 			this.placeList.push(place);
-			this.$emit('routePid', place.pid)
+			this.$emit('routePlace', place);
+			this.$emit('routePid', place.pid);
 		},
 	}	,
 	data: function(){
