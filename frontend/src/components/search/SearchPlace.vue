@@ -6,7 +6,7 @@
 
           <div class="modal-header">
             <slot name="header">
-							<input v-model="searchKey" type="text">
+							<input class="modal-default-input" v-model="searchKey" type="text">
 							<button class="modal-default-button"  @click="search(searchKey)">검색</button>
             </slot>
           </div>
@@ -17,10 +17,10 @@
 							@click="select(index)" 
 							v-for="(place, index) in placeList" :key="place"
 							:style="setColor(index)">
-								<div class="place-pid" style="display:none">{{index}}</div>
 								<div class="place-name">{{place.placeName}}</div>
-								<div class="place-pid" style="display:none">{{place.pid}}</div>
 								<div class="place-address" v-if="selectBox == index">{{place.placeAddress}}</div>
+								<div class="place-pid" style="display:none">{{place.pid}}</div>
+								<div class="place-index" style="display:none">{{index}}</div>
 							</div>
             </slot>
           </div>
@@ -66,12 +66,12 @@ export default {
 		setColor(index){
 			if(this.selectBox == index){
 				return{
-					backgroundColor : 'aqua',
+					backgroundColor : '#dddddd',
 					color : 'black'
 				}
 			} else{
 				return{
-					backgroundColor : '#fafafa'
+					backgroundColor : 'white'
 				}
 			}
 		}

@@ -25,7 +25,7 @@ import WriteRouteDate from '@/components/write/route/WriteRouteDate.vue'
 
 import { writeRoute} from '@/compositions/write';
 
-import "@/components/css/search/writeRoute.css"
+import "@/components/css/write/route/writeRoute.css"
 
 export default {
   name: 'WriteRoute',
@@ -81,8 +81,6 @@ export default {
       this.routePid.push(routePid);
     },
     pushRoutePlace(routePlace){
-      console.log(routePlace);
-      console.log(this.routePlaces);
       this.routePlaces.push(routePlace);
     }
   },

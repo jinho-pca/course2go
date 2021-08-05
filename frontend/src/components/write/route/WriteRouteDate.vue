@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import "@/components/css/search/writeRouteDate.css"
+import "@/components/css/write/route/writeRouteDate.css"
 
 export default {
 	emits: ["routeStartDate", "routeEndDate"],
