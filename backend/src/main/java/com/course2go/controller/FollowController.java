@@ -81,6 +81,38 @@ public class FollowController {
 		
 		return response;
 	}
+
+	@GetMapping("/follow/myfollower")
+	public Object getMyFollowerList(@RequestHeader Map<String, Object> header) {
+		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
+		ResponseEntity<BasicResponse> response = null;
+		List<String> userList = null;
+		userList = followListService.getFollowerListByUid(uid);
+		
+		BasicResponse result = new BasicResponse();
+		result.status = true;
+		result.data = "success";
+		result.object = userList;
+		response = new ResponseEntity<>(result, HttpStatus.OK);
+		
+		return response;
+	}
+	
+	@GetMapping("/follow/myfollowing")
+	public Object getMyFollowingList(@RequestHeader Map<String, Object> header) {
+		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
+		ResponseEntity<BasicResponse> response = null;
+		List<String> userList = null;
+		userList = followListService.getFollowingListByUid(uid);
+		
+		BasicResponse result = new BasicResponse();
+		result.status = true;
+		result.data = "success";
+		result.object = userList;
+		response = new ResponseEntity<>(result, HttpStatus.OK);
+		
+		return response;
+	}
 	
     @PostMapping("/follow")
     public Object agreeFollow(@RequestBody Notice notice, @RequestHeader Map<String, Object> header) {

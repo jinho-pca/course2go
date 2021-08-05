@@ -19,20 +19,27 @@ public class FollowListServiceImpl implements FollowListService{
 	
 	@Autowired
 	FollowDao followDao;
-	
+
 	@Override
 	public List<String> getFollowerList(String email) {
 		String uid = userDao.getUserByUserEmail(email).get().getUid();
-		System.out.println(uid);
-		List<String> list = followDao.getFollowers(uid);
-		return list;
+		return getFollowerListByUid(uid);
 	}
 
 	@Override
 	public List<String> getFollowingList(String email) {
 		String uid = userDao.getUserByUserEmail(email).get().getUid();
-		List<String> list = followDao.getFollowings(uid);
-		return list;
+		return getFollowingListByUid(uid);
+	}
+
+	@Override
+	public List<String> getFollowerListByUid(String uid) {
+		return followDao.getFollowers(uid);
+	}
+
+	@Override
+	public List<String> getFollowingListByUid(String uid) {
+		return followDao.getFollowings(uid);
 	}
 	
 }
