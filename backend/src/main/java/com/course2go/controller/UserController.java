@@ -299,7 +299,7 @@ public class UserController {
     
     @PostMapping("/find-pw")
     @ApiOperation("임시비밀번호전송")
-    public Object sendEmail(@Valid @RequestBody UserEmailRequest userEmailRequest, @RequestHeader Map<String, Object> requestHeader) {
+    public Object sendEmail(@Valid @RequestBody UserEmailRequest userEmailRequest) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.BAD_REQUEST;
 
