@@ -15,11 +15,17 @@
     vertical-align: middle;
   }
   
+  .modal-default-input{
+    font-family: 'Jeju Myeongjo', serif;
+    border-radius: 5px;
+    
+  }
+
   .modal-container {
     width: 300px;
     margin: 0px auto;
     padding: 20px 0;
-    background-color: #fafafa;
+    background-color: white;
     border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
     transition: all .3s ease;
@@ -32,7 +38,7 @@
   }
   
   .modal-body {
-    margin: 20px 0;
+    margin: 0;
   }
   
   .modal-default-button {
@@ -40,7 +46,7 @@
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 900;
     font-size: 18px;
-    border-radius: 20px / 100%;
+    border-radius: 20px;
     position: relative;
     min-width: 5rem;
     height: auto;
@@ -53,7 +59,7 @@
   }
   
   .modal-button-cancel{
-    background-color: hotpink;
+    background-color: pink;
     margin-right: 10px;
   }
 
