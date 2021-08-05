@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class BoardDto {
     private Integer bid;
     private String boardWriterUid;
+    private String boardWriterNickname;
     private String boardTitle;
     private Integer boardLike;
     private Integer boardStar;
