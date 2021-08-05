@@ -12,6 +12,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "Signup" */ '../views/user/Signup.vue')
   },
   {
+    path: '/map',
+    name: 'map',
+    component: () => import('../components/maps/kakaomap/Kakaomap.vue')
+  },
+  {
     path: '/email',
     name: 'Email',
     component: () => import(/* webpackChunkName: "EMail" */ '../views/user/Email.vue')
@@ -50,6 +55,11 @@ const routes = [
     path: '/alert',
     name: 'Alert',
     component: () => import(/* webpackChunkName: "Alert" */ '../views/Alert.vue')
+  },
+  {
+    path: '/routeArticle',
+    name: 'RouteArticle',
+    component: () => import(/* webpackChunkName: "Profile" */ '../views/article/RouteArticle.vue')
   },
   {
     path: '/write/route',

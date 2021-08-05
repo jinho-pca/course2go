@@ -1,0 +1,30 @@
+details{
+    border: 1px solid rgba(68, 65, 65, 0.192);
+    border-radius: 15px;
+    margin: 10px 0px 10px 0px;
+    padding: 10px 15px 10px 15px;
+    transition: 2s transform ease;
+}
+
+details summary{ 
+  text-align: end;
+}
+
+.centersummary{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.novisitsummery{
+  list-style-type: none;
+  text-align: center;
+}
+
+details{
+  text-align: left;
+}
+
+#date{
+  color: orange;
+}
