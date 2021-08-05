@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.course2go.authentication.AuthConstants;
 import com.course2go.authentication.TokenUtils;
 import com.course2go.model.user.*;
 import io.jsonwebtoken.Claims;
@@ -79,23 +81,61 @@ public class UserController {
         
         return new ResponseEntity<>(result, status);
     }
-    
+
+    @GetMapping("/signup/check/email")
+	@ApiOperation(value = "이메일중복체크")
+	public Object checkEmail(@RequestParam("userEmail") String requestEmail){
+		final BasicResponse result = new BasicResponse();
+		HttpStatus status = HttpStatus.CONFLICT;
+
+    	boolean checkEmailResult = userRegisterService.userEmailCheck(requestEmail);
+    	if(!checkEmailResult){
+    		// 이메일 중복이 아닌 경우
+			result.data = "success";
+			result.status = true;
+			status = HttpStatus.OK;
+		}else{
+    		// 이메일 중복인 경우
+			result.data = "email overlap";
+			result.status = false;
+		}
+
+    	return new ResponseEntity<>(result, status);
+	}
+
+	@GetMapping("/signup/check/nickname")
+	@ApiOperation(value = "닉네임중복체크")
+	public Object checkNickname(@RequestParam("userNickname") String requestNickname){
+		final BasicResponse result = new BasicResponse();
+		HttpStatus status = HttpStatus.CONFLICT;
+
+		boolean checkNicknameResult = userRegisterService.userNicknameCheck(requestNickname);
+		if(!checkNicknameResult){
+			// 닉네임 중복이 아닌 경우
+			result.data = "success";
+			result.status = true;
+			status = HttpStatus.OK;
+		}else{
+			// 닉네임 중복인 경우
+			result.data = "nickname overlap";
+			result.status = false;
+		}
+
+		return new ResponseEntity<>(result, status);
+	}
 
     @Autowired
     UserModifyService userModifyService;
     
     @PutMapping("/modify")
     @ApiOperation("회원정보수정")
-    public Object modify(@Valid @RequestBody UserModifyRequest request, @RequestHeader Map<String, Object> requestHeader) {
+    public Object modify(@Valid @RequestBody UserModifyRequest request, @RequestHeader Map<String, Object> requestHeader, final HttpServletResponse response) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.CONFLICT;
 
     	final String token = (String) requestHeader.get("authorization");
 		Claims claims = TokenUtils.getClaimsFromToken(token);
 		String tokenEmail = (String) claims.get("userEmail");
-		System.out.println("token.toString() : " + token);
-		System.out.println("claims : " + claims);
-		System.out.println("tokenEmail : " + tokenEmail);
     	    	
     	int modifyResult = userModifyService.userModify(tokenEmail, request.getUserNickname(), request.getUserPassword());
     	
@@ -113,6 +153,8 @@ public class UserController {
     		break;
     	// 회원정보 수정 완료
     	case 1:
+			final String updateToken = userModifyService.updateToken(tokenEmail);
+			response.setHeader(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE + " " + updateToken);
     		result.data = "success";
     		result.status = true;
     		status = HttpStatus.OK;
@@ -168,6 +210,7 @@ public class UserController {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.BAD_REQUEST;
     	    	
+
     	String findEmailResult = userEmailFindService.userEmailFind(request.getUserNickname(), request.getUserBirthday());
     	
     	if(!findEmailResult.equals("fail")) {

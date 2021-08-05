@@ -1,0 +1,43 @@
+<template>
+	<div class="wirte-route-place-list">
+
+		<div class = "write-route-place-list-label">
+			장소 목록
+		</div>
+		<SearchPlace class="search-modal" v-if="showModal" @close="showModal = false" @place="addPlace"/>
+		<div class="place-list">
+			<div class="write-route-place-item" v-for="place in placeList" :key="place">
+				<span class="write-route-place-item-name">
+					{{place.placeName}}
+				</span>
+			</div>
+		</div>
+		<button class="write-route-add-place-btn" @click="showModal = true">+</button>
+	</div>
+</template>
+
+<script>
+import SearchPlace from '@/components/search/SearchPlace.vue'
+import "@/components/css/search/writeRoutePlaceList.css"
+export default {
+	emits: ["routePid"],
+	components: {
+    SearchPlace
+  },
+	methods: {
+		addPlace(place){
+			this.showModal=false;
+			this.placeList.push(place);
+			this.$emit('routePid', place.pid)
+		},
+	}	,
+	data: function(){
+		return{
+			showModal : false,
+			placeList : []
+		}
+	}
+}
+
+</script>
+
