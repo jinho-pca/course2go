@@ -1,15 +1,16 @@
 import axios from 'axios';
-import { BASE_URL } from '@/compositions/global.js'
+// import { BASE_URL } from '@/compositions/global.js'
 
-const { URL } = BASE_URL();
+// const { URL } = BASE_URL();
 
-export const searchPlace = async (key) => {
+export const searchPlace = async (key, page) => {
 
 	let result = [];
 	
 	await axios({
 		method: 'get',
-		url: URL + 'search/place/' + key,
+		url: URL + 'search/place/' + key + '/' + page,
+		// url: 'http://localhost:8095/search/place/' + key + '/' + page,
 	})
 	.then((res) => {
 		result = res.data;
