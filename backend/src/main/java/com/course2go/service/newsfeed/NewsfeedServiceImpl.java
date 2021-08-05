@@ -13,6 +13,7 @@ import com.course2go.service.board.BoardService;
 import com.course2go.service.comment.CommentService;
 import com.course2go.service.follow.FollowListService;
 import com.course2go.service.route.RouteService;
+import com.course2go.service.user.UserService;
 import com.course2go.service.visit.VisitService;
 
 @Service
@@ -37,6 +38,7 @@ public class NewsfeedServiceImpl implements NewsfeedService{
 		Iterable<String> uids = followlistService.getFollowingListByUid(uid); // 실제로 닉네임이 박힌다.
 		List<BoardDto> boards = boardService.getListbyUids(uids);
 		for (BoardDto boardDto : boards) {
+			boardDto.setBoardWriterNickname(userService.getUserNicknameByUid(boardDto.getBoardWriterUid()));
 			NewsfeedDto newsfeed = new NewsfeedDto();
 			newsfeed.setBoard(boardDto);
 			if (boardDto.isBoardType()) {
