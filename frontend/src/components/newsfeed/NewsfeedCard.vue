@@ -1,11 +1,12 @@
 <template>
   <div class="newsfeed-card">
+    <router-link :to="{ path: '/routeArticle', data: { bid: 36 } }" style="text-decoration:none;color:black;">
     <div class="newsfeed-card-top">
       <div class="newsfeed-title">
         <router-link to="/profile">
-          <span>{{  }} 님의</span>
+          <span>{{ newsfeed.board.boardWriterNickname }}</span>
         </router-link>
-        <span>{{ newsfeed.board.boardTitle }}</span>
+        <span style="font-weight:500">{{ newsfeed.board.boardTitle }}</span>
       </div>
       <i class="far fa-star">{{ newsfeed.board.boardLike }}</i>
     </div>
@@ -14,7 +15,7 @@
       {{ newsfeed.thing.routeContent }}
     </div>
     <!-- comment -->
-    <div class="newsfeed-card-bottom">
+    <div class="newsfeed-card-bottom" v-if="newsfeed.bestcomment">
       <div class="newsfeed-comment">
         <div class="comment-writer">
           {{ newsfeed.bestcomment.commentWriterNickname }}
@@ -29,6 +30,7 @@
     </div>
     <!-- comment -->
     <div style="font-size:10px; margin: 5px 10px 10px 0;">...더보기</div>
+    </router-link>
   </div>
 </template>
 

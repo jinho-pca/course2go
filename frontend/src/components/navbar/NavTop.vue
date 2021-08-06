@@ -2,7 +2,9 @@
   <div class="nav-top">
     <div class="nav-items">
       <div class="nav-left">
-        <i class="fas fa-home"></i>
+        <router-link to="/newsfeed">
+          <i class="fas fa-home"></i>
+        </router-link>
       </div>
       <div class="nav-right">
         <span>

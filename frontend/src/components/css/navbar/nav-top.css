@@ -24,6 +24,10 @@
   text-align: start;
 }
 
+.nav-top .nav-items > .nav-left > a {
+  color:black;
+}
+
 .nav-top .nav-items > .nav-right {
   text-align: end;
 }
