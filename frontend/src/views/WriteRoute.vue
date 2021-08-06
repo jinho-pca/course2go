@@ -1,18 +1,18 @@
 <template>
-    <div class="write-route">
-      <WriteRouteHeader/> 
-      <WriteRouteTitle @title="getTitle"/>
-      <WriteRouteDate @routeStartDate = "getRouteStartDate" @routeEndDate = "getRouteEndDate"/> 
-      <WriteRoutePlaceList @routePid="pushRoutePid" @routePlace="pushRoutePlace"/>
-      <WriteRouteMap :places="routePlaces"/>
-      <WriteRouteContent @routeContent="getRouteContent"/>
-      <div style="text-align: center">
-        <button class="write-route-btn" @click="write">글 쓰기</button>
-      </div>
-      <div class="empty-box">
-        
-      </div>
+  <div class="write-route">
+    <WriteRouteHeader/> 
+    <WriteRouteTitle @title="getTitle"/>
+    <WriteRouteDate @routeStartDate = "getRouteStartDate" @routeEndDate = "getRouteEndDate"/> 
+    <WriteRoutePlaceList @routePid="pushRoutePid" @routePlace="pushRoutePlace"/>
+    <WriteRouteMap :places="routePlaces"/>
+    <WriteRouteContent @routeContent="getRouteContent"/>
+    <div style="text-align: center">
+      <button class="write-route-btn" @click="write">글 쓰기</button>
     </div>
+    <div class="empty-box">
+      
+    </div>
+  </div>
 </template>
 
 <script>

@@ -17,6 +17,7 @@ export const read = async (bid) => {
         return res.data
     })
     .catch((err) => {
+        console.log(err)
         alert('동선을 불러오는데 실패했습니다.')
         return err
     })

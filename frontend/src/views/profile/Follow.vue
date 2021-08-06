@@ -1,7 +1,7 @@
 <template>
   <div class="follow">
     <div class="follow-tab">
-      <i class="fas fa-chevron-left"></i>
+      <i class="fas fa-chevron-left" @click="back"></i>
       <span>username</span>
       <Search />
       <div class="follow-button">
@@ -25,6 +25,12 @@ export default {
   components: {
     Search,
     FollowCard
+  },
+  setup() {
+    const back = () => {
+      history.back();
+    }
+    return { back }
   }
 }
 </script>

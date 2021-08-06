@@ -1,41 +1,47 @@
 <template>
   <div class="newsfeed-card">
+    <router-link :to="{ path: '/routeArticle', data: { bid: 36 } }" style="text-decoration:none;color:black;">
     <div class="newsfeed-card-top">
       <div class="newsfeed-title">
         <router-link to="/profile">
-          <span>Goki</span>
+          <span>{{ newsfeed.board.boardWriterNickname }}</span>
         </router-link>
-        <span> 님의 08.19 ~ 08.24 여행</span>
+        <span style="font-weight:500">{{ newsfeed.board.boardTitle }}</span>
       </div>
-      <i class="far fa-star">23</i>
+      <i class="far fa-star">{{ newsfeed.board.boardLike }}</i>
     </div>
     <img src="@/assets/images/map.jpg" alt="map image" class="newsfeed-image">
     <div class="newsfeed-description">
-      이번 제주도 여행은 반시계 방향의 동선으로 선택했는데 재밌었다.
+      {{ newsfeed.thing.routeContent }}
     </div>
     <!-- comment -->
-    <div class="newsfeed-card-bottom">
+    <div class="newsfeed-card-bottom" v-if="newsfeed.bestcomment">
       <div class="newsfeed-comment">
-        <span class="comment-writer">
-          jinho_pca
-        </span>
-        <span class="comment-content">
-          와~~ 부러워용
-        </span>
+        <div class="comment-writer">
+          {{ newsfeed.bestcomment.commentWriterNickname }}
+        </div>
+        <div class="comment-content">
+          {{ newsfeed.bestcomment.commentContent }}
+        </div>
       </div>
       <div>
-        <i class="fas fa-thumbs-up">23</i>
-        <i class="fas fa-thumbs-down">23</i>
+        <i class="fas fa-thumbs-up">{{ newsfeed.bestcomment.commentLike }}</i>
       </div>
     </div>
     <!-- comment -->
     <div style="font-size:10px; margin: 5px 10px 10px 0;">...더보기</div>
+    </router-link>
   </div>
 </template>
 
 <script>
 import '../css/newsfeed/newsfeed-card.css'
 export default {
-  name: 'newsfeedcard'
+  name: 'newsfeedcard',
+  props: {
+    newsfeed: {
+      type: Object
+    }
+  }
 }
 </script>

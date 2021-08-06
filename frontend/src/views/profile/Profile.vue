@@ -7,13 +7,13 @@
         <i class="fas fa-cog"></i>
       </router-link>
     </div>
-    <div class="profile-page">
+    <!-- <div class="profile-page">
       <span class="other-profile">
         타인 프로필
       </span>
-    </div>
+    </div> -->
     <!-- endif -->
-    <ProfileCard />
+    <ProfileCard :profileData="profileData" />
     <ProfileRoute />
     <ProfilePlace />
   </div>
@@ -34,9 +34,9 @@ export default {
     ProfilePlace,
   },
   setup() {
-    const { myProfile } = profile();
-    myProfile();
-    return { myProfile }
+    const { myProfile, who, profileData } = profile();
+      myProfile();
+    return { myProfile, who, profileData }
   }
 
 }
