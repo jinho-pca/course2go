@@ -90,4 +90,9 @@ public class VisitServiceImpl implements VisitService {
 		}
 		return visitList;
 	}
+
+	@Override
+	public List<VisitReadResponse> getVisitList(String userNickname) {
+		return getMyVisitList(userService.getUidByUserNickname(userNickname));
+	}
 }
