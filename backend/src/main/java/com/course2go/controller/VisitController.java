@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -105,9 +107,20 @@ public class VisitController {
 
     @PostMapping("/mylist")
     @ApiOperation("내가 쓴 장소글 목록")
-    public Object getListRoute(@RequestHeader Map<String, Object> header) {
+    public Object getMyListRoute(@RequestHeader Map<String, Object> header) {
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		List<VisitReadResponse> response = visitService.getMyVisitList(uid);
+    	final BasicResponse result = new BasicResponse();
+        result.status = true;
+        result.data = "success";
+        result.object = response;
+    	return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+    
+    @GetMapping("/list/{userNickname}")
+    @ApiOperation("장소글 목록")
+    public Object getListRoute(@PathVariable String userNickname) {
+		List<VisitReadResponse> response = visitService.getVisitList(userNickname);
     	final BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "success";

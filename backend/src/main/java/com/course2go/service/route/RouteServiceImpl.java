@@ -81,4 +81,9 @@ public class RouteServiceImpl implements RouteService {
 		return routeList;
 	}
 
+	@Override
+	public List<RouteReadResponse> getRouteList(String userNickname) {
+		return getMyRouteList(userService.getUidByUserNickname(userNickname));
+	}
+
 }

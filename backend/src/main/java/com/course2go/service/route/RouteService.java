@@ -14,4 +14,5 @@ public interface RouteService {
 	public RouteReadResponse readRouteBoard(Integer bid);
 	public RouteResponse readRoute(Integer rid);
 	public List<RouteReadResponse> getMyRouteList(String uid);
+	public List<RouteReadResponse> getRouteList(String userNickname);
 }

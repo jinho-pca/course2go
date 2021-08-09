@@ -61,4 +61,9 @@ public class UserServiceImpl implements UserService {
 	public String getUserNicknameByUid(String uid) {
 		return userDao.findById(uid).get().getUserNickname();
 	}
+
+	@Override
+	public String getUidByUserNickname(String userNickname) {
+		return userDao.findUserByUserNickname(userNickname).get().getUid();
+	}
 }
