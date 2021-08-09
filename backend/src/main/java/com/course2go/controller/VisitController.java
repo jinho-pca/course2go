@@ -94,9 +94,9 @@ public class VisitController {
 		return result;
     }
     
-    @PostMapping("/read")
+    @GetMapping("/read/{bid}")
     @ApiOperation(value = "게시글읽기")
-    public Object readVisit(@RequestParam Integer bid) {
+    public Object readVisit(@PathVariable Integer bid) {
     	VisitReadResponse response = visitService.readVisitBoard(bid);
 		final BasicResponse result = new BasicResponse();
         result.status = true;
@@ -105,7 +105,7 @@ public class VisitController {
 		return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
-    @PostMapping("/mylist")
+    @GetMapping("/mylist")
     @ApiOperation("내가 쓴 장소글 목록")
     public Object getMyListRoute(@RequestHeader Map<String, Object> header) {
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));

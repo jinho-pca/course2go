@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,9 +35,9 @@ public class BoardController {
 	@Autowired
 	ScrapService scrapService;
 	
-	@GetMapping("/like")
+	@PostMapping("/like/{bid}")
     @ApiOperation(value = "좋아요")
-	public Object likeBoard(@RequestParam(required = true) final Integer bid, @RequestHeader Map<String, Object> header) {
+	public Object likeBoard(@PathVariable Integer bid, @RequestHeader Map<String, Object> header) {
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		final BasicResponse result = new BasicResponse();
         result.status = likeService.like(uid, bid);
@@ -47,9 +49,9 @@ public class BoardController {
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 
-	@GetMapping("/cancellike")
+	@DeleteMapping("/like/{bid}")
     @ApiOperation(value = "좋아요취소")
-	public Object cancelLikeBoard(@RequestParam(required = true) final Integer bid, @RequestHeader Map<String, Object> header) {
+	public Object cancelLikeBoard(@PathVariable Integer bid, @RequestHeader Map<String, Object> header) {
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		final BasicResponse result = new BasicResponse();
         result.status = likeService.cancelLike(uid, bid);
@@ -61,9 +63,9 @@ public class BoardController {
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 
-	@GetMapping("/scrap")
+	@PostMapping("/scrap/{bid}")
     @ApiOperation(value = "스크랩")
-	public Object scrapBoard(@RequestParam(required = true) final Integer bid, @RequestHeader Map<String, Object> header) {
+	public Object scrapBoard(@PathVariable Integer bid, @RequestHeader Map<String, Object> header) {
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		final BasicResponse result = new BasicResponse();
         result.status = scrapService.scrap(uid, bid);
@@ -75,9 +77,9 @@ public class BoardController {
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 
-	@GetMapping("/cancelscrap")
+	@DeleteMapping("/scrap/{bid}")
     @ApiOperation(value = "스크랩취소")
-	public Object cancelScrapeBoard(@RequestParam(required = true) final Integer bid, @RequestHeader Map<String, Object> header) {
+	public Object cancelScrapeBoard(@PathVariable Integer bid, @RequestHeader Map<String, Object> header) {
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		final BasicResponse result = new BasicResponse();
         result.status = scrapService.cancelScrap(uid, bid);

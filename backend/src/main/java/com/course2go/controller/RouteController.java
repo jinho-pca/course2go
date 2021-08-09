@@ -52,9 +52,9 @@ public class RouteController {
 		return new ResponseEntity<>(result,HttpStatus.OK);
     }
     
-    @PostMapping("/read")
+    @GetMapping("/read/{bid}")
     @ApiOperation(value = "동선읽기")
-    public Object readRoute(@RequestParam Integer bid) {
+    public Object readRoute(@PathVariable Integer bid) {
     	RouteReadResponse response = routeService.readRouteBoard(bid);
 		final BasicResponse result = new BasicResponse();
         result.status = true;
@@ -63,7 +63,7 @@ public class RouteController {
 		return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
-    @PostMapping("/mylist")
+    @GetMapping("/mylist")
     @ApiOperation("내가 쓴 동선글 목록")
     public Object getMyListRoute(@RequestHeader Map<String, Object> header) {
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));

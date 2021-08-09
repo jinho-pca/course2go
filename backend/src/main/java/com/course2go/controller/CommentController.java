@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -34,9 +36,9 @@ public class CommentController {
 	@Autowired
 	CommentService commentService;
 	
-	@PostMapping("/read")
+	@GetMapping("/read/{bid}")
     @ApiOperation(value = "댓글 목록")
-	public Object readComment(@RequestParam(required = true) final Integer bid) {
+	public Object readComment(@PathVariable Integer bid) {
 		List<CommentDto> commentList = commentService.readSortedComment(bid);
 		final BasicResponse result = new BasicResponse();
         result.status = true;
