@@ -40,13 +40,13 @@ public class SearchController {
     @Autowired
 	UserService userService;
 
-	@GetMapping("/user/{userName}")
+	@GetMapping("/user/{keyword}")
 	@ApiOperation(value = "유저검색")
-	public List<UserDto> searchUser(@PathVariable String userName, @RequestHeader Map<String, Object> requestHeader){
+	public List<UserDto> searchUser(@PathVariable String keyword, @RequestHeader Map<String, Object> requestHeader){
 
 		final String token = (String) requestHeader.get("authorization");
 		Claims claims = TokenUtils.getClaimsFromToken(token);
 		String requestNickname = (String) claims.get("userNickname");
-		return userService.searchUser(requestNickname, userName);
+		return userService.searchUser(requestNickname, keyword);
 	}
 }

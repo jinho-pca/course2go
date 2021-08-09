@@ -22,38 +22,44 @@ public class UserServiceImpl implements UserService {
 	FollowDao followDao;
 
 	@Override
-	public Optional<User> getUserByUserNickname(String nickname) {
-		return userDao.getUserByUserNickname(nickname);
-	}
-
-	@Override
-	public List<UserDto> searchUser(String requestNickname, String userName) {
-		String followFromUid = userDao.findUserByUserNickname(requestNickname).get().getUid(); // 검색한사람의 uid
+	public List<UserDto> searchUser(String requestNickname, String keyword) {
+		System.out.println("UserServiceImple : searchUser(" + requestNickname + ", " + keyword + ") 실행");
 		List<UserDto> result = new ArrayList<>(); // 유저검색결과를 포함한 결과
-		List<User> userList = userDao.findAllByUserName(userName); // 검색한 이름을 가진 유저들의 리스트
+		List<User> nameContainingList = userDao.findByUserNameContaining(keyword); // 검색한 이름을 포함하는 유저들의 리스트
+		System.out.println(nameContainingList.toString());
+		List<User> nickNameContainingList = userDao.findByUserNicknameContaining(keyword); // 검색한 닉네임을 포함하는 유저들의 리스트
+		System.out.println(nickNameContainingList.toString());
 
-		for (int i = 0; i < userList.size(); i++) {
-			User tmpUser = userList.get(i);
+		for (int i = 0; i < nameContainingList.size(); i++) {
+			User tmpUser = nameContainingList.get(i);
 			UserDto userDto = new UserDto();
-			if(tmpUser.getUserNickname().equals(requestNickname)){
-				// 유저검색에서 받아온 유저가 요청한 본인인 경우
-				userList.remove(i);
+			if(requestNickname.equals(tmpUser.getUserNickname())){
+				// 검색한 이름을 포함하는 유저가 본인인 경우
+				nameContainingList.remove(i);
 				continue;
 			}else{
 				userDto.setUserName(tmpUser.getUserName());
 				userDto.setUserNickname(tmpUser.getUserNickname());
 				userDto.setUserImage(tmpUser.getUserImage());
 			}
+			result.add(userDto);
+		}
 
-			if(followDao.existsByFollowFromUidAndFollowToUid(followFromUid, tmpUser.getUid())){
-				// 검색의 주체유저가 검색한 사람을 팔로우 하고 있는 경우
-				userDto.setIsFollow(true);
+		for (int i = 0; i < nickNameContainingList.size(); i++) {
+			User tmpUser = nickNameContainingList.get(i);
+			UserDto userDto = new UserDto();
+			if(requestNickname.equals(tmpUser.getUserNickname())){
+				// 검색한 닉네임을 포함하는 유저가 본인인 경우
+				nickNameContainingList.remove(i);
+				continue;
 			}else{
-				// 검색의 주체유저가 검색한 사람을 팔로우 하고 있지 않은 경우
-				userDto.setIsFollow(false);
+				userDto.setUserName(tmpUser.getUserName());
+				userDto.setUserNickname(tmpUser.getUserNickname());
+				userDto.setUserImage(tmpUser.getUserImage());
 			}
 			result.add(userDto);
 		}
+		System.out.println(result.toString());
 		return result;
 	}
 
