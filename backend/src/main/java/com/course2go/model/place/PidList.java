@@ -1,0 +1,14 @@
+package com.course2go.model.place;
+
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class PidList {
+	List<Integer> pids;
+}

@@ -76,4 +76,24 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return mylist;
 	}
+
+	@Override
+	public BoardResponse getBoardVisit(Integer vid) {
+		List<Board> list = boardDao.findAllByBoardTypeAndBoardTid(false, vid);
+		if (list.size()==0) {
+			return null;
+		}
+		Board board = list.get(0);
+		return new BoardResponse(board.getBoardWriterUid(), board.getBoardTitle(), board.getBoardLike(), board.getBoardStar(), board.getBoardTid(), board.isBoardType(), board.getBoardTime());
+	}
+
+	@Override
+	public BoardResponse getBoardRoute(Integer rid) {
+		List<Board> list = boardDao.findAllByBoardTypeAndBoardTid(true, rid);
+		if (list.size()==0) {
+			return null;
+		}
+		Board board = list.get(0);
+		return new BoardResponse(board.getBoardWriterUid(), board.getBoardTitle(), board.getBoardLike(), board.getBoardStar(), board.getBoardTid(), board.isBoardType(), board.getBoardTime());
+	}
 }

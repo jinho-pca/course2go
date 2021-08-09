@@ -10,5 +10,6 @@ import com.course2go.model.contain.Contain;
 public interface ContainDao extends JpaRepository<Contain, Integer> {
 	Optional<Contain> findContainByContainRidAndContainPid(Integer containRid, Integer containPid);
 	List<Contain> findAllByContainRid(Integer containRid);
-
+	List<Integer> findAllContainRidByContainPid(Integer containPid);
+	List<Integer> findAllContainRidByContainRidInAndContainPid(Iterable<Integer> containRids, Integer containPid);
 }

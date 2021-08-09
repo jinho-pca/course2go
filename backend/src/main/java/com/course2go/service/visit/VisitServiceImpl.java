@@ -95,4 +95,18 @@ public class VisitServiceImpl implements VisitService {
 	public List<VisitReadResponse> getVisitList(String userNickname) {
 		return getMyVisitList(userService.getUidByUserNickname(userNickname));
 	}
+
+	@Override
+	public List<VisitReadResponse> getVisitListByPid(Integer pid) {
+		List<VisitReadResponse> visitList = new LinkedList<VisitReadResponse>();
+		List<Visit> list = visitDao.findAllByVisitPid(pid);
+		for (Visit visit : list) {
+			VisitReadResponse visitReadResponse = new VisitReadResponse();
+			visitReadResponse.setBoardResponse(boardService.getBoardVisit(visit.getVid()));
+			visitReadResponse.setVisitResponse(new VisitResponse(visit.getVisitPid(), visit.getVisitContent(), visit.getVisitTime(), visit.getVisitCost(), visit.getVisitImage1(), visit.getVisitImage2(), visit.getVisitImage3()));
+			visitReadResponse.setPlace(placeService.getPlace(pid));
+			visitList.add(visitReadResponse);
+		}
+		return visitList;
+	}
 }

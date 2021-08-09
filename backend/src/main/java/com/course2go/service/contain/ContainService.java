@@ -10,4 +10,8 @@ public interface ContainService {
 	public List<RouteSpot> listContain(Integer rid);
 
 	void modifyContain(int containRid, int containPid, Integer containVid);
+	
+	public List<Integer> getRidsContainPids(List<Integer> pids);
+	
+	public List<Integer> filterRidsWithExtraPid(List<Integer> rids, Integer pid);
 }

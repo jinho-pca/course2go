@@ -12,4 +12,6 @@ public interface BoardService {
 	public List<BoardDto> getListbyUids(Iterable<String> uids);
 	public List<BoardDto> getListbyUid(String uid);
 	public BoardMyList getMyList(String uid);
+	public BoardResponse getBoardVisit(Integer vid);
+	public BoardResponse getBoardRoute(Integer rid);
 }
