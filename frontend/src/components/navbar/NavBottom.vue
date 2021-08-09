@@ -4,7 +4,9 @@
       <router-link to="/newsfeed">
         <i class="far fa-home"></i>
       </router-link>
-      <i class="far fa-search"></i>
+      <router-link to="/search">
+        <i class="far fa-search"></i>
+      </router-link>
       <router-link to="/write/route">
         <i class="far fa-plus"></i>
       </router-link>

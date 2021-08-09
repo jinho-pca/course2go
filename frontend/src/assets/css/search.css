@@ -1,0 +1,12 @@
+.search {
+  padding: 0;
+  text-align: start;
+  margin: 5px 10px 0 10px;
+}
+
+.search > .search-name {
+  position: fixed;
+  top: 5px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}

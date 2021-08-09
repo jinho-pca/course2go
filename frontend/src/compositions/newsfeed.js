@@ -8,11 +8,11 @@ export const newsfeed = () => {
   // const router = useRouter()
   // const store = useStore()
   const newsfeeds = ref({});
-  // let filteredArticle = ref([]);
+  let filteredArticle = ref([]);
 
   const getNewsfeed = () => {
     axios({
-      method: 'post',
+      method: 'get',
       url: URL + 'newsfeed/read',
       headers: {
         Authorization: token,
@@ -20,7 +20,7 @@ export const newsfeed = () => {
     })
     .then((res) => {
       newsfeeds.value = res.data.object
-      console.log(newsfeeds.value)
+      console.log(res.data.object)
       return res
     })
     .catch((err) => {
@@ -29,13 +29,14 @@ export const newsfeed = () => {
     })
   }
 
-  // const articleFilter = (filter) => {
-  //   filteredArticle.value = newsfeeds.value.filter(x => {
-  //     return x === filter
-  //   })
-  // }
+  const articleFilter = (filter) => {
+    filteredArticle.value = newsfeeds.value.filter(x => {
+      console.log(x, filter)
+      return x === filter
+    })
+  }
 
   return { getNewsfeed, newsfeeds
-    // , articleFilter, filteredArticle 
+    , articleFilter, filteredArticle 
   }
 }
