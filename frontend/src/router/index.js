@@ -71,6 +71,11 @@ const routes = [
     name: 'WriteVisit',
     component: () => import(/* webpackChunkName: "WriteVisit" */ '../views/WriteVisit.vue')
   },
+  {
+    path: '/notice',
+    name: 'Notice',
+    component: () => import(/* webpackChunkName: "Notice" */ '../views/Notice.vue')
+  },
 ]
 
 const router = createRouter({
