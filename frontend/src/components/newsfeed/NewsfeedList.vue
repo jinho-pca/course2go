@@ -5,14 +5,14 @@
         <div class="text">전체</div>
         <span>▼</span>
         <ul class="option-list">
-          <li class="option" @click="onClickOption">전체</li>
-          <li class="option" @click="onClickOption">동선</li>
-          <li class="option" @click="onClickOption">장소</li>
+          <li class="option" value="1" @click="onClickOption">전체</li>
+          <li class="option" value="2" @click="onClickOption">동선</li>
+          <li class="option" value="3" @click="onClickOption">장소</li>
         </ul>
       </div>
       <span>뉴스피드</span>
     </div>
-    <NewsfeedCard v-for="(newsfeed, idx) in newsfeeds" :key="idx" :newsfeed="newsfeed" />
+    <NewsfeedCard v-for="(newsfeed, idx) in newsfeeds" :key="idx" :newsfeed="newsfeed" @click="getArticle(newsfeed.board.bid)" />
   </div>
 </template>
 
@@ -21,6 +21,7 @@ import '../css/newsfeed/newsfeed-list.css'
 import NewsfeedCard from '@/components/newsfeed/NewsfeedCard.vue'
 import { dropdown } from '@/compositions/dropdown';
 import { newsfeed } from '@/compositions/newsfeed';
+import { read } from '@/compositions/route/read.js';
 
 export default {
   name: 'newsfeedlist',
@@ -31,8 +32,10 @@ export default {
     const { onClickSelect, onClickOption } = dropdown();
     const { getNewsfeed, newsfeeds } = newsfeed();
     getNewsfeed();
-    console.log(newsfeeds.value)
-    return { onClickSelect, onClickOption, getNewsfeed, newsfeeds };
+    const getArticle = (bid) => {
+      read(bid)
+    }
+    return { onClickSelect, onClickOption, getNewsfeed, newsfeeds, getArticle };
   },
 }
 </script>

@@ -1,8 +1,6 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
 import axios from 'axios';
-import jwt from 'jsonwebtoken'
 import PV from 'password-validator';
 import * as EmailValidator from 'email-validator';
 import { BASE_URL } from '@/compositions/global.js'
@@ -11,7 +9,6 @@ const { URL } = BASE_URL();
 
 export const userLogin = () => {
   const router = useRouter()
-  const store = useStore()
 
   const passwordSchema = ref(new PV());
   const error = ref({
@@ -32,7 +29,7 @@ export const userLogin = () => {
 
   /* login 통신 Start */
   const email = ref('');
-  const password = ref('');
+  const password = ref('test1234@!');
   const login = async ()=> {
     if(isSubmit.value) {
       const data = {
@@ -54,16 +51,7 @@ export const userLogin = () => {
         isSubmit.value = true;
         const token = res.headers.authorization
         localStorage.setItem('Authorization', token)
-        const data = jwt.decode(token.substr(7))
         return data
-      })
-      .then((res) => {
-        const user = {
-          userEmail: res.userEmail,
-          userNickname: res.userNickname
-        }
-        store.dispatch('getUser', user)
-        return res
       })
       .then((res) => {
         router.push("/newsfeed")

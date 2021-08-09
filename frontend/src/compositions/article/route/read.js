@@ -5,14 +5,12 @@ export const read = async (bid) => {
     var route = [];
     const { URL } = BASE_URL()
     // console.log("read 함수 작동")
-    let frm = new FormData();
-    frm.append("bid", bid);
     await axios({
-        method: 'post',
-        url: URL + 'route/read',
-        data: frm,
+        method: 'get',
+        url: URL + `route/read/${bid}`,
     })
     .then((res) => {
+        console.log(res.data.object)
         route = res.data.object;
         return res.data
     })

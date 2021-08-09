@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-import {list} from '@/compositions/route/comment/list.js';
+import {list} from '@/compositions/article/route/comment/list.js';
 import RouteCommentCard from '@/components/article/RouteCommentCard.vue'
 export default {
     // name: "RouteComment", 

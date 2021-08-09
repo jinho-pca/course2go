@@ -5,11 +5,8 @@ export const list = async (bid) => {
     var list = [];
     const { URL } = BASE_URL()
     await axios({
-        method: 'post',
-        url: URL+'comment/read',
-        params: {
-            bid : bid,
-        }
+        method: 'get',
+        url: URL+`comment/read/${bid}`,
     })
     .then((res) => {
         list = res.data.object;
