@@ -57,8 +57,8 @@ public class FollowManagementServiceImpl implements FollowManagementService {
 	@Override
 	public void unfollow(String followFromNickname, String followToNickname) {
 		
-		String followFromUid = userService.getUserByUserNickname(followFromNickname).get().getUid();
-		String followToUid = userService.getUserByUserNickname(followToNickname).get().getUid();
+		String followFromUid = userService.getUidByUserNickname(followFromNickname);
+		String followToUid = userService.getUserNicknameByUid(followToNickname);
 		
 		Optional<Follow> toUnfollow = followDao.getFollowByFollowFromUidAndFollowToUid(followFromUid, followToUid);
 		
