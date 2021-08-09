@@ -15,4 +15,5 @@ public interface RouteService {
 	public RouteResponse readRoute(Integer rid);
 	public List<RouteReadResponse> getMyRouteList(String uid);
 	public List<RouteReadResponse> getRouteList(String userNickname);
+	public List<RouteReadResponse> getRouteContainPids(List<Integer> pids);
 }

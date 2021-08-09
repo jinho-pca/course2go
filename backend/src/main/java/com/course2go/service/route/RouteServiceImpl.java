@@ -86,4 +86,19 @@ public class RouteServiceImpl implements RouteService {
 		return getMyRouteList(userService.getUidByUserNickname(userNickname));
 	}
 
+	@Override
+	public List<RouteReadResponse> getRouteContainPids(List<Integer> pids) {
+		List<RouteReadResponse> routeList = new LinkedList<RouteReadResponse>();
+		List<Integer> rids = containService.getRidsContainPids(pids);
+		for (Integer rid : rids) {
+			RouteReadResponse routeReadResponse= new RouteReadResponse();
+			routeReadResponse.setRouteResponse(readRoute(rid));
+			routeReadResponse.setBoardResponse(boardService.getBoardRoute(rid));
+			routeReadResponse.setContainSpots(containService.listContain(rid));
+			routeReadResponse.setExtraData(new ExtraData(userService.getUserNicknameByUid(routeReadResponse.getBoardResponse().getBoardWriterUid())));
+			routeList.add(routeReadResponse);
+		}
+		return null;
+	}
+
 }

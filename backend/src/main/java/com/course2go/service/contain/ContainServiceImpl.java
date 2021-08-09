@@ -44,4 +44,18 @@ public class ContainServiceImpl implements ContainService {
 		return spotList;
 	}
 
+	@Override
+	public List<Integer> getRidsContainPids(List<Integer> pids) {
+		List<Integer> rids = containDao.findAllContainRidByContainPid(pids.get(0));
+		for (int i = 1; i < pids.size(); i++) {
+			rids = filterRidsWithExtraPid(rids, pids.get(i));
+		}
+		return rids;
+	}
+
+	@Override
+	public List<Integer> filterRidsWithExtraPid(List<Integer> rids, Integer pid) {
+		return containDao.findAllContainRidByContainRidInAndContainPid(rids, pid);
+	}
+
 }

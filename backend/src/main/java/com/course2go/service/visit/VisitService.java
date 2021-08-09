@@ -16,4 +16,5 @@ public interface VisitService {
 	public VisitDto getVisit(Integer vid);
 	public List<VisitReadResponse> getMyVisitList(String uid);
 	public List<VisitReadResponse> getVisitList(String userNickname);
+	public List<VisitReadResponse> getVisitListByPid(Integer pid);
 }
