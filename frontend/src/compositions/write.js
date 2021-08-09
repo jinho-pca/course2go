@@ -27,7 +27,7 @@ export const writeRoute = (title, routeStartDate, routeEndDate, routeContent, ro
 		return res
 	})
 	.catch((err) => {
-		alert('검색 결과가 없습니다.')
+		alert('글 작성을 실패하였습니다.')
 		return err
 	})
 }

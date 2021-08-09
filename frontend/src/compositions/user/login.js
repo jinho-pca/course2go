@@ -52,9 +52,9 @@ export const userLogin = () => {
       })
       .then((res) => {
         isSubmit.value = true;
-        const token = res.headers.authorization.substr(7)
+        const token = res.headers.authorization
         localStorage.setItem('Authorization', token)
-        const data = jwt.decode(token)
+        const data = jwt.decode(token.substr(7))
         return data
       })
       .then((res) => {

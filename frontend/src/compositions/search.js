@@ -1,7 +1,7 @@
 import axios from 'axios';
-// import { BASE_URL } from '@/compositions/global.js'
+import { BASE_URL } from '@/compositions/global.js'
 
-// const { URL } = BASE_URL();
+const { URL } = BASE_URL();
 
 export const searchPlace = async (key, page) => {
 

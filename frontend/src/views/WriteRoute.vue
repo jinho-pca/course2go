@@ -56,7 +56,7 @@ export default {
       } else if(!this.routeEndDate){
         alert("출발일을 입력하세요.");
         return;
-      } else if(this.routePid){
+      } else if(!this.routePid){
         alert("여행 경로를 하나 이상 입력하세요.");
         return;
       } else{
@@ -79,6 +79,7 @@ export default {
     },
     pushRoutePid(routePid){
       this.routePid.push(routePid);
+      console.log(this.routePid);
     },
     pushRoutePlace(routePlace){
       this.routePlaces.push(routePlace);
