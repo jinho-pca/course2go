@@ -2,14 +2,13 @@
   <div class="follow">
     <div class="follow-tab">
       <i class="fas fa-chevron-left" @click="back"></i>
-      <span>username</span>
+      <span>팔로우 리스트</span>
       <Search />
       <div class="follow-button">
-        <button>팔로잉</button>
+        <button style="border: 1px solid black; box-shadow: 2px 2px 2px grey;">팔로잉</button>
         <button>팔로워</button>
       </div>
     </div>
-    <FollowCard />
     <FollowCard />
   </div>
 

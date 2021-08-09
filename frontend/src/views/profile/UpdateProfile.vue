@@ -6,10 +6,10 @@
     <span>프로필 편집</span>
     <div>
       <div class="update-image">
-        <div>Goki</div>
+        <div>jinho_pca</div>
         <div>
           <div>
-            <img src="@/assets/images/map.jpg" alt="profile image" class="profile-image">
+            <img src="@/assets/images/이진호.png" alt="profile image" class="profile-image">
           </div>
         </div>
         <div>
@@ -19,7 +19,7 @@
       <div class="update-message">
         <div>상태 메시지</div>
         <div>
-          <span>안녕하세요</span>
+          <span>배포는 힘들다</span>
           <i class="fas fa-edit"></i>
         </div>
       </div>
