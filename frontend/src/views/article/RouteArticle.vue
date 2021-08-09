@@ -1,7 +1,7 @@
 <template>
   <div class="route">
     <div class="route-tab" style="background:white;">
-      <span>
+      <span @click="click">
         <i class="fas fa-chevron-left"></i>
       </span>
       <span>
@@ -109,6 +109,11 @@ export default {
       },
     }
   },
+  methods: {
+    click() {
+      history.back()
+    }
+  }
 }
 </script>
 

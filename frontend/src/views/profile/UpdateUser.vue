@@ -7,19 +7,8 @@
           <div class="group">
             <label for="email" class="label">이메일</label>
             <div class="input-border">
-              <input
-              v-model="email"
-              v-bind:class="{error: error.email, complete: !error.email&&email.length!==0}"
-              placeholder="이메일을 입력하세요"
-              type="text" 
-              id="email"
-              name="email"
-              class="input"
-              autocapitalize="off"
-              >
-              <input type="button" value="중복확인" class="check-button" @click="checkEmail">
+              이메일@이메일.이메일
             </div>
-            <div class="error-text" v-if="error.email">{{error.email}}</div>
           </div>
           <div class="group">
             <label for="name" class="label">이름</label>

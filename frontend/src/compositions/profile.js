@@ -11,13 +11,13 @@ export const profile = () => {
   const profileData = ref({});
 
   const myProfile = () => {
-    const user = jwt.decode(token)
+    const user = jwt.decode(token.substr(7))
 
     axios({
       method: 'get',
       url: URL + 'user/profile/' + user.userNickname,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: token,
       }
     })
     .then((res) => {

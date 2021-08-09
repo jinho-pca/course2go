@@ -15,7 +15,7 @@ export const newsfeed = () => {
       method: 'post',
       url: URL + 'newsfeed/read',
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: token,
       }// mode: 'cors',
     })
     .then((res) => {
