@@ -7,10 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.course2go.dao.FollowDao;
-import com.course2go.dao.NoticeDao;
-import com.course2go.dao.UserDao;
 import com.course2go.model.follow.Follow;
-import com.course2go.model.notice.Notice;
+import com.course2go.model.notice.NoticeDto;
 import com.course2go.service.notice.NoticeService;
 import com.course2go.service.user.UserService;
 
@@ -28,37 +26,37 @@ public class FollowManagementServiceImpl implements FollowManagementService {
 	
 	@Override
 	@Transactional
-	public void agree(Notice notice) {
+	public void agree(NoticeDto noticeDto) {
 		
 
-    	String followToUid = notice.getNoticeUid();
-    	String followFromUid = notice.getNoticeFromUid();
+    	String followToUid = noticeDto.getNoticeUid();
+    	String followFromUid = noticeDto.getNoticeFromUid();
     	
     	// 아래 두 기능을 Transaction하게 관리해야함.
 
 		// Notice 삭제
-		noticeService.deleteNotice(notice);
+		noticeService.deleteNotice(noticeDto);
 		
 		// 완료 Notice 생성
 		noticeService.writeNotice(followToUid, 2, followFromUid, true);
 		
 		
 		// Follow 추가
-		followDao.save(Follow.builder(followFromUid, followToUid).build());
+		makeFollow(followFromUid, followToUid);
 
 	}
 
 	@Override
-	public void deny(Notice notice) {
+	public void deny(NoticeDto noticeDto) {
 		// Notice 삭제
-		noticeService.deleteNotice(notice);	
+		noticeService.deleteNotice(noticeDto);	
 	}
 
 	@Override
 	public void unfollow(String followFromNickname, String followToNickname) {
 		
-		String followFromUid = userService.getUserByUserNickname(followFromNickname).get().getUid();
-		String followToUid = userService.getUserByUserNickname(followToNickname).get().getUid();
+		String followFromUid = userService.getUidByUserNickname(followFromNickname);
+		String followToUid = userService.getUidByUserNickname(followToNickname);
 		
 		Optional<Follow> toUnfollow = followDao.getFollowByFollowFromUidAndFollowToUid(followFromUid, followToUid);
 		
@@ -66,6 +64,21 @@ public class FollowManagementServiceImpl implements FollowManagementService {
 			followDao.delete(toUnfollow.get());
 		}
 
+	}
+
+	@Override
+	public void follow(String followFromNickname, String followToNickname) {
+		
+		String followFromUid = userService.getUidByUserNickname(followFromNickname);
+		String followToUid = userService.getUidByUserNickname(followToNickname);
+		
+		makeFollow(followFromUid, followToUid);
+	}
+	
+	@Override
+	public void makeFollow(String followFromUid, String followToUid) {
+		
+		followDao.save(Follow.builder(followFromUid, followToUid).build());
 	}
 	
 	

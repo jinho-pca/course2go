@@ -7,6 +7,8 @@ import com.course2go.model.notice.NoticeDto;
 
 public interface NoticeFollowService {
 	
+	public void update(String noticeUid);
+	
 	public List<NoticeDto> noticeNewFollow(String noticeUid);
 	
 	public List<NoticeDto> noticeOldFollow(String noticeUid);

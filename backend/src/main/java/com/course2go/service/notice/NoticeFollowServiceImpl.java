@@ -11,12 +11,17 @@ import org.springframework.stereotype.Service;
 import com.course2go.dao.NoticeDao;
 import com.course2go.model.notice.Notice;
 import com.course2go.model.notice.NoticeDto;
+import com.course2go.service.user.UserService;
 
 @Service
 public class NoticeFollowServiceImpl implements NoticeFollowService {
 
 	@Autowired
 	NoticeDao noticeDao;
+	@Autowired
+	NoticeService noticeService;
+	@Autowired
+	UserService userService;
 	ModelMapper modelmapper;
 
 	private final boolean isnew=true;
@@ -28,19 +33,29 @@ public class NoticeFollowServiceImpl implements NoticeFollowService {
 		follow.add(1);
 		follow.add(2);
 	}
-	
+
+	@Override
+	public void update(String noticeUid) {
+		noticeService.update(noticeUid, follow);
+	}
 	
 	@Override
 	public List<NoticeDto> noticeNewFollow(String noticeUid) {
 		List<Notice> newFollowList = noticeDao.findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(isnew, follow, noticeUid);
 		List<NoticeDto> newFollowListDto = newFollowList.stream().map(entityList -> modelmapper.map(entityList, NoticeDto.class)).collect(Collectors.toList());
+		for (NoticeDto noticeDto : newFollowListDto) {
+			noticeDto.setNoticeFromUserNickname(userService.getUserNicknameByUid(noticeDto.getNoticeFromUid()));
+		}
 		return newFollowListDto;
 	}
 	@Override
 	public List<NoticeDto> noticeOldFollow(String noticeUid) {
-		List<Notice> newBoardList = noticeDao.findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(!isnew, follow, noticeUid);
-		List<NoticeDto> newBoardListDto = newBoardList.stream().map(entityList -> modelmapper.map(entityList, NoticeDto.class)).collect(Collectors.toList());
-		return newBoardListDto;
+		List<Notice> newFollowList = noticeDao.findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(!isnew, follow, noticeUid);
+		List<NoticeDto> newFollowListDto = newFollowList.stream().map(entityList -> modelmapper.map(entityList, NoticeDto.class)).collect(Collectors.toList());
+		for (NoticeDto noticeDto : newFollowListDto) {
+			noticeDto.setNoticeFromUserNickname(userService.getUserNicknameByUid(noticeDto.getNoticeFromUid()));
+		}
+		return newFollowListDto;
 	}
 	
 	@Override

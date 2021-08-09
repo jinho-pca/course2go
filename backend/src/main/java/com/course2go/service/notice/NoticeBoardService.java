@@ -7,6 +7,8 @@ import com.course2go.model.notice.NoticeDto;
 
 public interface NoticeBoardService {
 
+	void update(String noticeUid);
+
 	public List<NoticeDto> noticeNewBoard(String noticeUid);
 	
 	public List<NoticeDto> noticeOldBoard(String noticeUid);

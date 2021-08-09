@@ -1,6 +1,5 @@
 package com.course2go.controller;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -15,21 +14,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.course2go.authentication.AuthConstants;
 import com.course2go.authentication.TokenUtils;
-import com.course2go.dao.FollowDao;
 import com.course2go.exception.UserUnmatchedException;
 import com.course2go.model.BasicResponse;
-import com.course2go.model.follow.Follow;
-import com.course2go.model.notice.Notice;
-import com.course2go.model.user.User;
+import com.course2go.model.notice.NoticeDto;
 import com.course2go.service.follow.FollowManagementService;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Header;
 
 import com.course2go.service.follow.FollowListService;
 
@@ -40,7 +33,8 @@ import com.course2go.service.follow.FollowListService;
 
 
 @CrossOrigin(origins = {"http://localhost:3000"})
-@RestController     
+@RestController
+@RequestMapping("/follow")
 public class FollowController {
 	
 	@Autowired
@@ -50,7 +44,7 @@ public class FollowController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	
-	@GetMapping("/follow/follower")
+	@GetMapping("/follower")
 	public Object getFollowerList(@RequestParam(required = true) final String nickname) {
 		ResponseEntity<BasicResponse> response = null;
 		List<String> userList = null;
@@ -67,7 +61,7 @@ public class FollowController {
 	
 	
 	
-	@GetMapping("/follow/following")
+	@GetMapping("/following")
 	public Object getFollowingList(@RequestParam(required = true) final String nickname) {
 		ResponseEntity<BasicResponse> response = null;
 		List<String> userList = null;
@@ -82,7 +76,7 @@ public class FollowController {
 		return response;
 	}
 
-	@GetMapping("/follow/myfollower")
+	@GetMapping("/myfollower")
 	public Object getMyFollowerList(@RequestHeader Map<String, Object> header) {
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		ResponseEntity<BasicResponse> response = null;
@@ -98,7 +92,7 @@ public class FollowController {
 		return response;
 	}
 	
-	@GetMapping("/follow/myfollowing")
+	@GetMapping("/myfollowing")
 	public Object getMyFollowingList(@RequestHeader Map<String, Object> header) {
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		ResponseEntity<BasicResponse> response = null;
@@ -114,16 +108,16 @@ public class FollowController {
 		return response;
 	}
 	
-    @PostMapping("/follow")
-    public Object agreeFollow(@RequestBody Notice notice, @RequestHeader Map<String, Object> header) {
+    @PostMapping("/agree")
+    public Object agreeFollow(@RequestBody NoticeDto noticeDto, @RequestHeader Map<String, Object> header) {
     	
-    	if(!TokenUtils.isSameUid((String)header.get("authorization"), notice.getNoticeUid())) {
-    		throw new UserUnmatchedException(notice.getNoticeUid());
+    	if(!TokenUtils.isSameUid((String)header.get("authorization"), noticeDto.getNoticeUid())) {
+    		throw new UserUnmatchedException(noticeDto.getNoticeUid());
     	}
     	
     	ResponseEntity<BasicResponse> response = null;
     	
-    	followManagementService.agree(notice);
+    	followManagementService.agree(noticeDto);
 		BasicResponse result = new BasicResponse();
 		result.status = true;
 		result.data = "success";
@@ -132,16 +126,34 @@ public class FollowController {
     	
     }
     
-    @DeleteMapping("/follow")
-    public Object denyFollow(@RequestBody Notice notice, @RequestHeader Map<String, Object> header) {
-    	
-    	if(!TokenUtils.isSameUid((String)header.get("authorization"), notice.getNoticeUid())) {
-    		throw new UserUnmatchedException(notice.getNoticeUid());
+    @PostMapping("/follow")
+    public Object follow(@RequestParam String followFromNickname, @RequestParam String followToNickname, @RequestHeader Map<String, Object> header) {
+
+    	if(!TokenUtils.isSameNickname((String)header.get("authorization"), followFromNickname)) {
+    		throw new UserUnmatchedException(followFromNickname);
     	}
     	
     	ResponseEntity<BasicResponse> response = null;
     	
-    	followManagementService.deny(notice);
+    	followManagementService.follow(followFromNickname, followToNickname);;
+		BasicResponse result = new BasicResponse();
+		result.status = true;
+		result.data = "success";
+		response = new ResponseEntity<>(result, HttpStatus.OK);
+		return response;
+    	
+    }
+    
+    @DeleteMapping("/deny")
+    public Object denyFollow(@RequestBody NoticeDto noticeDto, @RequestHeader Map<String, Object> header) {
+    	
+    	if(!TokenUtils.isSameUid((String)header.get("authorization"), noticeDto.getNoticeUid())) {
+    		throw new UserUnmatchedException(noticeDto.getNoticeUid());
+    	}
+    	
+    	ResponseEntity<BasicResponse> response = null;
+    	
+    	followManagementService.deny(noticeDto);
 		BasicResponse result = new BasicResponse();
 		result.status = true;
 		result.data = "success";
@@ -150,7 +162,7 @@ public class FollowController {
     	
     }
 
-    @DeleteMapping("/follow/unfollow")
+    @DeleteMapping("/unfollow")
     public Object unfollow(@RequestParam String followFromNickname, @RequestParam String followToNickname, @RequestHeader Map<String, Object> header) {
     	
     	if(!TokenUtils.isSameNickname((String)header.get("authorization"), followFromNickname)) {

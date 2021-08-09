@@ -14,6 +14,7 @@ public class NoticeDto {
     private String noticeUid;
     private Integer noticeType;
     private String noticeFromUid;
+    private String noticeFromUserNickname;
     private Integer noticeNnid;
     private boolean noticeIsnew;
     private LocalDateTime noticeTime;
