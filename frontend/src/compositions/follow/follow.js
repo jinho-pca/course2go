@@ -12,7 +12,10 @@ export const agreeFollow = (id) => {
 	axios({
 	method: 'post',
 	headers: headers,
-	url: URL + 'follow/agree/'+id,
+	url: URL + 'follow/agree/',
+  params:{
+    noticeId: id
+  }
 	})
 	.then((res) => {
 		console.log('팔로우 승인 완료');
@@ -31,7 +34,7 @@ export const denyFollow = (id) => {
 	}
 
 	axios({
-	method: 'post',
+	method: 'delete',
 	headers: headers,
 	url: URL + 'follow/deny/'+id,
 	})

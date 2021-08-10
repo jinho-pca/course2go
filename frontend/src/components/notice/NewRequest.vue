@@ -9,11 +9,14 @@
           <span class="notice-nickname">
             {{notice.noticeFromUserNickname}}
           </span>
-          <span class="notice-comment" v-if="notice.noticeType == 4">
+          <span class="notice-comment" v-if="notice.noticeType == 1">
             님의 팔로우 요청
           </span>
+          <span class="notice-comment" v-if="notice.noticeType == 2">
+            님이 팔로우를 수락하셨습니다.
+          </span>
         </div>
-        <div class="notice-right">
+        <div class="notice-right" v-if="notice.noticeType == 1">
           <button class="notice-btn notice-allow" @click="allow(notice.id)">
             수락
           </button>
