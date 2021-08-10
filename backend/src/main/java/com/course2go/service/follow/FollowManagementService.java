@@ -7,5 +7,4 @@ public interface FollowManagementService {
 	void agree(NoticeDto noticedto);
 	void unfollow(String followFromNickname, String followToNickname);
 	void follow(String followFromNickname, String followToNickname);
-	void makeFollow(String followFromUid, String followToUid);
 }

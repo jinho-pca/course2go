@@ -40,9 +40,8 @@ public class FollowManagementServiceImpl implements FollowManagementService {
 		// 완료 Notice 생성
 		noticeService.writeNotice(followToUid, 2, followFromUid, true);
 		
-		
 		// Follow 추가
-		makeFollow(followFromUid, followToUid);
+		followDao.save(Follow.builder(followFromUid, followToUid).build());
 
 	}
 
@@ -72,14 +71,10 @@ public class FollowManagementServiceImpl implements FollowManagementService {
 		String followFromUid = userService.getUidByUserNickname(followFromNickname);
 		String followToUid = userService.getUidByUserNickname(followToNickname);
 		
-		noticeService.writeNotice(followFromUid, 1, followToUid, true);
+		noticeService.writeNotice(followToUid, 1, followFromUid, true);
 	}
 
-	@Override
-	public void makeFollow(String followFromUid, String followToUid) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 	
 	
