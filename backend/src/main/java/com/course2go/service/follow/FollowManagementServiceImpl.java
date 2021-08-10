@@ -74,6 +74,12 @@ public class FollowManagementServiceImpl implements FollowManagementService {
 		
 		noticeService.writeNotice(followFromUid, 1, followToUid, true);
 	}
+
+	@Override
+	public void makeFollow(String followFromUid, String followToUid) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	
