@@ -90,3 +90,37 @@ export const getOldRequest = async () => {
 	})
 	return notice;
 }
+
+export const checkNotice = () => {
+	const headers = {
+		'Authorization' : token
+	}
+	axios({
+		method: 'post',
+		headers: headers,
+		url: URL + 'notice/board/update',
+		})
+		.then((res) => {
+			return res;
+		})
+		.catch((err) => {
+			return err;
+	})
+}
+
+export const checkRequest = () => {
+	const headers = {
+		'Authorization' : token
+	}
+	axios({
+		method: 'post',
+		headers: headers,
+		url: URL + 'notice/follow/update',
+		})
+		.then((res) => {
+			return res;
+		})
+		.catch((err) => {
+			return err;
+	})
+}
