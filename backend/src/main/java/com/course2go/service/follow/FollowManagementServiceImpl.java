@@ -72,14 +72,10 @@ public class FollowManagementServiceImpl implements FollowManagementService {
 		String followFromUid = userService.getUidByUserNickname(followFromNickname);
 		String followToUid = userService.getUidByUserNickname(followToNickname);
 		
-		makeFollow(followFromUid, followToUid);
+		noticeService.writeNotice(followFromUid, 1, followToUid, true);
 	}
 	
-	@Override
-	public void makeFollow(String followFromUid, String followToUid) {
-		
-		followDao.save(Follow.builder(followFromUid, followToUid).build());
-	}
+	
 	
 	
 
