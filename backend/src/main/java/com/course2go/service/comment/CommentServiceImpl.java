@@ -75,6 +75,8 @@ public class CommentServiceImpl implements CommentService {
 					index++;
 				}
 			}
+			System.out.println(commentDto.getCommentWriterUid());
+			System.out.println(userService.getUserDtoByUid(commentDto.getCommentWriterUid()));
 			commentDto.setCommentWriterDto(userService.getUserDtoByUid(commentDto.getCommentWriterUid()));
 			commentList.add(index, commentDto);
 		}
