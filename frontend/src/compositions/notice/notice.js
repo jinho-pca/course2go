@@ -105,6 +105,7 @@ export const checkNotice = () => {
 			return res;
 		})
 		.catch((err) => {
+			console.log(err);
 			return err;
 	})
 }
@@ -122,6 +123,7 @@ export const checkRequest = () => {
 			return res;
 		})
 		.catch((err) => {
+			console.log(err);
 			return err;
 	})
 }

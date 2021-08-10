@@ -36,10 +36,13 @@ export const denyFollow = (id) => {
 	axios({
 	method: 'delete',
 	headers: headers,
-	url: URL + 'follow/deny/'+id,
+	url: URL + 'follow/deny',
+  params:{
+    noticeId: id
+  }
 	})
 	.then((res) => {
-		console.log('팔로우 승인 완료');
+		console.log('팔로우 거부 완료');
 		return res
 	})
 	.catch((err) => {

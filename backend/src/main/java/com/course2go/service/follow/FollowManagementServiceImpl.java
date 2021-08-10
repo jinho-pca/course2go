@@ -26,7 +26,6 @@ public class FollowManagementServiceImpl implements FollowManagementService {
 	UserService userService;
 	
 	@Override
-	@Transactional
 	public void agree(Notice notice) {
 		
     	String followToUid = notice.getNoticeUid();
