@@ -23,7 +23,7 @@ import WriteRouteMap from '@/components/maps/routemap/WriteRouteMap.vue'
 import WriteRouteContent from '@/components/write/route/WriteRouteContent.vue'
 import WriteRouteDate from '@/components/write/route/WriteRouteDate.vue'
 
-import { writeRoute} from '@/compositions/write';
+import {writeRoute} from '@/compositions/write';
 
 import "@/components/css/write/route/writeRoute.css"
 
