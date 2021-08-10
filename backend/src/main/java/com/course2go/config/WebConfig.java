@@ -14,12 +14,12 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins("http://localhost:8080/")
                 .exposedHeaders("Authorization")
                 .allowedHeaders("Authorization")
-                .allowCredentials(true)
-                .allowedMethods(
-                		HttpMethod.GET.name(),
-                		HttpMethod.POST.name(),
-                		HttpMethod.DELETE.name(),
-                		HttpMethod.PUT.name(),
-                		HttpMethod.HEAD.name());
+                .allowCredentials(true);
+//                .allowedMethods(
+//                		HttpMethod.GET.name(),
+//                		HttpMethod.POST.name(),
+//                		HttpMethod.DELETE.name(),
+//                		HttpMethod.PUT.name(),
+//                		HttpMethod.HEAD.name());
     }
 }

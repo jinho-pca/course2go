@@ -5,6 +5,7 @@ const { URL, token } = BASE_URL();
 
 export const getNewNotice = async () => {
   let notice = [];
+
 	const headers = {
 		'Authorization' : token
 	}
