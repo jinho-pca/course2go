@@ -11,6 +11,8 @@ public interface UserService {
 	List<UserDto> searchUser(String requestNickname, String userName);
 	
 	String getUserNicknameByUid(String uid);
+
+	UserDto getUserDtoByUid(String uid);
 	
 	String getUidByUserNickname(String userNickname);
 }

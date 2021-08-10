@@ -75,7 +75,7 @@ public class CommentServiceImpl implements CommentService {
 					index++;
 				}
 			}
-			commentDto.setCommentWriterNickname(userService.getUserNicknameByUid(commentDto.getCommentWriterUid()));
+			commentDto.setCommentWriterDto(userService.getUserDtoByUid(commentDto.getCommentWriterUid()));
 			commentList.add(index, commentDto);
 		}
 		return commentList;
@@ -94,7 +94,7 @@ public class CommentServiceImpl implements CommentService {
 			return null;			
 		}
 		Comment comment = list.get(0);
-		return new CommentDto(comment.getCid(), comment.getCommentParent(), comment.getCommentBid(), comment.getCommentLike(), comment.getCommentContent(), comment.getCommentWriterUid(), comment.getCommentTime(), null, userService.getUserNicknameByUid(comment.getCommentWriterUid()));
+		return new CommentDto(comment.getCid(), comment.getCommentParent(), comment.getCommentBid(), comment.getCommentLike(), comment.getCommentContent(), comment.getCommentWriterUid(), comment.getCommentTime(), null, userService.getUserDtoByUid(comment.getCommentWriterUid()));
 	}
 
 }

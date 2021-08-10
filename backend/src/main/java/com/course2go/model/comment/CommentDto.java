@@ -2,6 +2,8 @@ package com.course2go.model.comment;
 
 import java.time.LocalDateTime;
 
+import com.course2go.model.user.UserDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,5 +21,5 @@ public class CommentDto {
     private LocalDateTime commentTime;
     
     private Integer commentDepth;
-    private String commentWriterNickname;
+    private UserDto commentWriterDto;
 }
