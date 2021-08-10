@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.course2go.dao.FollowDao;
 import com.course2go.model.follow.Follow;
+import com.course2go.model.notice.Notice;
 import com.course2go.model.notice.NoticeDto;
 import com.course2go.service.notice.NoticeService;
 import com.course2go.service.user.UserService;
@@ -26,30 +27,27 @@ public class FollowManagementServiceImpl implements FollowManagementService {
 	
 	@Override
 	@Transactional
-	public void agree(NoticeDto noticeDto) {
+	public void agree(Notice notice) {
 		
-
-    	String followToUid = noticeDto.getNoticeUid();
-    	String followFromUid = noticeDto.getNoticeFromUid();
+    	String followToUid = notice.getNoticeUid();
+    	String followFromUid = notice.getNoticeFromUid();
     	
     	// 아래 두 기능을 Transaction하게 관리해야함.
 
 		// Notice 삭제
-		noticeService.deleteNotice(noticeDto);
+		noticeService.deleteNotice(notice);
 		
 		// 완료 Notice 생성
 		noticeService.writeNotice(followToUid, 2, followFromUid, true);
 		
-		
 		// Follow 추가
-		makeFollow(followFromUid, followToUid);
+		followDao.save(Follow.builder(followFromUid, followToUid).build());
 
 	}
 
 	@Override
-	public void deny(NoticeDto noticeDto) {
-		// Notice 삭제
-		noticeService.deleteNotice(noticeDto);	
+	public void deny(Notice notice) {
+		noticeService.deleteNotice(notice);	
 	}
 
 	@Override
@@ -72,18 +70,8 @@ public class FollowManagementServiceImpl implements FollowManagementService {
 		String followFromUid = userService.getUidByUserNickname(followFromNickname);
 		String followToUid = userService.getUidByUserNickname(followToNickname);
 		
-		noticeService.writeNotice(followFromUid, 1, followToUid, true);
+		noticeService.writeNotice(followToUid, 1, followFromUid, true);
 	}
-
-	@Override
-	public void makeFollow(String followFromUid, String followToUid) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	
-	
 
 	
 }

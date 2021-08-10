@@ -14,6 +14,8 @@ public interface NoticeDao extends JpaRepository<Notice, Integer> {
 	
 	List<Notice> findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(boolean isnew, Iterable<Integer> noticeType, String noticeUid);
 	
+	Notice findNoticeById(int id);
+	
 	@Modifying
 	@Query( value = "UPDATE Notice n" +
 					" SET n.notice_isnew = 0" + 
