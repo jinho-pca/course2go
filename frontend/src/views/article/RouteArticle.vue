@@ -10,14 +10,14 @@
     </div>
       <RouteContent />
       <RouteDetailCard :routeReadResponse="routeReadResponse"/>
-      <RouteComment :bid="bid"/>
+      <Comment :bid="bid"/>
   </div>
 </template>
 
 <script>
 import { read } from '@/compositions/article/route/read.js';
 import RouteDetailCard from '@/components/article/RouteDetailCard.vue'
-import RouteComment from '@/components/article/RouteComment.vue'
+import Comment from '@/components/article/Comment.vue'
 import RouteContent from '@/components/article/RouteContent.vue'
 
 export default {
@@ -30,7 +30,7 @@ export default {
   },
   components: {
     RouteDetailCard,
-    RouteComment,
+    Comment,
     RouteContent,
   },
   data() {

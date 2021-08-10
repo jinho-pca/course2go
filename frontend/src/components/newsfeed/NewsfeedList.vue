@@ -21,7 +21,7 @@ import '../css/newsfeed/newsfeed-list.css'
 import NewsfeedCard from '@/components/newsfeed/NewsfeedCard.vue'
 import { dropdown } from '@/compositions/dropdown';
 import { newsfeed } from '@/compositions/newsfeed';
-import { read } from '@/compositions/route/read.js';
+import { read } from '@/compositions/article/route/read.js';
 
 export default {
   name: 'newsfeedlist',

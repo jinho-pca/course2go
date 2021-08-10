@@ -71,11 +71,11 @@ public class CommentServiceImpl implements CommentService {
 					if (sortedCommentDto.getCid()==parent) {
 						sawParent=true;
 						commentDto.setCommentDepth(sortedCommentDto.getCommentDepth()+1);
-						commentDto.setCommentWriterNickname(userService.getUserNicknameByUid(commentDto.getCommentWriterUid()));
 					}
 					index++;
 				}
 			}
+			commentDto.setCommentWriterNickname(userService.getUserNicknameByUid(commentDto.getCommentWriterUid()));
 			commentList.add(index, commentDto);
 		}
 		return commentList;

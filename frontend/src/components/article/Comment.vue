@@ -1,15 +1,16 @@
 <template>
   <div id="comments">
     <h2>댓글</h2>
-    <input class = "comment-input" type="text" v-model="mycomment" @input="changeTitle">
-    <RouteCommentCard v-for="(comment, index) in commentlist" :key="index" :comment="comment"/>
+    <CommentInput :parent="nonreply"/>
+    <CommentCard v-for="(comment, index) in commentlist" :key="index" :comment="comment"/>
   </div>
 </template>
 <script>
-import {list} from '@/compositions/article/route/comment/list.js';
-import RouteCommentCard from '@/components/article/RouteCommentCard.vue'
+import { list } from '@/compositions/article/comment/list.js';
+import CommentCard from '@/components/article/CommentCard.vue'
+import CommentInput from '@/components/article/CommentInput.vue'
 export default {
-    // name: "RouteComment", 
+    name: "Comment", 
     created() {
         // this.commentlist = list(5);
         console.log("코멘트 시작")
@@ -25,7 +26,7 @@ export default {
     },
     data() {
         return {
-            mycomment: "",
+            nonreply: -1,
             commentlist: [
                 {
                     commentWriterUid: "구엑",
@@ -46,7 +47,8 @@ export default {
         }
     },
     components:{
-        RouteCommentCard
+        CommentCard,
+        CommentInput
     },
 }
 </script>
