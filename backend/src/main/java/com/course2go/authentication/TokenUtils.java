@@ -90,6 +90,7 @@ public final class TokenUtils {
         claims.put("uid", user.getUid());
         claims.put("userEmail", user.getUserEmail());
         claims.put("userNickname", user.getUserNickname());
+        claims.put("userImage", user.getUserImage());
 
         return claims;
     }
