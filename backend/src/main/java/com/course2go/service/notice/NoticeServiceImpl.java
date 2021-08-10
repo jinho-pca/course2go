@@ -33,5 +33,15 @@ public class NoticeServiceImpl implements NoticeService{
 		noticeDao.delete(Notice.builder(noticeDto.getNoticeUid(), noticeDto.getNoticeType(), noticeDto.getNoticeFromUid(), noticeDto.getNoticeNnid(), noticeDto.isNoticeIsnew()).build());
 	}
 	
+	@Override
+	public void deleteNotice(Notice notice) {
+		noticeDao.delete(notice);
+	}
+
+	@Override
+	public Notice getNotice(int id) {
+		return noticeDao.findNoticeById(id);
+	}
+	
 	
 }

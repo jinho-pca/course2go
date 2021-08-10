@@ -21,9 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.course2go.authentication.TokenUtils;
 import com.course2go.exception.UserUnmatchedException;
 import com.course2go.model.BasicResponse;
+import com.course2go.model.notice.Notice;
 import com.course2go.model.notice.NoticeDto;
 import com.course2go.service.follow.FollowManagementService;
-
+import com.course2go.service.notice.NoticeService;
 import com.course2go.service.follow.FollowListService;
 
 //@ApiResponses(value = { @ApiResponse(code = 401, message = "Unauthorized", response = BasicResponse.class),
@@ -41,6 +42,8 @@ public class FollowController {
 	FollowManagementService followManagementService;
 	@Autowired
 	FollowListService followListService;
+	@Autowired
+	NoticeService noticeService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	
@@ -109,15 +112,17 @@ public class FollowController {
 	}
 	
     @PostMapping("/agree")
-    public Object agreeFollow(@RequestBody NoticeDto noticeDto, @RequestHeader Map<String, Object> header) {
+    public Object agreeFollow(@RequestParam int noticeId, @RequestHeader Map<String, Object> header) {
     	
-    	if(!TokenUtils.isSameUid((String)header.get("authorization"), noticeDto.getNoticeUid())) {
-    		throw new UserUnmatchedException(noticeDto.getNoticeUid());
+    	Notice notice = noticeService.getNotice(noticeId);
+    	
+    	if(!TokenUtils.isSameUid((String)header.get("authorization"), notice.getNoticeUid())) {
+    		throw new UserUnmatchedException(notice.getNoticeUid());
     	}
     	
     	ResponseEntity<BasicResponse> response = null;
     	
-    	followManagementService.agree(noticeDto);
+    	followManagementService.agree(notice);
 		BasicResponse result = new BasicResponse();
 		result.status = true;
 		result.data = "success";
@@ -145,15 +150,17 @@ public class FollowController {
     }
     
     @DeleteMapping("/deny")
-    public Object denyFollow(@RequestBody NoticeDto noticeDto, @RequestHeader Map<String, Object> header) {
+    public Object denyFollow(@RequestParam int noticeId, @RequestHeader Map<String, Object> header) {
     	
-    	if(!TokenUtils.isSameUid((String)header.get("authorization"), noticeDto.getNoticeUid())) {
-    		throw new UserUnmatchedException(noticeDto.getNoticeUid());
+    	Notice notice = noticeService.getNotice(noticeId);
+    	
+    	if(!TokenUtils.isSameUid((String)header.get("authorization"), notice.getNoticeUid())) {
+    		throw new UserUnmatchedException(notice.getNoticeUid());
     	}
     	
     	ResponseEntity<BasicResponse> response = null;
     	
-    	followManagementService.deny(noticeDto);
+    	followManagementService.deny(notice);
 		BasicResponse result = new BasicResponse();
 		result.status = true;
 		result.data = "success";

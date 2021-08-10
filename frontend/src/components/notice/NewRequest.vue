@@ -14,11 +14,11 @@
           </span>
         </div>
         <div class="notice-right">
-          <button class="notice-btn notice-allow">
+          <button class="notice-btn notice-allow" @click="allow(notice.id)">
             수락
           </button>
           <div class="empty-space"></div>
-          <button class="notice-btn notice-deny">
+          <button class="notice-btn notice-deny" @click="deny(notice.id)">
             거부
           </button>
         </div>
@@ -39,11 +39,18 @@ export default {
     initComponent(){
       getNewRequest().then(res =>{
         this.noticeList = res.object;
+        console.log(res.object);
       })
     },
     redirect(){
 
-    }    
+    },
+    allow(id){
+      console.log(id);
+    },
+    deny(id){
+      console.log(id);
+    }
   },
   data: function(){
     return{
