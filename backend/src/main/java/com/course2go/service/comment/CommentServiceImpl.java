@@ -12,6 +12,8 @@ import com.course2go.dao.CommentDao;
 import com.course2go.model.comment.Comment;
 import com.course2go.model.comment.CommentDto;
 import com.course2go.model.comment.CommentWriteRequest;
+import com.course2go.service.board.BoardService;
+import com.course2go.service.notice.NoticeService;
 import com.course2go.service.user.UserService;
 
 @Service
@@ -20,8 +22,15 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	CommentDao commentDao;
 	@Autowired
+	NoticeService noticeService;
+	@Autowired
 	UserService userService;
+	@Autowired
+	BoardService boardService; 
 
+	private int comment = 4;
+	private boolean isnew = true;
+	
 	ModelMapper modelmapper;
 	public CommentServiceImpl() {
 		modelmapper = new ModelMapper();
@@ -34,7 +43,9 @@ public class CommentServiceImpl implements CommentService {
 	
 	@Override
 	public void writeComment(Integer commentParent, Integer commentBid, Integer commentLike, String commentContent, String commentWriterUid) {
-		commentDao.save(Comment.builder(commentParent, commentBid, commentLike, commentContent, commentWriterUid).build());
+		Comment c = commentDao.save(Comment.builder(commentParent, commentBid, commentLike, commentContent, commentWriterUid).build());
+		/*댓글 알림 생성*/
+		noticeService.writeNotice(boardService.readBoard(commentBid).getBoardWriterUid(), comment, commentWriterUid, c.getCid(), isnew);
 	}
 	
 	@Override

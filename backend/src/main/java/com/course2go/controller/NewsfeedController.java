@@ -25,7 +25,7 @@ public class NewsfeedController {
 	@Autowired
 	NewsfeedService newsfeedService;
 	
-	@PostMapping("/read")
+	@GetMapping("/read")
     @ApiOperation(value = "뉴스피드 목록")
 	public Object readNewsfeed(@RequestHeader Map<String, Object> header) {
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));

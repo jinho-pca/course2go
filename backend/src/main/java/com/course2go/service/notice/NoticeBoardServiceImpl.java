@@ -11,12 +11,17 @@ import org.springframework.stereotype.Service;
 import com.course2go.dao.NoticeDao;
 import com.course2go.model.notice.Notice;
 import com.course2go.model.notice.NoticeDto;
+import com.course2go.service.user.UserService;
 
 @Service
 public class NoticeBoardServiceImpl implements NoticeBoardService {
 
 	@Autowired
 	NoticeDao noticeDao;
+	@Autowired
+	NoticeService noticeService;
+	@Autowired
+	UserService userService;
 	ModelMapper modelmapper;
 	
 	private final boolean isnew=true;
@@ -29,15 +34,25 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 		board.add(4);
 	}
 	@Override
+	public void update(String noticeUid) {
+		noticeService.update(noticeUid, board);
+	}
+	@Override
 	public List<NoticeDto> noticeNewBoard(String noticeUid) {
 		List<Notice> newBoardList = noticeDao.findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(isnew, board, noticeUid);
 		List<NoticeDto> newBoardListDto = newBoardList.stream().map(entityList -> modelmapper.map(entityList, NoticeDto.class)).collect(Collectors.toList());
+		for (NoticeDto noticeDto : newBoardListDto) {
+			noticeDto.setNoticeFromUserNickname(userService.getUserNicknameByUid(noticeDto.getNoticeFromUid()));
+		}
 		return newBoardListDto;
 	}
 	@Override
 	public List<NoticeDto> noticeOldBoard(String noticeUid) {
 		List<Notice> newBoardList = noticeDao.findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(!isnew, board, noticeUid);
 		List<NoticeDto> newBoardListDto = newBoardList.stream().map(entityList -> modelmapper.map(entityList, NoticeDto.class)).collect(Collectors.toList());
+		for (NoticeDto noticeDto : newBoardListDto) {
+			noticeDto.setNoticeFromUserNickname(userService.getUserNicknameByUid(noticeDto.getNoticeFromUid()));
+		}
 		return newBoardListDto;
 	}
 	@Override

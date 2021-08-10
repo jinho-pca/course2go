@@ -8,8 +8,6 @@ public class UserDto {
 
     String userImage;
 
-    boolean isFollow;
-
     public String getUserName() {
         return userName;
     }
@@ -34,11 +32,4 @@ public class UserDto {
         this.userImage = userImage;
     }
 
-    public boolean getIsFollow() {
-        return isFollow;
-    }
-
-    public void setIsFollow(boolean isFollow) {
-        this.isFollow = isFollow;
-    }
 }
