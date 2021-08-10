@@ -10,7 +10,7 @@ export const write = async (parent, content, bid) => {
     }
     await axios({
         method: 'post',
-        url: URL + `comment/read/${bid}`,
+        url: URL + `comment/write`,
         data: data,
     })
     .catch((err) => {
