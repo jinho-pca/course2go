@@ -37,12 +37,11 @@ export const getOldNotice = async () => {
 		url: URL + 'notice/board/old',
 		})
 		.then((res) => {
-			console.log(res.data);
 			notice = res.data;
 			return res;
 		})
 		.catch((err) => {
-			alert('새 알림을 불러오는데 실패하였습니다.');
+			console.log('새 알림을 불러오는데 실패하였습니다.');
 			return err;
 	})
 	return notice;
@@ -59,12 +58,11 @@ export const getNewRequest = async () => {
 		url: URL + 'notice/follow/new',
 		})
 		.then((res) => {
-			console.log(res.data);
 			notice = res.data;
 			return res;
 		})
 		.catch((err) => {
-			alert('새 알림을 불러오는데 실패하였습니다.');
+			console.log('새 알림을 불러오는데 실패하였습니다.');
 			return err;
 	})
 	return notice;
@@ -81,12 +79,11 @@ export const getOldRequest = async () => {
 		url: URL + 'notice/follow/old',
 		})
 		.then((res) => {
-			console.log(res.data);
 			notice = res.data;
 			return res;
 		})
 		.catch((err) => {
-			alert('새 알림을 불러오는데 실패하였습니다.');
+			console.log('새 알림을 불러오는데 실패하였습니다.');
 			return err;
 	})
 	return notice;

@@ -1,7 +1,7 @@
 <template>
   <div class="notice-category">
     <div class="notice-name">
-      오래된 알림
+      확인한 알림
     </div>
     <div class="notice-list">
       <div class="notice-item" v-for="(notice) in noticeList" :key="notice" @click="redirect()">
@@ -29,10 +29,8 @@ export default {
   methods:{
     initComponent(){
       getOldNotice().then(res =>{
-        console.log(res.object[0]);
         this.noticeList = res.object;
       })
-      
     },
   },
   data: function(){
