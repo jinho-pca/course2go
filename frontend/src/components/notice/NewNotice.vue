@@ -20,6 +20,7 @@
 
 <script>
 import {getNewNotice} from '@/compositions/notice/notice';
+import {checkNotice} from '@/compositions/notice/notice';
 import "@/components/css/notice/noticeList.css"
 export default {
   mounted() {
@@ -31,6 +32,7 @@ export default {
       getNewNotice().then(res =>{
         console.log(res.object[0]);
         this.noticeList = res.object;
+        checkNotice();
       })
       
     },

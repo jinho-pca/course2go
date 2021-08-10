@@ -1,5 +1,7 @@
 package com.course2go.service.notice;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ public class NoticeServiceImpl implements NoticeService{
 	NoticeDao noticeDao;
 
 	@Override
+	@Transactional
 	public void update(String noticeUid, Iterable<Integer> noticeTypes) {
 		noticeDao.updateNew2Old(noticeUid, noticeTypes);
 	}
