@@ -53,6 +53,7 @@ public class CommentServiceImpl implements CommentService {
 		List<CommentDto> commentList = new LinkedList<CommentDto>();
 		List<CommentDto> rawList = readComment(commentBid);
 		for (CommentDto commentDto : rawList) {
+			commentDto.setCommentWriterDto(userService.getUserDtoByUid(commentDto.getCommentWriterUid()));
 			int parent = commentDto.getCommentParent();
 			if (parent==-1) {
 				commentDto.setCommentDepth(0);
@@ -75,9 +76,6 @@ public class CommentServiceImpl implements CommentService {
 					index++;
 				}
 			}
-			System.out.println(commentDto.getCommentWriterUid());
-			System.out.println(userService.getUserDtoByUid(commentDto.getCommentWriterUid()));
-			commentDto.setCommentWriterDto(userService.getUserDtoByUid(commentDto.getCommentWriterUid()));
 			commentList.add(index, commentDto);
 		}
 		return commentList;
