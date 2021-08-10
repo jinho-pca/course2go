@@ -1,5 +1,10 @@
 package com.course2go.model.user;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserDto {
 
     String userName;
