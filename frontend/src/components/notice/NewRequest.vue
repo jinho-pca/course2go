@@ -29,6 +29,7 @@
 
 <script>
 import {getNewRequest} from '@/compositions/notice/notice';
+import {agreeFollow, denyFollow} from '@/compositions/follow/follow';
 import "@/components/css/notice/noticeList.css"
 export default {
   mounted() {
@@ -39,17 +40,18 @@ export default {
     initComponent(){
       getNewRequest().then(res =>{
         this.noticeList = res.object;
-        console.log(res.object);
       })
     },
     redirect(){
-
+      console.log("redirect");
     },
     allow(id){
       console.log(id);
+      agreeFollow(id);
     },
     deny(id){
       console.log(id);
+      denyFollow(id);
     }
   },
   data: function(){
