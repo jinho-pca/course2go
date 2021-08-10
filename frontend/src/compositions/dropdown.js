@@ -11,6 +11,7 @@ export const dropdown = () => {
   const onClickOption = (e) => {
     const selectedValue = e.currentTarget.innerHTML;
     document.querySelector(".tab .text").innerHTML = selectedValue;
+    console.log(e.currentTarget.value)
   }
   return { onClickSelect, onClickOption }
 }

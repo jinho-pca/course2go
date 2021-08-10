@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { read } from '@/compositions/route/read.js';
+import { read } from '@/compositions/article/route/read.js';
 import RouteDetailCard from '@/components/article/RouteDetailCard.vue'
 import RouteComment from '@/components/article/RouteComment.vue'
 import RouteContent from '@/components/article/RouteContent.vue'
@@ -23,10 +23,10 @@ import RouteContent from '@/components/article/RouteContent.vue'
 export default {
   name: 'RouteArticle',
   created() {
-    read(this.bid).then( res => {
+    read(this.bid).then(res => {
     this.routeReadResponse = res;
-  });	
     console.log(this.routeReadResponse);
+  });
   },
   components: {
     RouteDetailCard,

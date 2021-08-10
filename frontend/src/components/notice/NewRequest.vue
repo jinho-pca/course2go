@@ -4,15 +4,23 @@
       새로운 요청
     </div>
     <div class="notice-list">
-      <div class="notice-item" v-for="(notice, index) in noticeList" :key="notice">\
-        <div>
-          <div>
-            {{notice.nickname}}님이 팔로우 요청을 했습니다.
-          </div>
-          <div class="notice-btns">
-            <button class="notice-btn" @click="allow(index)">수락</button>
-            <button class="notice-btn" @click="deny(index)">거절</button>
-          </div>
+      <div class="notice-item" v-for="(notice) in noticeList" :key="notice" @click="redirect(notice.uuid)">
+        <div class="notice-left">
+          <span class="notice-nickname">
+            {{notice.noticeFromUserNickname}}
+          </span>
+          <span class="notice-comment" v-if="notice.noticeType == 4">
+            님의 팔로우 요청
+          </span>
+        </div>
+        <div class="notice-right">
+          <button class="notice-btn notice-allow">
+            수락
+          </button>
+          <div class="empty-space"></div>
+          <button class="notice-btn notice-deny">
+            거부
+          </button>
         </div>
       </div>
     </div>
@@ -20,23 +28,22 @@
 </template>
 
 <script>
-// import {getNewNotice} from '@/compositions/notice/notice';
-import "@/components/css/notice/notice.css"
+import {getNewRequest} from '@/compositions/notice/notice';
+import "@/components/css/notice/noticeList.css"
 export default {
-  // mounted() {
-  //   getNewNotice().then(res =>{
-  //     console.log(res);
-  //       this.noticeList = res;
-  //     })
-  // },
+  mounted() {
+    this.initComponent();
+    
+  },
   methods:{
-    deny(){
-      // denyRequest()
+    initComponent(){
+      getNewRequest().then(res =>{
+        this.noticeList = res.object;
+      })
     },
-    allow(){
-      // denyRequest()
-    }
+    redirect(){
 
+    }    
   },
   data: function(){
     return{
