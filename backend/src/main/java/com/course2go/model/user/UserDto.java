@@ -1,40 +1,29 @@
 package com.course2go.model.user;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class UserDto {
 
-    String userName;
+    private String userName;
 
-    String userNickname;
+    private String userNickname;
 
-    String userImage;
-
-    public String getUserName() {
-        return userName;
+    private String userImage;
+    
+    private boolean isFollowing = false;
+    
+    public UserDto(String userName, String userNickname, String userImage) {
+    	this.userName = userName;
+    	this.userNickname = userNickname;
+    	this.userImage = userImage;
+    	this.isFollowing = false;
     }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserNickname() {
-        return userNickname;
-    }
-
-    public void setUserNickname(String userNickname) {
-        this.userNickname = userNickname;
-    }
-
-    public String getUserImage() {
-        return userImage;
-    }
-
-    public void setUserImage(String userImage) {
-        this.userImage = userImage;
-    }
-
+    
 }
