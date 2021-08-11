@@ -50,12 +50,12 @@ export default {
     allow(id, index){
       console.log(id);
       agreeFollow(id);
-      this.noticeList.splice(index);
+      this.noticeList.splice(index, 1);
     },
     deny(id, index){
       console.log(id);
       denyFollow(id);
-      this.noticeList.splice(index);
+      this.noticeList.splice(index, 1);
     }
   },
   data: function(){

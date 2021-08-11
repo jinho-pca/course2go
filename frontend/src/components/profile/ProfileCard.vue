@@ -12,12 +12,12 @@
             <router-link to="/profile/modify">프로필 편집</router-link>
           </div>
 
-          <div class="profile-follow" v-if="nickname && !profileData.isFollowing">
-            <button to="/profile/modify">팔로우</button>
+          <div class="profile-follow" v-if="nickname && !profileData.following" @click="follow">
+            <div to="/profile/modify">팔로우</div>
           </div>
           
-          <div class="profile-follow" v-if="nickname && profileData.isFollowing">
-            <button to="/profile/modify">언팔로우</button>
+          <div class="profile-follow" v-if="nickname && profileData.following" @click="unfollow">
+            <div to="/profile/modify">언팔로우</div>
           </div>
 
         </div>
@@ -49,6 +49,7 @@
 
 <script>
 import "@/components/css/profile/profileCard.css"
+import {requestFollow, unfollow} from "@/compositions/follow/follow"
 export default {
   name: 'ProfileCard',
   props: {
@@ -59,6 +60,14 @@ export default {
       type: String,
     }
   },
+  methods:{
+    follow(){
+      requestFollow(this.profileData.userNickname)
+    },
+    unfollow(){
+      unfollow(this.profileData.userNickname)
+    }
+  }
   
 }
 </script>
