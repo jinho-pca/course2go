@@ -27,23 +27,7 @@ export default {
     data() {
         return {
             nonreply: -1,
-            commentlist: [
-                {
-                    commentWriterUid: "구엑",
-                    commentContent: "부엑1",
-                    commentDepth: 0,
-                },
-                {
-                    commentWriterUid: "구엑",
-                    commentContent: "부엑2",
-                    commentDepth: 1,
-                },
-                {
-                    commentWriterUid: "구엑",
-                    commentContent: "부엑3",
-                    commentDepth: 0,
-                },
-            ],
+            commentlist: [] ,
         }
     },
     components:{
