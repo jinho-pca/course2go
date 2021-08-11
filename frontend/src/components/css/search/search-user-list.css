@@ -1,0 +1,35 @@
+.search-user-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 3px 5px 3px;
+  border: 1px solid rgba(163, 163, 163, 0.322);
+  border-radius: 10px;
+  margin: 10px 10px 10px 10px;
+}
+
+.search-user-card .card-left {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 13px;
+  text-align: start;
+}
+
+.search-user-card .card-left > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  margin: 0 10px 0 3px;
+}
+
+.search-user-card .card-right {
+  font-size: 10px;
+  margin: auto 0;
+}
+
+.search-user-card .card-right .follow-button {
+  border: 1px solid rgba(63, 63, 63, 0.178);
+  border-radius: 10px;
+  background: #ff737dbb;
+  word-break: keep-all;
+  padding: 2px 3px 2px 3px;
+}

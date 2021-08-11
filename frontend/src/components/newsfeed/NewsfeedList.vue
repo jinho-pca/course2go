@@ -12,14 +12,13 @@
       </div>
       <span>뉴스피드</span>
     </div>
-    <NewsfeedCard v-for="(newsfeed, idx) in newsfeeds" :key="idx" :newsfeed="newsfeed" @click="getArticle(newsfeed.board.bid)" />
+    <NewsfeedCard v-for="(newsfeed, idx) in filteredNewsfeeds" :key="idx" :newsfeed="newsfeed" @click="getArticle(newsfeed.board.bid)" />
   </div>
 </template>
 
 <script>
 import '../css/newsfeed/newsfeed-list.css'
 import NewsfeedCard from '@/components/newsfeed/NewsfeedCard.vue'
-import { dropdown } from '@/compositions/dropdown';
 import { newsfeed } from '@/compositions/newsfeed';
 import { read } from '@/compositions/article/route/read.js';
 
@@ -29,13 +28,12 @@ export default {
     NewsfeedCard
   },
   setup() {
-    const { onClickSelect, onClickOption } = dropdown();
-    const { getNewsfeed, newsfeeds } = newsfeed();
+    const { onClickSelect, onClickOption, getNewsfeed, newsfeeds, filteredNewsfeeds } = newsfeed();
     getNewsfeed();
     const getArticle = (bid) => {
       read(bid)
     }
-    return { onClickSelect, onClickOption, getNewsfeed, newsfeeds, getArticle };
+    return { onClickSelect, onClickOption, getNewsfeed, newsfeeds, filteredNewsfeeds, getArticle };
   },
 }
 </script>

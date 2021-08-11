@@ -1,12 +1,64 @@
 .search {
-  padding: 0;
   text-align: start;
-  margin: 5px 10px 0 10px;
+  width: 100%;
+  margin: 5px 0;
 }
 
-.search > .search-name {
+.search-position {
+  margin-bottom: 15px;
+}
+
+.search-tab {
+  font-size: 20px;
+  margin: 0 0 10px 0;
+  display: inline-block;
   position: fixed;
   top: 5px;
   left: 50%;
   transform: translate(-50%, 0);
+}
+
+.search-select {
+  position: relative;
+  display: inline;
+}
+
+.search-select .search-text {
+  display: inline;
+}
+
+.search-select .search-option-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  max-height: 0;
+}
+
+.search-select.active .search-option-list {
+  max-height: none;
+}
+
+/* 테마 적용하기 */
+.search-select {
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  color: grey;
+  margin: 0 5px 0 0;
+}
+.search-select:hover {
+  color: rgb(53, 52, 52);
+  transition: all .3s;
+}
+.search-select .search-option-list {
+  list-style: none;
+  padding: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.3);
+  background: white;
+}
+.search-select .search-option-list .option {
+  text-align: center;
 }
