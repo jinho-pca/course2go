@@ -6,7 +6,7 @@
     <include resource="org/springframework/boot/logging/logback/file-appender.xml"/>
     <appender name="SLACK" class="com.github.maricn.logback.SlackAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>%-4relative [%thread] %-5level %class - %msg%n</pattern>
+            <pattern>%d{YYYY-MM-dd HH:mm.ss}   %-5level-%-4relative [%thread]  %logger{36} - %msg%n</pattern>
         </layout>
         <webhookUri>https://hooks.slack.com/services/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</webhookUri>
         <username>kykkyn2-logger</username>
