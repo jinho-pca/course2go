@@ -3,6 +3,7 @@
     <!-- v-if -->
     <div class="profile-page">
       <span class="my-profile">내 프로필</span>
+      
       <router-link to="/modify">
         <i class="fas fa-cog"></i>
       </router-link>
@@ -14,7 +15,7 @@
     </div> -->
     <!-- endif -->
     <ProfileCard :profileData="profileData" />
-    <ProfileRoute />
+    <ProfileRoute :routeListData="routeListData" />
     <ProfilePlace />
   </div>
 </template>
@@ -24,6 +25,7 @@ import '@/assets/css/profile/profile.css';
 import ProfileCard from '@/components/profile/ProfileCard.vue'
 import ProfileRoute from '@/components/profile/ProfileRoute.vue'
 import ProfilePlace from '@/components/profile/ProfilePlace.vue'
+import { useRoute } from 'vue-router';
 import { profile } from '@/compositions/profile.js';
 
 export default {
@@ -34,9 +36,12 @@ export default {
     ProfilePlace,
   },
   setup() {
-    const { myProfile, who, profileData } = profile();
-      myProfile();
-    return { myProfile, who, profileData }
+    const { myProfile, who, profileData, routeList, routeListData, visitList, visitListData } = profile();
+      const route = useRoute();
+      myProfile(route.query.nickname);
+      routeList(route.query.nickname);
+      visitList(route.query.nickname);
+    return { myProfile, who, profileData, routeList, routeListData, visitList, visitListData }
   }
 
 }

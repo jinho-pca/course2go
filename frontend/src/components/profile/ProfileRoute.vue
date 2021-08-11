@@ -10,7 +10,8 @@
     </div>
     <div>
       <!-- v-for -->
-      <RouteCard />
+      <!-- <RouteCard /> -->
+      <RouteCard v-for="(route,index) in routeListData" :key ="index" :route="route"/>
     </div>
   </div>
 </template>
@@ -23,20 +24,12 @@ export default {
   components: {
     RouteCard
   },
-  mounted(){
-
-  },
-  methods:{
-    loadMyRoute(){
-      
+  
+  props: {
+    routeListData: {
+      type: Array
     }
-
   },
-  data(){
-    return{
-
-    }
-  }
 
 }
 </script>

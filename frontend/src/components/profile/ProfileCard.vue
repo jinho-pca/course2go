@@ -47,8 +47,6 @@ export default {
       type: Object,
     }
   },
-  mounted: function() {
-    console.log(this.profileData)
-  }
+  
 }
 </script>

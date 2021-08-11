@@ -9,13 +9,19 @@ const { URL, token } = BASE_URL();
 export const profile = () => {
   const who = ref('');
   const profileData = ref({});
+  const routeListData = ref([]);
+  const visitListData = ref([]);
 
-  const myProfile = () => {
-    const user = jwt.decode(token.substr(7))
+  const myProfile = (userNickname) => {
 
+    if(!userNickname){
+      const user = jwt.decode(token.substr(7))
+      userNickname = user.userNickname;
+    }
+    
     axios({
       method: 'get',
-      url: URL + 'user/profile/' + user.userNickname,
+      url: URL + 'user/profile/' + userNickname,
       headers: {
         Authorization: token,
       }
@@ -34,36 +40,63 @@ export const profile = () => {
       return err
     })
   }
-  return { who, profileData, myProfile }
-}
 
-export const profile = () => {
-  const who = ref('');
-  const profileData = ref({});
+  const routeList = (userNickname) => {
 
-  const myProfile = () => {
-    const user = jwt.decode(token.substr(7))
+    if(!userNickname){
+      const user = jwt.decode(token.substr(7))
+      userNickname = user.userNickname;
+    }
 
     axios({
       method: 'get',
-      url: URL + 'user/profile/' + user.userNickname,
+      url: URL + 'route/list',
       headers: {
         Authorization: token,
+      },
+      params: {
+        userNickname: userNickname
       }
     })
     .then((res) => {
-      profileData.value = res.data.object
-      who.value = res.data.data.substr(0, 1)
-      if (who.value === '본') {
-        who.value = 1
-      } else {
-        who.value = 0
-      }
+      routeListData.value = res.data.object;
+      console.log(res.data.object);
       return res
     })
     .catch((err) => {
       return err
     })
+    
   }
-  return { who, profileData, myProfile }
+
+  const visitList = (userNickname) => {
+
+    if(!userNickname){
+      const user = jwt.decode(token.substr(7))
+      userNickname = user.userNickname;
+    }
+
+    axios({
+      method: 'get',
+      url: URL + 'visit/list',
+      headers: {
+        Authorization: token,
+      },
+      params: {
+        userNickname: userNickname
+      }
+    })
+    .then((res) => {
+      visitListData.value = res.data.object;
+      console.log(res.data.object);
+      return res
+    })
+    .catch((err) => {
+      return err
+    })
+    
+  }
+
+  return { who, profileData, routeListData, visitListData, myProfile, routeList, visitList }
 }
+
