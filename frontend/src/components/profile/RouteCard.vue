@@ -1,6 +1,6 @@
 <template>
   <div class="route-card" @click="test">
-    {{route}}
+    {{route.boardResponse.boardTitle}}
   </div>
 </template>
 

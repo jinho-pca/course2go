@@ -50,13 +50,10 @@ export const profile = () => {
 
     axios({
       method: 'get',
-      url: URL + 'route/list',
+      url: URL + 'route/list/' + userNickname,
       headers: {
         Authorization: token,
       },
-      params: {
-        userNickname: userNickname
-      }
     })
     .then((res) => {
       routeListData.value = res.data.object;
@@ -78,13 +75,11 @@ export const profile = () => {
 
     axios({
       method: 'get',
-      url: URL + 'visit/list',
+      url: URL + 'visit/list/' + userNickname,
       headers: {
         Authorization: token,
       },
-      params: {
-        userNickname: userNickname
-      }
+    
     })
     .then((res) => {
       visitListData.value = res.data.object;

@@ -2,9 +2,10 @@
   <div class="profile">
     <!-- v-if -->
     <div class="profile-page">
-      <span class="my-profile">내 프로필</span>
+      <span v-if="!nickname" class="my-profile">내 프로필</span>
+      <span v-if="nickname" class="my-profile">{{nickname}}의 프로필</span>
       
-      <router-link to="/modify">
+      <router-link to="/modify" v-if="!nickname">
         <i class="fas fa-cog"></i>
       </router-link>
     </div>
@@ -14,7 +15,7 @@
       </span>
     </div> -->
     <!-- endif -->
-    <ProfileCard :profileData="profileData" />
+    <ProfileCard :profileData="profileData" :nickname="nickname" />
     <ProfileRoute :routeListData="routeListData" />
     <ProfilePlace />
   </div>
@@ -41,7 +42,17 @@ export default {
       myProfile(route.query.nickname);
       routeList(route.query.nickname);
       visitList(route.query.nickname);
+      
     return { myProfile, who, profileData, routeList, routeListData, visitList, visitListData }
+  },
+  mounted(){
+    this.nickname = this.$route.query.nickname
+  },
+
+  data(){
+    return{
+      nickname : "",
+    }
   }
 
 }

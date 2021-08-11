@@ -2,19 +2,29 @@ package com.course2go.model.user;
 
 public class UserProfileResponse {
 
-    String userName;
+    private String userName;
 
-    String userNickname;
+    private String userNickname;
 
-    String userImage;
+    private String userImage;
 
-    String userComment;
+    private String userComment;
 
-    int userFollowing;
+    private int userFollowing;
 
-    int userFollower;
+    private int userFollower;
+    
+    private boolean isFollowing = false;
+    
+    public boolean isFollowing() {
+		return isFollowing;
+	}
 
-    public String getUserName() {
+	public void setFollowing(boolean isFollowing) {
+		this.isFollowing = isFollowing;
+	}
+
+	public String getUserName() {
         return userName;
     }
 
