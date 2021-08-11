@@ -1,0 +1,18 @@
+.search-input {
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-input > #search {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+}
+
+.search-input > i {
+  border-left: 1px solid rgb(184, 184, 184);
+  padding: 0 5px 0 5px;
+  margin: auto;
+}
