@@ -9,6 +9,7 @@ export const newsfeed = () => {
   // const store = useStore()
   const newsfeeds = ref({});
   let filteredArticle = ref([]);
+  let filteredNewsfeeds = ref({});
 
   const getNewsfeed = () => {
     axios({
@@ -16,11 +17,11 @@ export const newsfeed = () => {
       url: URL + 'newsfeed/read',
       headers: {
         Authorization: token,
-      }// mode: 'cors',
+      }
     })
     .then((res) => {
       newsfeeds.value = res.data.object
-      console.log(res.data.object)
+      filteredNewsfeeds.value = res.data.object
       return res
     })
     .catch((err) => {
@@ -29,14 +30,32 @@ export const newsfeed = () => {
     })
   }
 
-  const articleFilter = (filter) => {
-    filteredArticle.value = newsfeeds.value.filter(x => {
-      console.log(x, filter)
-      return x === filter
-    })
+  const onClickSelect = (e) => {
+    const isActive = e.currentTarget.className.indexOf("active") !== -1;
+    if (isActive) {
+      e.currentTarget.className = "select";
+    } else {
+      e.currentTarget.className = "select active";
+    }
   }
-
-  return { getNewsfeed, newsfeeds
-    , articleFilter, filteredArticle 
+  
+  const onClickOption = (e) => {
+    const selectedValue = e.currentTarget.innerHTML;
+    document.querySelector(".tab .text").innerHTML = selectedValue;
+    if (e.currentTarget.value === 1) {
+      filteredNewsfeeds.value = newsfeeds.value
+    } else if (e.currentTarget.value === 2) {
+      filteredNewsfeeds.value = newsfeeds.value.filter(x => {
+        return x.board.boardType == true
+      })
+    } else {
+      filteredNewsfeeds.value = newsfeeds.value.filter(x => {
+        return x.board.boardType == false
+      })
+    }
+  }
+  
+  return { getNewsfeed, newsfeeds,
+    onClickSelect, onClickOption, filteredArticle, filteredNewsfeeds 
   }
 }
