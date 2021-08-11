@@ -82,6 +82,9 @@ public class VisitServiceImpl implements VisitService {
 		List<VisitReadResponse> visitList = new LinkedList<VisitReadResponse>();
 		List<BoardDto> list = boardService.getListbyUid(uid);
 		for (BoardDto boardDto : list) {
+			if(boardDto.isBoardType()) {
+				continue;
+			}
 			VisitReadResponse visitReadResponse = new VisitReadResponse();
 			visitReadResponse.setBoardResponse(new BoardResponse(boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime()));
 			visitReadResponse.setVisitResponse(readVisit(boardDto.getBoardTid()));
