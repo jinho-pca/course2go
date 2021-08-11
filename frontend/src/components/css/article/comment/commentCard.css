@@ -1,8 +1,14 @@
-.comment-card .comment-main {
+.comment-main {
   display: flex;
   justify-content: space-between;
-  margin: 0 0 15px 0;
+  margin: 5px 0 5px 0;
 }
+.comment-reply-main{
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0 5px 0;
+}
+
 .comment-main .comment-writer-imagebox {
   /* display: inline; */
   overflow: hidden;
@@ -15,12 +21,34 @@
   /* margin: 0 auto; */
   width: 85%;
 }
+.comment-reply-main .comment-writer-imagebox {
+  /* display: inline; */
+  overflow: hidden;
+  /* margin: 0 auto; */
+  margin-left: 15%;
+  width: 15%;
+}
+.comment-reply-main .comment-content{
+  /* display: inline; */
+  overflow: hidden;
+  /* margin: 0 auto; */
+  width: 70%;
+}
+
 .comment-writer-imagebox .profile-image {
   width: 100%;
   height: flex;
   object-fit: fill;
   border-radius: 100%;
 }
+.comment-content{
+  font-size: small;
+  font-weight: 450;
+}
 .conmment-writer-nickname{
   font-weight: 550;
+}
+.comment-footer{
+  font-size: small;
+  color: gray;
 }
