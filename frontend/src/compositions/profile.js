@@ -36,3 +36,34 @@ export const profile = () => {
   }
   return { who, profileData, myProfile }
 }
+
+export const profile = () => {
+  const who = ref('');
+  const profileData = ref({});
+
+  const myProfile = () => {
+    const user = jwt.decode(token.substr(7))
+
+    axios({
+      method: 'get',
+      url: URL + 'user/profile/' + user.userNickname,
+      headers: {
+        Authorization: token,
+      }
+    })
+    .then((res) => {
+      profileData.value = res.data.object
+      who.value = res.data.data.substr(0, 1)
+      if (who.value === '본') {
+        who.value = 1
+      } else {
+        who.value = 0
+      }
+      return res
+    })
+    .catch((err) => {
+      return err
+    })
+  }
+  return { who, profileData, myProfile }
+}

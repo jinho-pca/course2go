@@ -22,6 +22,21 @@ export default {
   name: 'ProfileRoute',
   components: {
     RouteCard
+  },
+  mounted(){
+
+  },
+  methods:{
+    loadMyRoute(){
+      
+    }
+
+  },
+  data(){
+    return{
+
+    }
   }
+
 }
 </script>

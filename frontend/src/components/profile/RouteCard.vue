@@ -7,6 +7,9 @@
 <script>
 import "@/components/css/profile/routeCard.css"
 export default {
-  name: 'RouteCard'
+  name: 'RouteCard',
+  props:  {
+    
+  }
 }
 </script>
