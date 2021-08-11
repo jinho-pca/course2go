@@ -9,8 +9,6 @@
       </i>
     </div>
     <div>
-      <!-- v-for -->
-      <!-- <RouteCard /> -->
       <RouteCard v-for="(route,index) in routeListData" :key ="index" :route="route"/>
     </div>
   </div>
@@ -24,12 +22,10 @@ export default {
   components: {
     RouteCard
   },
-  
   props: {
     routeListData: {
       type: Array
     }
   },
-
 }
 </script>
