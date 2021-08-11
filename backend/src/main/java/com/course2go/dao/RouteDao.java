@@ -9,5 +9,5 @@ import com.course2go.model.route.Route;
 public interface RouteDao extends JpaRepository<Route, Integer> {
 
     // List<Integer> findAllIdByRouteUid(String routeUid);
-
+	Route findRouteByRid(Integer rid); 
 }

@@ -61,7 +61,7 @@ public class RouteServiceImpl implements RouteService {
 	@Override
 	public RouteResponse readRoute(Integer rid) {
 		RouteResponse routeResponse = new RouteResponse();
-		Route route = routeDao.getById(rid);
+		Route route = routeDao.findRouteByRid(rid);
 		routeResponse.setRouteContent(route.getRouteContent());
 		routeResponse.setRouteStartDate(route.getRouteStartDate());
 		routeResponse.setRouteEndDate(route.getRouteEndDate());

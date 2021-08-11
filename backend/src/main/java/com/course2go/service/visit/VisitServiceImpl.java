@@ -64,7 +64,7 @@ public class VisitServiceImpl implements VisitService {
 
 	@Override
 	public VisitResponse readVisit(Integer vid) {
-		Visit visit = visitDao.getById(vid);
+		Visit visit = visitDao.findVisitByVid(vid);
 		return new VisitResponse(visit.getVisitPid(), visit.getVisitContent(), visit.getVisitTime(), visit.getVisitCost(), visit.getVisitImage1(), visit.getVisitImage2(), visit.getVisitImage3());
 	}
 
