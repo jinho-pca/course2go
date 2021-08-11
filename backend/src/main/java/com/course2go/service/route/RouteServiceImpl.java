@@ -15,6 +15,7 @@ import com.course2go.model.route.Route;
 import com.course2go.model.route.RouteReadResponse;
 import com.course2go.model.route.RouteResponse;
 import com.course2go.model.route.RouteWriteRequest;
+import com.course2go.model.user.UserDto;
 import com.course2go.service.board.BoardService;
 import com.course2go.service.contain.ContainService;
 import com.course2go.service.user.UserService;
@@ -53,7 +54,7 @@ public class RouteServiceImpl implements RouteService {
 		routeReadResponse.setBoardResponse(boardService.readBoard(bid));
 		routeReadResponse.setRouteResponse(readRoute(routeReadResponse.getBoardResponse().getBoardTid()));
 		routeReadResponse.setContainSpots(containService.listContain(routeReadResponse.getBoardResponse().getBoardTid()));
-		routeReadResponse.setExtraData(new ExtraData(userService.getUserNicknameByUid(routeReadResponse.getBoardResponse().getBoardWriterUid())));
+		routeReadResponse.setUserDto(userService.getUserDtoByUid(routeReadResponse.getBoardResponse().getBoardWriterUid()));
 		return routeReadResponse;
 	}
 
@@ -76,6 +77,7 @@ public class RouteServiceImpl implements RouteService {
 			routeReadResponse.setBoardResponse(new BoardResponse(boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime()));
 			routeReadResponse.setRouteResponse(readRoute(boardDto.getBid()));
 			routeReadResponse.setContainSpots(containService.listContain(boardDto.getBoardTid()));
+			routeReadResponse.setUserDto(userService.getUserDtoByUid(routeReadResponse.getBoardResponse().getBoardWriterUid()));
 			routeList.add(routeReadResponse);
 		}
 		return routeList;
@@ -95,7 +97,7 @@ public class RouteServiceImpl implements RouteService {
 			routeReadResponse.setRouteResponse(readRoute(rid));
 			routeReadResponse.setBoardResponse(boardService.getBoardRoute(rid));
 			routeReadResponse.setContainSpots(containService.listContain(rid));
-			routeReadResponse.setExtraData(new ExtraData(userService.getUserNicknameByUid(routeReadResponse.getBoardResponse().getBoardWriterUid())));
+			routeReadResponse.setUserDto(userService.getUserDtoByUid(routeReadResponse.getBoardResponse().getBoardWriterUid()));
 			routeList.add(routeReadResponse);
 		}
 		return null;

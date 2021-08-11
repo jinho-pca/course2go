@@ -58,7 +58,7 @@ public class VisitServiceImpl implements VisitService {
 		visitReadResponse.setBoardResponse(boardService.readBoard(bid));
 		visitReadResponse.setVisitResponse(readVisit(visitReadResponse.getBoardResponse().getBoardTid()));
 		visitReadResponse.setPlace(placeService.getPlace(visitReadResponse.getVisitResponse().getVisitPid()));
-		visitReadResponse.setExtraData(new ExtraData(userService.getUserNicknameByUid(visitReadResponse.getBoardResponse().getBoardWriterUid())));
+		visitReadResponse.setUserDto(userService.getUserDtoByUid(visitReadResponse.getBoardResponse().getBoardWriterUid()));
 		return visitReadResponse;
 	}
 
@@ -86,6 +86,7 @@ public class VisitServiceImpl implements VisitService {
 			visitReadResponse.setBoardResponse(new BoardResponse(boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime()));
 			visitReadResponse.setVisitResponse(readVisit(boardDto.getBoardTid()));
 			visitReadResponse.setPlace(placeService.getPlace(visitReadResponse.getVisitResponse().getVisitPid()));
+			visitReadResponse.setUserDto(userService.getUserDtoByUid(visitReadResponse.getBoardResponse().getBoardWriterUid()));
 			visitList.add(visitReadResponse);
 		}
 		return visitList;
@@ -105,6 +106,7 @@ public class VisitServiceImpl implements VisitService {
 			visitReadResponse.setBoardResponse(boardService.getBoardVisit(visit.getVid()));
 			visitReadResponse.setVisitResponse(new VisitResponse(visit.getVisitPid(), visit.getVisitContent(), visit.getVisitTime(), visit.getVisitCost(), visit.getVisitImage1(), visit.getVisitImage2(), visit.getVisitImage3()));
 			visitReadResponse.setPlace(placeService.getPlace(pid));
+			visitReadResponse.setUserDto(userService.getUserDtoByUid(visitReadResponse.getBoardResponse().getBoardWriterUid()));
 			visitList.add(visitReadResponse);
 		}
 		return visitList;

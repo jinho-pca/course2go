@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.course2go.model.ExtraData;
 import com.course2go.model.board.BoardResponse;
+import com.course2go.model.user.UserDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,5 +17,5 @@ public class RouteReadResponse {
 	private RouteResponse routeResponse;
 	private BoardResponse boardResponse;
 	private List<RouteSpot> containSpots;
-	private ExtraData extraData;
+	private UserDto userDto;
 }

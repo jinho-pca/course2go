@@ -1,0 +1,26 @@
+.comment-card .comment-main {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 15px 0;
+}
+.comment-main .comment-writer-imagebox {
+  /* display: inline; */
+  overflow: hidden;
+  /* margin: 0 auto; */
+  width: 15%;
+}
+.comment-main .comment-content{
+  /* display: inline; */
+  overflow: hidden;
+  /* margin: 0 auto; */
+  width: 85%;
+}
+.comment-writer-imagebox .profile-image {
+  width: 100%;
+  height: flex;
+  object-fit: fill;
+  border-radius: 100%;
+}
+.conmment-writer-nickname{
+  font-weight: 550;
+}
