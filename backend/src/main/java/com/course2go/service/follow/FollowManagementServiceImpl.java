@@ -69,7 +69,7 @@ public class FollowManagementServiceImpl implements FollowManagementService {
 		String followFromUid = userService.getUidByUserNickname(followFromNickname);
 		String followToUid = userService.getUidByUserNickname(followToNickname);
 		
-		noticeService.writeNotice(followToUid, 1, followFromUid, true);
+		noticeService.writeNotice(followFromUid, 1, followToUid, true);
 	}
 
 	
