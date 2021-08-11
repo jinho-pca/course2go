@@ -8,9 +8,18 @@
         <div class="profile-namebox">
           <div class="profile-name">{{ profileData.userNickname }}</div>
           <!-- v-if(나){프로필 편집} v-elseif(팔로우){팔로우취소} v-else -->
-          <div class="profile-follow">
+          <div class="profile-follow" v-if="!nickname">
             <router-link to="/profile/modify">프로필 편집</router-link>
           </div>
+
+          <div class="profile-follow" v-if="nickname && !profileData.isFollowing">
+            <button to="/profile/modify">팔로우</button>
+          </div>
+          
+          <div class="profile-follow" v-if="nickname && profileData.isFollowing">
+            <button to="/profile/modify">언팔로우</button>
+          </div>
+
         </div>
         <div class="profile-introduction">
           <span>{{ profileData.userComment }}</span>
@@ -45,10 +54,11 @@ export default {
   props: {
     profileData: {
       type: Object,
+    },
+    nickname:{
+      type: String,
     }
   },
-  mounted: function() {
-    console.log(this.profileData)
-  }
+  
 }
 </script>
