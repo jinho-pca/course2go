@@ -17,7 +17,7 @@
     <!-- endif -->
     <ProfileCard :profileData="profileData" :nickname="nickname" />
     <ProfileRoute :routeListData="routeListData" />
-    <ProfilePlace />
+    <ProfilePlace :visitListData="visitListData" />
   </div>
 </template>
 
