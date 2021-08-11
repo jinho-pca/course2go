@@ -2,10 +2,10 @@
 <div>
   <div class="follow-card" style="border:none; background: white;">
     <div class="card-left">
-      <img src="@/assets/images/map.jpg" alt="">
+      <img :src="routeReadResponse.userDto.userImage" alt="profile image" class="profile-image">
       <div>
         <div>
-          dksrlgns1
+          {{routeReadResponse.userDto.userNickname}}
         </div>
       </div>
     </div>
@@ -29,6 +29,11 @@
 import '@/components/css/profile/follow-card.css';
 
 export default {
-  name: 'RouteContent'
+  name: 'RouteContent',
+  props:{
+    routeReadResponse:{
+      type: Object
+    },
+  },
 }
 </script>

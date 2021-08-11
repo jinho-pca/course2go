@@ -1,7 +1,7 @@
 <template>
   <div id="comments">
     <h2>댓글</h2>
-    <CommentInput :parent="nonreply"/>
+    <CommentInput :parent="nonreply" :direct="nonreply"/>
     <CommentCard v-for="(comment, index) in commentlist" :key="index" :comment="comment"/>
   </div>
 </template>
