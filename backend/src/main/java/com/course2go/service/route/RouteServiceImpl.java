@@ -75,7 +75,7 @@ public class RouteServiceImpl implements RouteService {
 		for (BoardDto boardDto : list) {
 			RouteReadResponse routeReadResponse= new RouteReadResponse();
 			routeReadResponse.setBoardResponse(new BoardResponse(boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime()));
-			routeReadResponse.setRouteResponse(readRoute(boardDto.getBid()));
+			routeReadResponse.setRouteResponse(readRoute(boardDto.getBoardTid()));
 			routeReadResponse.setContainSpots(containService.listContain(boardDto.getBoardTid()));
 			routeReadResponse.setUserDto(userService.getUserDtoByUid(routeReadResponse.getBoardResponse().getBoardWriterUid()));
 			routeList.add(routeReadResponse);
