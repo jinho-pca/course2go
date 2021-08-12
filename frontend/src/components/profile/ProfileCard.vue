@@ -12,12 +12,16 @@
             <router-link to="/profile/modify">프로필 편집</router-link>
           </div>
 
-          <div class="profile-follow" v-if="nickname && !profileData.following" @click="follow">
+          <div class="profile-follow" v-if="(nickname && profileData.followState && followState == -1) || followState == 0" @click="follow">
             <div to="/profile/modify">팔로우</div>
           </div>
           
-          <div class="profile-follow" v-if="nickname && profileData.following" @click="unfollow">
+          <div class="profile-follow" v-if="(nickname && profileData.followState == 1 && followState == -1) || followState == 1" @click="unfollow">
             <div to="/profile/modify">언팔로우</div>
+          </div>
+
+          <div class="profile-follow" v-if="(nickname && profileData.followState == 2 && followState == -1) || followState == 2">
+            <div to="/profile/modify">신청중</div>
           </div>
 
         </div>
@@ -62,10 +66,17 @@ export default {
   },
   methods:{
     follow(){
+      this.isRequest = 2;
       requestFollow(this.profileData.userNickname)
     },
     unfollow(){
+      this.isRequest = 0;
       unfollow(this.profileData.userNickname)
+    }
+  },
+  data: function(){
+    return{
+      isRequest : -1
     }
   }
   

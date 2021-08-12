@@ -86,7 +86,7 @@ public final class TokenUtils {
     private static Map<String, Object> createClaims(User user) {
         // 공개 클레임에 사용자의 이름과 이메일을 설정하여 정보를 조회할 수 있다.
         Map<String, Object> claims = new HashMap<>();
-        logger.debug(user.getUserEmail());
+//        logger.debug(user.getUserEmail());
         claims.put("uid", user.getUid());
         claims.put("userEmail", user.getUserEmail());
         claims.put("userNickname", user.getUserNickname());
@@ -101,7 +101,7 @@ public final class TokenUtils {
     }
 
     public static Claims getClaimsFromToken(String token) {
-    	logger.info(token);
+//    	logger.info(token);
         return Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(secretKey))
                 .parseClaimsJws(getTokenFromHeader(token)).getBody();
     }
@@ -112,14 +112,14 @@ public final class TokenUtils {
     }
 
     public static boolean isSameUid(String header, String uid) {
-    	logger.info(header);
+//    	logger.info(header);
     	Claims claims = TokenUtils.getClaimsFromToken(header);
     	String tokenUid = (String) claims.get("uid");
     	return tokenUid.equals(uid) ? true : false;
     }
 	
     public static boolean isSameNickname(String header, String userNickname) {
-    	logger.info(header);
+//    	logger.info(header);
     	Claims claims = TokenUtils.getClaimsFromToken(header);
     	String tokenUserNickname = (String) claims.get("userNickname");
     	return tokenUserNickname.equals(userNickname) ? true : false;
