@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.course2go.authentication.TokenUtils;
 import com.course2go.dao.CommentDao;
 import com.course2go.model.comment.Comment;
 import com.course2go.model.comment.CommentDto;
@@ -30,6 +33,7 @@ public class CommentServiceImpl implements CommentService {
 
 	private int comment = 4;
 	private boolean isnew = true;
+	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	
 	ModelMapper modelmapper;
 	public CommentServiceImpl() {
@@ -43,12 +47,14 @@ public class CommentServiceImpl implements CommentService {
 	
 	@Override
 	public void writeComment(Integer commentParent, Integer commentBid, Integer commentLike, String commentContent, String commentWriterUid) {
-		System.out.println("댓글쓰기과정 - 서비스도착");
+		logger.info("댓글쓰기과정 - 서비스도착");
 		Comment c = commentDao.save(Comment.builder(commentParent, commentBid, commentLike, commentContent, commentWriterUid).build());
-		System.out.println("댓글쓰기과정 - 댓글작성완료");
+		logger.info("댓글쓰기과정 - 댓글작성완료");
 		/*댓글 알림 생성*/
+		logger.info("저장된 댓글 : " + c.toString());
+		logger.info("댓글을 단 보드 : " + boardService.readBoard(commentBid).toString());
 		noticeService.writeNotice(boardService.readBoard(commentBid).getBoardWriterUid(), comment, commentWriterUid, c.getCid(), isnew);
-		System.out.println("댓글쓰기과정 - 알림생성완료");
+		logger.info("댓글쓰기과정 - 알림생성완료");
 	}
 	
 	@Override

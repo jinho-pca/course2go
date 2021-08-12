@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,7 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/comment")
 public class CommentController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	@Autowired
 	CommentService commentService;
 	
@@ -50,12 +53,13 @@ public class CommentController {
 	@PostMapping("/write")
     @ApiOperation(value = "댓글 쓰기")
 	public Object writeComment(@Valid @RequestBody CommentWriteRequest request, @RequestHeader Map<String, Object> header) {
-		System.out.println("댓글쓰기과정 - 도착");
+		logger.info("댓글쓰기 시작");
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		commentService.writeComment(uid, request);
 		final BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "success";
+		logger.info("댓글쓰기 완료");
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 }
