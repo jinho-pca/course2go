@@ -13,6 +13,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.jsonwebtoken.Claims;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +37,7 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/search")
 public class SearchController {
 
+	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	@Autowired
 	PlaceService placeService;
 	
@@ -80,7 +84,14 @@ public class SearchController {
 	@ApiOperation(value = "장소로 동선게시글 검색")
 	public Object searchRoute(@RequestParam String pidList) throws JsonMappingException, JsonProcessingException{
 		final BasicResponse result = new BasicResponse();
-		List<Integer> pids = mapper.readValue(pidList, PidList.class).getPids();
+		System.out.println("검색과정 - 도착");
+		PidList pidLists = mapper.readValue(pidList, PidList.class);
+		System.out.println("검색과정 - mapper 작업");
+		System.out.println(pidLists.toString());
+		List<Integer> pids = pidLists.getPids();
+		System.out.println("검색과정 - pid리스트 추출");
+		System.out.println(pids.toString());
+		
 		List<RouteReadResponse> response = routeService.getRouteContainPids(pids);
         result.status = true;
         result.data = "success";

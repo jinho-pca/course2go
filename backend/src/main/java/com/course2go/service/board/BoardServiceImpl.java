@@ -45,6 +45,7 @@ public class BoardServiceImpl implements BoardService {
 		boardResponse.setBoardStar(board.getBoardStar());
 		boardResponse.setBoardTid(board.getBoardTid());
 		boardResponse.setBoardType(board.isBoardType());
+		boardResponse.setBoardTitle(board.getBoardTitle());
 		boardResponse.setBoardWriterUid(board.getBoardWriterUid());
 		boardResponse.setBoardTime(board.getBoardTime());
 		return boardResponse;

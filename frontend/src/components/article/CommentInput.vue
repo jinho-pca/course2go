@@ -19,7 +19,7 @@
       <div class="comment-input-contents">
         <input class = "comment-input-content" type="text" v-model="mycomment" @input="changeTitle" placeholder="댓글 입력"/>
         <div class="comment-input-content-icons">
-          <i class="fas fa-pen" v-on:click="writeComment(parent)"/>
+          <i class="fas fa-pen" v-on:click="writeComment()"/>
           &nbsp;
           <i class="fas fa-times" v-on:click="cancelReply()"/>
         </div>
@@ -55,8 +55,8 @@ export default {
         }
     },
     methods: {
-        writeComment(parent) {
-            write(parent, this.mycomment, this.bid);
+        writeComment() {
+            write(this.parent, this.mycomment, this.bid);
         },
         isReply(){
             if (this.parent != -1) {

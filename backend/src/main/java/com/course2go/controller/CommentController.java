@@ -50,6 +50,7 @@ public class CommentController {
 	@PostMapping("/write")
     @ApiOperation(value = "댓글 쓰기")
 	public Object writeComment(@Valid @RequestBody CommentWriteRequest request, @RequestHeader Map<String, Object> header) {
+		System.out.println("댓글쓰기과정 - 도착");
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		commentService.writeComment(uid, request);
 		final BasicResponse result = new BasicResponse();
