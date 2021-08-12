@@ -15,8 +15,5 @@ export default {
       type: Object
     }
   },
-  methods:{
-    
-  }
 }
 </script>
