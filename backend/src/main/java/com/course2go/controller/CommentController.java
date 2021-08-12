@@ -42,6 +42,7 @@ public class CommentController {
 	@GetMapping("/read/{bid}")
     @ApiOperation(value = "댓글 목록")
 	public Object readComment(@PathVariable Integer bid) {
+		logger.info("댓글목록호출 시작");
 		List<CommentDto> commentList = commentService.readSortedComment(bid);
 		final BasicResponse result = new BasicResponse();
         result.status = true;

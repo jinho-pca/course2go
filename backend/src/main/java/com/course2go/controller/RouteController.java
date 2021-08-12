@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,10 +42,13 @@ public class RouteController {
 
 	@Autowired
 	RouteService routeService;
+
+	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	
     @PostMapping("/write")
     @ApiOperation(value = "동선작성")
     public Object writeRoute(@Valid @RequestBody RouteWriteRequest request, @RequestHeader Map<String, Object> header) {
+    	logger.info("동선작성 시작");
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
     	routeService.writeRoute(uid, request);
 		final BasicResponse result = new BasicResponse();
@@ -55,6 +60,7 @@ public class RouteController {
     @GetMapping("/read/{bid}")
     @ApiOperation(value = "동선읽기")
     public Object readRoute(@PathVariable Integer bid) {
+    	logger.info("동선읽기 시작");
     	RouteReadResponse response = routeService.readRouteBoard(bid);
 		final BasicResponse result = new BasicResponse();
         result.status = true;
@@ -66,6 +72,7 @@ public class RouteController {
     @GetMapping("/mylist")
     @ApiOperation("내가 쓴 동선글 목록")
     public Object getMyListRoute(@RequestHeader Map<String, Object> header) {
+    	logger.info("내가 쓴 동선글 목록 시작");
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		List<RouteReadResponse> response = routeService.getMyRouteList(uid);
     	final BasicResponse result = new BasicResponse();
@@ -78,6 +85,7 @@ public class RouteController {
     @GetMapping("/list/{userNickname}")
     @ApiOperation("동선글 목록")
     public Object getListRoute(@PathVariable String userNickname) {
+    	logger.info("동선글 목록 시작");
 		List<RouteReadResponse> response = routeService.getRouteList(userNickname);
     	final BasicResponse result = new BasicResponse();
         result.status = true;

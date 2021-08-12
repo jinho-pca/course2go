@@ -2,6 +2,8 @@ package com.course2go.controller;
 
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,10 +36,13 @@ public class BoardController {
 	
 	@Autowired
 	ScrapService scrapService;
+
+	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	
 	@PostMapping("/like/{bid}")
     @ApiOperation(value = "좋아요")
 	public Object likeBoard(@PathVariable Integer bid, @RequestHeader Map<String, Object> header) {
+		logger.info("보드 좋아요 시작 : bid = " +bid);
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		final BasicResponse result = new BasicResponse();
         result.status = likeService.like(uid, bid);
@@ -52,6 +57,7 @@ public class BoardController {
 	@DeleteMapping("/like/{bid}")
     @ApiOperation(value = "좋아요취소")
 	public Object cancelLikeBoard(@PathVariable Integer bid, @RequestHeader Map<String, Object> header) {
+		logger.info("보드 좋아요 취소 시작 : bid = " +bid);
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		final BasicResponse result = new BasicResponse();
         result.status = likeService.cancelLike(uid, bid);
@@ -66,6 +72,7 @@ public class BoardController {
 	@PostMapping("/scrap/{bid}")
     @ApiOperation(value = "스크랩")
 	public Object scrapBoard(@PathVariable Integer bid, @RequestHeader Map<String, Object> header) {
+		logger.info("보드 스크랩 시작 : bid = " +bid);
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		final BasicResponse result = new BasicResponse();
         result.status = scrapService.scrap(uid, bid);
@@ -80,6 +87,7 @@ public class BoardController {
 	@DeleteMapping("/scrap/{bid}")
     @ApiOperation(value = "스크랩취소")
 	public Object cancelScrapeBoard(@PathVariable Integer bid, @RequestHeader Map<String, Object> header) {
+		logger.info("보드 스크랩 취소 시작 : bid = " +bid);
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		final BasicResponse result = new BasicResponse();
         result.status = scrapService.cancelScrap(uid, bid);

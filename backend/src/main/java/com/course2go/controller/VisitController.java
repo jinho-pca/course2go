@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,10 +48,12 @@ public class VisitController {
 
     @Autowired
     private ObjectMapper mapper;
-    
+
+	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
     @PostMapping("/write")
     @ApiOperation(value = "방문글작성")
     public Object writeRoute(@RequestParam(value = "rid") Integer rid, @RequestParam(value = "request") String req, @RequestHeader Map<String, Object> header, @RequestParam(required = false, value = "image1")MultipartFile image1, @RequestParam(required = false, value = "image2")MultipartFile image2, @RequestParam(required = false, value = "image3")MultipartFile image3) throws JsonMappingException, JsonProcessingException {
+    	logger.info("방문글작성 시작");
 		final BasicResponse result = new BasicResponse();
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		
@@ -97,6 +100,7 @@ public class VisitController {
     @GetMapping("/read/{bid}")
     @ApiOperation(value = "게시글읽기")
     public Object readVisit(@PathVariable Integer bid) {
+    	logger.info("게시글읽기 시작");
     	VisitReadResponse response = visitService.readVisitBoard(bid);
 		final BasicResponse result = new BasicResponse();
         result.status = true;
@@ -108,6 +112,7 @@ public class VisitController {
     @GetMapping("/mylist")
     @ApiOperation("내가 쓴 장소글 목록")
     public Object getMyListRoute(@RequestHeader Map<String, Object> header) {
+    	logger.info("내가 쓴 장소글 목록 시작");
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		List<VisitReadResponse> response = visitService.getMyVisitList(uid);
     	final BasicResponse result = new BasicResponse();
@@ -120,6 +125,7 @@ public class VisitController {
     @GetMapping("/list/{userNickname}")
     @ApiOperation("장소글 목록")
     public Object getListRoute(@PathVariable String userNickname) {
+    	logger.info("장소글 목록 시작");
 		List<VisitReadResponse> response = visitService.getVisitList(userNickname);
     	final BasicResponse result = new BasicResponse();
         result.status = true;

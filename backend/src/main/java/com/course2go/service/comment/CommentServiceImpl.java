@@ -51,6 +51,7 @@ public class CommentServiceImpl implements CommentService {
 		Comment c = commentDao.save(Comment.builder(commentParent, commentBid, commentLike, commentContent, commentWriterUid).build());
 		logger.info("댓글쓰기과정 - 댓글작성완료");
 		/*댓글 알림 생성*/
+		logger.info("저장된 댓글 : " + c);
 		logger.info("저장된 댓글 : " + c.toString());
 		logger.info("댓글을 단 보드 : " + boardService.readBoard(commentBid));
 		logger.info("댓글을 단 보드 : " + boardService.readBoard(commentBid).toString());
