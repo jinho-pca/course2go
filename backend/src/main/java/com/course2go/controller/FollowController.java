@@ -23,6 +23,7 @@ import com.course2go.exception.UserUnmatchedException;
 import com.course2go.model.BasicResponse;
 import com.course2go.model.notice.Notice;
 import com.course2go.model.notice.NoticeDto;
+import com.course2go.model.user.UserDto;
 import com.course2go.service.follow.FollowManagementService;
 import com.course2go.service.notice.NoticeService;
 import com.course2go.service.follow.FollowListService;
@@ -50,7 +51,7 @@ public class FollowController {
 	@GetMapping("/follower")
 	public Object getFollowerList(@RequestParam(required = true) final String nickname) {
 		ResponseEntity<BasicResponse> response = null;
-		List<String> userList = null;
+		List<UserDto> userList = null;
 		userList = followListService.getFollowerListByNickname(nickname);
 		
 		BasicResponse result = new BasicResponse();
@@ -67,7 +68,7 @@ public class FollowController {
 	@GetMapping("/following")
 	public Object getFollowingList(@RequestParam(required = true) final String nickname) {
 		ResponseEntity<BasicResponse> response = null;
-		List<String> userList = null;
+		List<UserDto> userList = null;
 		userList = followListService.getFollowingListByNickname(nickname);
 		
 		BasicResponse result = new BasicResponse();
@@ -83,7 +84,7 @@ public class FollowController {
 	public Object getMyFollowerList(@RequestHeader Map<String, Object> header) {
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		ResponseEntity<BasicResponse> response = null;
-		List<String> userList = null;
+		List<UserDto> userList = null;
 		userList = followListService.getFollowerListByUid(uid);
 		
 		BasicResponse result = new BasicResponse();
@@ -99,7 +100,7 @@ public class FollowController {
 	public Object getMyFollowingList(@RequestHeader Map<String, Object> header) {
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		ResponseEntity<BasicResponse> response = null;
-		List<String> userList = null;
+		List<UserDto> userList = null;
 		userList = followListService.getFollowingListByUid(uid);
 		
 		BasicResponse result = new BasicResponse();
