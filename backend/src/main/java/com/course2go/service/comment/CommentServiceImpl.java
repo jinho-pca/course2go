@@ -48,7 +48,10 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public void writeComment(Integer commentParent, Integer commentBid, Integer commentLike, String commentContent, String commentWriterUid) {
 		logger.info("댓글쓰기과정 - 서비스도착");
-		Comment c = commentDao.save(Comment.builder(commentParent, commentBid, commentLike, commentContent, commentWriterUid).build());
+		Comment cwrite = Comment.builder(commentParent, commentBid, commentLike, commentContent, commentWriterUid).build();
+		logger.info(""+cwrite);
+		logger.info(cwrite.toString());
+		Comment c = commentDao.save(cwrite);
 		logger.info("댓글쓰기과정 - 댓글작성완료");
 		/*댓글 알림 생성*/
 		logger.info("저장된 댓글 : " + c);
