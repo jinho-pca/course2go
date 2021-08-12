@@ -45,7 +45,7 @@ public interface UserDao extends JpaRepository<User, String> {
 					" WHERE f.follow_to_uid = :uid"
 			, nativeQuery = true
 			)
-	List<User> getFollowers(@Param("uid") String uid); 
+	List<User> getFollowings(@Param("uid") String uid); 
 	
 	@Query(
 			value = "SELECT u.uid, u.user_name, u.user_email, u.user_password, u.user_nickname, u.user_salt, u.user_birthday, u.user_gender, u.user_image, u.user_comment" +
@@ -54,7 +54,7 @@ public interface UserDao extends JpaRepository<User, String> {
 					" WHERE f.follow_from_uid = :uid"
 			, nativeQuery = true
 			)
-	List<User> getFollowings(@Param("uid") String uid);
+	List<User> getFollowers(@Param("uid") String uid);
 
 	@Query(
 			value = "SELECT *" +

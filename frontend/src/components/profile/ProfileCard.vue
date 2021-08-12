@@ -13,15 +13,15 @@
           </div>
 
           <div class="profile-follow" v-if="(nickname && profileData.followState == 0 && followState == -1) || followState == 0" @click="follow">
-            <div to="/profile/modify">팔로우</div>
+            <div>팔로우</div>
           </div>
           
           <div class="profile-follow" v-if="(nickname && profileData.followState == 1 && followState == -1) || followState == 1" @click="unfollow">
-            <div to="/profile/modify">언팔로우</div>
+            <div>언팔로우</div>
           </div>
 
           <div class="profile-follow" v-if="(nickname && profileData.followState == 2 && followState == -1) || followState == 2">
-            <div to="/profile/modify">신청중</div>
+            <div>신청중</div>
           </div>
 
         </div>
@@ -31,13 +31,14 @@
       </div>
     </div>
     <div class="profile-bottom">
-      <router-link :to="{ path: '/follow' }">
+      
+      <router-link :to="{ path: '/follow', query: {userNickname : profileData.userNickname}}">
         <div>
           <span class="tag">팔로잉</span>
           <span>{{ profileData.userFollowing }}</span>
         </div>
       </router-link>
-      <router-link to="/follow">
+      <router-link :to="{ path: '/follow', query: {userNickname : profileData.userNickname}}">
         <div>
           <span class="tag">팔로워</span>
           <span>{{ profileData.userFollower }}</span>

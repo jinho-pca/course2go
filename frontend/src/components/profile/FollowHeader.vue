@@ -17,17 +17,17 @@
 <script>
 import '@/components/css/profile/follow-header.css'
 export default {
-  emits:["show"]
+  emits:["select"]
   ,
   methods:{
     showFollowing(){
       this.select = "팔로잉";
-      this.$emit("show",this.select);
+      this.$emit("select",this.select);
     },
 
     showFollower(){
       this.select = "팔로워";
-      this.$emit("show",this.select);
+      this.$emit("select",this.select);
     },
 
     selectFollowing(){

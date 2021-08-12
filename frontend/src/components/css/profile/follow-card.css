@@ -1,10 +1,29 @@
-.follow-card {
+/* .follow-card {
   display: flex;
   justify-content: space-between;
   padding: 5px 3px 5px 3px;
   border: 1px solid rgba(163, 163, 163, 0.322);
   border-radius: 10px;
   margin: 10px 10px 10px 10px;
+} */
+.follow-card{
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+  font-size: 12px;
+  display: inline-flex;
+  line-height: 20px;
+  padding-left: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  /* box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 8px; */
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+
+.follow-card a{
+  color: black;
+  text-decoration: none;
 }
 
 .follow-card .card-left {
@@ -22,7 +41,11 @@
 }
 
 .follow-card .card-right {
-  font-size: 10px;
+  font-size: 14px;
+  width: 30%;
+  height: 40px;
+  line-height: 30px;
+  padding-top: 5px;
   margin: auto 0;
 }
 
@@ -31,5 +54,7 @@
   border-radius: 10px;
   background: #ff737dbb;
   word-break: keep-all;
-  padding: 2px 3px 2px 3px;
+  width: 90%;
+  height: 30px;
+  
 }

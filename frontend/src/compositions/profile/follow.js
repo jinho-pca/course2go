@@ -6,32 +6,29 @@ import { BASE_URL } from '@/compositions/global.js'
 
 const { URL, token } = BASE_URL();
 
-export const profile = () => {
+export const follow = () => {
   const followingListData = ref([]);
   const followerListData = ref([]);
 
   const followingList = (userNickname) => {
-
     if(!userNickname){
       const user = jwt.decode(token.substr(7))
       userNickname = user.userNickname;
     }
     
+    
     axios({
       method: 'get',
-      url: URL + 'follow/follower/' + userNickname,
+      url: URL + 'follow/following',
+      params:{
+        nickname: userNickname,
+      },
       headers: {
         Authorization: token,
       }
     })
     .then((res) => {
-      profileData.value = res.data.object
-      who.value = res.data.data.substr(0, 1)
-      if (who.value === '본') {
-        who.value = 1
-      } else {
-        who.value = 0
-      }
+      followingListData.value = res.data.object
       return res
     })
     .catch((err) => {
@@ -39,8 +36,31 @@ export const profile = () => {
     })
   }
 
-  
+  const followerList = (userNickname) => {
+    if(!userNickname){
+      const user = jwt.decode(token.substr(7))
+      userNickname = user.userNickname;
+    }
+    
+    axios({
+      method: 'get',
+      url: URL + 'follow/follower',
+      params:{
+        nickname: userNickname,
+      },
+      headers: {
+        Authorization: token,
+      }
+    })
+    .then((res) => {
+      followerListData.value = res.data.object
+      return res
+    })
+    .catch((err) => {
+      return err
+    })
+  }
 
-  return { who, profileData, routeListData, visitListData, myProfile, routeList, visitList }
+  return { followingList, followingListData, followerList, followerListData}
 }
 
