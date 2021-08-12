@@ -169,27 +169,22 @@ public class UserController {
     
     @DeleteMapping("/delete")
     @ApiOperation("회원탈퇴")
-    public Object delete(@RequestBody Map<String, String> request, @RequestHeader Map<String, Object> requestHeader) {
+    public Object delete(@RequestHeader Map<String, Object> requestHeader) {
     	final BasicResponse result = new BasicResponse();
     	HttpStatus status = HttpStatus.BAD_REQUEST;
 
     	final String token = (String) requestHeader.get("authorization");
     	Claims claims = TokenUtils.getClaimsFromToken(token);
     	String tokenEmail = (String) claims.get("userEmail");
-    	String requestPassword = (String) request.get("requestPassword");
-    	int deleteResult = userDeleteService.userDelete(tokenEmail, requestPassword);
+
+    	int deleteResult = userDeleteService.userDelete(tokenEmail);
 
     	switch(deleteResult) {
     	// 회원탈퇴 요청한 유저가 존재하지 않는 경우
-    	case -1:
+    	case 0:
     		result.data = "unpresent user";
     		result.status = false;
     		break;
-    	// 비밀번호가 일치하지 않는 경우
-		case 0:
-				result.data = "incorrect password";
-				result.status = false;
-				break;
     	// 회원탈퇴 완료
     	case 1:
     		result.data = "success";
