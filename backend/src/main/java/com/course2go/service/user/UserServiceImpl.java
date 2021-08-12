@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserService {
 		List<User> nickNameContainingList = userDao.findByUserNicknameContaining(keyword); // 검색한 닉네임을 포함하는 유저들의 리스트
 		System.out.println(nickNameContainingList.toString());
 
-		List<String> followingUidList = followListService.getFollowingListByNickname(requestNickname); // 검색한 사용자의 팔로우 리스트 
-		
+		List<String> followingUidList = followListService.getFollowingListByNickname(requestNickname); // 검색한 사용자의 팔로우 리스트
+
 		for (int i = 0; i < nameContainingList.size(); i++) {
 			User tmpUser = nameContainingList.get(i);
 			UserDto userDto = new UserDto();
