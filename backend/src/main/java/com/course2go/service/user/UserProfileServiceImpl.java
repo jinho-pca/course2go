@@ -8,6 +8,7 @@ import com.course2go.service.follow.FollowListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.course2go.dao.FollowDao;
 import com.course2go.dao.NoticeDao;
 import com.course2go.dao.UserDao;
 import com.course2go.model.user.User;
@@ -20,6 +21,9 @@ public class UserProfileServiceImpl implements UserProfileService{
 	
 	@Autowired
 	private NoticeDao noticeDao;
+	
+	@Autowired
+	private FollowDao followDao;
 	
 	@Autowired
 	private FollowListService followListService;
@@ -42,15 +46,15 @@ public class UserProfileServiceImpl implements UserProfileService{
 				userProfileResponse.setUserComment(result.get().getUserComment());
 				userProfileResponse.setUserFollower(followListService.getFollowerCount(userNickname));
 				userProfileResponse.setUserFollowing(followListService.getFollowingCount(userNickname));
-				List<String> followingUidList = followListService.getFollowingListByNickname(tokenNickname); // 검색한 사용자의 팔로우 리스트
+				
 				
 				// Follow하고 있는 경우 followState 를 1로 설정
-				if(followingUidList.contains(result.get().getUid())) {
+				if(followDao.existsByFollowFromUidAndFollowToUid(requestUser.get().getUid(), targetUser.get().getUid())) {
 					userProfileResponse.setFollowState(1);
 				}
 				
 				// Follow하고 있는 경우 followState 를 2로 설정
-				if(noticeDao.existsNoticeByNoticeTypeAndNoticeUidAndNoticeFromUid(1, targetUser.get().getUid(), requestUser.get().getUid())) {
+				if(noticeDao.existsByNoticeTypeAndNoticeUidAndNoticeFromUid(1, targetUser.get().getUid(), requestUser.get().getUid())) {
 					userProfileResponse.setFollowState(2);
 				}
 				

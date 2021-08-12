@@ -12,7 +12,7 @@
             <router-link to="/profile/modify">프로필 편집</router-link>
           </div>
 
-          <div class="profile-follow" v-if="(nickname && profileData.followState && followState == -1) || followState == 0" @click="follow">
+          <div class="profile-follow" v-if="(nickname && profileData.followState == 0 && followState == -1) || followState == 0" @click="follow">
             <div to="/profile/modify">팔로우</div>
           </div>
           
@@ -66,17 +66,17 @@ export default {
   },
   methods:{
     follow(){
-      this.isRequest = 2;
+      this.followState = 2;
       requestFollow(this.profileData.userNickname)
     },
     unfollow(){
-      this.isRequest = 0;
+      this.followState = 0;
       unfollow(this.profileData.userNickname)
     }
   },
   data: function(){
     return{
-      isRequest : -1
+      followState : -1
     }
   }
   
