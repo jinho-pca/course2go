@@ -12,7 +12,8 @@
       </div>
     </div>
     <div class="card-right">
-      <div class="follow-button" v-if="user.following">언팔로우</div>
+      <div class="follow-button" v-if="user.followState == 1">언팔로우</div>
+      <div class="follow-button" v-if="user.followState == 2">신청중</div>
       <div class="follow-button" v-else>팔로우</div>
     </div>
   </div>
