@@ -54,6 +54,14 @@ public interface UserDao extends JpaRepository<User, String> {
 					" WHERE f.follow_from_uid = :uid"
 			, nativeQuery = true
 			)
-	List<User> getFollowings(@Param("uid") String uid); 
-	
+	List<User> getFollowings(@Param("uid") String uid);
+
+	@Query(
+			value = "SELECT *" +
+					" FROM user" +
+					" WHERE user_name LIKE %:keyword%" +
+					" OR user_nickname LIKE %:keyword% "
+			, nativeQuery = true
+	)
+	List<User> findByUserNameOrUserNicknameContaining(String keyword);
 }
