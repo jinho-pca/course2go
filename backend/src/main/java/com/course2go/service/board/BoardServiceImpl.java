@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.course2go.authentication.TokenUtils;
 import com.course2go.dao.BoardDao;
 import com.course2go.model.board.Board;
 import com.course2go.model.board.BoardDto;
@@ -24,7 +27,9 @@ public class BoardServiceImpl implements BoardService {
 	RouteService routeService;
 	@Autowired
 	VisitService visitService;
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
+	
 	ModelMapper modelmapper;
 	public BoardServiceImpl() {
 		modelmapper = new ModelMapper();
@@ -37,8 +42,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardResponse readBoard(int bid) {
-		System.out.println(bid);
-		System.out.println(boardDao.findAllByBid(bid));
+		logger.info(""+bid);
+		logger.info(""+boardDao.findAllByBid(bid));
 		Board board = boardDao.findById(bid).get();
 		BoardResponse boardResponse = new BoardResponse();
 		boardResponse.setBoardLike(board.getBoardLike());
