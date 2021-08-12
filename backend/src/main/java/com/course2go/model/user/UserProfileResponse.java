@@ -14,14 +14,14 @@ public class UserProfileResponse {
 
     private int userFollower;
     
-    private boolean isFollowing = false;
-    
-    public boolean isFollowing() {
-		return isFollowing;
+    private int followState = 0;
+
+	public int getFollowState() {
+		return followState;
 	}
 
-	public void setFollowing(boolean isFollowing) {
-		this.isFollowing = isFollowing;
+	public void setFollowState(int followState) {
+		this.followState = followState;
 	}
 
 	public String getUserName() {

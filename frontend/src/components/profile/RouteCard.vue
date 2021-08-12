@@ -1,7 +1,9 @@
 <template>
-  <div class="route-card" @click="test">
-    {{route.boardResponse.boardTitle}}
-  </div>
+  <router-link :to="{ path: '/routeArticle', data: { bid: route.boardResponse.bid }}">
+    <div class="route-card">
+      {{route.boardResponse.boardTitle}}
+    </div>
+  </router-link>
 </template>
 
 <script>
@@ -14,9 +16,7 @@ export default {
     }
   },
   methods:{
-    test(){
-      console.log(this.route);
-    }
+    
   }
 }
 </script>
