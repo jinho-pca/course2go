@@ -9,8 +9,7 @@
       </i>
     </div>
     <div>
-      <!-- v-for -->
-      <PlaceCard />
+      <PlaceCard v-for="(place,index) in placeListData" :key ="index" :place="place"/>
     </div>
   </div>
 </template>
@@ -22,6 +21,11 @@ export default {
   name: 'ProfilePlace',
   components: {
     PlaceCard
-  }
+  },
+  props: {
+    placeListData: {
+      type: Array
+    }
+  },
 }
 </script>

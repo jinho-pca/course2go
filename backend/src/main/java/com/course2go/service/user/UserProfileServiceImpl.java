@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import com.course2go.model.user.UserProfileResponse;
 import com.course2go.service.follow.FollowListService;
+
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,12 +34,12 @@ public class UserProfileServiceImpl implements UserProfileService{
 	public Object userProfileShow(String tokenNickname, String userNickname) {
 		
 		Optional<User> requestUser = userDao.findUserByUserNickname(tokenNickname);
-		Optional<User> targetUser = userDao.findUserByUserNickname(tokenNickname);
+		Optional<User> targetUser = userDao.findUserByUserNickname(userNickname);
 		
 		
 		if(requestUser.isPresent()) { // 프로필 보기 요청한 유저가 존재하는 경우
 			if(targetUser.isPresent()){ // 검색한 유저가 존재하는 경우
-				
+
 				Optional<User> result = userDao.findUserByUserNickname(userNickname);
 				UserProfileResponse userProfileResponse = new UserProfileResponse();
 				userProfileResponse.setUserName(result.get().getUserName());
@@ -47,15 +49,16 @@ public class UserProfileServiceImpl implements UserProfileService{
 				userProfileResponse.setUserFollower(followListService.getFollowerCount(userNickname));
 				userProfileResponse.setUserFollowing(followListService.getFollowingCount(userNickname));
 				
-				
 				// Follow하고 있는 경우 followState 를 1로 설정
 				if(followDao.existsByFollowFromUidAndFollowToUid(requestUser.get().getUid(), targetUser.get().getUid())) {
 					userProfileResponse.setFollowState(1);
-				}
-				
+				} 
 				// Follow하고 있는 경우 followState 를 2로 설정
-				if(noticeDao.existsByNoticeTypeAndNoticeUidAndNoticeFromUid(1, targetUser.get().getUid(), requestUser.get().getUid())) {
+				else if(noticeDao.existsByNoticeTypeAndNoticeUidAndNoticeFromUid(1, targetUser.get().getUid(), requestUser.get().getUid())) {
 					userProfileResponse.setFollowState(2);
+				}
+				else {
+					userProfileResponse.setFollowState(0);
 				}
 				
 				return userProfileResponse;
