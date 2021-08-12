@@ -1,0 +1,22 @@
+.follow-header{
+  text-align: center;
+}
+
+.follow-title{
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.follow-button{
+  border-radius: 20px / 100%;
+  position: relative;
+  width: 50%;
+	height: 36px;
+  overflow: hidden;
+  border: 0;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 5px 0;
+	
+}

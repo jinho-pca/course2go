@@ -53,7 +53,7 @@ public class UserProfileServiceImpl implements UserProfileService{
 				if(followDao.existsByFollowFromUidAndFollowToUid(requestUser.get().getUid(), targetUser.get().getUid())) {
 					userProfileResponse.setFollowState(1);
 				} 
-				// Follow하고 있는 경우 followState 를 2로 설정
+				// Follow 신청 하고 있는 경우 followState 를 2로 설정
 				else if(noticeDao.existsByNoticeTypeAndNoticeUidAndNoticeFromUid(1, targetUser.get().getUid(), requestUser.get().getUid())) {
 					userProfileResponse.setFollowState(2);
 				}
