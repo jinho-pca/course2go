@@ -1,5 +1,6 @@
 package com.course2go.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +45,7 @@ public class SearchController {
 	@GetMapping("/place/{word}/{page}")
     @ApiOperation(value = "장소검색")
     public List<PlaceDto> searchPlace(@PathVariable String word, @PathVariable Integer page) {
+		logger.info("장소검색 시작 : word = " +word+ " , page = " +page);
 		return placeService.searchPlace(word, page);
     }
 
@@ -53,7 +55,7 @@ public class SearchController {
 	@GetMapping("/user/{keyword}")
 	@ApiOperation(value = "유저검색")
 	public List<UserDto> searchUser(@PathVariable String keyword, @RequestHeader Map<String, Object> requestHeader){
-
+		logger.info("유저검색 시작: keyword = "+keyword);
 		final String token = (String) requestHeader.get("authorization");
 		Claims claims = TokenUtils.getClaimsFromToken(token);
 		String requestNickname = (String) claims.get("userNickname");
@@ -66,36 +68,41 @@ public class SearchController {
 	@GetMapping("/visit/{pid}")
 	@ApiOperation(value = "장소로 방문게시글 검색")
 	public Object searchVisit(@PathVariable Integer pid){
+		logger.info("장소로 방문게시글 검색 시작 : pid = " +pid);
 		final BasicResponse result = new BasicResponse();
 		List<VisitReadResponse> response = visitService.getVisitListByPid(pid);
         result.status = true;
         result.data = "success";
         result.object = response;
+		logger.info("장소로 방문게시글 검색 종료");
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 	
 	@Autowired
 	RouteService routeService;
-
-    @Autowired
-    private ObjectMapper mapper;
     
 	@GetMapping("/route")
 	@ApiOperation(value = "장소로 동선게시글 검색")
-	public Object searchRoute(@RequestParam String pidList) throws JsonMappingException, JsonProcessingException{
+	public Object searchRoute(@RequestParam Integer pid1, @RequestParam Integer pid2, @RequestParam Integer pid3, @RequestParam Integer pid4, @RequestParam Integer pid5, @RequestParam Integer pid6, @RequestParam Integer pid7, @RequestParam Integer pid8, @RequestParam Integer pid9) throws JsonMappingException, JsonProcessingException{
 		final BasicResponse result = new BasicResponse();
-		System.out.println("검색과정 - 도착");
-		PidList pidLists = mapper.readValue(pidList, PidList.class);
-		System.out.println("검색과정 - mapper 작업");
-		System.out.println(pidLists.toString());
-		List<Integer> pids = pidLists.getPids();
-		System.out.println("검색과정 - pid리스트 추출");
-		System.out.println(pids.toString());
-		
+		logger.info("장소로 동선게시글 검색 시작");
+		List<Integer> pids = new LinkedList<Integer>();
+		if (pid1!=null) pids.add(pid1);
+		if (pid2!=null) pids.add(pid2);
+		if (pid3!=null) pids.add(pid3);
+		if (pid4!=null) pids.add(pid4);
+		if (pid5!=null) pids.add(pid5);
+		if (pid6!=null) pids.add(pid6);
+		if (pid7!=null) pids.add(pid7);
+		if (pid8!=null) pids.add(pid8);
+		if (pid9!=null) pids.add(pid9);
+		logger.info("- pid리스트 추출");
+		logger.info(pids.toString());
 		List<RouteReadResponse> response = routeService.getRouteContainPids(pids);
         result.status = true;
         result.data = "success";
         result.object = response;
+		logger.info("장소로 동선게시글 검색 종료");
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 }
