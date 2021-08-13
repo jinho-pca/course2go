@@ -16,6 +16,7 @@
     "password-validator": "^5.1.1",
     "sass-loader": "^12.1.0",
     "vue": "^3.0.0",
+    "vue-html2canvas": "^0.0.4",
     "vue-password-validator": "^0.1.8",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"

@@ -25,9 +25,18 @@
   margin: 0 0 40px 0;
 }
 
+
 .update-profile .update-image > div {
   display: flex;
   justify-content: center;
+}
+
+.update-profile .update-image .profile-image-add {
+  background: rgba(143, 218, 248, 0.253);
+  padding: 3px 5px;
+  border: 1px solid rgba(0, 0, 0, 0.534);
+  border-radius: 5px;
+  box-shadow: 1px 1px;
 }
 
 .update-profile .update-image > div:first-child {
@@ -36,8 +45,8 @@
 
 .update-profile .update-image > div:nth-child(2) > div {
   margin: 5px 0 20px 0;
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   overflow: hidden;
   justify-content: end;
 }
@@ -72,7 +81,32 @@
   padding: 0 0 2px 3px;
 }
 
-.update-profile .update-message input{
+.update-profile .update-message .update-comment {
+  border: none;
+  width: 100%;
+  font-size: 18px;
+}
+
+.update-profile .update-message .fa-edit {
+  font-size: 15px;
+  line-height: 25px;
+}
+
+.update-profile .align-buttons {
+  width:100%;
+  display: flex;
+  justify-content: space-around;
+  margin: 40px 0 0 0; 
+}
+
+.update-profile .update-button {
+  color: #fff;
+  border: none;
+  display: inline;
+  padding: 13px 40px;
+  border-radius: 30px;
+  background: #3177f0;
+/* .update-profile .update-message input{
   border: none;
   width: 100%;
 }
@@ -96,5 +130,5 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0 0 5px 0;
-	background-color: aqua;
+	background-color: aqua; */
 }

@@ -1,0 +1,28 @@
+.add-route-box {
+  width: 100%;
+}
+
+.add-route-box .added-route {
+  /* width: calc(100% / 3); */
+  width: 30%;
+  float: left;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5px;
+  margin: 3px 5px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  font-size: 13px;
+  height: 26px;
+  line-height: 26px;
+}
+
+.add-route-box .add-button {
+  background: rgba(135, 207, 235, 0.61);
+  border: 1px solid black;
+  padding: 0 5px;
+  margin: 3px 5px;
+  width: 30%;
+  color: black;
+  border-radius: 5px;
+}

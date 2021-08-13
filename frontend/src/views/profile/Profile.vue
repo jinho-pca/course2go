@@ -9,12 +9,6 @@
         <i class="fas fa-cog"></i>
       </router-link>
     </div>
-    <!-- <div class="profile-page">
-      <span class="other-profile">
-        타인 프로필
-      </span>
-    </div> -->
-    <!-- endif -->
     <ProfileCard :profileData="profileData" :nickname="nickname" />
     <ProfileRoute :routeListData="routeListData" />
     <ProfilePlace :visitListData="visitListData" />

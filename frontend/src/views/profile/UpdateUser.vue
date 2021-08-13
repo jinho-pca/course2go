@@ -7,24 +7,8 @@
           <div class="group">
             <label for="email" class="label">이메일</label>
             <div class="input-border">
-              이메일@이메일.이메일
+              <span class="input">{{ user.userEmail }}</span>
             </div>
-          </div>
-          <div class="group">
-            <label for="name" class="label">이름</label>
-            <div class="input-border">
-              <input
-              v-model="name"
-              v-bind:class="{error: error.name, complete: !error.name&&name.length!==0}"
-              placeholder="이름을 입력하세요"
-              type="text"
-              id="name"
-              name="name"
-              class="input"
-              autocapitalize="off"
-              >
-            </div>
-            <div class="error-text" v-if="error.name">{{error.name}}</div>
           </div>
           <div class="group">
             <label for="password" class="label">비밀번호</label>
@@ -75,38 +59,14 @@
             </div>
             <div class="error-text" v-if="error.nickname">{{error.nickname}}</div>
           </div>
-          <div class="group">
-            <label for="birth" class="label">생년월일</label>
-            <div class="input-border">
-              <input
-              v-model="birth"
-              v-bind:class="{error: error.birth, complete: !error.birth&&birth.length!==0}"
-              type="date" 
-              id="birth"
-              name="birth"
-              class="input"
-              autocapitalize="off"
-              >
-            </div>
-            <div class="error-text" v-if="error.birth">{{error.birth}}</div>
-          </div>
-          <div class="group">
-            <label for="gender" class="label">성별</label>
-            <div class="toggle-radio">
-              <input type="radio" name="gender" id="male" v-model="gender" value="male">
-              <input type="radio" name="gender" id="female" v-model="gender" value="female">
-              <div class="switch">
-                <label for="male">남성</label>
-                <label for="female">여성</label>
-              </div>
-            </div>
-            <div class="error-text" v-if="error.gender">{{error.gender}}</div>
-          </div>
           <div class="group align-buttons">
-            <input type="submit" @click="signup" value="확인" class="button">
+            <input type="submit" @click="update" value="확인" class="button">
             <router-link to="/profile">
               <input type="submit" value="취소" class="button">
             </router-link>
+          </div>
+          <div class="group">
+            <input type="button" @click="deleteUser" value="회원 탈퇴" class="delete-button">
           </div>
         </div>
       </div>
@@ -116,9 +76,42 @@
 
 <script>
 import '@/assets/css/user/update-user.css';
+import { watchEffect } from 'vue';
+import { userUpdate } from '@/compositions/user/update.js';
+import { userDelete } from '@/compositions/user/update.js';
+
 export default {
   name: 'UpdateUser',
   setup() {
+    const { 
+      email, password, passwordConfirm, nickname, 
+      error, isSubmit, passwordSchema, update, checkUpdateForm,
+      checkNickname, nicknameSchema, user
+      } = userUpdate();
+    const { deleteUser } = userDelete();
+    /* 이메일과 비밀번호에 변화가 있을 때 watch */
+    watchEffect(() => checkUpdateForm({ 
+      nickname: nickname.value,
+      password: password.value,
+      passwordConfirm: passwordConfirm.value,
+      })
+    )
+    console.log(user)
+    return {
+      email,
+      password, 
+      passwordConfirm,
+      nickname,
+      error,
+      update,
+      isSubmit,
+      passwordSchema,
+      checkNickname,
+      nicknameSchema,
+      checkUpdateForm,
+      user,
+      deleteUser
+    };
   }
 }
 </script>

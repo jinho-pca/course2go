@@ -3,6 +3,12 @@
   justify-content: space-between;
   margin: 5px 0 5px 0;
 }
+.comment-deleted {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0 5px 0;
+  background-color: rgba(255, 0, 0, 0.1);
+}
 .comment-reply-main{
   display: flex;
   justify-content: space-between;
@@ -20,6 +26,19 @@
   overflow: hidden;
   /* margin: 0 auto; */
   width: 85%;
+}
+.comment-deleted .comment-writer-imagebox {
+  /* display: inline; */
+  overflow: hidden;
+  /* margin: 0 auto; */
+  width: 15%;
+}
+.comment-deleted .comment-content{
+  /* display: inline; */
+  overflow: hidden;
+  /* margin: 0 auto; */
+  width: 85%;
+  opacity: 1;
 }
 .comment-reply-main .comment-writer-imagebox {
   /* display: inline; */

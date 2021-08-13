@@ -1,6 +1,5 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
 import axios from 'axios';
 import PV from 'password-validator';
 import * as EmailValidator from 'email-validator';
@@ -10,7 +9,6 @@ const { URL } = BASE_URL()
 
 export const userSignup = () => {
   const router = useRouter();
-  const store = useStore();
 
   const passwordSchema = ref(new PV());
   const nicknameSchema = ref(new PV());
@@ -80,14 +78,15 @@ export const userSignup = () => {
         data: data,
       })
       .then((res) => {
-        // 여기서 오류나면 data를 user에 맞게 다시 넣어줘야 함
-        store.dispatch('getUser', data)
+        console.log(res)
+        const token = res.headers.authorization
+        localStorage.setItem('Authorization', token)
         return res
       })
       .then((res) => {
         isSubmit.value = true;
         alert('회원가입이 완료되었습니다.')
-        router.push("/newsfeed")
+        router.push("/")
         return res
       })
       .catch((err) => {
