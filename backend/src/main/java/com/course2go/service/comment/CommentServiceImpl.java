@@ -1,7 +1,9 @@
 package com.course2go.service.comment;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -66,6 +68,7 @@ public class CommentServiceImpl implements CommentService {
 	public List<CommentDto> readSortedComment(Integer commentBid) {
 		List<CommentDto> commentList = new LinkedList<CommentDto>();
 		List<CommentDto> rawList = readComment(commentBid);
+		Set<Integer> parentSet = new HashSet<Integer>();
 		for (CommentDto commentDto : rawList) {
 			commentDto.setCommentWriterDto(userService.getUserDtoByUid(commentDto.getCommentWriterUid()));
 			int parent = commentDto.getCommentParent();
@@ -73,6 +76,9 @@ public class CommentServiceImpl implements CommentService {
 				commentDto.setCommentDepth(0);
 				commentList.add(commentDto);
 				continue;
+			}
+			if (!commentDto.isCommentDeleted()) {
+				parentSet.add(parent);
 			}
 			int index = 0;
 			boolean sawParent = false;
@@ -92,6 +98,12 @@ public class CommentServiceImpl implements CommentService {
 			}
 			commentList.add(index, commentDto);
 		}
+		commentList.removeIf(commentDto -> {
+			if (commentDto.isCommentDeleted()) {
+				if (parentSet.contains(commentDto.getCid())) return false;
+				return true;
+			}
+			return false;});
 		return commentList;
 	}
 
@@ -108,7 +120,12 @@ public class CommentServiceImpl implements CommentService {
 			return null;			
 		}
 		Comment comment = list.get(0);
-		return new CommentDto(comment.getCid(), comment.getCommentParent(), comment.getCommentBid(), comment.getCommentLike(), comment.getCommentContent(), comment.getCommentWriterUid(), comment.getCommentTime(), null, userService.getUserDtoByUid(comment.getCommentWriterUid()));
+		return new CommentDto(comment, null, userService.getUserDtoByUid(comment.getCommentWriterUid()));
+	}
+
+	@Override
+	public void deleteComment(Integer cid) {
+		commentDao.updateDeleted(cid);
 	}
 
 }

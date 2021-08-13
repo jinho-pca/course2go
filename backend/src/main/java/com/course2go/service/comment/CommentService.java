@@ -11,4 +11,5 @@ public interface CommentService {
 	public List<CommentDto> readComment(Integer commentBid);
 	public List<CommentDto> readSortedComment(Integer commentBid);
 	public CommentDto getCommentBiggestLike(Integer commentBid);
+	public void deleteComment(Integer cid);
 }
