@@ -20,7 +20,7 @@
 import '../css/newsfeed/newsfeed-list.css'
 import NewsfeedCard from '@/components/newsfeed/NewsfeedCard.vue'
 import { newsfeed } from '@/compositions/newsfeed';
-import { read } from '@/compositions/article/route/read.js';
+import { readRoute } from '@/compositions/article/route/read.js';
 
 export default {
   name: 'newsfeedlist',
@@ -31,7 +31,7 @@ export default {
     const { onClickSelect, onClickOption, getNewsfeed, newsfeeds, filteredNewsfeeds } = newsfeed();
     getNewsfeed();
     const getArticle = (bid) => {
-      read(bid)
+      readRoute(bid)
     }
     return { onClickSelect, onClickOption, getNewsfeed, newsfeeds, filteredNewsfeeds, getArticle };
   },

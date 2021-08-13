@@ -21,7 +21,7 @@ export default {
     },
     props: {
         bid:{
-            type : Number
+            type : String
         }
     },
     data() {

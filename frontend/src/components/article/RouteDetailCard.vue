@@ -5,10 +5,10 @@
       <hr>
       <div class="content">
         <span id="date">기간</span> <br>
-        {{routeReadResponse.routeResponse.routeStartDate}} ~ {{routeReadResponse.routeResponse.routeEndDate}}<br><br>
+        {{articleRoute.routeResponse.routeStartDate}} ~ {{articleRoute.routeResponse.routeEndDate}}<br><br>
         <span>동선</span>
-        <RouteMap :containSpots="routeReadResponse.containSpots"/>
-        <div v-for="(spot, index) in routeReadResponse.containSpots" :key="index">
+        <RouteMap :containSpots="articleRoute.containSpots"/>
+        <div v-for="(spot, index) in articleRoute.containSpots" :key="index">
           <details v-if="spot.visit==null">
             <summary class="novisitsummery"><span>{{spot.place.placeName}}</span></summary>
           </details>
@@ -31,7 +31,7 @@ import RouteMap from '@/components/maps/routemap/RouteMap.vue'
 export default {
     name: 'routedetail',
     props:{
-      routeReadResponse:{
+      articleRoute:{
         type: Object
       },
     },

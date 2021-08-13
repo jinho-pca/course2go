@@ -1,6 +1,6 @@
 <template>
   <div class="comment-card">
-    <div class="comment-main" v-if="!isreply">
+    <div class="comment-main" v-if="!isreply && !comment.commentDeleted">
       <div class="comment-writer-imagebox">
         <img :src="comment.commentWriterDto.userImage" alt="profile image" class="profile-image">
       </div>
@@ -12,8 +12,15 @@
         <div class="comment-footer">
           <span>{{timestamp}}</span>&nbsp;&nbsp;
           <span>좋아요 {{comment.commentLike}}</span>&nbsp;&nbsp;
-          <span v-if="!writingreply" v-on:click="writingreply=true">답글</span>
+          <span v-if="!writingreply" v-on:click="writingreply=true">답글</span>&nbsp;&nbsp;
+          <span v-if="isMyComment()" v-on:click="deleteComment">삭제</span>
         </div>
+      </div>
+    </div>
+    <div class="comment-deleted" v-if="comment.commentDeleted">
+      <div class="comment-writer-imagebox" />
+      <div class="comment-content">
+      삭제된 메시지입니다.
       </div>
     </div>
 
@@ -29,7 +36,8 @@
         <div class="comment-footer">
           <span>{{timestamp}}</span>&nbsp;&nbsp;
           <span>좋아요 {{comment.commentLike}}</span>&nbsp;&nbsp;
-          <span v-if="!writingreply" v-on:click="writingreply=true">답글</span>
+          <span v-if="!writingreply" v-on:click="writingreply=true">답글</span>&nbsp;&nbsp;
+          <span v-if="isMyComment()" v-on:click="deleteComment">삭제</span>
         </div>
       </div>
     </div>
@@ -43,6 +51,8 @@
 <script>
 import "@/components/css/article/comment/commentCard.css"
 import CommentInput from '@/components/article/CommentInput.vue'
+import { jwtdecoder } from '@/compositions/utils/jwtdecoder.js'
+import { deleteComment } from '@/compositions/article/comment/delete.js';
 export default {
     name : "CommentCard",
     props: {
@@ -50,7 +60,7 @@ export default {
             type : Object
         },
         bid:{
-            type : Number
+            type : String
         }
     },
     mounted() {
@@ -105,15 +115,22 @@ export default {
         this.writingreply=false;
       },
       reload(){
-        this.emitting().then(()=>{
-            this.close();
-            this.setTimestamp();
-            this.setReply();
-            this.setReplyParent();
-          });
+          this.$emit('reload');
+          this.close();
+          this.setTimestamp();
+          this.setReply();
+          this.setReplyParent();
       },
-      emitting(){
-        this.$emit('reload')
+      isMyComment(){
+        const { mynickname } = jwtdecoder();
+        if (mynickname == this.comment.commentWriterDto.userNickname) {
+          return true;
+        }
+        return false;
+      },
+      deleteComment(){
+        deleteComment(this.comment.cid)
+        this.reload()
       }
     },
 }

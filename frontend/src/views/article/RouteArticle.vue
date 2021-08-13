@@ -8,115 +8,37 @@
         <span>동선 게시글</span>
       </span>
     </div>
-      <RouteContent :routeReadResponse="routeReadResponse"/>
-      <RouteDetailCard :routeReadResponse="routeReadResponse"/>
-      <Comment :bid="bid"/>
+    <RouteContent :articleRoute="articleRoute"/>
+    <RouteDetailCard :articleRoute="articleRoute"/>
+    <Comment :bid="bid"/>
   </div>
 </template>
 
 <script>
-import { read } from '@/compositions/article/route/read.js';
+import { readRoute } from '@/compositions/article/route/read.js';
 import RouteDetailCard from '@/components/article/RouteDetailCard.vue'
 import Comment from '@/components/article/Comment.vue'
 import RouteContent from '@/components/article/RouteContent.vue'
+import { useRoute } from 'vue-router'
+// import { ref } from 'vue'
 
 export default {
   name: 'RouteArticle',
-  created() {
-    read(this.bid).then(res => {
-    this.routeReadResponse = res;
-    console.log(this.routeReadResponse);
-  });
-  },
   components: {
     RouteDetailCard,
     Comment,
     RouteContent,
   },
-  data() {
-    return {
-      bid: 36,
-      routeReadResponse: {
-        routeResponse: {
-          routeStartDate: "2021-07-24",
-          routeEndDate: "2021-07-24",
-          routeContent: "우와여행너무재밌다",
-        },
-        userDto: {
-          userImage: '',
-          userNickname: '기훈',
-        },
-      boardResponse: {
-        boardTitle: "즐거운 제주도 여행",
-        boardLike: 100,
-        boardStar: 50,
-        boardTid: 1,
-        boardType: true,
-        boardTime: "2021-07-24 17:00:00",
-      },
-      containSpots: [
-          {
-          place: {
-            pid: 3,
-            placeName: "동방파제",
-            placeAddress: "제주특별자치도 서귀포시 서귀동 758-2",
-            placeLat: 33.236546,
-            placeLng: 126.568803,
-            placeDataDate: "2015-12-31",
-            placeType: "교통시설",
-          },
-          visit: {
-            vid: 3,
-            visitPid: 3,
-            visitContent: "동방파제 재밌당",
-            visitTime: 2,
-            visitCost: 10000,
-            visitImage1: "",
-            visitImage2: null,
-            visitImage3: null,
-          },
-          },
-          {
-          place: {
-            pid: 4,
-            placeName: "새섬",
-            placeAddress: "제주특별자치도 서귀포시 서귀동 산 3-3",
-            placeLat: 33.235071,
-            placeLng: 126.562554,
-            placeDataDate: "2015-12-31",
-            placeType: "지명관련",
-          },
-          visit: {
-            vid: 4,
-            visitPid: 4,
-            visitContent: "",
-            visitTime: 1,
-            visitCost: 50000,
-            visitImage1: "",
-            visitImage2: null,
-            visitImage3: null,
-          },
-          },
-          {
-          place: {
-            pid: 5,
-            placeName: "섶섬",
-            placeAddress: "제주특별자치도 서귀포시 보목동 산 1",
-            placeLat: 33.230314,
-            placeLng: 126.599675,
-            placeDataDate: "2015-12-31",
-            placeType: "지명관련",
-          },
-          visit: null,
-          }
-        ],
-      },
-    }
-  },
-  methods: {
-    click() {
+  setup() {
+    const { articleRoute, read } = readRoute()
+    const click = () => {
       history.back()
     }
+    const route = useRoute()
+    const bid = route.params.bid
+    console.log(articleRoute)
+    read(bid)
+    return { click, articleRoute, read, bid }
   }
 }
 </script>
