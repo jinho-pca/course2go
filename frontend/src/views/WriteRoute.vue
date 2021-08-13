@@ -4,10 +4,11 @@
     <WriteRouteTitle @title="getTitle"/>
     <WriteRouteDate @routeStartDate = "getRouteStartDate" @routeEndDate = "getRouteEndDate"/> 
     <WriteRoutePlaceList @routePid="pushRoutePid" @routePlace="pushRoutePlace"/>
-    <WriteRouteMap :places="routePlaces"/>
+    <WriteRouteMap :places="routePlaces" ref="printMe"/>
     <WriteRouteContent @routeContent="getRouteContent"/>
     <div style="text-align: center">
       <button class="write-route-btn" @click="write">글 쓰기</button>
+      <button class="write-route-btn" @click="print">지도 캡쳐</button>
     </div>
     <div class="empty-box">
       
@@ -46,7 +47,7 @@ export default {
       "내  용 : " + this.routeContent + "\n" +
       "PID : " + this.routepid + "\n"
       + "=============================")
-
+      this.print()
       if(!this.title){
         alert("제목을 입력하세요.");
         return;
@@ -83,6 +84,17 @@ export default {
     },
     pushRoutePlace(routePlace){
       this.routePlaces.push(routePlace);
+    },
+    print() {
+      const el = this.$refs.printMe;
+      // add option type to get the image version
+      // if not provided the promise will return 
+      // the canvas.
+      const options = {
+        type: 'dataURL'
+      }
+      this.routeMapImage = this.$html2canvas(el, options);
+      console.log(this.routeMapImage)
     }
   },
   data: function(){
@@ -93,6 +105,7 @@ export default {
       routeContent : "",
       routePid : [],
       routePlaces : [],
+      routeMapImage : null,
 		}
 	}
   

@@ -33,12 +33,15 @@ import { jwtdecoder } from '@/compositions/utils/jwtdecoder.js'
 import "@/components/css/article/comment/commentInput.css"
 import { write } from '@/compositions/article/comment/write.js'
 export default {
-    emits: ["close"],
+    emits: ["close", "reload"],
     props: {
         parent:{
             type : Number
         },
         direct:{
+            type : Number
+        },
+        bid:{
             type : Number
         },
     },
@@ -56,7 +59,9 @@ export default {
     },
     methods: {
         writeComment() {
-            write(this.parent, this.mycomment, this.bid);
+            write(this.parent, this.mycomment, this.bid).then(() =>{
+              this.$emit('reload')
+            });
         },
         isReply(){
             if (this.parent != -1) {
@@ -64,7 +69,7 @@ export default {
             }
         },
         cancelReply(){
-            this.$emit('close', true);
+            this.$emit('close');
         },
     },
 }

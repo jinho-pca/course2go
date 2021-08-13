@@ -35,7 +35,7 @@
     </div>
 
     <div class="writingreply" v-if="writingreply">
-      <CommentInput class="replying" :parent="replyParent" :direct="comment.cid" @close="close"/>
+      <CommentInput class="replying" :bid="bid" :parent="replyParent" :direct="comment.cid" @close="close" @reload="reload"/>
     </div>
   </div>
 </template>
@@ -48,6 +48,9 @@ export default {
     props: {
         comment:{
             type : Object
+        },
+        bid:{
+            type : Number
         }
     },
     mounted() {
@@ -100,6 +103,17 @@ export default {
       },
       close(){
         this.writingreply=false;
+      },
+      reload(){
+        this.emitting().then(()=>{
+            this.close();
+            this.setTimestamp();
+            this.setReply();
+            this.setReplyParent();
+          });
+      },
+      emitting(){
+        this.$emit('reload')
       }
     },
 }

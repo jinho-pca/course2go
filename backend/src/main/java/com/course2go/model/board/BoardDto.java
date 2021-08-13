@@ -22,4 +22,7 @@ public class BoardDto {
     private Integer boardTid;
     private boolean	boardType;
     private LocalDateTime boardTime;
+    public BoardDto(Board board, String boardWriterNickname) {
+    	this(board.getBid(), board.getBoardWriterUid(), boardWriterNickname, board.getBoardTitle(), board.getBoardLike(), board.getBoardStar(), board.getBoardTid(), board.isBoardType(), board.getBoardTime());
+    }
 }
