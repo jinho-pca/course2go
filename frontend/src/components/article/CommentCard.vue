@@ -60,7 +60,7 @@ export default {
             type : Object
         },
         bid:{
-            type : Number
+            type : String
         }
     },
     mounted() {

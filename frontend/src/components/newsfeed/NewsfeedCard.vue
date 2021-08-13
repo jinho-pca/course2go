@@ -39,21 +39,22 @@
 
 <script>
 import '../css/newsfeed/newsfeed-card.css'
+import { useRouter } from 'vue-router'
+
 export default {
   name: 'newsfeedcard',
-  props: {
-    newsfeed: {
-      type: Object
-    }
-  },
-  methods:{
-    showArticle(){
-      if(this.newsfeed.board.boardType){
-        this.$router.push( {name: 'RouteArticle', params: { bid: this.newsfeed.board.bid }});
+  setup(props) {
+    const router = useRouter()
+
+    const showArticle = () => {
+      if(props.newsfeed.board.boardType){
+        router.push({name: 'RouteArticle', params: { bid: props.newsfeed.board.bid }});
       } else{
         // this.$router.push( {name: 'VisitArticle', params: { bid: this.newsfeed.board.bid }});
       }
     }
-  }
+    return { showArticle }
+  },
+  props: ['newsfeed']
 }
 </script>

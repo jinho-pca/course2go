@@ -8,9 +8,9 @@
         <span>동선 게시글</span>
       </span>
     </div>
-      <RouteContent :routeReadResponse="routeReadResponse"/>
-      <RouteDetailCard :routeReadResponse="routeReadResponse"/>
-      <Comment :bid="bid"/>
+    <RouteContent :articleRoute="articleRoute"/>
+    <RouteDetailCard :articleRoute="articleRoute"/>
+    <Comment :bid="bid"/>
   </div>
 </template>
 
@@ -19,30 +19,26 @@ import { readRoute } from '@/compositions/article/route/read.js';
 import RouteDetailCard from '@/components/article/RouteDetailCard.vue'
 import Comment from '@/components/article/Comment.vue'
 import RouteContent from '@/components/article/RouteContent.vue'
+import { useRoute } from 'vue-router'
+// import { ref } from 'vue'
 
 export default {
   name: 'RouteArticle',
-  created() {
-    readRoute(this.bid).then(res => {
-    this.routeReadResponse = res;
-    console.log(this.routeReadResponse);
-  });
-  },
   components: {
     RouteDetailCard,
     Comment,
     RouteContent,
   },
-  data() {
-    return {
-      bid: parseInt(this.$route.params.bid),
-      routeReadResponse: {},
-    }
-  },
-  methods: {
-    click() {
+  setup() {
+    const { articleRoute, read } = readRoute()
+    const click = () => {
       history.back()
     }
+    const route = useRoute()
+    const bid = route.params.bid
+    console.log(articleRoute)
+    read(bid)
+    return { click, articleRoute, read, bid }
   }
 }
 </script>

@@ -32,10 +32,10 @@ export default {
   },
   setup() {
     const { myProfile, who, profileData, routeList, routeListData, visitList, visitListData } = profile();
-      const route = useRoute();
-      myProfile(route.query.nickname);
-      routeList(route.query.nickname);
-      visitList(route.query.nickname);
+    const route = useRoute();
+    myProfile(route.query.nickname);
+    routeList(route.query.nickname);
+    visitList(route.query.nickname);
       
     return { myProfile, who, profileData, routeList, routeListData, visitList, visitListData }
   },
