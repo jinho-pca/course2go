@@ -9,9 +9,22 @@
         <div class="profile-namebox">
           <div class="profile-name">{{ profileData.userNickname }}</div>
           <!-- v-if(나){프로필 편집} v-elseif(팔로우){팔로우취소} v-else -->
-          <div class="profile-follow">
+          <div class="profile-follow" v-if="!nickname">
             <router-link :to="{ name: 'UpdateProfile', params: {profileData: profileData} }">프로필 편집</router-link>
           </div>
+
+          <div class="profile-follow" v-if="(nickname && profileData.followState == 0 && followState == -1) || followState == 0" @click="follow">
+            <div>팔로우</div>
+          </div>
+          
+          <div class="profile-follow" v-if="(nickname && profileData.followState == 1 && followState == -1) || followState == 1" @click="unfollow">
+            <div>언팔로우</div>
+          </div>
+
+          <div class="profile-follow" v-if="(nickname && profileData.followState == 2 && followState == -1) || followState == 2">
+            <div>신청중</div>
+          </div>
+
         </div>
         <div class="profile-introduction">
           <span>{{ profileData.userComment }}</span>
@@ -19,13 +32,14 @@
       </div>
     </div>
     <div class="profile-bottom">
-      <router-link :to="{ path: '/follow' }">
+      
+      <router-link :to="{ path: '/follow', query: {userNickname : profileData.userNickname}}">
         <div>
           <span class="tag">팔로잉</span>
           <span>{{ profileData.userFollowing }}</span>
         </div>
       </router-link>
-      <router-link to="/follow">
+      <router-link :to="{ path: '/follow', query: {userNickname : profileData.userNickname}}">
         <div>
           <span class="tag">팔로워</span>
           <span>{{ profileData.userFollower }}</span>
@@ -41,17 +55,32 @@
 
 <script>
 import "@/components/css/profile/profileCard.css"
+import {requestFollow, unfollow} from "@/compositions/follow/follow"
 export default {
   name: 'ProfileCard',
   props: {
     profileData: {
       type: Object,
+    },
+    nickname:{
+      type: String,
     }
   },
-  mounted: function() {
-    if (!this.profileData) {
-      this.$router.go()
+  methods:{
+    follow(){
+      this.followState = 2;
+      requestFollow(this.profileData.userNickname)
+    },
+    unfollow(){
+      this.followState = 0;
+      unfollow(this.profileData.userNickname)
+    }
+  },
+  data: function(){
+    return{
+      followState : -1
     }
   }
+  
 }
 </script>

@@ -1,5 +1,59 @@
-.comment-input-comment-content{
+body{
+    font-size: small;
+    /* margin: auto 0; */
+}
+.comment-input-main {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0 5px 0;
+}
+.comment-input-reply-main {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0 5px 0;
+}
+.comment-input-main .comment-input-writer-imagebox {
+    /* display: inline; */
+    overflow: hidden;
+    /* margin: 0 auto; */
+    width: 15%;
+}
+.comment-input-main .comment-input-contents{
+    /* display: inline; */
+    overflow: hidden;
+    margin: auto 0;
+    width: 85%;
+}
+.comment-input-reply-main .comment-input-writer-imagebox {
+    /* display: inline; */
+    overflow: hidden;
+    /* margin: 0 auto; */
+    margin-left: 15%;
+    width: 15%;
+}
+.comment-input-reply-main .comment-input-contents{
+    /* display: inline; */
+    overflow: hidden;
+    margin: auto 0;
+    width: 70%;
+}
+
+
+.comment-input-writer-imagebox .profile-image {
+    width: 100%;
+    height: flex;
+    object-fit: fill;
+    border-radius: 100%;
+}
+
+.comment-input-contents .comment-input-content{
     border: none;
     border-bottom: solid;
-    width: 80%;
+    width: 85%;
+}
+.comment-input-contents .comment-input-content-icons{
+    display: inline;
+    overflow: hidden;
+    /* margin: 0 auto; */
+    /* text-align: right; */
 }

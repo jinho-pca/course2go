@@ -10,13 +10,19 @@ const { URL, token } = BASE_URL();
 export const profile = () => {
   const who = ref('');
   const profileData = ref({});
+  const routeListData = ref([]);
+  const visitListData = ref([]);
 
-  const myProfile = () => {
-    const user = jwt.decode(token.substr(7))
+  const myProfile = (userNickname) => {
 
+    if(!userNickname){
+      const user = jwt.decode(token.substr(7))
+      userNickname = user.userNickname;
+    }
+    
     axios({
       method: 'get',
-      url: URL + 'user/profile/' + user.userNickname,
+      url: URL + 'user/profile/' + userNickname,
       headers: {
         Authorization: token,
       }
@@ -35,7 +41,56 @@ export const profile = () => {
       return err
     })
   }
-  return { who, profileData, myProfile }
+  const routeList = (userNickname) => {
+
+    if(!userNickname){
+      const user = jwt.decode(token.substr(7))
+      userNickname = user.userNickname;
+    }
+
+    axios({
+      method: 'get',
+      url: URL + 'route/list/' + userNickname,
+      headers: {
+        Authorization: token,
+      },
+    })
+    .then((res) => {
+      routeListData.value = res.data.object;
+      return res
+    })
+    .catch((err) => {
+      return err
+    })
+    
+  }
+
+  const visitList = (userNickname) => {
+
+    if(!userNickname){
+      const user = jwt.decode(token.substr(7))
+      userNickname = user.userNickname;
+    }
+
+    axios({
+      method: 'get',
+      url: URL + 'visit/list/' + userNickname,
+      headers: {
+        Authorization: token,
+      },
+    
+    })
+    .then((res) => {
+      visitListData.value = res.data.object;
+      return res
+    })
+    .catch((err) => {
+      return err
+    })
+    
+  }
+
+  return { who, profileData, routeListData, visitListData, myProfile, routeList, visitList }
 }
 
 export const updateProfile = () => {

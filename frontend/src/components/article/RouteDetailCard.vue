@@ -5,7 +5,7 @@
       <hr>
       <div class="content">
         <span id="date">기간</span> <br>
-        {{routeReadResponse.routeResponse.routeStartDate}}~{{routeReadResponse.routeResponse.routeEndDate}}<br><br>
+        {{routeReadResponse.routeResponse.routeStartDate}} ~ {{routeReadResponse.routeResponse.routeEndDate}}<br><br>
         <span>동선</span>
         <RouteMap :containSpots="routeReadResponse.containSpots"/>
         <div v-for="(spot, index) in routeReadResponse.containSpots" :key="index">

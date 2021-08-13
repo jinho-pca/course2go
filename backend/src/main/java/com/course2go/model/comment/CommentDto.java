@@ -18,8 +18,13 @@ public class CommentDto {
     private Integer commentLike;
     private String commentContent;
     private String commentWriterUid;
+    private boolean commentDeleted;
     private LocalDateTime commentTime;
     
     private Integer commentDepth;
     private UserDto commentWriterDto;
+    
+    public CommentDto(Comment comment, Integer commentDepth, UserDto commentWriterDto){
+    	this(comment.getCid(), comment.getCommentParent(), comment.getCommentBid(), comment.getCommentLike(), comment.getCommentContent(), comment.getCommentWriterUid(), comment.isCommentDeleted(), comment.getCommentTime(), commentDepth, commentWriterDto);
+    }
 }

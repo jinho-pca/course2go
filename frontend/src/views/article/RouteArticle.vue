@@ -8,7 +8,7 @@
         <span>동선 게시글</span>
       </span>
     </div>
-      <RouteContent />
+      <RouteContent :routeReadResponse="routeReadResponse"/>
       <RouteDetailCard :routeReadResponse="routeReadResponse"/>
       <Comment :bid="bid"/>
   </div>

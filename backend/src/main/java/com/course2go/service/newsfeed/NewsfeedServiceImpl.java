@@ -35,7 +35,8 @@ public class NewsfeedServiceImpl implements NewsfeedService{
 	@Override
 	public List<NewsfeedDto> getListNewsfeed(String uid) {
 		List<NewsfeedDto> list = new LinkedList<NewsfeedDto>();
-		Iterable<String> uids = followlistService.getFollowingListByUid(uid); // 실제로 닉네임이 박힌다.
+		List<String> uids = followlistService.getFollowingUidListByUid(uid); // 실제로 닉네임이 박힌다.
+		uids.add(uid);
 		List<BoardDto> boards = boardService.getListbyUids(uids);
 		for (BoardDto boardDto : boards) {
 			boardDto.setBoardWriterNickname(userService.getUserNicknameByUid(boardDto.getBoardWriterUid()));

@@ -37,9 +37,9 @@ export default {
 	emits: ["visitImage"],
 	methods: {
 		addImage(){
-			console.log(this.$refs.files);
-			var photoFile = document.getElementById("file");
-			console.log(photoFile);
+			// console.log(this.$refs.files);
+			// var photoFile = document.getElementById("file");
+			// console.log(photoFile);
 
 			let file = 
 			{

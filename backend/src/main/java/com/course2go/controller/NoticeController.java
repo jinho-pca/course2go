@@ -3,6 +3,8 @@ package com.course2go.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,9 +41,11 @@ public class NoticeController {
 	@Autowired
 	NoticeBoardService noticeBoardService;
 
+	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	@GetMapping("/follow/new")
     @ApiOperation(value = "새 팔로우 관련 알림")
 	public Object newFollow(@RequestHeader Map<String, Object> header) {
+		logger.info("새 팔로우알림목록 시작");
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		List<NoticeDto> noticeList = noticeFollowService.noticeNewFollow(uid);
 		System.out.println(noticeList);
@@ -55,6 +59,7 @@ public class NoticeController {
 	@GetMapping("/follow/old")
     @ApiOperation(value = "팔로우 관련 알림")
 	public Object oldFollow(@RequestHeader Map<String, Object> header) {
+		logger.info("팔로우알림목록 시작");
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		List<NoticeDto> noticeList = noticeFollowService.noticeOldFollow(uid);
 		System.out.println(noticeList);
@@ -68,6 +73,7 @@ public class NoticeController {
 	@GetMapping("/board/new")
     @ApiOperation(value = "새 보드 관련 알림")
 	public Object newBoard(@RequestHeader Map<String, Object> header) {
+		logger.info("새 보드알림목록 시작");
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		List<NoticeDto> noticeList = noticeBoardService.noticeNewBoard(uid);
 		System.out.println(noticeList);
@@ -81,6 +87,7 @@ public class NoticeController {
 	@GetMapping("/board/old")
     @ApiOperation(value = "보드 관련 알림")
 	public Object oldBoard(@RequestHeader Map<String, Object> header) {
+		logger.info("보드알림목록 시작");
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
 		List<NoticeDto> noticeList = noticeBoardService.noticeOldBoard(uid);
 		System.out.println(noticeList);

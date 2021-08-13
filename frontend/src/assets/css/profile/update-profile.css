@@ -58,7 +58,7 @@
   height: 100%;
 }
 
-.update-profile .update-image > div:last-child > span {
+.update-profile .update-image > div:last-child > label {
   font-size: 15px;
   font-weight: 500;
   padding: 3px 4px 3px 4px;
@@ -106,4 +106,29 @@
   padding: 13px 40px;
   border-radius: 30px;
   background: #3177f0;
+/* .update-profile .update-message input{
+  border: none;
+  width: 100%;
+}
+
+.update-profile .update-btn{
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.update-profile button {
+  
+  font-weight: 900;
+  font-size: 16px;
+  border-radius: 20px / 100%;
+  width: 60%;
+	height: 40px;
+  overflow: hidden;
+  border: 0;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 5px 0;
+	background-color: aqua; */
 }

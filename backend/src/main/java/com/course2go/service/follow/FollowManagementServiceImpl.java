@@ -37,7 +37,7 @@ public class FollowManagementServiceImpl implements FollowManagementService {
 		noticeService.deleteNotice(notice);
 		
 		// 완료 Notice 생성
-		noticeService.writeNotice(followToUid, 2, followFromUid, true);
+		noticeService.writeNotice(followFromUid, 2, followToUid, true);
 		
 		// Follow 추가
 		followDao.save(Follow.builder(followFromUid, followToUid).build());

@@ -1,13 +1,18 @@
 package com.course2go.service.comment;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.course2go.authentication.TokenUtils;
 import com.course2go.dao.CommentDao;
 import com.course2go.model.comment.Comment;
 import com.course2go.model.comment.CommentDto;
@@ -30,6 +35,7 @@ public class CommentServiceImpl implements CommentService {
 
 	private int comment = 4;
 	private boolean isnew = true;
+	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	
 	ModelMapper modelmapper;
 	public CommentServiceImpl() {
@@ -43,15 +49,26 @@ public class CommentServiceImpl implements CommentService {
 	
 	@Override
 	public void writeComment(Integer commentParent, Integer commentBid, Integer commentLike, String commentContent, String commentWriterUid) {
-		Comment c = commentDao.save(Comment.builder(commentParent, commentBid, commentLike, commentContent, commentWriterUid).build());
+		logger.info("댓글쓰기과정 - 서비스도착");
+		Comment cwrite = Comment.builder(commentParent, commentBid, commentLike, commentContent, commentWriterUid).build();
+		logger.info(""+cwrite);
+		logger.info(cwrite.toString());
+		Comment c = commentDao.save(cwrite);
+		logger.info("댓글쓰기과정 - 댓글작성완료");
 		/*댓글 알림 생성*/
+		logger.info("저장된 댓글 : " + c);
+		logger.info("" + commentBid);
+		logger.info("댓글을 단 보드 : " + boardService.readBoard(commentBid));
+		logger.info("댓글을 단 보드 : " + boardService.readBoard(commentBid).toString());
 		noticeService.writeNotice(boardService.readBoard(commentBid).getBoardWriterUid(), comment, commentWriterUid, c.getCid(), isnew);
+		logger.info("댓글쓰기과정 - 알림생성완료");
 	}
 	
 	@Override
 	public List<CommentDto> readSortedComment(Integer commentBid) {
 		List<CommentDto> commentList = new LinkedList<CommentDto>();
 		List<CommentDto> rawList = readComment(commentBid);
+		Set<Integer> parentSet = new HashSet<Integer>();
 		for (CommentDto commentDto : rawList) {
 			commentDto.setCommentWriterDto(userService.getUserDtoByUid(commentDto.getCommentWriterUid()));
 			int parent = commentDto.getCommentParent();
@@ -59,6 +76,9 @@ public class CommentServiceImpl implements CommentService {
 				commentDto.setCommentDepth(0);
 				commentList.add(commentDto);
 				continue;
+			}
+			if (!commentDto.isCommentDeleted()) {
+				parentSet.add(parent);
 			}
 			int index = 0;
 			boolean sawParent = false;
@@ -78,6 +98,12 @@ public class CommentServiceImpl implements CommentService {
 			}
 			commentList.add(index, commentDto);
 		}
+		commentList.removeIf(commentDto -> {
+			if (commentDto.isCommentDeleted()) {
+				if (parentSet.contains(commentDto.getCid())) return false;
+				return true;
+			}
+			return false;});
 		return commentList;
 	}
 
@@ -94,7 +120,12 @@ public class CommentServiceImpl implements CommentService {
 			return null;			
 		}
 		Comment comment = list.get(0);
-		return new CommentDto(comment.getCid(), comment.getCommentParent(), comment.getCommentBid(), comment.getCommentLike(), comment.getCommentContent(), comment.getCommentWriterUid(), comment.getCommentTime(), null, userService.getUserDtoByUid(comment.getCommentWriterUid()));
+		return new CommentDto(comment, null, userService.getUserDtoByUid(comment.getCommentWriterUid()));
+	}
+
+	@Override
+	public void deleteComment(Integer cid) {
+		commentDao.updateDeleted(cid);
 	}
 
 }

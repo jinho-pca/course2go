@@ -2,19 +2,29 @@ package com.course2go.model.user;
 
 public class UserProfileResponse {
 
-    String userName;
+    private String userName;
 
-    String userNickname;
+    private String userNickname;
 
-    String userImage;
+    private String userImage;
 
-    String userComment;
+    private String userComment;
 
-    int userFollowing;
+    private int userFollowing;
 
-    int userFollower;
+    private int userFollower;
+    
+    private int followState = 0;
 
-    public String getUserName() {
+	public int getFollowState() {
+		return followState;
+	}
+
+	public void setFollowState(int followState) {
+		this.followState = followState;
+	}
+
+	public String getUserName() {
         return userName;
     }
 

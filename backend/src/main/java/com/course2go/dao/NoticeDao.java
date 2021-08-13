@@ -18,6 +18,8 @@ public interface NoticeDao extends JpaRepository<Notice, Integer> {
 	
 	Notice findNoticeById(int id);
 	
+	boolean existsByNoticeTypeAndNoticeUidAndNoticeFromUid(Integer noticeType, String noticeUid, String noticeFromUid);
+	
 	@Transactional
 	@Modifying
 	@Query( value = "UPDATE Notice n" +

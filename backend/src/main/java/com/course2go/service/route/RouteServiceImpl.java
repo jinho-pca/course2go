@@ -103,7 +103,7 @@ public class RouteServiceImpl implements RouteService {
 			routeReadResponse.setUserDto(userService.getUserDtoByUid(routeReadResponse.getBoardResponse().getBoardWriterUid()));
 			routeList.add(routeReadResponse);
 		}
-		return null;
+		return routeList;
 	}
 
 }
