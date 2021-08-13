@@ -82,6 +82,16 @@ body {
   background: #3177f0;
 }
 
+.signup-form .group .delete-button {
+  color: #fff;
+  border: none;
+  float: right;
+  padding: 13px 40px;
+  border-radius: 30px;
+  background: red;
+  margin: 0 0 100px 0;
+}
+
 /* label css */
 .signup-form .group .label {
   width: 100%;

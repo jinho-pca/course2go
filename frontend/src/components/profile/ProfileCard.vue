@@ -2,14 +2,15 @@
   <div class="profile-card">
     <div class="profile-top">
       <div class="profile-imagebox">
-        <img :src="profileData.userImage" alt="profile image" class="profile-image">
+        <img :src="profileData.userImage" alt="profile image" class="profile-image" v-if="profileData.userImage">
+        <img src="@/assets/images/profile.png" alt="profile image" class="profile-image" v-else>
       </div>
       <div class="profile-content">
         <div class="profile-namebox">
           <div class="profile-name">{{ profileData.userNickname }}</div>
           <!-- v-if(나){프로필 편집} v-elseif(팔로우){팔로우취소} v-else -->
           <div class="profile-follow">
-            <router-link to="/profile/modify">프로필 편집</router-link>
+            <router-link :to="{ name: 'UpdateProfile', params: {profileData: profileData} }">프로필 편집</router-link>
           </div>
         </div>
         <div class="profile-introduction">
@@ -48,7 +49,9 @@ export default {
     }
   },
   mounted: function() {
-    console.log(this.profileData)
+    if (!this.profileData) {
+      this.$router.go()
+    }
   }
 }
 </script>

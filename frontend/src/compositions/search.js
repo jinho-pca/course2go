@@ -67,9 +67,52 @@ export const search = () => {
 		})
 	}
 
-	// const searchRoute = (word) => {
-	// 	continue
-	// }
+	const routes = ref([])
+	
+	const showModal = ref(false)
+	const placeList = ref([])
+	const placePidList = ref([])
+	const articles = ref([])
+	const filteredArticles = ref([])
 
-	return { onClickSelect, onClickOption, page, searchUser, users }
+	const searchRoute = (route) => {
+		
+		if (route.value.length < 1) {
+			articles.value = []
+			return
+		}
+		
+		const places = ref({
+			pid1: -1,
+			pid2: -1,
+			pid3: -1,
+			pid4: -1,
+			pid5: -1,
+			pid6: -1,
+			pid7: -1,
+			pid8: -1,
+			pid9: -1,
+		})
+		for (let i=0; i < route.value.length; i++) {
+			places.value[`pid${i+1}`] = parseInt(route.value[i])
+		}
+		axios({
+			method: 'get',
+			url: URL + 'search/route',
+			params: places.value
+		})
+		.then((res) => {
+			articles.value = res.data.object
+			filteredArticles.value = articles.value
+			return res
+		})
+		.catch((err) => {
+			console.log(err)
+			return err
+		})
+	}
+
+	return { onClickSelect, onClickOption, page,
+		searchUser, users,
+		searchRoute, routes, showModal, placeList, placePidList, articles, filteredArticles }
 }

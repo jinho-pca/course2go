@@ -25,6 +25,8 @@ import ProfileCard from '@/components/profile/ProfileCard.vue'
 import ProfileRoute from '@/components/profile/ProfileRoute.vue'
 import ProfilePlace from '@/components/profile/ProfilePlace.vue'
 import { profile } from '@/compositions/profile.js';
+// import { onMounted } from '@vue/runtime-core';
+// import { useRouter } from 'vue-router'
 
 export default {
   name: 'Profile',
@@ -34,8 +36,14 @@ export default {
     ProfilePlace,
   },
   setup() {
+    // const router = useRouter()
     const { myProfile, who, profileData } = profile();
-      myProfile();
+    myProfile();
+    // onMounted(() => {
+    //   if (!profileData.value) {
+    //     router.go()
+    //   }
+    // })
     return { myProfile, who, profileData }
   }
 

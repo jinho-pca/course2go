@@ -36,7 +36,7 @@ export default {
 			this.$emit('routePlace', place);
 			this.$emit('routePid', place.pid);
 		},
-	}	,
+	},
 	data: function(){
 		return{
 			showModal : false,

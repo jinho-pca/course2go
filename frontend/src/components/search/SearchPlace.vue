@@ -3,10 +3,9 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-
           <div class="modal-header">
             <slot name="header">
-							<input class="modal-default-input" v-model="searchKey" type="text">
+							<input class="modal-default-input" v-model="searchKey" type="text" @keyup.enter="search" id="search-input">
 							<button class="modal-default-button"  @click="search">검색</button>
             </slot>
           </div>

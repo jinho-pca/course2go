@@ -20,8 +20,7 @@
 				+
 			</label>
 			<input 
-				
-				type="file" 
+				type="file"
 				id="write-visit-image-btn" 
 				ref="files"
 				style="display:none"
