@@ -41,7 +41,11 @@ export default {
           routeStartDate: "2021-07-24",
           routeEndDate: "2021-07-24",
           routeContent: "우와여행너무재밌다",
-      },
+        },
+        userDto: {
+          userImage: '',
+          userNickname: '기훈',
+        },
       boardResponse: {
         boardTitle: "즐거운 제주도 여행",
         boardLike: 100,
