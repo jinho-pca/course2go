@@ -14,15 +14,15 @@
       </div>
     </router-link>
     <div class="card-right">
-      <div class="follow-button" v-if="(nickname && userInfo.followState == 0 && followState == -1) || followState == 0" @click="follow">
+      <div class="follow-button" v-if="(userInfo.followState == 0 && followState == -1) || followState == 0" @click="follow">
         <div>팔로우</div>
       </div>
       
-      <div class="follow-button" v-if="(nickname && userInfo.followState == 0 == 1 && followState == -1) || followState == 1" @click="unfollow">
+      <div class="follow-button" v-if="(userInfo.followState == 1 && followState == -1) || followState == 1" @click="unfollow">
         <div>언팔로우</div>
       </div>
 
-      <div class="follow-button" v-if="(nickname && userInfo.followState == 0 && followState == -1) || followState == 2">
+      <div class="follow-button" v-if="(userInfo.followState == 2 && followState == -1) || followState == 2">
         <div>신청중</div>
       </div>
     </div>
@@ -42,11 +42,11 @@ export default {
   methods:{
     follow(){
       this.followState = 2;
-      requestFollow(this.profileData.userNickname)
+      requestFollow(this.userInfo.userNickname)
     },
     unfollow(){
       this.followState = 0;
-      unfollow(this.profileData.userNickname)
+      unfollow(this.userInfo.userNickname)
     }
   },
   data: function(){
