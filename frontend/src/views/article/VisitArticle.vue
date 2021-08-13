@@ -5,38 +5,38 @@
         <i class="fas fa-chevron-left"></i>
       </span>
       <span>
-        <span>동선 게시글</span>
+        <span>장소 게시글</span>
       </span>
     </div>
-      <RouteContent :routeReadResponse="routeReadResponse"/>
+      <!-- <RouteContent :routeReadResponse="routeReadResponse"/>
       <RouteDetailCard :routeReadResponse="routeReadResponse"/>
-      <Comment :bid="bid"/>
+      <Comment :bid="bid"/> -->
   </div>
 </template>
 
 <script>
-import { readRoute } from '@/compositions/article/route/read.js';
-import RouteDetailCard from '@/components/article/RouteDetailCard.vue'
-import Comment from '@/components/article/Comment.vue'
-import RouteContent from '@/components/article/RouteContent.vue'
+import { readVisit } from '@/compositions/article/route/read.js';
+// import RouteDetailCard from '@/components/article/RouteDetailCard.vue'
+// import Comment from '@/components/article/Comment.vue'
+// import RouteContent from '@/components/article/RouteContent.vue'
 
 export default {
   name: 'RouteArticle',
   created() {
-    readRoute(this.bid).then(res => {
+    readVisit(this.bid).then(res => {
     this.routeReadResponse = res;
     console.log(this.routeReadResponse);
   });
   },
   components: {
-    RouteDetailCard,
-    Comment,
-    RouteContent,
+    // RouteDetailCard,
+    // Comment,
+    // RouteContent,
   },
   data() {
     return {
       bid: parseInt(this.$route.params.bid),
-      routeReadResponse: {},
+      visitReadResponse: {},
     }
   },
   methods: {

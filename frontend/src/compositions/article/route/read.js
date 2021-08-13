@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BASE_URL } from '@/compositions/global.js'
 
-export const read = async (bid) => {
+export const readRoute = async (bid) => {
     var route = [];
     const { URL } = BASE_URL()
     // console.log("read 함수 작동")
@@ -22,4 +22,26 @@ export const read = async (bid) => {
     // console.log(route);
     // console.log("read 종료");
     return route
+}
+
+export const readVisit = async (bid) => {
+    var visit = [];
+    const { URL } = BASE_URL()
+    // console.log("read 함수 작동")
+    await axios({
+        method: 'get',
+        url: URL + `visit/read/${bid}`,
+    })
+    .then((res) => {
+        console.log(res.data.object)
+        visit = res.data.object;
+        return res.data
+    })
+    .catch((err) => {
+        console.log(err)
+        alert('동선을 불러오는데 실패했습니다.')
+        return err
+    })
+    
+    return visit
 }
