@@ -1,6 +1,6 @@
 <template>
   <div class="newsfeed-card">
-    <router-link :to="{ path: '/routeArticle', data: { bid: 36 } }">
+    <router-link :to="{ path: '/routeArticle', data: { bid: newsfeed.board.bid } }">
     <div class="newsfeed-card-top">
       <div class="newsfeed-title">
         <router-link to="/profile">
