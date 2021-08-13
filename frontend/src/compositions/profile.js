@@ -57,7 +57,6 @@ export const profile = () => {
     })
     .then((res) => {
       routeListData.value = res.data.object;
-      console.log(res.data.object);
       return res
     })
     .catch((err) => {
@@ -83,7 +82,6 @@ export const profile = () => {
     })
     .then((res) => {
       visitListData.value = res.data.object;
-      console.log(res.data.object);
       return res
     })
     .catch((err) => {
