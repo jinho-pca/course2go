@@ -12,7 +12,8 @@
         <div class="comment-footer">
           <span>{{timestamp}}</span>&nbsp;&nbsp;
           <span>좋아요 {{comment.commentLike}}</span>&nbsp;&nbsp;
-          <span v-if="!writingreply" v-on:click="writingreply=true">답글</span>
+          <span v-if="!writingreply" v-on:click="writingreply=true">답글</span>&nbsp;&nbsp;
+          <span v-if="isMyComment" v-on:click="deleteComment">삭제</span>
         </div>
       </div>
     </div>
@@ -30,7 +31,7 @@
           <span>{{timestamp}}</span>&nbsp;&nbsp;
           <span>좋아요 {{comment.commentLike}}</span>&nbsp;&nbsp;
           <span v-if="!writingreply" v-on:click="writingreply=true">답글</span>&nbsp;&nbsp;
-          <span v-if="isMyComment" v-on:click="writingreply=true">삭제</span>
+          <span v-if="isMyComment" v-on:click="deleteComment">삭제</span>
         </div>
       </div>
     </div>
@@ -45,6 +46,7 @@
 import "@/components/css/article/comment/commentCard.css"
 import CommentInput from '@/components/article/CommentInput.vue'
 import { jwtdecoder } from '@/compositions/utils/jwtdecoder.js'
+import { deleteComment } from '@/compositions/article/comment/delete.js';
 export default {
     name : "CommentCard",
     props: {
@@ -119,6 +121,9 @@ export default {
           return true;
         }
         return false;
+      },
+      deleteComment(){
+        deleteComment(this.comment.cid)
       }
     },
 }
