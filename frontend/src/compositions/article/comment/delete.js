@@ -2,11 +2,15 @@ import axios from 'axios';
 import { BASE_URL } from '@/compositions/global.js'
 
 export const deleteComment = async (cid) => {
-    const { URL } = BASE_URL()
+    const { URL, token } = BASE_URL()
+	const headers = {
+		'Authorization' : token
+	}
     await axios({
         method: 'post',
         url: URL + `comment/delete`,
-        data: {
+        headers: headers,
+        params: {
             cid: cid
         }
     })

@@ -1,6 +1,6 @@
 <template>
   <div class="comment-card">
-    <div class="comment-main" v-if="!isreply">
+    <div class="comment-main" v-if="!isreply && !comment.commentDeleted">
       <div class="comment-writer-imagebox">
         <img :src="comment.commentWriterDto.userImage" alt="profile image" class="profile-image">
       </div>
@@ -13,8 +13,14 @@
           <span>{{timestamp}}</span>&nbsp;&nbsp;
           <span>좋아요 {{comment.commentLike}}</span>&nbsp;&nbsp;
           <span v-if="!writingreply" v-on:click="writingreply=true">답글</span>&nbsp;&nbsp;
-          <span v-if="isMyComment" v-on:click="deleteComment">삭제</span>
+          <span v-if="isMyComment()" v-on:click="deleteComment">삭제</span>
         </div>
+      </div>
+    </div>
+    <div class="comment-deleted" v-if="comment.commentDeleted">
+      <div class="comment-writer-imagebox" />
+      <div class="comment-content">
+      삭제된 메시지입니다.
       </div>
     </div>
 
@@ -31,7 +37,7 @@
           <span>{{timestamp}}</span>&nbsp;&nbsp;
           <span>좋아요 {{comment.commentLike}}</span>&nbsp;&nbsp;
           <span v-if="!writingreply" v-on:click="writingreply=true">답글</span>&nbsp;&nbsp;
-          <span v-if="isMyComment" v-on:click="deleteComment">삭제</span>
+          <span v-if="isMyComment()" v-on:click="deleteComment">삭제</span>
         </div>
       </div>
     </div>
@@ -124,6 +130,7 @@ export default {
       },
       deleteComment(){
         deleteComment(this.comment.cid)
+        this.reload()
       }
     },
 }
