@@ -29,7 +29,8 @@
         <div class="comment-footer">
           <span>{{timestamp}}</span>&nbsp;&nbsp;
           <span>좋아요 {{comment.commentLike}}</span>&nbsp;&nbsp;
-          <span v-if="!writingreply" v-on:click="writingreply=true">답글</span>
+          <span v-if="!writingreply" v-on:click="writingreply=true">답글</span>&nbsp;&nbsp;
+          <span v-if="isMyComment" v-on:click="writingreply=true">삭제</span>
         </div>
       </div>
     </div>
@@ -43,6 +44,7 @@
 <script>
 import "@/components/css/article/comment/commentCard.css"
 import CommentInput from '@/components/article/CommentInput.vue'
+import { jwtdecoder } from '@/compositions/utils/jwtdecoder.js'
 export default {
     name : "CommentCard",
     props: {
@@ -105,15 +107,18 @@ export default {
         this.writingreply=false;
       },
       reload(){
-        this.emitting().then(()=>{
-            this.close();
-            this.setTimestamp();
-            this.setReply();
-            this.setReplyParent();
-          });
+          this.$emit('reload');
+          this.close();
+          this.setTimestamp();
+          this.setReply();
+          this.setReplyParent();
       },
-      emitting(){
-        this.$emit('reload')
+      isMyComment(){
+        const { mynickname } = jwtdecoder();
+        if (mynickname == this.comment.commentWriterDto.userNickname) {
+          return true;
+        }
+        return false;
       }
     },
 }
