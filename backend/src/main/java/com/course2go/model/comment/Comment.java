@@ -32,6 +32,7 @@ public class Comment {
     private Integer commentLike;
     private String commentContent;
     private String commentWriterUid;
+    private boolean commentDeleted;
 
     @Column(insertable = false, updatable = false)
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
@@ -44,6 +45,7 @@ public class Comment {
 				.commentBid(commentBid)
 				.commentLike(commentLike)
 				.commentContent(commentContent)
-				.commentWriterUid(commentWriterUid);
+				.commentWriterUid(commentWriterUid)
+				.commentDeleted(false);
 	}
 }

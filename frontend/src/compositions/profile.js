@@ -57,7 +57,6 @@ export const profile = () => {
     })
     .then((res) => {
       routeListData.value = res.data.object;
-      console.log(res.data.object);
       return res
     })
     .catch((err) => {
@@ -83,7 +82,6 @@ export const profile = () => {
     })
     .then((res) => {
       visitListData.value = res.data.object;
-      console.log(res.data.object);
       return res
     })
     .catch((err) => {
@@ -95,3 +93,27 @@ export const profile = () => {
   return { who, profileData, routeListData, visitListData, myProfile, routeList, visitList }
 }
 
+export const updateProfile = (userComment, userImage) => {
+	
+	const headers = {
+		'Authorization' : localStorage.getItem('Authorization')
+	}
+	let frm = new FormData();
+	frm.append("image", userImage);
+  frm.append("comment", userComment);
+	console.log(userImage);
+	axios({
+		method: 'put',
+		headers: headers,
+		url: URL + 'user/edit',
+		data : frm,
+	})
+	.then((res) => {
+		console.log(res.data);
+		return res
+	})
+	.catch((err) => {
+		alert(err)
+		return err
+	})
+}
