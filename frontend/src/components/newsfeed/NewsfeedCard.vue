@@ -1,9 +1,9 @@
 <template>
   <div class="newsfeed-card">
-    <router-link :to="{ path: '/routeArticle', data: { bid: newsfeed.board.bid } }">
+    <router-link :to="{ name: 'RouteArticle', params: { bid: newsfeed.board.bid } }">
     <div class="newsfeed-card-top">
       <div class="newsfeed-title">
-        <router-link to="/profile">
+        <router-link :to="{path : '/profile', query:{nickname : newsfeed.board.boardWriterNickname} }">
           <span>{{ newsfeed.board.boardWriterNickname }}</span>
         </router-link>
         <span>{{ newsfeed.board.boardTitle }}</span>

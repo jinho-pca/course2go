@@ -9,7 +9,15 @@
           <div class="profile-name">{{ profileData.userNickname }}</div>
           <!-- v-if(나){프로필 편집} v-elseif(팔로우){팔로우취소} v-else -->
           <div class="profile-follow" v-if="!nickname">
-            <router-link to="/profile/modify">프로필 편집</router-link>
+            <router-link 
+            :to="{name :'UpdateProfile', params:{
+              userImage:profileData.userImage,
+              userNickname:profileData.userNickname,
+              userComment:profileData.userComment
+            } }" >
+              프로필 편집
+            </router-link>
+            
           </div>
 
           <div class="profile-follow" v-if="(nickname && profileData.followState == 0 && followState == -1) || followState == 0" @click="follow">
