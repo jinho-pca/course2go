@@ -36,7 +36,7 @@ export default {
     myProfile(route.query.nickname);
     routeList(route.query.nickname);
     visitList(route.query.nickname);
-      
+    console.log(routeListData)
     return { myProfile, who, profileData, routeList, routeListData, visitList, visitListData }
   },
   mounted(){

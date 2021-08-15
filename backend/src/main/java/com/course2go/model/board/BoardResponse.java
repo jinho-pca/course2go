@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardResponse {
+	private Integer bid;
     private String boardWriterUid;
     private String boardTitle;
     private Integer boardLike;

@@ -90,7 +90,7 @@ public class BoardServiceImpl implements BoardService {
 			return null;
 		}
 		Board board = list.get(0);
-		return new BoardResponse(board.getBoardWriterUid(), board.getBoardTitle(), board.getBoardLike(), board.getBoardStar(), board.getBoardTid(), board.isBoardType(), board.getBoardTime());
+		return new BoardResponse(board.getBid(),board.getBoardWriterUid(), board.getBoardTitle(), board.getBoardLike(), board.getBoardStar(), board.getBoardTid(), board.isBoardType(), board.getBoardTime());
 	}
 
 	@Override
@@ -100,6 +100,6 @@ public class BoardServiceImpl implements BoardService {
 			return null;
 		}
 		Board board = list.get(0);
-		return new BoardResponse(board.getBoardWriterUid(), board.getBoardTitle(), board.getBoardLike(), board.getBoardStar(), board.getBoardTid(), board.isBoardType(), board.getBoardTime());
+		return new BoardResponse(board.getBid(), board.getBoardWriterUid(), board.getBoardTitle(), board.getBoardLike(), board.getBoardStar(), board.getBoardTid(), board.isBoardType(), board.getBoardTime());
 	}
 }

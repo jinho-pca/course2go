@@ -86,7 +86,7 @@ public class VisitServiceImpl implements VisitService {
 				continue;
 			}
 			VisitReadResponse visitReadResponse = new VisitReadResponse();
-			visitReadResponse.setBoardResponse(new BoardResponse(boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime()));
+			visitReadResponse.setBoardResponse(new BoardResponse(boardDto.getBid(), boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime()));
 			visitReadResponse.setVisitResponse(readVisit(boardDto.getBoardTid()));
 			visitReadResponse.setPlace(placeService.getPlace(visitReadResponse.getVisitResponse().getVisitPid()));
 			visitReadResponse.setUserDto(userService.getUserDtoByUid(visitReadResponse.getBoardResponse().getBoardWriterUid()));
