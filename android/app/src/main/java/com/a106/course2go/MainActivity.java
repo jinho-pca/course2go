@@ -21,6 +21,6 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
 
-        webView.loadUrl("https://i5a106.p.ssafy.io");
+        webView.loadUrl("http://www.course2go.site/");
     }
 }
