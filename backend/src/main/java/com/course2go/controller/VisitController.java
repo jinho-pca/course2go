@@ -99,9 +99,10 @@ public class VisitController {
     
     @GetMapping("/read/{bid}")
     @ApiOperation(value = "게시글읽기")
-    public Object readVisit(@PathVariable Integer bid) {
+    public Object readVisit(@PathVariable Integer bid, @RequestHeader Map<String, Object> header) {
     	logger.info("게시글읽기 시작");
-    	VisitReadResponse response = visitService.readVisitBoard(bid);
+    	String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
+    	VisitReadResponse response = visitService.readVisitBoard(bid, uid);
 		final BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "success";
@@ -114,7 +115,7 @@ public class VisitController {
     public Object getMyListRoute(@RequestHeader Map<String, Object> header) {
     	logger.info("내가 쓴 장소글 목록 시작");
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
-		List<VisitReadResponse> response = visitService.getMyVisitList(uid);
+		List<VisitReadResponse> response = visitService.getMyVisitList(uid, uid);
     	final BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "success";
@@ -124,9 +125,10 @@ public class VisitController {
     
     @GetMapping("/list/{userNickname}")
     @ApiOperation("장소글 목록")
-    public Object getListRoute(@PathVariable String userNickname) {
+    public Object getListRoute(@PathVariable String userNickname, @RequestHeader Map<String, Object> header) {
     	logger.info("장소글 목록 시작");
-		List<VisitReadResponse> response = visitService.getVisitList(userNickname);
+    	String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
+		List<VisitReadResponse> response = visitService.getVisitList(userNickname, uid);
     	final BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "success";

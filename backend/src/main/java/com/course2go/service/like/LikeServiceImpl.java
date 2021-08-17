@@ -33,4 +33,9 @@ public class LikeServiceImpl implements LikeService {
 		return exist;
 	}
 
+	@Override
+	public boolean iLike(String uid, Integer bid) {
+		Optional<Like> likeOpt = likeDao.findLikeByLikeUidAndLikeBid(uid, bid);
+		return likeOpt.isPresent();
+	}
 }
