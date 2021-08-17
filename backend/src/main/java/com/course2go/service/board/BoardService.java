@@ -14,4 +14,5 @@ public interface BoardService {
 	public BoardMyList getMyList(String uid);
 	public BoardResponse getBoardVisit(Integer vid, String uid);
 	public BoardResponse getBoardRoute(Integer rid, String uid);
+	public Integer getBidByTid(Integer tid);
 }

@@ -56,7 +56,10 @@ public class VisitServiceImpl implements VisitService {
 	}
 
 	@Override
-	public VisitReadResponse readVisitBoard(Integer bid, String uid) {
+	public VisitReadResponse readVisitBoard(Integer vid, String uid) {
+		
+		int bid = boardService.getBidByTid(vid);
+		
 		VisitReadResponse visitReadResponse = new VisitReadResponse();
 		visitReadResponse.setBoardResponse(boardService.readBoard(bid, uid));
 		visitReadResponse.setVisitResponse(readVisit(visitReadResponse.getBoardResponse().getBoardTid()));

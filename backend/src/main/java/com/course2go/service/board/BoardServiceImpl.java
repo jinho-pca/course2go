@@ -101,4 +101,9 @@ public class BoardServiceImpl implements BoardService {
 	private BoardResponse getBoard(Board board, String uid) {
 		return new BoardResponse(board,likeService.iLike(uid, board.getBid()));
 	}
+
+	@Override
+	public Integer getBidByTid(Integer tid) {
+		return boardDao.findBidByBoardTid(tid);
+	}
 }

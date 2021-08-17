@@ -97,12 +97,12 @@ public class VisitController {
 		return result;
     }
     
-    @GetMapping("/read/{bid}")
+    @GetMapping("/read/{vid}")
     @ApiOperation(value = "게시글읽기")
-    public Object readVisit(@PathVariable Integer bid, @RequestHeader Map<String, Object> header) {
+    public Object readVisit(@PathVariable Integer vid, @RequestHeader Map<String, Object> header) {
     	logger.info("게시글읽기 시작");
     	String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
-    	VisitReadResponse response = visitService.readVisitBoard(bid, uid);
+    	VisitReadResponse response = visitService.readVisitBoard(vid, uid);
 		final BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "success";
