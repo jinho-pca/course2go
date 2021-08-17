@@ -10,6 +10,11 @@ details summary{
   text-align: end;
 }
 
+/* details summary router-link{
+  text-align: left;
+} */
+
+
 .centersummary{
   position: absolute;
   left: 50%;

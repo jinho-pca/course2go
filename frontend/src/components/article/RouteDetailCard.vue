@@ -10,14 +10,21 @@
         <RouteMap :containSpots="articleRoute.containSpots"/>
         <div v-for="(spot, index) in articleRoute.containSpots" :key="index">
           <details v-if="spot.visit==null">
-            <summary class="novisitsummery"><span>{{spot.place.placeName}}</span></summary>
+            <summary class="novisitsummery">
+              <span>
+                {{spot.place.placeName}}
+              </span>
+              <router-link v-if="articleRoute.userDto.userNickname == token " :to="{path:'/write/visit/', query:{pid: spot.place.pid, placeName: spot.place.placeName, rid:articleRoute.boardResponse.boardTid}}">
+                <i class="fas fa-pen"></i>
+              </router-link>
+            </summary>
           </details>
           <details v-else>
             <summary><span class="centersummary">{{spot.place.placeName}}</span></summary>
             <hr>
             {{spot.visit.visitCost}}<br>
             {{spot.visit.visitTime}}<br>
-            <span v-on:click="goVisit(index)">글 보러가기</span>
+            <span v-on:click="goVisit(spot.visit.vid)">글 보러가기</span>
           </details>
         </div>
       </div>
@@ -27,7 +34,10 @@
 
 <script>
 import '../css/article/route-detail.css'
+import jwt from 'jsonwebtoken'
 import RouteMap from '@/components/maps/routemap/RouteMap.vue'
+import {BASE_URL} from '@/compositions/global.js'
+
 export default {
     name: 'routedetail',
     props:{
@@ -45,6 +55,7 @@ export default {
     },
     data() {
       return {
+        token : jwt.decode(BASE_URL().token.substr(7)).userNickname,
         // routeReadResponse: {
         //   routeResponse: {
         //     routeStartDate: "2021-07-24",
@@ -119,8 +130,10 @@ export default {
       }
     },
     methods: {
-      goVisit(index) {
-        console.log(index);
+      goVisit(bid) {
+        console.log(this.articleRoute);
+        console.log(bid);
+        // this.$router.push({name: 'VisitArticle', query:{bid : bid}});
       },
     },
 }

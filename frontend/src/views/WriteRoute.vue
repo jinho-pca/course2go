@@ -62,6 +62,7 @@ export default {
         return;
       } else{
         writeRoute(this.title, this.routeStartDate, this.routeEndDate, this.routeContent, this.routePid);
+        this.$router.push({name: 'Newsfeed'});
       }
 
 

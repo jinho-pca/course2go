@@ -62,6 +62,7 @@ export default {
         return;
       } else{
         writeVisit(this.rid,this.title, this.visitPid, this.visitCost, this.visitTime, this.visitContent, this.visitImage1, this.visitImage2, this.visitImage3);
+				this.$router.push({name: 'Newsfeed'});
       }
 
 

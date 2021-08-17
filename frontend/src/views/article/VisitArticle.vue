@@ -8,42 +8,34 @@
         <span>장소 게시글</span>
       </span>
     </div>
-      <!-- <RouteContent :routeReadResponse="routeReadResponse"/>
-      <RouteDetailCard :routeReadResponse="routeReadResponse"/>
-      <Comment :bid="bid"/> -->
+      
+      <Comment :bid="bid"/>
   </div>
 </template>
 
 <script>
-import { readVisit } from '@/compositions/article/route/read.js';
-// import RouteDetailCard from '@/components/article/RouteDetailCard.vue'
-// import Comment from '@/components/article/Comment.vue'
-// import RouteContent from '@/components/article/RouteContent.vue'
+import { readVisit } from '@/compositions/article/visit/read.js';
+import { useRoute } from 'vue-router'
+import Comment from '@/components/article/Comment.vue'
 
 export default {
   name: 'RouteArticle',
-  created() {
-    readVisit(this.bid).then(res => {
-    this.routeReadResponse = res;
-    console.log(this.routeReadResponse);
-  });
+  setup() {
+    const { articleVisit, read } = readVisit()
+    const click = () => {
+      history.back()
+    }
+    const route = useRoute()
+    const bid = route.query.bid
+    console.log(articleVisit)
+    read(bid)
+    return { click, articleVisit, read, bid }
   },
   components: {
     // RouteDetailCard,
-    // Comment,
+    Comment,
     // RouteContent,
   },
-  data() {
-    return {
-      bid: parseInt(this.$route.params.bid),
-      visitReadResponse: {},
-    }
-  },
-  methods: {
-    click() {
-      history.back()
-    }
-  }
 }
 </script>
 

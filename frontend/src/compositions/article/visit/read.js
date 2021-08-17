@@ -1,24 +1,49 @@
 import axios from 'axios';
 import { BASE_URL } from '@/compositions/global.js'
+import { ref } from 'vue'
 
-export const read = async (bid) => {
-    var route = [];
+export const readVisit = () => {
     const { URL } = BASE_URL()
-    // console.log("read 함수 작동")
-    await axios({
+    const articleVisit = ref(
+      {
+        visitResponse: {
+          visitStartDate: "",
+          visitEndDate: "",
+          visitContent: ""
+        },
+        boardResponse: {
+          boardTitle: "",
+          boardLike: '',
+          boardStar: '',
+          boardTid: '',
+          boardType: false,
+          boardTime: ""
+        },
+        userDto: {
+          // userImage: '',
+          userNickname: ''
+        },
+      }
+    )
+    const read = (bid) => {
+      axios({
         method: 'get',
         url: URL + `visit/read/${bid}`,
-    })
-    .then((res) => {
-        route = res.data.object;
+      })
+      .then((res) => {
+        articleVisit.value = res.data.object;
+        console.log(res.data.object)
         return res.data
-    })
-    .catch((err) => {
+      })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
         console.log(err)
-        alert('동선을 불러오는데 실패했습니다.')
+        alert('글을 불러오는데 실패했습니다.')
         return err
-    })
-    // console.log(route);
-    // console.log("read 종료");
-    return route
-}
+      })
+    }
+      return { articleVisit, read }
+  }
+  
