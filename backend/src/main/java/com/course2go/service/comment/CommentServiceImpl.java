@@ -58,9 +58,8 @@ public class CommentServiceImpl implements CommentService {
 		/*댓글 알림 생성*/
 		logger.info("저장된 댓글 : " + c);
 		logger.info("" + commentBid);
-		logger.info("댓글을 단 보드 : " + boardService.readBoard(commentBid));
-		logger.info("댓글을 단 보드 : " + boardService.readBoard(commentBid).toString());
-		noticeService.writeNotice(boardService.readBoard(commentBid).getBoardWriterUid(), comment, commentWriterUid, c.getCid(), isnew);
+		logger.info("댓글을 단 보드 : " + boardService.readBoard(commentBid,commentWriterUid));
+		noticeService.writeNotice(boardService.readBoard(commentBid,"").getBoardWriterUid(), comment, commentWriterUid, c.getCid(), isnew);
 		logger.info("댓글쓰기과정 - 알림생성완료");
 	}
 	

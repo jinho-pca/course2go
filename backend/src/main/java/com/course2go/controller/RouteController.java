@@ -17,14 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.course2go.authentication.TokenUtils;
 import com.course2go.model.BasicResponse;
 import com.course2go.model.route.RouteReadResponse;
 import com.course2go.model.route.RouteWriteRequest;
-import com.course2go.model.visit.VisitReadResponse;
 import com.course2go.service.route.RouteService;
 
 import io.swagger.annotations.Api;
@@ -59,9 +57,10 @@ public class RouteController {
     
     @GetMapping("/read/{bid}")
     @ApiOperation(value = "동선읽기")
-    public Object readRoute(@PathVariable Integer bid) {
+    public Object readRoute(@PathVariable Integer bid, @RequestHeader Map<String, Object> header) {
     	logger.info("동선읽기 시작");
-    	RouteReadResponse response = routeService.readRouteBoard(bid);
+    	String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
+    	RouteReadResponse response = routeService.readRouteBoard(bid, uid);
 		final BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "success";
@@ -74,7 +73,7 @@ public class RouteController {
     public Object getMyListRoute(@RequestHeader Map<String, Object> header) {
     	logger.info("내가 쓴 동선글 목록 시작");
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
-		List<RouteReadResponse> response = routeService.getMyRouteList(uid);
+		List<RouteReadResponse> response = routeService.getMyRouteList(uid, uid);
     	final BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "success";
@@ -84,9 +83,10 @@ public class RouteController {
     
     @GetMapping("/list/{userNickname}")
     @ApiOperation("동선글 목록")
-    public Object getListRoute(@PathVariable String userNickname) {
+    public Object getListRoute(@PathVariable String userNickname, @RequestHeader Map<String, Object> header) {
     	logger.info("동선글 목록 시작");
-		List<RouteReadResponse> response = routeService.getRouteList(userNickname);
+    	String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
+		List<RouteReadResponse> response = routeService.getRouteList(userNickname, uid);
     	final BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "success";

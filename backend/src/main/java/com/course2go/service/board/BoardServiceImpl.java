@@ -15,6 +15,7 @@ import com.course2go.model.board.Board;
 import com.course2go.model.board.BoardDto;
 import com.course2go.model.board.BoardMyList;
 import com.course2go.model.board.BoardResponse;
+import com.course2go.service.like.LikeService;
 import com.course2go.service.route.RouteService;
 import com.course2go.service.visit.VisitService;
 
@@ -27,6 +28,8 @@ public class BoardServiceImpl implements BoardService {
 	RouteService routeService;
 	@Autowired
 	VisitService visitService;
+	@Autowired
+	LikeService likeService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	
@@ -41,19 +44,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardResponse readBoard(int bid) {
+	public BoardResponse readBoard(int bid, String uid) {
 		logger.info(""+bid);
 		logger.info(""+boardDao.findAllByBid(bid));
 		Board board = boardDao.findById(bid).get();
-		BoardResponse boardResponse = new BoardResponse();
-		boardResponse.setBoardLike(board.getBoardLike());
-		boardResponse.setBoardStar(board.getBoardStar());
-		boardResponse.setBoardTid(board.getBoardTid());
-		boardResponse.setBoardType(board.isBoardType());
-		boardResponse.setBoardTitle(board.getBoardTitle());
-		boardResponse.setBoardWriterUid(board.getBoardWriterUid());
-		boardResponse.setBoardTime(board.getBoardTime());
-		return boardResponse;
+		return getBoard(board, uid);
 	}
 
 	@Override
@@ -75,31 +70,35 @@ public class BoardServiceImpl implements BoardService {
 		BoardMyList mylist = new BoardMyList();
 		for (Board board : list) {
 			if (board.isBoardType()) {
-				mylist.addroute(routeService.readRouteBoard(board.getBid()));
+				mylist.addroute(routeService.readRouteBoard(board.getBid(), uid));
 			} else {
-				mylist.addvisit(visitService.readVisitBoard(board.getBid()));
+				mylist.addvisit(visitService.readVisitBoard(board.getBid(), uid));
 			}
 		}
 		return mylist;
 	}
 
 	@Override
-	public BoardResponse getBoardVisit(Integer vid) {
+	public BoardResponse getBoardVisit(Integer vid, String uid) {
 		List<Board> list = boardDao.findAllByBoardTypeAndBoardTid(false, vid);
 		if (list.size()==0) {
 			return null;
 		}
 		Board board = list.get(0);
-		return new BoardResponse(board.getBoardWriterUid(), board.getBoardTitle(), board.getBoardLike(), board.getBoardStar(), board.getBoardTid(), board.isBoardType(), board.getBoardTime());
+		return getBoard(board, uid);
 	}
 
 	@Override
-	public BoardResponse getBoardRoute(Integer rid) {
+	public BoardResponse getBoardRoute(Integer rid, String uid) {
 		List<Board> list = boardDao.findAllByBoardTypeAndBoardTid(true, rid);
 		if (list.size()==0) {
 			return null;
 		}
 		Board board = list.get(0);
-		return new BoardResponse(board.getBoardWriterUid(), board.getBoardTitle(), board.getBoardLike(), board.getBoardStar(), board.getBoardTid(), board.isBoardType(), board.getBoardTime());
+		return getBoard(board, uid);
+	}
+
+	private BoardResponse getBoard(Board board, String uid) {
+		return new BoardResponse(board,likeService.iLike(uid, board.getBid()));
 	}
 }

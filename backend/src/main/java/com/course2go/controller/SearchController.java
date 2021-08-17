@@ -11,7 +11,6 @@ import com.course2go.service.user.UserService;
 import com.course2go.service.visit.VisitService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.jsonwebtoken.Claims;
 
@@ -23,7 +22,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.course2go.model.BasicResponse;
-import com.course2go.model.place.PidList;
 import com.course2go.model.place.PlaceDto;
 import com.course2go.model.route.RouteReadResponse;
 import com.course2go.service.place.PlaceService;
@@ -67,10 +65,11 @@ public class SearchController {
 	
 	@GetMapping("/visit/{pid}")
 	@ApiOperation(value = "장소로 방문게시글 검색")
-	public Object searchVisit(@PathVariable Integer pid){
+	public Object searchVisit(@PathVariable Integer pid, @RequestHeader Map<String, Object> requestHeader){
 		logger.info("장소로 방문게시글 검색 시작 : pid = " +pid);
+    	String uid = TokenUtils.getUidFromToken((String)requestHeader.get("authorization"));
 		final BasicResponse result = new BasicResponse();
-		List<VisitReadResponse> response = visitService.getVisitListByPid(pid);
+		List<VisitReadResponse> response = visitService.getVisitListByPid(pid, uid);
         result.status = true;
         result.data = "success";
         result.object = response;
@@ -83,9 +82,10 @@ public class SearchController {
     
 	@GetMapping("/route")
 	@ApiOperation(value = "장소로 동선게시글 검색")
-	public Object searchRoute(@RequestParam Integer pid1, @RequestParam Integer pid2, @RequestParam Integer pid3, @RequestParam Integer pid4, @RequestParam Integer pid5, @RequestParam Integer pid6, @RequestParam Integer pid7, @RequestParam Integer pid8, @RequestParam Integer pid9) throws JsonMappingException, JsonProcessingException{
+	public Object searchRoute(@RequestParam Integer pid1, @RequestParam Integer pid2, @RequestParam Integer pid3, @RequestParam Integer pid4, @RequestParam Integer pid5, @RequestParam Integer pid6, @RequestParam Integer pid7, @RequestParam Integer pid8, @RequestParam Integer pid9, @RequestHeader Map<String, Object> requestHeader) throws JsonMappingException, JsonProcessingException{
 		final BasicResponse result = new BasicResponse();
 		logger.info("장소로 동선게시글 검색 시작");
+    	String uid = TokenUtils.getUidFromToken((String)requestHeader.get("authorization"));
 		List<Integer> pids = new LinkedList<Integer>();
 		if (pid1!=-1) pids.add(pid1);
 		if (pid2!=-1) pids.add(pid2);
@@ -98,7 +98,7 @@ public class SearchController {
 		if (pid9!=-1) pids.add(pid9);
 		logger.info("- pid리스트 추출");
 		logger.info(pids.toString());
-		List<RouteReadResponse> response = routeService.getRouteContainPids(pids);
+		List<RouteReadResponse> response = routeService.getRouteContainPids(pids, uid);
         result.status = true;
         result.data = "success";
         result.object = response;

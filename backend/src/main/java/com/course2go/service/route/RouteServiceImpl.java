@@ -18,6 +18,7 @@ import com.course2go.model.route.RouteWriteRequest;
 import com.course2go.model.user.UserDto;
 import com.course2go.service.board.BoardService;
 import com.course2go.service.contain.ContainService;
+import com.course2go.service.like.LikeService;
 import com.course2go.service.user.UserService;
 
 @Service
@@ -29,6 +30,8 @@ public class RouteServiceImpl implements RouteService {
 	BoardService boardService;
 	@Autowired
 	ContainService containService;
+	@Autowired
+	LikeService likeService;
 	@Autowired
 	UserService userService;
 	
@@ -49,9 +52,9 @@ public class RouteServiceImpl implements RouteService {
 	}
 
 	@Override
-	public RouteReadResponse readRouteBoard(Integer bid) {
+	public RouteReadResponse readRouteBoard(Integer bid, String uid) {
 		RouteReadResponse routeReadResponse= new RouteReadResponse();
-		routeReadResponse.setBoardResponse(boardService.readBoard(bid));
+		routeReadResponse.setBoardResponse(boardService.readBoard(bid, uid));
 		routeReadResponse.setRouteResponse(readRoute(routeReadResponse.getBoardResponse().getBoardTid()));
 		routeReadResponse.setContainSpots(containService.listContain(routeReadResponse.getBoardResponse().getBoardTid()));
 		routeReadResponse.setUserDto(userService.getUserDtoByUid(routeReadResponse.getBoardResponse().getBoardWriterUid()));
@@ -69,15 +72,15 @@ public class RouteServiceImpl implements RouteService {
 	}
 
 	@Override
-	public List<RouteReadResponse> getMyRouteList(String uid) {
+	public List<RouteReadResponse> getMyRouteList(String uid1, String uid) {
 		List<RouteReadResponse> routeList = new LinkedList<RouteReadResponse>();
-		List<BoardDto> list = boardService.getListbyUid(uid);
+		List<BoardDto> list = boardService.getListbyUid(uid1);
 		for (BoardDto boardDto : list) {
 			if(!boardDto.isBoardType()) {
 				continue;
 			}
 			RouteReadResponse routeReadResponse= new RouteReadResponse();
-			routeReadResponse.setBoardResponse(new BoardResponse(boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime()));
+			routeReadResponse.setBoardResponse(new BoardResponse(boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime(), likeService.iLike(uid, boardDto.getBid())));
 			routeReadResponse.setRouteResponse(readRoute(boardDto.getBoardTid()));
 			routeReadResponse.setContainSpots(containService.listContain(boardDto.getBoardTid()));
 			routeReadResponse.setUserDto(userService.getUserDtoByUid(routeReadResponse.getBoardResponse().getBoardWriterUid()));
@@ -87,18 +90,18 @@ public class RouteServiceImpl implements RouteService {
 	}
 
 	@Override
-	public List<RouteReadResponse> getRouteList(String userNickname) {
-		return getMyRouteList(userService.getUidByUserNickname(userNickname));
+	public List<RouteReadResponse> getRouteList(String userNickname, String uid) {
+		return getMyRouteList(userService.getUidByUserNickname(userNickname), uid);
 	}
 
 	@Override
-	public List<RouteReadResponse> getRouteContainPids(List<Integer> pids) {
+	public List<RouteReadResponse> getRouteContainPids(List<Integer> pids, String uid) {
 		List<RouteReadResponse> routeList = new LinkedList<RouteReadResponse>();
 		List<Integer> rids = containService.getRidsContainPids(pids);
 		for (Integer rid : rids) {
 			RouteReadResponse routeReadResponse= new RouteReadResponse();
 			routeReadResponse.setRouteResponse(readRoute(rid));
-			routeReadResponse.setBoardResponse(boardService.getBoardRoute(rid));
+			routeReadResponse.setBoardResponse(boardService.getBoardRoute(rid, uid));
 			routeReadResponse.setContainSpots(containService.listContain(rid));
 			routeReadResponse.setUserDto(userService.getUserDtoByUid(routeReadResponse.getBoardResponse().getBoardWriterUid()));
 			routeList.add(routeReadResponse);

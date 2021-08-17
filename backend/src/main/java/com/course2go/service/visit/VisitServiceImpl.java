@@ -17,6 +17,7 @@ import com.course2go.model.visit.VisitResponse;
 import com.course2go.model.visit.VisitWriteDto;
 import com.course2go.service.board.BoardService;
 import com.course2go.service.contain.ContainService;
+import com.course2go.service.like.LikeService;
 import com.course2go.service.place.PlaceService;
 import com.course2go.service.user.UserService;
 
@@ -31,6 +32,8 @@ public class VisitServiceImpl implements VisitService {
 	PlaceService placeService;
 	@Autowired
 	ContainService containService;
+	@Autowired
+	LikeService likeService;
 	@Autowired
 	UserService userService;
 	
@@ -53,9 +56,9 @@ public class VisitServiceImpl implements VisitService {
 	}
 
 	@Override
-	public VisitReadResponse readVisitBoard(Integer bid) {
+	public VisitReadResponse readVisitBoard(Integer bid, String uid) {
 		VisitReadResponse visitReadResponse = new VisitReadResponse();
-		visitReadResponse.setBoardResponse(boardService.readBoard(bid));
+		visitReadResponse.setBoardResponse(boardService.readBoard(bid, uid));
 		visitReadResponse.setVisitResponse(readVisit(visitReadResponse.getBoardResponse().getBoardTid()));
 		visitReadResponse.setPlace(placeService.getPlace(visitReadResponse.getVisitResponse().getVisitPid()));
 		visitReadResponse.setUserDto(userService.getUserDtoByUid(visitReadResponse.getBoardResponse().getBoardWriterUid()));
@@ -78,15 +81,15 @@ public class VisitServiceImpl implements VisitService {
 	}
 
 	@Override
-	public List<VisitReadResponse> getMyVisitList(String uid) {
+	public List<VisitReadResponse> getMyVisitList(String uid1, String uid) {
 		List<VisitReadResponse> visitList = new LinkedList<VisitReadResponse>();
-		List<BoardDto> list = boardService.getListbyUid(uid);
+		List<BoardDto> list = boardService.getListbyUid(uid1);
 		for (BoardDto boardDto : list) {
 			if(boardDto.isBoardType()) {
 				continue;
 			}
 			VisitReadResponse visitReadResponse = new VisitReadResponse();
-			visitReadResponse.setBoardResponse(new BoardResponse(boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime()));
+			visitReadResponse.setBoardResponse(new BoardResponse(boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime(), likeService.iLike(uid, boardDto.getBid())));
 			visitReadResponse.setVisitResponse(readVisit(boardDto.getBoardTid()));
 			visitReadResponse.setPlace(placeService.getPlace(visitReadResponse.getVisitResponse().getVisitPid()));
 			visitReadResponse.setUserDto(userService.getUserDtoByUid(visitReadResponse.getBoardResponse().getBoardWriterUid()));
@@ -96,17 +99,17 @@ public class VisitServiceImpl implements VisitService {
 	}
 
 	@Override
-	public List<VisitReadResponse> getVisitList(String userNickname) {
-		return getMyVisitList(userService.getUidByUserNickname(userNickname));
+	public List<VisitReadResponse> getVisitList(String userNickname, String uid) {
+		return getMyVisitList(userService.getUidByUserNickname(userNickname), uid);
 	}
 
 	@Override
-	public List<VisitReadResponse> getVisitListByPid(Integer pid) {
+	public List<VisitReadResponse> getVisitListByPid(Integer pid, String uid) {
 		List<VisitReadResponse> visitList = new LinkedList<VisitReadResponse>();
 		List<Visit> list = visitDao.findAllByVisitPid(pid);
 		for (Visit visit : list) {
 			VisitReadResponse visitReadResponse = new VisitReadResponse();
-			visitReadResponse.setBoardResponse(boardService.getBoardVisit(visit.getVid()));
+			visitReadResponse.setBoardResponse(boardService.getBoardVisit(visit.getVid(), uid));
 			visitReadResponse.setVisitResponse(new VisitResponse(visit.getVisitPid(), visit.getVisitContent(), visit.getVisitTime(), visit.getVisitCost(), visit.getVisitImage1(), visit.getVisitImage2(), visit.getVisitImage3()));
 			visitReadResponse.setPlace(placeService.getPlace(pid));
 			visitReadResponse.setUserDto(userService.getUserDtoByUid(visitReadResponse.getBoardResponse().getBoardWriterUid()));

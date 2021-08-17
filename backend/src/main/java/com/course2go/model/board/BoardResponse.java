@@ -17,4 +17,16 @@ public class BoardResponse {
     private Integer boardTid;
     private boolean	boardType;
     private LocalDateTime boardTime;
+    private boolean	boardILike;
+    
+    public BoardResponse(Board board, boolean boardILike) {
+		this.boardLike = board.getBoardLike();
+		this.boardStar = board.getBoardStar();
+		this.boardTid = board.getBoardTid();
+		this.boardType = board.isBoardType();
+		this.boardTitle = board.getBoardTitle();
+		this.boardWriterUid = board.getBoardWriterUid();
+		this.boardTime = board.getBoardTime();
+		this.boardILike = boardILike;
+    }
 }
