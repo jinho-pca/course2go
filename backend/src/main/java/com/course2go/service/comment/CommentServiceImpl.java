@@ -127,4 +127,10 @@ public class CommentServiceImpl implements CommentService {
 		commentDao.updateDeleted(cid);
 	}
 
+	@Override
+	public List<CommentDto> readSortedCommentByVid(Integer Vid) {
+		int bid = boardService.getBidByTid(Vid);
+		return readSortedComment(bid);
+	}
+
 }

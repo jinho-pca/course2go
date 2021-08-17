@@ -104,6 +104,6 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Integer getBidByTid(Integer tid) {
-		return boardDao.findBidByBoardTid(tid);
+		return boardDao.findBoardByBoardTid(tid).getBid();
 	}
 }

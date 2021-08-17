@@ -25,10 +25,10 @@ export const readVisit = () => {
         },
       }
     )
-    const read = (bid) => {
+    const read = (vid) => {
       axios({
         method: 'get',
-        url: URL + `visit/read/${bid}`,
+        url: URL + `visit/read/${vid}`,
         headers: {
           Authorization: token,
         }

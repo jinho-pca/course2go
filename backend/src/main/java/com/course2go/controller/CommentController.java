@@ -51,6 +51,19 @@ public class CommentController {
         result.object = commentList;
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
+	
+	@GetMapping("/visit/{vid}")
+    @ApiOperation(value = "댓글 목록")
+	public Object readVisitComment(@PathVariable Integer vid) {
+		logger.info("댓글목록호출 시작");
+		List<CommentDto> commentList = commentService.readSortedCommentByVid(vid);
+		final BasicResponse result = new BasicResponse();
+        result.status = true;
+        result.data = "success";
+        result.object = commentList;
+		return new ResponseEntity<>(result,HttpStatus.OK);
+	}
+	
 
 	@PostMapping("/write")
     @ApiOperation(value = "댓글 쓰기")
