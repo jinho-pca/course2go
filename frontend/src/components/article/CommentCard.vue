@@ -145,8 +145,9 @@ export default {
       return false;
     },
     deleteComment(){
-      deleteComment(this.comment.cid)
-      this.reload()
+      deleteComment(this.comment.cid).then(() =>{
+        this.$emit('reload')
+      });
     }
   },
 }
