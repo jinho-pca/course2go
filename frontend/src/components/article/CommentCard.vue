@@ -43,7 +43,7 @@
     </div>
 
     <div class="writingreply" v-if="writingreply">
-      <CommentInput class="replying" :bid="bid" :parent="replyParent" :direct="comment.cid" @close="close" @reload="reload"/>
+      <CommentInput class="replying" :vid="vid" :bid="bid" :parent="replyParent" :direct="comment.cid" @close="close" @reload="reload"/>
     </div>
   </div>
 </template>
@@ -60,6 +60,9 @@ export default {
       type : Object
     },
     bid:{
+      type : String
+    },
+    vid:{
       type : String
     }
   },
