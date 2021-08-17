@@ -14,8 +14,10 @@
         <span>검색</span>
       </div>
     </div>
-    <SearchRoute v-if="page===1"/>
-    <SearchUser v-else-if="page===2"/>
+    <div class="search-box">
+      <SearchRoute v-if="page===1"/>
+      <SearchUser v-else-if="page===2"/>
+    </div>
   </div>
 </template>
 

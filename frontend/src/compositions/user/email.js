@@ -39,7 +39,7 @@ export const userEmail = () => {
       })
       .then((res) => {
         alert(`${data.userNickname}님의 이메일은 ${res.data.object} 입니다.`)
-        return res
+        return res.data.object
       })
       .then((res) => {
         isSubmit.value = true;

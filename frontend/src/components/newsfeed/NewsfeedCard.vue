@@ -7,11 +7,12 @@
           <span>{{ newsfeed.board.boardTitle }}</span>
           <span>
             <span>{{ newsfeed.board.boardLike }}</span>
-            <i class="far fa-star"></i>
+            <i class="far fa-heart"></i>
+            <i class="fas fa-heart active"></i>
           </span>
         </div>
         <div class="newsfeed-nickname">
-          <router-link :to="{path : '/profile', query:{nickname : newsfeed.board.boardWriterNickname} }">
+          <router-link :to="{path : '/profile', query: {nickname : newsfeed.board.boardWriterNickname} }">
             <span>{{ newsfeed.board.boardWriterNickname }}</span>
           </router-link>
         </div>
@@ -52,7 +53,7 @@ export default {
 
     const showArticle = () => {
       if(props.newsfeed.board.boardType){
-        router.push({name: 'RouteArticle', params: { bid: props.newsfeed.board.bid }});
+        router.push({name: 'RouteArticle', query: { bid: props.newsfeed.board.bid }});
       } else{
         // this.$router.push( {name: 'VisitArticle', params: { bid: this.newsfeed.board.bid }});
       }
