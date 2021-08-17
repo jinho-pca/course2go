@@ -4,7 +4,7 @@
       <div class="visit-title">
 
       </div>
-      <div class="visit-comment">
+      <div class="visit-content">
 
       </div>
       <div class="images">
@@ -50,7 +50,6 @@
 <script>
 import '../css/article/route-detail.css'
 import jwt from 'jsonwebtoken'
-import RouteMap from '@/components/maps/routemap/RouteMap.vue'
 import {BASE_URL} from '@/compositions/global.js'
 
 export default {
@@ -66,7 +65,7 @@ export default {
   //   console.log("카드")
   // },
   components: {
-    RouteMap,
+    
   },
   methods: {
     goVisit(vid) {

@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-import { list } from '@/compositions/article/comment/list.js';
+import { list, listByVid } from '@/compositions/article/comment/list.js';
 import CommentCard from '@/components/article/CommentCard.vue'
 import CommentInput from '@/components/article/CommentInput.vue'
 export default {
@@ -14,13 +14,23 @@ export default {
     created() {
         // this.commentlist = list(5);
         console.log("코멘트 시작")
-        list(this.bid).then( res => {
-				this.commentlist = res;
-			});	
+        if(this.bid){
+            list(this.bid).then( res => {
+                    this.commentlist = res;
+                });	
+        }
+        if(this.vid){
+            listByVid(this.vid).then( res => {
+                    this.commentlist = res;
+                });	
+        }
         console.log()
     },
     props: {
         bid:{
+            type : String
+        },
+        vid:{
             type : String
         }
     },

@@ -8,15 +8,18 @@
         <span>장소 게시글</span>
       </span>
     </div>
-      
-      <Comment :bid="bid"/>
+      <visit-content> </visit-content>
+      <visit-detail-card> </visit-detail-card>
+      <Comment :vid="vid"/>
   </div>
 </template>
 
 <script>
 import { readVisit } from '@/compositions/article/visit/read.js';
 import { useRoute } from 'vue-router'
-import Comment from '@/components/article/Comment.vue'
+import VisitContent from '@/components/article/VisitContent.vue'
+import VisitDetailCard from '@/components/article/VisitDetailCard.vue'
+// import Comment from '@/components/article/Comment.vue'
 
 export default {
   name: 'RouteArticle',
@@ -26,15 +29,15 @@ export default {
       history.back()
     }
     const route = useRoute()
-    const bid = route.query.bid
-    console.log(articleVisit)
-    read(bid)
-    return { click, articleVisit, read, bid }
+    const vid = route.query.vid
+    read(vid)
+
+    return { click, articleVisit, read, vid }
   },
   components: {
-    // RouteDetailCard,
     Comment,
-    // RouteContent,
+    VisitDetailCard,
+    VisitContent
   },
 }
 </script>
