@@ -7,9 +7,9 @@
         </router-link>
       </div>
       <div class="nav-right">
-        <span>
+        <!-- <span>
           <i class="fas fa-pen"></i>
-        </span>
+        </span> -->
         <span>
           <i class="fas fa-unlock-alt" @click="logout"></i>
         </span>
@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import '@/components/css/navbar/nav-top.css'
-import { userLogout } from '@/compositions/user/logout';
+import "@/components/css/navbar/nav-top.css";
+import { userLogout } from "@/compositions/user/logout";
 
 export default {
-  name: 'navtop',
+  name: "navtop",
   setup() {
     const { logout } = userLogout();
-    return { logout }
-  }
-}
+    return { logout };
+  },
+};
 </script>
