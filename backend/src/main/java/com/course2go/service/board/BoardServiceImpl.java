@@ -103,7 +103,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Integer getBidByTid(Integer tid) {
-		return boardDao.findBoardByBoardTid(tid).getBid();
+	public Integer getBidByTidAndBoardType(Integer tid, Boolean boardType) {
+		return boardDao.findBoardByBoardTidAndBoardType(tid, boardType).getBid();
 	}
 }

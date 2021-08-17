@@ -10,7 +10,7 @@ public interface CommentService {
 	public void writeComment(Integer commentParent, Integer commentBid, Integer commentLike, String commentContent, String commentWriterUid);
 	public List<CommentDto> readComment(Integer commentBid);
 	public List<CommentDto> readSortedComment(Integer commentBid);
-	public List<CommentDto> readSortedCommentByVid(Integer Vid);
+	public List<CommentDto> readSortedCommentByVid(Integer Vid, Boolean boardType);
 	public CommentDto getCommentBiggestLike(Integer commentBid);
 	public void deleteComment(Integer cid);
 }

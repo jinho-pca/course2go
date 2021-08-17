@@ -47,7 +47,7 @@ public class CommentServiceImpl implements CommentService {
 		if(request.getCommentBid() != null) {
 			writeComment(request.getCommentParent(), request.getCommentBid(), 0, request.getCommentContent(), commentWriterUid);			
 		} else {
-			int bid = boardService.getBidByTid(request.getCommentVid());
+			int bid = boardService.getBidByTidAndBoardType(request.getCommentVid(), false);
 			writeComment(request.getCommentParent(), bid, 0, request.getCommentContent(), commentWriterUid);
 		}
 	}
@@ -133,8 +133,8 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public List<CommentDto> readSortedCommentByVid(Integer Vid) {
-		int bid = boardService.getBidByTid(Vid);
+	public List<CommentDto> readSortedCommentByVid(Integer Vid, Boolean BoardType) {
+		int bid = boardService.getBidByTidAndBoardType(Vid, BoardType);
 		return readSortedComment(bid);
 	}
 

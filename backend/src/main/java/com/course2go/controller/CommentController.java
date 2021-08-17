@@ -56,7 +56,7 @@ public class CommentController {
     @ApiOperation(value = "댓글 목록")
 	public Object readVisitComment(@PathVariable Integer vid) {
 		logger.info("댓글목록호출 시작");
-		List<CommentDto> commentList = commentService.readSortedCommentByVid(vid);
+		List<CommentDto> commentList = commentService.readSortedCommentByVid(vid, false);
 		final BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "success";

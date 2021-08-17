@@ -11,5 +11,5 @@ public interface BoardDao extends JpaRepository<Board, Integer>  {
 	public List<Board> findAllByBoardWriterUidIn(Iterable<String> uids);
 	public List<Board> findAllByBoardWriterUid(String uid);
 	public List<Board> findAllByBoardTypeAndBoardTid(boolean boardType, Integer boardTid);
-	public Board findBoardByBoardTid(Integer Tid);
+	public Board findBoardByBoardTidAndBoardType(Integer tid, boolean boardType);
 }
