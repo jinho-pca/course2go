@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class CommentWriteRequest {
     private Integer commentParent;
     private Integer commentBid;
+    private Integer commentVid;
     private String commentContent;
 }

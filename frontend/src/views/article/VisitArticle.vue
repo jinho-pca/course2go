@@ -8,8 +8,8 @@
         <span>장소 게시글</span>
       </span>
     </div>
-      <visit-content> </visit-content>
-      <visit-detail-card> </visit-detail-card>
+      <visit-content :articleVisit="articleVisit" />
+      <visit-detail-card :articleVisit="articleVisit"/> 
       <Comment :vid="vid"/>
   </div>
 </template>
@@ -19,7 +19,7 @@ import { readVisit } from '@/compositions/article/visit/read.js';
 import { useRoute } from 'vue-router'
 import VisitContent from '@/components/article/VisitContent.vue'
 import VisitDetailCard from '@/components/article/VisitDetailCard.vue'
-// import Comment from '@/components/article/Comment.vue'
+import Comment from '@/components/article/Comment.vue'
 
 export default {
   name: 'RouteArticle',
