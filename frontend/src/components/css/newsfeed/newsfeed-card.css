@@ -1,6 +1,10 @@
 .newsfeed-card {
-  margin: 10px 10px 10px 10px;
-  border-bottom: 1px solid black;
+  margin: 20px 10px;
+  padding: 5px;
+  /* border: 1px solid rgb(36, 211, 255); */
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(117, 143, 150, 0.726);
+  background: #fafaf59f;
 }
 
 .newsfeed-card > a {
@@ -9,29 +13,33 @@
 }
 
 .newsfeed-card .newsfeed-card-top {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 3px 0 3px;
   margin: 5px 0 5px 0;
 }
 
 .newsfeed-card .newsfeed-title {
-  font-weight: bold;
-}
-
-.newsfeed-card .newsfeed-title > a {
-  text-decoration: none;
-  color: black;
+  display: flex;
+  justify-content: space-between;
 }
 
 .newsfeed-card .newsfeed-title > span {
   font-weight:500;
 }
 
-..newsfeed-title .newsfeed-title .fa-star {
-  color: yellow;
-  background-color: yellow;
+.newsfeed-title .fa-star {
+  color: rgb(0, 0, 0);
+  margin: 0 0 0 5px;
+}
+
+.newsfeed-card .newsfeed-nickname {
+  font-weight: bold;
+  text-align: end;
+}
+
+.newsfeed-card .newsfeed-nickname > a {
+  text-decoration: none;
+  color: black;
 }
 
 .newsfeed-card .newsfeed-image {

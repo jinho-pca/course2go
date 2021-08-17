@@ -11,7 +11,7 @@
 }
 
 body {
-  font: 600 16px/18px "Open Sans", sans-serif;
+  /* font: 600 16px/18px "Open Sans", sans-serif; */
   padding-bottom: 30px;
 }
 
@@ -48,15 +48,15 @@ body {
 .signup-form .group .input {
   border: none;
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px 20px;
   width: 100%;
+  outline: none;
 }
 
 /* input의 border과 위치 조정 */
 .signup-form .group .input-border {
   border: 1px solid #aaa;
   border-radius: 10px;
-  padding: 5px;
   display: flex;
   justify-content: space-between;
 }
@@ -69,6 +69,24 @@ body {
   padding: 13px 40px;
   border-radius: 30px;
   background: #3177f0;
+}
+
+.login-form .group .button {background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA  51%, #1FA2FF  100%)}
+.login-form .group .button {
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+.login-form .group .button:active {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
 
 /* label css */

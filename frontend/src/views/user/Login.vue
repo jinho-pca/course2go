@@ -6,7 +6,7 @@
     <div class="login-html">
       <h3 id="tab-1" name="tab" class="tab">로그인</h3>
       <div class="login-form">
-        <div class="sign-in-htm">
+        <div class="login-in-htm">
           <div class="group">
             <label for="email" class="label">이메일</label>
             <div class="input-border">
@@ -25,7 +25,7 @@
           </div>
           <div class="group">
             <label for="password" class="label">비밀번호</label>
-            <div>
+            <div class="input-border">
               <input
               v-model="password"
               type="password"

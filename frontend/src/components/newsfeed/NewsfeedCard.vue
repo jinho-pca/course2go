@@ -2,15 +2,19 @@
   <div class="newsfeed-card">
     <!-- <router-link :to="{ name: 'RouteArticle', params: { bid: newsfeed.board.bid } }"> -->
     <div @click="showArticle">
-
       <div class="newsfeed-card-top">
         <div class="newsfeed-title">
+          <span>{{ newsfeed.board.boardTitle }}</span>
+          <span>
+            <span>{{ newsfeed.board.boardLike }}</span>
+            <i class="far fa-star"></i>
+          </span>
+        </div>
+        <div class="newsfeed-nickname">
           <router-link :to="{path : '/profile', query:{nickname : newsfeed.board.boardWriterNickname} }">
             <span>{{ newsfeed.board.boardWriterNickname }}</span>
           </router-link>
-          <span>{{ newsfeed.board.boardTitle }}</span>
         </div>
-        <i class="far fa-star">{{ newsfeed.board.boardLike }}</i>
       </div>
       <img src="@/assets/images/map.jpg" alt="map image" class="newsfeed-image">
       <div class="newsfeed-description">
@@ -20,7 +24,7 @@
       <div class="newsfeed-card-bottom" v-if="newsfeed.bestcomment">
         <div class="newsfeed-comment">
           <div class="comment-writer">
-            {{ newsfeed.bestcomment.commentWriterNickname }}
+            {{ newsfeed.bestcomment.commentWriterDto.userName }}
           </div>
           <div class="comment-content">
             {{ newsfeed.bestcomment.commentContent }}
