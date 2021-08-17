@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.course2go.authentication.TokenUtils;
 import com.course2go.model.BasicResponse;
-import com.course2go.service.like.LikeService;
+import com.course2go.service.boardlike.BoardlikeService;
 import com.course2go.service.scrap.ScrapService;
 
 import io.swagger.annotations.Api;
@@ -32,7 +32,7 @@ import io.swagger.annotations.ApiOperation;
 public class BoardController {
 
 	@Autowired
-	LikeService likeService;
+	BoardlikeService likeService;
 	
 	@Autowired
 	ScrapService scrapService;

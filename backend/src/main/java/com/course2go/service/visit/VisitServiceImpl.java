@@ -16,8 +16,8 @@ import com.course2go.model.visit.VisitReadResponse;
 import com.course2go.model.visit.VisitResponse;
 import com.course2go.model.visit.VisitWriteDto;
 import com.course2go.service.board.BoardService;
+import com.course2go.service.boardlike.BoardlikeService;
 import com.course2go.service.contain.ContainService;
-import com.course2go.service.like.LikeService;
 import com.course2go.service.place.PlaceService;
 import com.course2go.service.user.UserService;
 
@@ -33,7 +33,7 @@ public class VisitServiceImpl implements VisitService {
 	@Autowired
 	ContainService containService;
 	@Autowired
-	LikeService likeService;
+	BoardlikeService boardlikeService;
 	@Autowired
 	UserService userService;
 	
@@ -92,7 +92,7 @@ public class VisitServiceImpl implements VisitService {
 				continue;
 			}
 			VisitReadResponse visitReadResponse = new VisitReadResponse();
-			visitReadResponse.setBoardResponse(new BoardResponse(boardDto.getBid(),boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime(), likeService.iLike(uid, boardDto.getBid())));
+			visitReadResponse.setBoardResponse(new BoardResponse(boardDto.getBid(),boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime(), boardlikeService.iLike(uid, boardDto.getBid())));
 			visitReadResponse.setVisitResponse(readVisit(boardDto.getBoardTid()));
 			visitReadResponse.setPlace(placeService.getPlace(visitReadResponse.getVisitResponse().getVisitPid()));
 			visitReadResponse.setUserDto(userService.getUserDtoByUid(visitReadResponse.getBoardResponse().getBoardWriterUid()));

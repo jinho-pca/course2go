@@ -15,7 +15,7 @@ import com.course2go.model.board.Board;
 import com.course2go.model.board.BoardDto;
 import com.course2go.model.board.BoardMyList;
 import com.course2go.model.board.BoardResponse;
-import com.course2go.service.like.LikeService;
+import com.course2go.service.boardlike.BoardlikeService;
 import com.course2go.service.route.RouteService;
 import com.course2go.service.visit.VisitService;
 
@@ -29,7 +29,7 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	VisitService visitService;
 	@Autowired
-	LikeService likeService;
+	BoardlikeService likeService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	

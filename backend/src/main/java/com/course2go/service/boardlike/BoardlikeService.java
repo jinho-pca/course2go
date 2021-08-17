@@ -1,6 +1,6 @@
-package com.course2go.service.like;
+package com.course2go.service.boardlike;
 
-public interface LikeService {
+public interface BoardlikeService {
 	public boolean like(String uid, Integer bid);
 	public boolean cancelLike(String uid, Integer bid);
 	public boolean iLike(String uid, Integer bid);
