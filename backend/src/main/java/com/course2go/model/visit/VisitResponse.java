@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VisitResponse {
+	private Integer vid;
     private Integer visitPid;
     private String visitContent;
     private Integer visitTime;

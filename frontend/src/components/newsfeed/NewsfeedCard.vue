@@ -55,7 +55,8 @@ export default {
       if(props.newsfeed.board.boardType){
         router.push({name: 'RouteArticle', query: { bid: props.newsfeed.board.bid }});
       } else{
-        // this.$router.push( {name: 'VisitArticle', params: { bid: this.newsfeed.board.bid }});
+        console.log(props.newsfeed)
+        router.push( {name: 'VisitArticle', query: { bid: props.newsfeed.board.bid }});
       }
     }
     return { showArticle }

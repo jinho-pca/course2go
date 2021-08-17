@@ -71,7 +71,7 @@ public class VisitServiceImpl implements VisitService {
 	@Override
 	public VisitResponse readVisit(Integer vid) {
 		Visit visit = visitDao.findVisitByVid(vid);
-		return new VisitResponse(visit.getVisitPid(), visit.getVisitContent(), visit.getVisitTime(), visit.getVisitCost(), visit.getVisitImage1(), visit.getVisitImage2(), visit.getVisitImage3());
+		return new VisitResponse(visit.getVid(),visit.getVisitPid(), visit.getVisitContent(), visit.getVisitTime(), visit.getVisitCost(), visit.getVisitImage1(), visit.getVisitImage2(), visit.getVisitImage3());
 	}
 
 	@Override
@@ -113,7 +113,7 @@ public class VisitServiceImpl implements VisitService {
 		for (Visit visit : list) {
 			VisitReadResponse visitReadResponse = new VisitReadResponse();
 			visitReadResponse.setBoardResponse(boardService.getBoardVisit(visit.getVid(), uid));
-			visitReadResponse.setVisitResponse(new VisitResponse(visit.getVisitPid(), visit.getVisitContent(), visit.getVisitTime(), visit.getVisitCost(), visit.getVisitImage1(), visit.getVisitImage2(), visit.getVisitImage3()));
+			visitReadResponse.setVisitResponse(new VisitResponse(visit.getVid(),visit.getVisitPid(), visit.getVisitContent(), visit.getVisitTime(), visit.getVisitCost(), visit.getVisitImage1(), visit.getVisitImage2(), visit.getVisitImage3()));
 			visitReadResponse.setPlace(placeService.getPlace(pid));
 			visitReadResponse.setUserDto(userService.getUserDtoByUid(visitReadResponse.getBoardResponse().getBoardWriterUid()));
 			visitList.add(visitReadResponse);
