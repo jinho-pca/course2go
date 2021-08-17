@@ -1,5 +1,6 @@
 package com.course2go.service.like;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +26,17 @@ public class LikeServiceImpl implements LikeService {
 
 	@Override
 	public boolean cancelLike(String uid, Integer bid) {
-		Optional<Like> likeOpt = likeDao.findLikeByLikeUidAndLikeBid(uid, bid);
-		boolean exist = likeOpt.isPresent();
+		List<Like> likelist = likeDao.findAllByLikeUidAndLikeBid(uid, bid);
+		boolean exist = !likelist.isEmpty();
 		if (exist) {
-			likeDao.deleteById(likeOpt.get().getId());
+			likeDao.deleteById(likelist.get(0).getId());
 		}
 		return exist;
 	}
 
 	@Override
 	public boolean iLike(String uid, Integer bid) {
-		Optional<Like> likeOpt = likeDao.findLikeByLikeUidAndLikeBid(uid, bid);
-		return likeOpt.isPresent();
+		List<Like> likeOpt = likeDao.findAllByLikeUidAndLikeBid(uid, bid);
+		return !likeOpt.isEmpty();
 	}
 }
