@@ -2,7 +2,6 @@
     <div class="route-card">
   <router-link :to="{ name: 'RouteArticle', params: { bid: route.boardResponse.bid }}">
       {{route.boardResponse.boardTitle}}
-      {{route.boardResponse}}
   </router-link>
     </div>
 </template>
