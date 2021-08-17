@@ -15,7 +15,9 @@
           <div class="profile-name">{{ profileData.userNickname }}</div>
           <!-- v-if(나){프로필 편집} v-elseif(팔로우){팔로우취소} v-else -->
           <div class="profile-follow" v-if="!nickname">
-            <router-link :to="{ name: 'UpdateProfile', query: {profileData: profileData} }">프로필 편집</router-link>
+            <router-link :to="{ name: 'UpdateProfile', query: { profileData: profileData } }"
+              >프로필 편집</router-link
+            >
           </div>
 
           <div
@@ -60,13 +62,13 @@
       <router-link :to="{ path: '/follow', query: { userNickname: profileData.userNickname } }">
         <div>
           <span class="tag">팔로잉</span>
-          <span>{{ profileData.userFollowing }}</span>
+          <span>{{ profileData.userFollower }}</span>
         </div>
       </router-link>
       <router-link :to="{ path: '/follow', query: { userNickname: profileData.userNickname } }">
         <div>
           <span class="tag">팔로워</span>
-          <span>{{ profileData.userFollower }}</span>
+          <span>{{ profileData.userFollowing }}</span>
         </div>
       </router-link>
     </div>
