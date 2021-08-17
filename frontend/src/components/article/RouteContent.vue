@@ -10,8 +10,8 @@
       </div>
     </div>
     <div class="card-right">
+      <span class="follow-d">{{articleRoute.boardResponse.boardLike}}</span>
       <i class="far fa-heart"></i>
-      <!-- <span class="follow-d">{{articleRoute.boardResponse.boardLike}}</span> -->
     </div>
   </div>
   <div>
