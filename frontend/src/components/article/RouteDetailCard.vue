@@ -57,21 +57,14 @@ export default {
     RouteMap,
   },
   methods: {
-    goVisit(index) {
-      console.log(index);
+    goVisit(vid) {
+      this.$router.push({name: 'VisitArticle', query:{vid : vid}});
     },
-    data() {
-      return {
-        token : jwt.decode(BASE_URL().token.substr(7)).userNickname,
-      }
-    },
-    methods: {
-      goVisit(bid) {
-        console.log(this.articleRoute);
-        console.log(bid);
-        // this.$router.push({name: 'VisitArticle', query:{bid : bid}});
-      },
-    },
-  }
+  },
+  data() {
+    return {
+      token : jwt.decode(BASE_URL().token.substr(7)).userNickname,
+    }
+  },
 }
 </script>
