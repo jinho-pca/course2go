@@ -31,7 +31,7 @@
 <script>
 import { jwtdecoder } from '@/compositions/utils/jwtdecoder.js'
 import "@/components/css/article/comment/commentInput.css"
-import { write } from '@/compositions/article/comment/write.js'
+import { write, writeByVid } from '@/compositions/article/comment/write.js'
 export default {
     emits: ["close", "reload"],
     props: {
@@ -42,6 +42,9 @@ export default {
             type : Number
         },
         bid:{
+            type : String
+        },
+        vid:{
             type : String
         },
     },
@@ -59,9 +62,16 @@ export default {
     },
     methods: {
         writeComment() {
+          if(this.bid){
             write(this.parent, this.mycomment, this.bid).then(() =>{
               this.$emit('reload')
-            });
+              });
+            } else{
+              console.log(this.vid);
+              writeByVid(this.parent, this.mycomment, this.vid).then(() =>{
+                this.$emit('reload')
+              });
+            }
         },
         isReply(){
             if (this.parent != -1) {

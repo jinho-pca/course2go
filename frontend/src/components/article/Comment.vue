@@ -1,8 +1,8 @@
 <template>
   <div id="comments">
     <h2>댓글</h2>
-    <CommentInput :bid="bid" :parent="nonreply" :direct="nonreply" @reload="reload"/>
-    <CommentCard v-for="(comment, index) in commentlist" :key="index" :bid="bid" :comment="comment" @reload="reload"/>
+    <CommentInput :vid="vid" :bid="bid" :parent="nonreply" :direct="nonreply" @reload="reload"/>
+    <CommentCard v-for="(comment, index) in commentlist" :key="index" :vid="vid" :bid="bid" :comment="comment" @reload="reload"/>
   </div>
 </template>
 <script>
@@ -46,10 +46,18 @@ export default {
     },
     methods: {
         reload(){
-            list(this.bid).then( res => {
-                console.log(res)
-				this.commentlist = res;
-			});	
+            if(this.bid){
+                list(this.bid).then( res => {
+                    console.log(res)
+                    this.commentlist = res;
+                });	
+            } else{
+                listByVid(this.vid).then( res => {
+                    console.log(res)
+                    this.commentlist = res;
+                });	
+            }
+            
         }
     },
 }
