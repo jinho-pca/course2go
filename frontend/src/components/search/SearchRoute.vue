@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <SearchRouteInput @routePid="routePid" />
-    <SearchFilter @getFilter="getFilter" />
-    <SearchRouteList :articles="filteredArticles" />
-  </div>
+  <SearchRouteInput @routePid="routePid" />
+  <SearchFilter @getFilter="getFilter" />
+  <SearchRouteList :articles="filteredArticles" />
 </template>
 
 <script>

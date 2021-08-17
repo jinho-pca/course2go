@@ -3,7 +3,7 @@ import { BASE_URL } from '@/compositions/global.js'
 import { ref } from 'vue'
 
 export const readRoute = () => {
-  const { URL } = BASE_URL()
+  const { URL, token } = BASE_URL()
   const articleRoute = ref(
     {
       routeResponse: {
@@ -41,6 +41,9 @@ export const readRoute = () => {
     axios({
       method: 'get',
       url: URL + `route/read/${bid}`,
+      headers: {
+        Authorization: token,
+      }
     })
     .then((res) => {
       articleRoute.value = res.data.object;

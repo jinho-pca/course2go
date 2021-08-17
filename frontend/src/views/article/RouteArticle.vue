@@ -35,7 +35,7 @@ export default {
       history.back()
     }
     const route = useRoute()
-    const bid = route.params.bid
+    const bid = route.query.bid
     console.log(articleRoute)
     read(bid)
     return { click, articleRoute, read, bid }

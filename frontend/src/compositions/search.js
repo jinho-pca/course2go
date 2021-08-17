@@ -11,6 +11,9 @@ export const searchPlace = async (key, page) => {
 	await axios({
 		method: 'get',
 		url: URL + 'search/place/' + key + '/' + page,
+		headers: {
+			Authorization: token,
+		}
 		// url: 'http://localhost:8095/search/place/' + key + '/' + page,
 	})
 	.then((res) => {
@@ -99,7 +102,10 @@ export const search = () => {
 		axios({
 			method: 'get',
 			url: URL + 'search/route',
-			params: places.value
+			params: places.value,
+			headers: {
+        Authorization: token,
+      }
 		})
 		.then((res) => {
 			articles.value = res.data.object
