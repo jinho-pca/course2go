@@ -42,7 +42,7 @@ export default {
             type : Number
         },
         bid:{
-            type : Number
+            type : String
         },
     },
     created() {

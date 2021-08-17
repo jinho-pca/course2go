@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardResponse {
+	private Integer bid;
     private String boardWriterUid;
     private String boardTitle;
     private Integer boardLike;
@@ -20,6 +21,7 @@ public class BoardResponse {
     private boolean	boardILike;
     
     public BoardResponse(Board board, boolean boardILike) {
+    	this.bid = board.getBid();
 		this.boardLike = board.getBoardLike();
 		this.boardStar = board.getBoardStar();
 		this.boardTid = board.getBoardTid();

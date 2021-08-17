@@ -6,65 +6,66 @@
     <span>프로필 편집</span>
     <div>
       <div class="update-image">
-        <div>{{$route.params.userNickname}}</div>
+        <div>{{ userNickname }}</div>
         <div>
           <div>
-            <img :src="userImagePreview" alt="profile image" class="profile-image">
+            <img :src="userImage.preview" alt="profile image" class="profile-image" v-if="userImage.preview">
+            <img src="@/assets/images/profile.png" alt="profile image" class="profile-image" v-else>
           </div>
         </div>
         <div>
-          <label for="user-image-btn">프로필 사진 바꾸기</label>
+          <label class="profile-image-add" for="profile-image-btn">이미지 추가</label>
           <input 
-            type="file" 
-            id="user-image-btn" 
-            ref="files"
+            type="file"
+            id="profile-image-btn"
+            ref="editImage"
             style="display:none"
             accept="image/jpeg, image/jpg, image/png"
-            @change="changeImage"
-          />
+            @change="addImage"
+            />
         </div>
       </div>
       <div class="update-message">
         <div>상태 메시지</div>
         <div>
-          <input type="text" v-model="userComment">
+          <input type="text" class="update-comment" id="update-comment" v-model="userComment">
           <i class="fas fa-edit"></i>
         </div>
       </div>
-      <div class="update-btn">
-        <button @click="save"> 저장 </button>
-      </div>
+    </div>
+    <div class="align-buttons">
+      <button class="update-button" @click="profileUpdate(userImage, userComment)">확인</button>
+      <button class="update-button" @click="back">취소</button>
     </div>
   </div>
 </template>
 
 <script>
 import '@/assets/css/profile/update-profile.css';
-import {updateProfile} from '@/compositions/profile'
+import { updateProfile } from '@/compositions/profile.js';
+import { ref } from 'vue'
+
 export default {
   name: 'UpdateProfile',
-  methods:{
-    save(){
-      updateProfile(this.userComment, this.userImage);
-    },
-    changeImage(){
-      console.log(this.$refs.files);
-
-			let file = 
-			{
-				file: this.$refs.files.files[0],
-				preview: URL.createObjectURL(this.$refs.files.files[0]),
-			}
-      this.userImage = file.file;
-      this.userImagePreview = file.preview
+  setup() {
+    const { profileUpdate, userNickname, userImage, userComment } = updateProfile()
+    // const editComment = () => {
+    //   const editInput = document.querySelector('#update-comment')
+    //   console.log(editInput)
+    //   editInput.readOnly = false
+    // }
+    const editImage = ref(null);
+    const addImage = () => {
+      const image = {
+        file: editImage.value.files[0],
+				preview: URL.createObjectURL(editImage.value.files[0]),
+      }
+      userImage.value = image
     }
-  },
-  data: function(){
-    return{
-      userImage: null,
-      userComment: this.$route.params.userComment,
-      userImagePreview: this.$route.params.userImage
+    const back = () => {
+      history.back()
     }
+    return { profileUpdate, userNickname, userImage, userComment, addImage, editImage, back }
   }
 }
 </script>

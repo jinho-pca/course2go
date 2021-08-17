@@ -62,6 +62,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "RouteArticle" */ '../views/article/RouteArticle.vue')
   },
   {
+    path: '/visitArticle',
+    name: 'VisitArticle',
+    component: () => import(/* webpackChunkName: "VisitArticle" */ '../views/article/VisitArticle.vue')
+  },
+  {
     path: '/write/route',
     name: 'WriteRoute',
     component: () => import(/* webpackChunkName: "WriteRoute" */ '../views/WriteRoute.vue')
@@ -84,6 +89,7 @@ const routes = [
 ]
 
 const router = createRouter({
+  mode: 'history',
   history: createWebHistory(process.env.BASE_URL),
   routes
 })

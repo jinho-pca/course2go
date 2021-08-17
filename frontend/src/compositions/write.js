@@ -18,9 +18,9 @@ export const writeRoute = (title, routeStartDate, routeEndDate, routeContent, ro
 
 	axios({
 	method: 'post',
-	headers: headers,
 	url: URL + 'route/write',
-			data: data
+	headers: headers,
+	data: data
 	})
 	.then((res) => {
 		console.log(res.data);

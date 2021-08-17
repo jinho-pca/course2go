@@ -11,8 +11,8 @@
 }
 
 body {
-  font: 600 16px/18px "Open Sans", sans-serif;
-  padding-bottom: 30px;
+  /* font: 600 16px/18px "Open Sans", sans-serif; */
+  padding-bottom: 40px;
 }
 
 a {
@@ -46,7 +46,8 @@ a {
   border-bottom: 2px solid transparent;
   font-weight: bold;
   color: black;
-  border-color: #1161ee;
+  /* border-color: #1161ee; */
+  /* border-color: #C4E5EF; */
 }
 
 /* Sign in 디자인 End */
@@ -72,16 +73,18 @@ a {
   display: block;
 }
 
+
 .login-form .group .input {
   width: 100%;
   color: black;
   display: block;
-}
-
-.login-form .group .input {
   border: 1px solid #aaa;
   padding: 15px 20px;
   border-radius: 10px;
+}
+
+.login-form .group .input:focus {
+  outline: none;
 }
 
 .login-form .group .button {
@@ -90,23 +93,36 @@ a {
   border-radius: 10px;
 }
 
-.signup-form .group .input-border {
-  border: 1px solid rgb(20, 17, 17);
-  border-radius: 10px;
-  padding: 5px;
-  display: flex;
-  justify-content: space-between;
-}
-
 .login-form .group .label {
   color: #aaa;
   font-size: 12px;
   text-align: start;
 }
 
+/* .login-form .group .button {
+  background: #114457;
+  color: black;
+  font-weight: bold;
+} */
+
+.login-form .group .button {background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA  51%, #1FA2FF  100%)}
 .login-form .group .button {
-  background: #1161ee;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
 }
+
+.login-form .group .button:active {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
 /* Keep me Signed in START */
 .login-form .group label .icon {
   width: 15px;
@@ -176,7 +192,25 @@ a {
 .foot-lnk {
   margin: 30px;
   text-align: center;
+  color: black;
+  font-weight: bold;
 }
 /*  */
 /* Login END */
 /*  */
+
+#bg-video {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: -100;
+  /* background-image: url(assets/astro.jpg); */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

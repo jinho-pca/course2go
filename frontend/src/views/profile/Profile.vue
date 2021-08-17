@@ -9,12 +9,6 @@
         <i class="fas fa-cog"></i>
       </router-link>
     </div>
-    <!-- <div class="profile-page">
-      <span class="other-profile">
-        타인 프로필
-      </span>
-    </div> -->
-    <!-- endif -->
     <ProfileCard :profileData="profileData" :nickname="nickname" />
     <ProfileRoute :routeListData="routeListData" />
     <ProfilePlace :visitListData="visitListData" />
@@ -38,11 +32,11 @@ export default {
   },
   setup() {
     const { myProfile, who, profileData, routeList, routeListData, visitList, visitListData } = profile();
-      const route = useRoute();
-      myProfile(route.query.nickname);
-      routeList(route.query.nickname);
-      visitList(route.query.nickname);
-      
+    const route = useRoute();
+    myProfile(route.query.nickname);
+    routeList(route.query.nickname);
+    visitList(route.query.nickname);
+    console.log(routeListData)
     return { myProfile, who, profileData, routeList, routeListData, visitList, visitListData }
   },
   mounted(){

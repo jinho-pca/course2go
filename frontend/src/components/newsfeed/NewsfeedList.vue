@@ -9,9 +9,10 @@
           <li class="option" value="2" @click="onClickOption">동선</li>
           <li class="option" value="3" @click="onClickOption">장소</li>
         </ul>
-      </div>
+      </div> 
       <span>뉴스피드</span>
     </div>
+    <div class="newsfeed-length">총 {{ filteredNewsfeeds.length }} 개의 게시물이 있습니다.</div>
     <NewsfeedCard v-for="(newsfeed, idx) in filteredNewsfeeds" :key="idx" :newsfeed="newsfeed" @click="getArticle(newsfeed.board.bid)" />
   </div>
 </template>
@@ -20,7 +21,7 @@
 import '../css/newsfeed/newsfeed-list.css'
 import NewsfeedCard from '@/components/newsfeed/NewsfeedCard.vue'
 import { newsfeed } from '@/compositions/newsfeed';
-import { read } from '@/compositions/article/route/read.js';
+import { readRoute } from '@/compositions/article/route/read.js';
 
 export default {
   name: 'newsfeedlist',
@@ -31,7 +32,7 @@ export default {
     const { onClickSelect, onClickOption, getNewsfeed, newsfeeds, filteredNewsfeeds } = newsfeed();
     getNewsfeed();
     const getArticle = (bid) => {
-      read(bid)
+      readRoute(bid)
     }
     return { onClickSelect, onClickOption, getNewsfeed, newsfeeds, filteredNewsfeeds, getArticle };
   },
