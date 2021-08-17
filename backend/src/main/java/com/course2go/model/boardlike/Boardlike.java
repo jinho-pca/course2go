@@ -1,4 +1,4 @@
-package com.course2go.model.like;
+package com.course2go.model.boardlike;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,16 +14,16 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder(builderMethodName = "LikeBuilder")
+@Builder(builderMethodName = "BoardlikeBuilder")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Like {
+public class Boardlike {
     @Id
     private Integer id;
     private String likeUid;
     private Integer likeBid;
 
-    public static LikeBuilder builder( String likeUid, Integer likeBid) {
-		return LikeBuilder()
+    public static BoardlikeBuilder builder( String likeUid, Integer likeBid) {
+		return BoardlikeBuilder()
 				.likeUid(likeUid)
 				.likeBid(likeBid);
 	}

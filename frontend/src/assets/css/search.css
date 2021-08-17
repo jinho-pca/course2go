@@ -6,6 +6,15 @@
 
 .search-position {
   margin-bottom: 15px;
+  position: fixed;
+}
+
+.route-tab {
+  background: white;
+}
+
+.search-box {
+  margin: 15% 0 0 0;
 }
 
 .search-tab {
@@ -18,6 +27,15 @@
   transform: translate(-50%, 0);
 }
 
+.search-position > .fa-chevron-left {
+  font-size: 20px;
+  margin: 0 0 10px 0;
+  display: inline-block;
+  position: fixed;
+  top: 10px;
+  left: 5%;
+  transform: translate(-50%, 0);
+}
 .search-select {
   position: relative;
   display: inline;

@@ -17,8 +17,8 @@ import com.course2go.model.route.RouteResponse;
 import com.course2go.model.route.RouteWriteRequest;
 import com.course2go.model.user.UserDto;
 import com.course2go.service.board.BoardService;
+import com.course2go.service.boardlike.BoardlikeService;
 import com.course2go.service.contain.ContainService;
-import com.course2go.service.like.LikeService;
 import com.course2go.service.user.UserService;
 
 @Service
@@ -31,7 +31,7 @@ public class RouteServiceImpl implements RouteService {
 	@Autowired
 	ContainService containService;
 	@Autowired
-	LikeService likeService;
+	BoardlikeService boardlikeService;
 	@Autowired
 	UserService userService;
 	
@@ -80,7 +80,7 @@ public class RouteServiceImpl implements RouteService {
 				continue;
 			}
 			RouteReadResponse routeReadResponse= new RouteReadResponse();
-			routeReadResponse.setBoardResponse(new BoardResponse(boardDto.getBid(),boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime(), likeService.iLike(uid, boardDto.getBid())));
+			routeReadResponse.setBoardResponse(new BoardResponse(boardDto.getBid(),boardDto.getBoardWriterUid(), boardDto.getBoardTitle(), boardDto.getBoardLike(), boardDto.getBoardStar(), boardDto.getBoardTid(), boardDto.isBoardType(), boardDto.getBoardTime(), boardlikeService.iLike(uid, boardDto.getBid())));
 			routeReadResponse.setRouteResponse(readRoute(boardDto.getBoardTid()));
 			routeReadResponse.setContainSpots(containService.listContain(boardDto.getBoardTid()));
 			routeReadResponse.setUserDto(userService.getUserDtoByUid(routeReadResponse.getBoardResponse().getBoardWriterUid()));

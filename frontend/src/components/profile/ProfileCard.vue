@@ -15,9 +15,7 @@
           <div class="profile-name">{{ profileData.userNickname }}</div>
           <!-- v-if(나){프로필 편집} v-elseif(팔로우){팔로우취소} v-else -->
           <div class="profile-follow" v-if="!nickname">
-            <router-link :to="{ name: 'UpdateProfile', params: { profileData: profileData } }"
-              >프로필 편집</router-link
-            >
+            <router-link :to="{ name: 'UpdateProfile', query: {profileData: profileData} }">프로필 편집</router-link>
           </div>
 
           <div
