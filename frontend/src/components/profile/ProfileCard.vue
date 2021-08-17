@@ -62,13 +62,13 @@
       <router-link :to="{ path: '/follow', query: { userNickname: profileData.userNickname } }">
         <div>
           <span class="tag">팔로잉</span>
-          <span>{{ profileData.userFollower }}</span>
+          <span>{{ profileData.userFollowing }}</span>
         </div>
       </router-link>
       <router-link :to="{ path: '/follow', query: { userNickname: profileData.userNickname } }">
         <div>
           <span class="tag">팔로워</span>
-          <span>{{ profileData.userFollowing }}</span>
+          <span>{{ profileData.userFollowed }}</span>
         </div>
       </router-link>
     </div>
