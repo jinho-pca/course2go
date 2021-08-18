@@ -9,7 +9,8 @@
     </div>
     <div class="card-right">
       <span class="follow-d">{{articleRoute.boardResponse.boardLike}}</span>
-      <i class="far fa-heart"></i>
+      &nbsp;
+      <i class="far fa-heart" @click="like"></i>
     </div>
   </div>
   <div>
@@ -21,6 +22,7 @@
 
 <script>
 import '@/components/css/article/article-content.css';
+import {like} from '@/compositions/article/like.js'
 // import { ref } from 'vue'
 
 export default {
@@ -29,6 +31,11 @@ export default {
     // const articleRoute = ref(props.routeReadResponse)
     // return { articleRoute }
   // },
-  props: ['articleRoute']
+  props: ['articleRoute'],
+  methods:{
+    like(){
+      like(this.articleRoute.boardResponse.bid);
+    }
+  }
 }
 </script>
