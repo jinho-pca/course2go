@@ -138,4 +138,9 @@ public class CommentServiceImpl implements CommentService {
 		return readSortedComment(bid);
 	}
 
+	@Override
+	public void deleteCommentsByBid(Integer bid) {
+		commentDao.deleteAllByCommentBid(bid);
+	}
+
 }

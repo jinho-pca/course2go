@@ -112,8 +112,8 @@ public class RouteServiceImpl implements RouteService {
 
 	@Override
 	public void deleteRoute(Integer rid) {
-		routeDao.deleteById(rid);
 		containService.deleteContains(rid);
+		routeDao.deleteById(rid);
 	}
 
 }

@@ -123,7 +123,7 @@ public class VisitServiceImpl implements VisitService {
 
 	@Override
 	public void deleteVisit(Integer vid) {
-		visitDao.deleteById(vid);
 		containService.deleteContain(vid);
+		visitDao.deleteById(vid);
 	}
 }

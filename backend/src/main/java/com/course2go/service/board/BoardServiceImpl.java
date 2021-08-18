@@ -17,6 +17,7 @@ import com.course2go.model.board.BoardDto;
 import com.course2go.model.board.BoardMyList;
 import com.course2go.model.board.BoardResponse;
 import com.course2go.service.boardlike.BoardlikeService;
+import com.course2go.service.comment.CommentService;
 import com.course2go.service.route.RouteService;
 import com.course2go.service.visit.VisitService;
 
@@ -29,6 +30,8 @@ public class BoardServiceImpl implements BoardService {
 	RouteService routeService;
 	@Autowired
 	VisitService visitService;
+	@Autowired
+	CommentService commentService;
 	@Autowired
 	BoardlikeService likeService;
 	
@@ -120,10 +123,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void deleteBoard(Integer bid) {
 		Board board = boardDao.findById(bid).get();
-		boardDao.deleteById(bid);
+		commentService.deleteCommentsByBid(bid);
 		if (board.isBoardType()) { // 동선
 			routeService.deleteRoute(board.getBoardTid());
 		}
 		visitService.deleteVisit(board.getBoardTid());
+		boardDao.deleteById(bid);
 	}
 }
