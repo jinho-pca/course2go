@@ -4,7 +4,7 @@
   /* border: 1px solid rgb(36, 211, 255); */
   border-radius: 10px;
   box-shadow: 1px 1px 5px rgba(117, 143, 150, 0.726);
-  background: #fafaf59f;
+  background: rgba(255, 255, 255, 0.918);
 }
 
 .newsfeed-card > a {
@@ -67,16 +67,18 @@
 
 .newsfeed-card-bottom .newsfeed-comment {
   display: flex;
+  width: 100%;
 }
 
 .newsfeed-card-bottom .comment-writer {
   color: black;
   font-weight: bold;
   margin: 0 5px 0 0;
+  width: 20%;
 }
 
 .newsfeed-card-bottom .fas {
-  margin: 5px;
+  margin: 5px 10px;
 }
 
 .newsfeed-card .comment-more {

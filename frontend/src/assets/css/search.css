@@ -1,30 +1,25 @@
-.search {
-  text-align: start;
-  width: 100%;
-  margin: 5px 0;
-}
-
-.search-position {
-  margin-bottom: 15px;
-  position: fixed;
-}
-
 .route-tab {
   background: white;
 }
 
 .search-box {
   margin: 15% 0 0 0;
+  text-align: start;
+  width: 100%;
 }
 
 .search-tab {
+  width: 100%;
   font-size: 20px;
-  margin: 0 0 10px 0;
+  margin-top: 0;
   display: inline-block;
   position: fixed;
-  top: 5px;
+  top: 0;
   left: 50%;
+  padding: 5px 0;
   transform: translate(-50%, 0);
+  background: white;
+  z-index: 1;
 }
 
 .search-position > .fa-chevron-left {
@@ -35,7 +30,9 @@
   top: 10px;
   left: 5%;
   transform: translate(-50%, 0);
+  z-index: 2;
 }
+
 .search-select {
   position: relative;
   display: inline;

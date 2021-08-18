@@ -40,11 +40,14 @@
   border: 1px solid rgba(19, 80, 194, 0.705);
   border-radius: 5px;
   box-shadow: 2px 2px;
-  
 }
 
 .search-filter .filter-name:active {
-  background: blue;
+  background: orange;
+}
+
+.search-filter .filter-name: {
+  background: orange;
 }
 
 .search-filter .filter-date {
