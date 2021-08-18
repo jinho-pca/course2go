@@ -8,6 +8,7 @@ details{
 
 details summary{ 
   text-align: end;
+  /* overflow: hidden; */
 }
 
 details summary a{
@@ -30,6 +31,10 @@ details summary a :hover{
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  /* display: -webkit-box;
+  -webkit-line-clamp: 11;
+  white-space: nowrap;
+  overflow: hidden; */
 }
 
 .novisitsummery{

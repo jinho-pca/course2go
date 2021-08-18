@@ -81,8 +81,9 @@ public class ContainServiceImpl implements ContainService {
 
 	@Transactional
 	@Override
-	public void deleteContain(Integer vid) {
-		containDao.deleteAllByContainVid(vid);
+	public void deleteVisitInContain(Integer vid) {
+		Contain contain = containDao.findContainByContainVid(vid).get();
+		containDao.save(new Contain(contain.getId(), contain.getContainRid(), contain.getContainPid(), null, contain.getContainOrder()));
 	}
 
 }

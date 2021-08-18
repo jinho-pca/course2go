@@ -126,7 +126,7 @@ public class VisitServiceImpl implements VisitService {
 	@Transactional
 	@Override
 	public void deleteVisit(Integer vid) {
-		containService.deleteContain(vid);
+		containService.deleteVisitInContain(vid);
 		visitDao.deleteById(vid);
 	}
 }

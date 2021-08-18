@@ -61,8 +61,9 @@ export default {
       this.likeChange--;
       unlike(this.articleVisit.boardResponse.bid);
     },
-    deleteBoard(){
-      deleteBoard(this.articleVisit.boardResponse.bid);
+    async deleteBoard(){
+      await deleteBoard(this.articleVisit.boardResponse.bid);
+      this.$router.push({name: 'Newsfeed'});
     }
   },
   data: function(){

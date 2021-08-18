@@ -36,7 +36,7 @@ export const writeRoute = async (title, routeStartDate, routeEndDate, routeConte
 	})
 }
 
-export const writeVisit = (rid, title, visitPid, visitCost, visitTime, visitContent, visitImage1, visitImage2, visitImage3) => {
+export const writeVisit = async (rid, title, visitPid, visitCost, visitTime, visitContent, visitImage1, visitImage2, visitImage3) => {
 	const req = {
 		"title" : title, 
 		"visitPid" : visitPid,
@@ -59,7 +59,7 @@ export const writeVisit = (rid, title, visitPid, visitCost, visitTime, visitCont
 	frm.append("image3", visitImage3);
 	frm.append("rid", rid);
 	frm.append("request", JSON.stringify(req));
-	axios({
+	await axios({
 		method: 'post',
 		headers: headers,
 		url: URL + 'visit/write',
