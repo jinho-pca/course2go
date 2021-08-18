@@ -20,4 +20,30 @@ public class NoticeDto {
     private LocalDateTime noticeTime;
     private Integer bid;
     private Integer vid = -1;
+    
+    public NoticeDto(Notice notice, String noticeFromUserNickname, Integer bid, Integer vid) {
+    	this.id = notice.getId();
+    	this.noticeUid = notice.getNoticeUid();
+    	this.noticeType = notice.getNoticeType();
+    	this.noticeFromUid = notice.getNoticeFromUid();
+    	this.noticeFromUserNickname = noticeFromUserNickname;
+    	this.noticeNnid = notice.getNoticeNnid();
+    	this.noticeIsnew = notice.getNoticeIsnew();
+    	this.noticeTime = notice.getNoticeTime();
+    	this.bid = bid;
+    	this.vid = vid;
+    }
+    
+    public NoticeDto(Notice notice, String noticeFromUserNickname, Integer bid) {
+    	this.id = notice.getId();
+    	this.noticeUid = notice.getNoticeUid();
+    	this.noticeType = notice.getNoticeType();
+    	this.noticeFromUid = notice.getNoticeFromUid();
+    	this.noticeFromUserNickname = noticeFromUserNickname;
+    	this.noticeNnid = notice.getNoticeNnid();
+    	this.noticeIsnew = notice.getNoticeIsnew();
+    	this.noticeTime = notice.getNoticeTime();
+    	this.bid = bid;
+    }
+    
 }

@@ -32,7 +32,7 @@ public class Notice{
     private Integer noticeType;
     private String noticeFromUid;
     private Integer noticeNnid;
-    private boolean noticeIsnew;
+    private Boolean noticeIsnew;
 
     
     @Column(insertable = false, updatable = false)

@@ -32,11 +32,11 @@ export default {
   methods:{
     initComponent(){
       getOldNotice().then(res =>{
-        this.noticeList = res.object.reverse();
+        this.noticeList = res.object;
       })
     },
     getTimeStamp(time){
-      var gap = new Date().getTime() - new Date(time).getTime();
+      var gap = new Date().getTime() - new Date(time).getTime() -32400000;
         gap = gap /1000 /60;
         var text = "";
         let timestamp = "";

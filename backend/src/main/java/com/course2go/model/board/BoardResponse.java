@@ -16,16 +16,16 @@ public class BoardResponse {
     private Integer boardLike;
     private Integer boardStar;
     private Integer boardTid;
-    private boolean	boardType;
+    private Boolean	boardType;
     private LocalDateTime boardTime;
-    private boolean	boardILike;
+    private Boolean	boardILike;
     
     public BoardResponse(Board board, boolean boardILike) {
     	this.bid = board.getBid();
 		this.boardLike = board.getBoardLike();
 		this.boardStar = board.getBoardStar();
 		this.boardTid = board.getBoardTid();
-		this.boardType = board.isBoardType();
+		this.boardType = board.getBoardType();
 		this.boardTitle = board.getBoardTitle();
 		this.boardWriterUid = board.getBoardWriterUid();
 		this.boardTime = board.getBoardTime();

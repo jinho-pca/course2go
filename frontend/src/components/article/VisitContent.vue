@@ -63,7 +63,9 @@ export default {
     },
     deleteBoard(){
       deleteBoard(this.articleVisit.boardResponse.bid);
+      this.$router.push({name: 'Newsfeed'});
     }
+    
   },
   data: function(){
     return{

@@ -61,7 +61,7 @@ export default {
       this.noticeList.splice(index, 1);
     },
     getTimeStamp(time){
-      var gap = new Date().getTime() - new Date(time).getTime();
+      var gap = new Date().getTime() - new Date(time).getTime()-32400000;
         gap = gap /1000 /60;
         var text = "";
         let timestamp = "";

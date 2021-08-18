@@ -75,7 +75,7 @@ public class BoardServiceImpl implements BoardService {
 		List<Board> list = boardDao.findAllByBoardWriterUid(uid);
 		BoardMyList mylist = new BoardMyList();
 		for (Board board : list) {
-			if (board.isBoardType()) {
+			if (board.getBoardType()) {
 				mylist.addroute(routeService.readRouteBoard(board.getBid(), uid));
 			} else {
 				mylist.addvisit(visitService.readVisitBoard(board.getBid(), uid));
@@ -128,7 +128,7 @@ public class BoardServiceImpl implements BoardService {
 		Board board = boardDao.findById(bid).get();
 		likeService.deleteBoardlike(bid);
 		commentService.deleteCommentsByBid(bid);
-		if (board.isBoardType()) { // 동선
+		if (board.getBoardType()) { // 동선
 			routeService.deleteRoute(board.getBoardTid());
 		}
 		visitService.deleteVisit(board.getBoardTid());
