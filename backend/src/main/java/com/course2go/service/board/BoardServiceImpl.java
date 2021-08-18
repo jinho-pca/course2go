@@ -130,8 +130,9 @@ public class BoardServiceImpl implements BoardService {
 		commentService.deleteCommentsByBid(bid);
 		if (board.isBoardType()) { // 동선
 			routeService.deleteRoute(board.getBoardTid());
+		} else {
+			visitService.deleteVisit(board.getBoardTid());
 		}
-		visitService.deleteVisit(board.getBoardTid());
 		boardDao.deleteById(bid);
 	}
 }
