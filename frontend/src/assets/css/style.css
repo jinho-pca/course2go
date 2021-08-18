@@ -27,9 +27,7 @@ html, body {
 
 .background-color {
   padding-bottom: 40px;
-  background: linear-gradient(to bottom, rgb(142, 211, 142) 0%, skyblue  51%, rgb(218, 177, 102)  100%);
-  background: linear-gradient(to bottom, #AFD7DE 0%, #DAEFF5  51%, #CED6D2  100%);
-  background: linear-gradient(to bottom, #AFD7DE 0%, #DAEFF5  51%, #CED6D2  100%);
+  background: #FFFFFF;
   position: fixed;
   left: 50%;
   top: 50%;

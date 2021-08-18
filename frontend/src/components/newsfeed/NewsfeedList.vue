@@ -9,11 +9,14 @@
           <li class="option" value="2" @click="onClickOption">동선</li>
           <li class="option" value="3" @click="onClickOption">장소</li>
         </ul>
-      </div> 
+      </div>
       <span>뉴스피드</span>
     </div>
     <div class="newsfeed-amount">총 {{ filteredNewsfeeds.length }} 개의 게시물이 있습니다.</div>
     <NewsfeedCard v-for="(newsfeed, idx) in filteredNewsfeeds" :key="idx" :newsfeed="newsfeed" @click="getArticle(newsfeed.board.bid)" />
+    <div v-if="!filteredNewsfeeds.length">
+      뉴스피드가 비어있습니다
+    </div>
   </div>
 </template>
 
