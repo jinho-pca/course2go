@@ -56,7 +56,7 @@ public class RouteController {
 	
     @PostMapping("/write")
     @ApiOperation(value = "동선작성")
-    public Object writeRoute(@RequestParam(value = "request") String req, @RequestHeader Map<String, Object> header, @RequestParam(required = false, value = "image1")MultipartFile image) throws JsonMappingException, JsonProcessingException {
+    public Object writeRoute(@RequestParam(value = "request") String req, @RequestHeader Map<String, Object> header, @RequestParam(required = false, value = "image")MultipartFile image) throws JsonMappingException, JsonProcessingException {
 //    	@Valid @RequestBody RouteWriteRequest request, 
     	logger.info("동선작성 시작");
     	String imageUrl = null;
