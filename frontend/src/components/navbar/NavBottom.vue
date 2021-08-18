@@ -1,9 +1,11 @@
 <template>
   <div class="nav-bottom" id="nav-bottom">
     <div class="nav-items">
-      <router-link to="/newsfeed">
-        <i class="far fa-home"></i>
-      </router-link>
+      <span style="background:black;">
+        <router-link to="/newsfeed">
+          <i class="far fa-home"></i>
+        </router-link>
+      </span>
       <router-link to="/search">
         <i class="far fa-search"></i>
       </router-link>

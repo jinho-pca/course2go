@@ -12,10 +12,20 @@
 
 .nav-bottom .nav-items {
   width: 95%;
-  padding: 15px 0 15px 0;
+  height: 100%;
+  /* padding: 15px 0; */
+}
+
+.nav-bottom .nav-items > span {
+  height: 100%;
+  /* padding: 15px 0; */
 }
 
 .nav-bottom .far {
   width: 20%;
   color: rgb(0, 0, 0);
+}
+
+.nav-bottom .active {
+
 }
