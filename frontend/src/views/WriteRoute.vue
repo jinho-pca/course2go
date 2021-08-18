@@ -6,6 +6,7 @@
     <WriteRoutePlaceList @routePid="pushRoutePid" @routePlace="pushRoutePlace"/>
     <WriteRouteMap :places="routePlaces" ref="printMe"/>
     <WriteRouteContent @routeContent="getRouteContent"/>
+    <WriteRouteImage @routeImage="getRouteImage"/>
     <div style="text-align: center">
       <button class="write-route-btn" @click="write">글 쓰기</button>
       <button class="write-route-btn" @click="print">지도 캡쳐</button>
@@ -23,6 +24,7 @@ import WriteRoutePlaceList from '@/components/write/route/WriteRoutePlaceList.vu
 import WriteRouteMap from '@/components/maps/routemap/WriteRouteMap.vue'
 import WriteRouteContent from '@/components/write/route/WriteRouteContent.vue'
 import WriteRouteDate from '@/components/write/route/WriteRouteDate.vue'
+import WriteRouteImage from '@/components/write/route/WriteRouteImage.vue'
 
 import {writeRoute} from '@/compositions/write';
 
@@ -36,7 +38,8 @@ export default {
     WriteRoutePlaceList,
     WriteRouteMap,
     WriteRouteContent,
-    WriteRouteDate
+    WriteRouteDate,
+    WriteRouteImage
   },
   methods: {
 		write(){
@@ -47,7 +50,7 @@ export default {
       "내  용 : " + this.routeContent + "\n" +
       "PID : " + this.routepid + "\n"
       + "=============================")
-      this.print()
+      // this.print()
       if(!this.title){
         alert("제목을 입력하세요.");
         return;
@@ -61,7 +64,7 @@ export default {
         alert("여행 경로를 하나 이상 입력하세요.");
         return;
       } else{
-        writeRoute(this.title, this.routeStartDate, this.routeEndDate, this.routeContent, this.routePid);
+        writeRoute(this.title, this.routeStartDate, this.routeEndDate, this.routeContent, this.routePid, this.routeImage);
         this.$router.push({name: 'Newsfeed'});
       }
 
@@ -86,17 +89,20 @@ export default {
     pushRoutePlace(routePlace){
       this.routePlaces.push(routePlace);
     },
-    print() {
-      const el = this.$refs.printMe;
-      // add option type to get the image version
-      // if not provided the promise will return 
-      // the canvas.
-      const options = {
-        type: 'dataURL'
-      }
-      this.routeMapImage = this.$html2canvas(el, options);
-      console.log(this.routeMapImage)
-    }
+    getRouteImage(routeImage){
+      this.routeImage = routeImage;
+    },
+    // print() {
+    //   const el = this.$refs.printMe;
+    //   // add option type to get the image version
+    //   // if not provided the promise will return 
+    //   // the canvas.
+    //   const options = {
+    //     type: 'dataURL'
+    //   }
+    //   this.routeMapImage = this.$html2canvas(el, options);
+    //   console.log(this.routeMapImage)
+    // }
   },
   data: function(){
 		return{
@@ -106,7 +112,7 @@ export default {
       routeContent : "",
       routePid : [],
       routePlaces : [],
-      routeMapImage : null,
+      routeImage : null,
 		}
 	}
   

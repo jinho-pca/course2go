@@ -3,24 +3,28 @@ import { BASE_URL } from '@/compositions/global.js'
 
 const { URL, token } = BASE_URL();
 
-export const writeRoute = (title, routeStartDate, routeEndDate, routeContent, routePid) => {
-	const data = {
-		title,
-		routeStartDate,
-		routeEndDate,
-		routeContent,
-		routePid
-	};
-  
+export const writeRoute = (title, routeStartDate, routeEndDate, routeContent, routePid, routeImage) => {
+	const req = {
+		"title" : title, 
+		"routeStartDate" : routeStartDate,
+		"routeEndDate" : routeEndDate, 
+		"routeContent" : routeContent, 
+		"routePid" : routePid
+	}
+
 	const headers = {
 		'Authorization' : token
 	}
+
+	let frm = new FormData();
+	frm.append("image", routeImage);
+	frm.append("request", JSON.stringify(req));
 
 	axios({
 	method: 'post',
 	url: URL + 'route/write',
 	headers: headers,
-	data: data
+	data : frm
 	})
 	.then((res) => {
 		console.log(res.data);
