@@ -22,9 +22,9 @@
         </router-link>
       </div>
       <div id="nav5">
-        <router-link to="/profile">
-          <i class="far fa-user"></i>
-        </router-link>
+        <!-- <router-link to="/profile" :key="$route.fullPath"> -->
+        <i class="far fa-user" @click="goProfile"></i>
+        <!-- </router-link> -->
       </div>
     </div>
   </div>
@@ -33,10 +33,15 @@
 <script>
 import '@/components/css/navbar/nav-bottom.css'
 import { onMounted, watchEffect } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { profile } from '@/compositions/profile';
 
 export default {
   name: 'navbottom',
   setup(props) {
+    const router = useRouter()
+    const route = useRoute()
+    const { me, myProfile } = profile()
     onMounted(() => {
       const items = document.querySelectorAll('#nav-items div')
       for (let i=0; i < items.length; i++) {
@@ -57,7 +62,16 @@ export default {
         items[props.loc-1].className = 'active'
       }
     })
-    return { props }
+    const goProfile = async () => {
+      if (route.query.nickname != me.userNickname || route.query.userNickname) {
+        await router.push('/profile')
+        await location.reload()
+      } else {
+        await router.push('/profile')
+      }
+    }
+    myProfile()
+    return { props, goProfile, me, myProfile }
   },
   props: ['loc']
   // setup() {

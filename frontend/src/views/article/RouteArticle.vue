@@ -4,7 +4,7 @@
       <span @click="click">
         <i class="fas fa-chevron-left"></i>
       </span>
-      <span>
+      <span class="route-tab-title">
         <span>동선 게시글</span>
       </span>
     </div>
@@ -63,8 +63,8 @@ export default {
   z-index: 2;
 }
 
-.route-tab > span:first-child {
-  padding: 0 115px 0 10px;
+.route-tab .route-tab-title {
+  
 }
 
 .route-tab > span:last-child {
