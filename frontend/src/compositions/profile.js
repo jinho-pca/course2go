@@ -41,6 +41,9 @@ export const profile = () => {
       return err
     })
   }
+
+  const articleAmount = ref(0)
+
   const routeList = (userNickname) => {
 
     if(!userNickname){
@@ -57,6 +60,8 @@ export const profile = () => {
     })
     .then((res) => {
       routeListData.value = res.data.object;
+      console.log(routeListData.value.length)
+      articleAmount.value += routeListData.value.length;
       return res
     })
     .catch((err) => {
@@ -82,6 +87,8 @@ export const profile = () => {
     })
     .then((res) => {
       visitListData.value = res.data.object;
+      console.log(visitListData.value.length)
+      articleAmount.value += visitListData.value.length;
       return res
     })
     .catch((err) => {
@@ -90,7 +97,7 @@ export const profile = () => {
     
   }
 
-  return { who, profileData, routeListData, visitListData, myProfile, routeList, visitList }
+  return { who, profileData, routeListData, visitListData, myProfile, routeList, visitList, articleAmount }
 }
 
 export const updateProfile = () => {

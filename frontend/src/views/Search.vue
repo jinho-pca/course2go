@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <div class="search-position">
-      <i class="fas fa-chevron-left"></i>
+      <i class="fas fa-chevron-left" @click="back"></i>
       <div class="search-tab">
         <div class="search-select" @click="onClickSelect">
           <div class="search-text" value="1" @click="getPage">동선</div>
@@ -35,7 +35,10 @@ export default {
   },
   setup() {
     const { onClickSelect, onClickOption, page } = search();
-    return { onClickSelect, onClickOption, page }
+    const back = () => {
+      history.back()
+    }
+    return { onClickSelect, onClickOption, page, back }
   }
 }
 </script>

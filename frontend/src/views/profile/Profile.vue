@@ -9,7 +9,7 @@
         <i class="fas fa-cog"></i>
       </router-link>
     </div>
-    <ProfileCard :profileData="profileData" :nickname="nickname" />
+    <ProfileCard :profileData="profileData" :nickname="nickname" :articleAmount="articleAmount" />
     <ProfileRoute :routeListData="routeListData" />
     <ProfilePlace :visitListData="visitListData" />
   </div>
@@ -31,13 +31,13 @@ export default {
     ProfilePlace,
   },
   setup() {
-    const { myProfile, who, profileData, routeList, routeListData, visitList, visitListData } = profile();
+    const { myProfile, who, profileData, routeList, routeListData, visitList, visitListData, articleAmount } = profile();
     const route = useRoute();
     myProfile(route.query.nickname);
     routeList(route.query.nickname);
     visitList(route.query.nickname);
     console.log(routeListData)
-    return { myProfile, who, profileData, routeList, routeListData, visitList, visitListData }
+    return { myProfile, who, profileData, routeList, routeListData, visitList, visitListData, articleAmount }
   },
   mounted(){
     this.nickname = this.$route.query.nickname

@@ -14,10 +14,15 @@
         <div class="profile-namebox">
           <div class="profile-name">{{ profileData.userNickname }}</div>
           <!-- v-if(나){프로필 편집} v-elseif(팔로우){팔로우취소} v-else -->
-          <div class="profile-follow" v-if="!nickname">
-            <router-link :to="{ name: 'UpdateProfile', query: { profileData: profileData } }"
-              >프로필 편집</router-link
-            >
+          <div v-if="!nickname">
+            <div class="profile-follow">
+              <router-link :to="{ name: 'UpdateProfile', query: { profileData: profileData } }"
+                >프로필 편집</router-link
+              >
+            </div>
+            <div>
+              ㅎㅇ
+            </div>
           </div>
 
           <div
@@ -57,7 +62,7 @@
     <div class="profile-bottom">
       <div>
         <span class="tag">게시물</span>
-        <span>3</span>
+        <span>{{ articleAmount }}</span>
       </div>
       <router-link :to="{ path: '/follow', query: { userNickname: profileData.userNickname } }">
         <div>
@@ -87,6 +92,9 @@ export default {
     nickname: {
       type: String,
     },
+    articleAmount: {
+      type: Number,
+    }
   },
   methods: {
     follow() {

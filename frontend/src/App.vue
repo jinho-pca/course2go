@@ -4,7 +4,7 @@
     <div class="display">
       <router-view></router-view>
     </div>
-    <NavBottom v-if="nav"/>
+    <NavBottom v-if="nav" :loc="loc"/>
   </div>
 </template>
 
@@ -22,9 +22,22 @@ export default {
   setup() {
     const router = useRouter()
     const route = useRoute()
+    const loc = ref(0)
 
     if (!localStorage.getItem('Authorization') || localStorage.getItem('Authorization') == undefined) {
       router.push('/')
+    }
+    console.log(loc.value)
+    if (route.path == '/newsfeed') {
+      loc.value = 1
+    } else if (route.path == '/search') {
+      loc.value = 2
+    } else if (route.path == '/write') {
+      loc.value = 3
+    } else if (route.path == '/alert') {
+      loc.value = 4
+    } else if (route.path == '/profile') {
+      loc.value = 5
     }
 
     const nav = ref('')
