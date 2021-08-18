@@ -91,6 +91,7 @@ export default {
     },
     getRouteImage(routeImage){
       this.routeImage = routeImage;
+      console.log(this.routeImage);
     },
     // print() {
     //   const el = this.$refs.printMe;
