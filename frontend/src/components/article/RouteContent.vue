@@ -8,9 +8,10 @@
       </div>
     </div>
     <div class="card-right">
-      <span class="follow-d">{{articleRoute.boardResponse.boardLike}}</span>
+      <span class="follow-d">{{articleRoute.boardResponse.boardLike + likeChange}}</span>
       &nbsp;
-      <i class="far fa-heart" @click="like"></i>
+      <i class="fas fa-heart" v-if="(articleRoute.boardResponse.boardILike && clicklike==0) || clicklike == 1" @click="unlike"></i>
+      <i class="far fa-heart" v-if="(!articleRoute.boardResponse.boardILike && clicklike ==0) || clicklike == -1" @click="like"></i>
     </div>
   </div>
   <div>
@@ -22,7 +23,7 @@
 
 <script>
 import '@/components/css/article/article-content.css';
-import {like} from '@/compositions/article/like.js'
+import {like, unlike} from '@/compositions/article/like.js'
 // import { ref } from 'vue'
 
 export default {
@@ -34,8 +35,22 @@ export default {
   props: ['articleRoute'],
   methods:{
     like(){
+      this.clicklike = 1;
+      this.likeChange++;
       like(this.articleRoute.boardResponse.bid);
+    },
+    unlike(){
+      this.clicklike = -1;
+      this.likeChange--;
+      unlike(this.articleRoute.boardResponse.bid);
+    }
+  },
+  data: function(){
+    return{
+      clicklike : 0,
+      likeChange : 0
     }
   }
+
 }
 </script>
