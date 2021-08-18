@@ -8,7 +8,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.course2go.dao.BoardDao;
+import com.course2go.dao.CommentDao;
 import com.course2go.dao.NoticeDao;
+import com.course2go.model.board.Board;
+import com.course2go.model.comment.Comment;
 import com.course2go.model.notice.Notice;
 import com.course2go.model.notice.NoticeDto;
 import com.course2go.service.user.UserService;
@@ -22,6 +26,12 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	NoticeService noticeService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	CommentDao commentDao;
+	@Autowired
+	BoardDao boardDao;
+	
+	
 	ModelMapper modelmapper;
 	
 	private final boolean isnew=true;
@@ -43,15 +53,28 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 		List<NoticeDto> newBoardListDto = newBoardList.stream().map(entityList -> modelmapper.map(entityList, NoticeDto.class)).collect(Collectors.toList());
 		for (NoticeDto noticeDto : newBoardListDto) {
 			noticeDto.setNoticeFromUserNickname(userService.getUserNicknameByUid(noticeDto.getNoticeFromUid()));
+			Comment comment = commentDao.getById(noticeDto.getNoticeNnid());
+			noticeDto.setBid(comment.getCommentBid());
+			Board board = boardDao.getById(comment.getCommentBid());
+			if(!board.isBoardType()) {
+				noticeDto.setVid(board.getBoardTid());
+			}
 		}
 		return newBoardListDto;
 	}
+	
 	@Override
 	public List<NoticeDto> noticeOldBoard(String noticeUid) {
 		List<Notice> newBoardList = noticeDao.findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(!isnew, board, noticeUid);
 		List<NoticeDto> newBoardListDto = newBoardList.stream().map(entityList -> modelmapper.map(entityList, NoticeDto.class)).collect(Collectors.toList());
 		for (NoticeDto noticeDto : newBoardListDto) {
 			noticeDto.setNoticeFromUserNickname(userService.getUserNicknameByUid(noticeDto.getNoticeFromUid()));
+			Comment comment = commentDao.getById(noticeDto.getNoticeNnid());
+			noticeDto.setBid(comment.getCommentBid());
+			Board board = boardDao.getById(comment.getCommentBid());
+			if(!board.isBoardType()) {
+				noticeDto.setVid(board.getBoardTid());
+			}
 		}
 		return newBoardListDto;
 	}
