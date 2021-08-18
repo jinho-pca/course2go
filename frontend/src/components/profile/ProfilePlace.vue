@@ -9,7 +9,7 @@
       </i>
     </div>
     <div>
-      <PlaceCard v-for="(place,index) in placeListData" :key ="index" :place="place"/>
+      <PlaceCard v-for="(place,index) in visitListData" :key ="index" :place="place"/>
     </div>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
     PlaceCard
   },
   props: {
-    placeListData: {
+    visitListData: {
       type: Array
     }
   },

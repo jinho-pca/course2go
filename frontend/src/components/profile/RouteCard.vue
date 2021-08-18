@@ -1,9 +1,9 @@
 <template>
-    <div class="route-card">
-  <router-link :to="{ name: 'RouteArticle', query: { bid: route.boardResponse.bid }}">
-      {{route.boardResponse.boardTitle}}
-  </router-link>
-    </div>
+  <div class="route-card">
+    <router-link :to="{ name: 'RouteArticle', query: { bid: route.boardResponse.bid }}">
+        {{route.boardResponse.boardTitle}}
+    </router-link>
+  </div>
 </template>
 
 <script>

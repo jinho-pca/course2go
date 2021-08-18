@@ -17,7 +17,14 @@
           </router-link>
         </div>
       </div>
-      <img src="@/assets/images/map.jpg" alt="map image" class="newsfeed-image">
+      
+      <div class="newsfeed-image" v-if="newsfeed.board.boardType">
+        <img  src="@/assets/images/map.jpg" alt="map image" class="newsfeed-image">
+      </div>
+      <div class="newsfeed-image" v-if="!newsfeed.board.boardType">
+        <img :src="newsfeed.thing.visitImage1" alt="map image" class="newsfeed-image">
+      </div>
+
       <div class="newsfeed-description">
         {{ newsfeed.thing.routeContent }}
       </div>
@@ -52,11 +59,11 @@ export default {
     const router = useRouter()
 
     const showArticle = () => {
+      console.log(props);
       if(props.newsfeed.board.boardType){
         router.push({name: 'RouteArticle', query: { bid: props.newsfeed.board.bid }});
       } else{
-        console.log(props.newsfeed)
-        router.push( {name: 'VisitArticle', query: { bid: props.newsfeed.board.bid }});
+        router.push( {name: 'VisitArticle', query: { vid: props.newsfeed.thing.vid }});
       }
     }
     return { showArticle }
