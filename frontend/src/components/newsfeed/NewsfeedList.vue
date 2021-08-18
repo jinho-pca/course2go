@@ -12,7 +12,7 @@
       </div> 
       <span>뉴스피드</span>
     </div>
-    <div class="newsfeed-length">총 {{ filteredNewsfeeds.length }} 개의 게시물이 있습니다.</div>
+    <div class="newsfeed-amount">총 {{ filteredNewsfeeds.length }} 개의 게시물이 있습니다.</div>
     <NewsfeedCard v-for="(newsfeed, idx) in filteredNewsfeeds" :key="idx" :newsfeed="newsfeed" @click="getArticle(newsfeed.board.bid)" />
   </div>
 </template>

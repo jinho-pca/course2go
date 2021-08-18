@@ -15,3 +15,29 @@
 #app .display {
   padding: 0 10px 0 10px;
 }
+
+html, body {
+  padding-bottom: 40px;
+  width: 100vw;
+  min-height: 100vh;
+  /* background-color: #cfecf134; */
+}
+
+.background-color {
+  padding-bottom: 40px;
+  background: linear-gradient(to bottom, rgb(142, 211, 142) 0%, skyblue  51%, rgb(218, 177, 102)  100%);
+  background: linear-gradient(to bottom, #AFD7DE 0%, #DAEFF5  51%, #CED6D2  100%);
+  background: linear-gradient(to bottom, #AFD7DE 0%, #DAEFF5  51%, #CED6D2  100%);
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: -100;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

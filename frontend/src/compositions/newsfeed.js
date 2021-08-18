@@ -20,8 +20,9 @@ export const newsfeed = () => {
       }
     })
     .then((res) => {
-      newsfeeds.value = res.data.object
-      filteredNewsfeeds.value = res.data.object
+      newsfeeds.value = [...res.data.object].reverse()
+      filteredNewsfeeds.value = [...res.data.object].reverse()
+      console.log(res.data.object)
       return res
     })
     .catch((err) => {
