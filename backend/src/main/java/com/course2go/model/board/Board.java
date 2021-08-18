@@ -38,6 +38,14 @@ public class Board {
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
     private LocalDateTime boardTime;
     
+    public void addLike() {
+    	boardLike++;
+    }
+    
+    public void minusLike() {
+    	boardLike--;
+    }
+    
     public static BoardBuilder builder(String boardWriterUid, String boardTitle, Integer boardLike , Integer boardStar , Integer boardTid , boolean boardType) {
 		return BoardBuilder()
 				.boardWriterUid(boardWriterUid)
