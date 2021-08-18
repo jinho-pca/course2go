@@ -37,7 +37,6 @@ body {
   border-bottom: 2px solid transparent;
   font-weight: bold;
   color: black;
-  border-color: #1161ee;
 }
 
 /* input 간의 거리 조절 */
@@ -72,22 +71,33 @@ body {
 }
 
 /* button 디자인 */
-.signup-form .group .button {
+/* .signup-form .group .button {
   color: #fff;
   border: none;
   display: inline;
   padding: 13px 40px;
   border-radius: 30px;
   background: #3177f0;
+} */
+
+.signup-form .button {background-image: linear-gradient(to right, white 0%, wheat  51%, #white  100%)}
+.signup-form .button {
+  margin: 10px;
+  padding: 10px 40px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: black;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
 }
 
-/* label css */
-.signup-form .group .label {
-  width: 100%;
-  color: rgb(139, 139, 139);
-  font-size: 12px;
-  text-align: start;
-  margin: 0 0 2px 0;
+.signup-form .button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: black;
+  text-decoration: none;
 }
 
 /* 확인/취소 버튼 정렬 */
@@ -97,35 +107,51 @@ body {
   justify-content: space-around;
   margin: 20px 0 0 0; 
 }
+/* label css */
+.signup-form .group .label {
+  width: 100%;
+  color: rgb(139, 139, 139);
+  font-size: 12px;
+  text-align: start;
+  margin: 0 0 2px 0;
+}
+
 
 /* 성별 toggle 버튼 START */
 .switch {
   height: 50px;
   text-align: center;
-  background: #3346f5;
+  /* background: #3346f5; */
+  border: 1px solid grey;
   transition: all 0.2s ease;
-  border-radius: 25px;
+  border-radius: 10px;
 }
 .group .toggle-radio input[type=radio] {
   display: none;
 }
 .toggle-radio .switch label {
   cursor: pointer;
-  color: rgba(0,0,0,0.2);
+  color: grey;
   width: 50%;
   line-height: 50px;
   transition: all 0.2s ease;
 }
 
 #female:checked ~ .switch {
-  background: #ee3013;
+  border: 1px solid #ee3013;
+}
+
+#male:checked ~ .switch {
+  border: 1px solid #3346f5;
 }
 
 #male:checked ~ .switch label[for=male] {
-  color: #fff;
+  color: #3346f5;
+  font-weight: bold;
 }
 #female:checked ~ .switch label[for=female] {
-  color: #fff;
+  color: #ee3013;
+  font-weight: bold;
 }
 /*  */
 /*  */

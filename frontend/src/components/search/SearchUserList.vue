@@ -1,16 +1,18 @@
 <template>
   <div class="search-user-card">
-    <div class="card-left">
-      <img :src="user.userImage" alt="user Image">
-      <div>
+    <router-link :to="{path : '/profile', query: {nickname : user.userNickname} }">
+      <div class="card-left">
+        <img :src="user.userImage" alt="user Image">
         <div>
-          {{ user.userName }}
-        </div>
-        <div>
-          {{ user.userNickname }}
+          <div>
+            {{ user.userName }}
+          </div>
+          <div>
+            {{ user.userNickname }}
+          </div>
         </div>
       </div>
-    </div>
+    </router-link>
     <div class="card-right">
       <div class="follow-button" v-if="(user.followState == 0 && followState == -1) || followState == 0" @click="follow">
         <div>팔로우</div>

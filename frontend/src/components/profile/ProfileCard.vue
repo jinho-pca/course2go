@@ -15,13 +15,8 @@
           <div class="profile-name">{{ profileData.userNickname }}</div>
           <!-- v-if(나){프로필 편집} v-elseif(팔로우){팔로우취소} v-else -->
           <div v-if="!nickname">
-            <div class="profile-follow">
-              <router-link :to="{ name: 'UpdateProfile', query: { profileData: profileData } }"
-                >프로필 편집</router-link
-              >
-            </div>
-            <div class="profile-follow" @click="logout">
-              로그아웃
+            <div>
+              <i class="fas fa-unlock" @click="logout"></i>
             </div>
           </div>
 
@@ -56,6 +51,11 @@
         </div>
         <div class="profile-introduction">
           <span>{{ profileData.userComment }}</span>
+        </div>
+        <div class="profile-edit" v-if="profileData.userNickname == props.me.userNickname">
+          <router-link :to="{ name: 'UpdateProfile', query: { profileData: profileData } }">
+            프로필 편집
+          </router-link>
         </div>
       </div>
     </div>
@@ -96,6 +96,9 @@ export default {
     },
     articleAmount: {
       type: Number,
+    },
+    me: {
+      type: Object
     }
   },
   methods: {
@@ -113,9 +116,9 @@ export default {
       followState: -1,
     };
   },
-  setup() {
+  setup(props) {
     const { logout } = userLogout();
-    return { logout };
+    return { logout, props }
   },
 };
 </script>

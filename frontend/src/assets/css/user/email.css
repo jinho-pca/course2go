@@ -37,7 +37,6 @@ body {
   border-bottom: 2px solid transparent;
   font-weight: bold;
   color: black;
-  border-color: #1161ee;
 }
 
 .signup-form .group {
@@ -62,13 +61,24 @@ body {
 }
 
 /* button 디자인 */
-.signup-form .group .button {
-  color: #fff;
-  border: none;
-  display: inline;
-  padding: 13px 40px;
-  border-radius: 30px;
-  background: #3177f0;
+.signup-form .button {background-image: linear-gradient(to right, white 0%, wheat  51%, #white  100%)}
+.signup-form .button {
+  margin: 10px;
+  padding: 10px 40px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: black;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+.signup-form .button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: black;
+  text-decoration: none;
 }
 
 .login-form .group .button {background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA  51%, #1FA2FF  100%)}

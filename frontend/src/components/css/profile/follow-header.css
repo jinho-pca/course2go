@@ -6,11 +6,11 @@
   font-weight: 500;
   margin-bottom: 10px;
 }
-.follow-buttons{
+.follow-header .follow-buttons{
   display: flex;
   justify-content: space-evenly;
 }
-.follow-button{
+.follow-header .follow-button{
   border-radius: 20px / 100%;
   position: relative;
   width: 40%;

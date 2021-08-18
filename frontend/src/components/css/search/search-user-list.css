@@ -12,8 +12,13 @@
   justify-content: flex-start;
   font-size: 13px;
   text-align: start;
+  color: black;
+  text-decoration: none;
 }
 
+.search-user-card > a {
+  text-decoration: none;
+}
 .search-user-card .card-left > img {
   width: 40px;
   height: 40px;

@@ -61,12 +61,8 @@
           </div>
           <div class="group align-buttons">
             <input type="submit" @click="update" value="확인" class="button">
-            <router-link to="/profile">
-              <input type="submit" value="취소" class="button">
-            </router-link>
-          </div>
-          <div class="group">
-            <input type="button" @click="deleteUser" value="회원 탈퇴" class="delete-button">
+            <input type="submit" value="취소" class="button" @click="back">
+            <input type="submit" @click="deleteUser" value="회원 탈퇴" class="button delete-button">
           </div>
         </div>
       </div>
@@ -89,6 +85,9 @@ export default {
       checkNickname, nicknameSchema, user
       } = userUpdate();
     const { deleteUser } = userDelete();
+    const back = () => {
+      history.back()
+    }
     /* 이메일과 비밀번호에 변화가 있을 때 watch */
     watchEffect(() => checkUpdateForm({ 
       nickname: nickname.value,
@@ -110,7 +109,8 @@ export default {
       nicknameSchema,
       checkUpdateForm,
       user,
-      deleteUser
+      deleteUser,
+      back
     };
   }
 }
