@@ -38,6 +38,21 @@ public class BoardController {
 	ScrapService scrapService;
 
 	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
+
+	@DeleteMapping("/{bid}")
+    @ApiOperation(value = "글 삭제")
+	public Object deleteBoard(@PathVariable Integer bid, @RequestHeader Map<String, Object> header) {
+		logger.info("글 삭제 시작 : bid = " +bid);
+		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
+		final BasicResponse result = new BasicResponse();
+        result.status = likeService.cancelLike(uid, bid);
+        if (result.status) {
+            result.data = "success";
+		} else {
+	        result.data = "fail";
+		}
+		return new ResponseEntity<>(result,HttpStatus.OK);
+	}
 	
 	@PostMapping("/like/{bid}")
     @ApiOperation(value = "좋아요")
