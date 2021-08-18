@@ -83,7 +83,7 @@ public class ContainServiceImpl implements ContainService {
 	@Override
 	public void deleteVisitInContain(Integer vid) {
 		Contain contain = containDao.findContainByContainVid(vid).get();
-		containDao.save(new Contain(contain.getId(), contain.getContainRid(), contain.getContainPid(), null, contain.getContainOrder()));
+		containDao.save(new Contain(contain.getId(), contain.getContainRid(), contain.getContainPid(), -1, contain.getContainOrder()));
 	}
 
 }
