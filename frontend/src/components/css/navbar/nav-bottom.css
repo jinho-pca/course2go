@@ -32,6 +32,12 @@
   border: none;
 }
 
+.nav-bottom .nav-items > div:last-child > i {
+  position: relative;
+  top: 30%;
+  left: 0;
+}
+
 .nav-bottom .nav-items > .active > a > i {
   color: rgb(0, 102, 255);
 }
