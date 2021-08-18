@@ -4,9 +4,6 @@
       <span class="place-name">
         장소 목록
       </span>
-      <i class="far fa-plus">
-        <!-- v-if -->
-      </i>
     </div>
     <div>
       <PlaceCard v-for="(place,index) in visitListData" :key ="index" :place="place"/>

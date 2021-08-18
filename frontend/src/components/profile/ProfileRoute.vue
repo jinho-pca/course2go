@@ -4,9 +4,6 @@
       <span class="route-name">
         동선 목록
       </span>
-      <i class="far fa-plus">
-        <!-- v-if -->
-      </i>
     </div>
     <div>
       <RouteCard v-for="(route,index) in routeListData" :key ="index" :route="route"/>

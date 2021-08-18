@@ -1,9 +1,10 @@
 .profile-card {
   border: 1px solid rgba(68, 65, 65, 0.192);
   border-radius: 15px;
-  margin: 15px 20px 20px 20px;
-  padding: 15px 10px 15px 15px;
-  background: rgb(236, 235, 234);
+  margin: 10px;
+  padding: 15px 15px;
+  background: rgb(255, 255, 255);
+  box-shadow: 1px 1px black;
 }
 
 .profile-card .profile-top {
@@ -15,7 +16,7 @@
 .profile-top .profile-imagebox {
   overflow: hidden;
   /* margin: 0 auto; */
-  width: 20%;
+  width: 25%;
 }
 
 .profile-imagebox .profile-image {
@@ -47,13 +48,30 @@
   font-weight: bold;
 }
 
+.profile-content .profile-edit {
+  background: #96eaff;
+  font-size: 10px;
+  width: 50%;
+  border: 1px solid rgba(129, 120, 120, 0.596);
+  border-radius: 10px;
+  margin: 5px 0 0 0;
+  padding: 0 10px;
+  font-weight: bold;
+}
+
+.profile-content .profile-edit > a {
+  text-decoration: none;
+  color: black;
+}
+
 .profile-content .profile-follow a {
   text-decoration: none;
   color: black
 }
 
 .profile-content .profile-introduction {
-  float: left;
+  text-align: start;
+  /* float: left; */
   font-size: 11px;
 }
 

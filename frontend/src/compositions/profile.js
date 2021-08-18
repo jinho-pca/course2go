@@ -12,12 +12,13 @@ export const profile = () => {
   const profileData = ref({});
   const routeListData = ref([]);
   const visitListData = ref([]);
-
+  const me = ref('');
   const myProfile = (userNickname) => {
 
     if(!userNickname){
       const user = jwt.decode(token.substr(7))
       userNickname = user.userNickname;
+      me.value = user
     }
     
     axios({
@@ -95,7 +96,7 @@ export const profile = () => {
     
   }
 
-  return { who, profileData, routeListData, visitListData, myProfile, routeList, visitList, articleAmount }
+  return { who, profileData, routeListData, visitListData, myProfile, routeList, visitList, articleAmount, me }
 }
 
 export const updateProfile = () => {
@@ -164,5 +165,5 @@ export const updateProfile = () => {
     }
   }
 
-  return { profileUpdate, userNickname, userImage, userComment, addImage }
+  return { profileUpdate, userNickname, userImage, userComment, addImage, user }
 }
