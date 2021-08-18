@@ -1,8 +1,5 @@
 <template>
   <div id="login-wrap">
-    <video autoplay muted loop id="bg-video">
-      <source src="@/assets/beach.mp4" type="video/mp4">
-    </video>
     <div class="login-html">
       <h3 id="tab-1" name="tab" class="tab">로그인</h3>
       <div class="login-form">

@@ -22,6 +22,12 @@
   /* border-color: #1161ee; */
 }
 
-.profile-page .fa-cog {
+.profile-page .fa-cog,
+.profile-page .fa-unlock {
   vertical-align: middle;
+  font-size: 18px;
 }
+
+/* .profile-page .fa-unlock {
+  margin: 0 20px;
+} */

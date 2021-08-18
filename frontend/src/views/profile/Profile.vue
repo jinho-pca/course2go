@@ -5,11 +5,13 @@
       <span v-if="!nickname" class="my-profile">내 프로필</span>
       <span v-if="nickname" class="my-profile">{{nickname}}의 프로필</span>
       
-      <router-link to="/modify" v-if="!nickname">
-        <i class="fas fa-cog"></i>
-      </router-link>
+      <span>
+        <router-link to="/modify" v-if="!nickname">
+          <i class="fas fa-cog"></i>
+        </router-link>
+      </span>
     </div>
-    <ProfileCard :profileData="profileData" :nickname="nickname" :articleAmount="articleAmount" />
+    <ProfileCard :profileData="profileData" :nickname="nickname" :articleAmount="articleAmount" :me="me" />
     <ProfileRoute :routeListData="routeListData" />
     <ProfilePlace :visitListData="visitListData" />
   </div>
@@ -31,13 +33,14 @@ export default {
     ProfilePlace,
   },
   setup() {
-    const { myProfile, who, profileData, routeList, routeListData, visitList, visitListData, articleAmount } = profile();
+    const { myProfile, who, profileData, routeList, routeListData, visitList, visitListData, articleAmount, me } = profile();
     const route = useRoute();
     myProfile(route.query.nickname);
     routeList(route.query.nickname);
     visitList(route.query.nickname);
     console.log(routeListData)
-    return { myProfile, who, profileData, routeList, routeListData, visitList, visitListData, articleAmount }
+    console.log(me)
+    return { myProfile, who, profileData, routeList, routeListData, visitList, visitListData, articleAmount, me }
   },
   mounted(){
     this.nickname = this.$route.query.nickname

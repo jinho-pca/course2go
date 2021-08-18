@@ -43,7 +43,7 @@
   width: 100%;
   margin: 0 5px 0 0;
   /* border-right: 1px solid black; */
-  box-shadow: 3px 3px grey, -2px 0 0.4rem rgb(85, 214, 247);
+  box-shadow: 3px 3px grey;
 }
 
 .select:hover {
