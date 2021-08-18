@@ -43,7 +43,7 @@ public class NewsfeedServiceImpl implements NewsfeedService{
 			boardDto.setBoardWriterImage(userService.getUserImageByUid(boardDto.getBoardWriterUid()));
 			NewsfeedDto newsfeed = new NewsfeedDto();
 			newsfeed.setBoard(boardDto);
-			if (boardDto.isBoardType()) {
+			if (boardDto.getBoardType()) {
 				newsfeed.setThing(routeService.readRoute(boardDto.getBoardTid()));				
 			} else {
 				newsfeed.setThing(visitService.readVisit(boardDto.getBoardTid()));

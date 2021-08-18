@@ -21,9 +21,9 @@ public class BoardDto {
     private Integer boardLike;
     private Integer boardStar;
     private Integer boardTid;
-    private boolean	boardType;
+    private Boolean	boardType;
     private LocalDateTime boardTime;
     public BoardDto(Board board, String boardWriterNickname, String boardWriterImage) {
-    	this(board.getBid(), board.getBoardWriterUid(), boardWriterNickname, boardWriterImage, board.getBoardTitle(), board.getBoardLike(), board.getBoardStar(), board.getBoardTid(), board.isBoardType(), board.getBoardTime());
+    	this(board.getBid(), board.getBoardWriterUid(), boardWriterNickname, boardWriterImage, board.getBoardTitle(), board.getBoardLike(), board.getBoardStar(), board.getBoardTid(), board.getBoardType(), board.getBoardTime());
     }
 }
