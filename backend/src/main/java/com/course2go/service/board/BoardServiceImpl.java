@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,6 +122,7 @@ public class BoardServiceImpl implements BoardService {
 		return false;
 	}
 
+	@Transactional
 	@Override
 	public void deleteBoard(Integer bid) {
 		Board board = boardDao.findById(bid).get();

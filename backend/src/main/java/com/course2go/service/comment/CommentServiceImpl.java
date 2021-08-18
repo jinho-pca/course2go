@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -138,6 +140,7 @@ public class CommentServiceImpl implements CommentService {
 		return readSortedComment(bid);
 	}
 
+	@Transactional
 	@Override
 	public void deleteCommentsByBid(Integer bid) {
 		commentDao.deleteAllByCommentBid(bid);

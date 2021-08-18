@@ -3,6 +3,8 @@ package com.course2go.service.visit;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -121,6 +123,7 @@ public class VisitServiceImpl implements VisitService {
 		return visitList;
 	}
 
+	@Transactional
 	@Override
 	public void deleteVisit(Integer vid) {
 		containService.deleteContain(vid);

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -110,6 +112,7 @@ public class RouteServiceImpl implements RouteService {
 		return routeList;
 	}
 
+	@Transactional
 	@Override
 	public void deleteRoute(Integer rid) {
 		containService.deleteContains(rid);
