@@ -71,4 +71,14 @@ public class ContainServiceImpl implements ContainService {
 		return rids2;
 	}
 
+	@Override
+	public void deleteContains(Integer rid) {
+		containDao.deleteAllByContainRid(rid);
+	}
+
+	@Override
+	public void deleteContain(Integer vid) {
+		containDao.deleteAllByContainvid(vid);
+	}
+
 }

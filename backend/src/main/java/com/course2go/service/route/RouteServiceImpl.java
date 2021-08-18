@@ -110,4 +110,10 @@ public class RouteServiceImpl implements RouteService {
 		return routeList;
 	}
 
+	@Override
+	public void deleteRoute(Integer rid) {
+		routeDao.deleteById(rid);
+		containService.deleteContains(rid);
+	}
+
 }

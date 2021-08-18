@@ -1,6 +1,7 @@
 package com.course2go.service.board;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -105,5 +106,24 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Integer getBidByTidAndBoardType(Integer tid, Boolean boardType) {
 		return boardDao.findBoardByBoardTidAndBoardType(tid, boardType).getBid();
+	}
+
+	@Override
+	public boolean isMyBoard(Integer bid, String uid) {
+		Optional<Board> boardOpt = boardDao.findById(bid);
+		if (boardOpt.get().getBoardWriterUid().equals(uid)) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void deleteBoard(Integer bid) {
+		Board board = boardDao.findById(bid).get();
+		boardDao.deleteById(bid);
+		if (board.isBoardType()) { // 동선
+			routeService.deleteRoute(board.getBoardTid());
+		}
+		visitService.deleteVisit(board.getBoardTid());
 	}
 }

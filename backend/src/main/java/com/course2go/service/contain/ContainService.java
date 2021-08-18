@@ -14,4 +14,7 @@ public interface ContainService {
 	public List<Integer> getRidsContainPids(List<Integer> pids);
 	
 	public List<Integer> filterRidsWithExtraPid(List<Integer> rids, Integer pid);
+	
+	public void deleteContains(Integer rid);
+	public void deleteContain(Integer vid);
 }
