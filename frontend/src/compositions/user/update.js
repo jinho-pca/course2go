@@ -49,7 +49,7 @@ export const userUpdate = () => {
   const passwordConfirm = ref('');
   const nickname = ref(user.userNickname);
   
-  const update = async ()=> {
+  const update = async () => {
     if(isSubmit.value) {
       const data = {
         userPassword: password.value,
@@ -71,8 +71,10 @@ export const userUpdate = () => {
       })
       .then((res) => {
         isSubmit.value = true;
-        alert('회원 정보 수정이 완료되었습니다.')
-        router.go(-1)
+        ('회원 정보 수정이 완료되었습니다.')
+        return res
+      })
+      .then((res) => {
         return res
       })
       .catch((err) => {
@@ -81,6 +83,7 @@ export const userUpdate = () => {
         alert('회원 정보 수정에 실패했습니다.')
         return err
       })
+      router.push('/newsfeed')
     }
   };
   /* Signup 통신 End */
