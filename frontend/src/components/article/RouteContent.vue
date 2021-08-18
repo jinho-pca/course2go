@@ -2,7 +2,9 @@
 <div>
   <div class="article-content-user" style="border:none; background: white;">
     <div class="card-left">
+      <div>
         <img :src="articleRoute.userDto.userImage" alt="profile image" class="profile-image">
+      </div>
       <div class="user-nickname">
         &nbsp; {{articleRoute.userDto.userNickname}}
       </div>
@@ -10,20 +12,36 @@
     <div class="card-right">
       <span class="follow-d">{{articleRoute.boardResponse.boardLike + likeChange}}</span>
       &nbsp;
-      <i class="fas fa-heart" v-if="(articleRoute.boardResponse.boardILike && clicklike==0) || clicklike == 1" @click="unlike"></i>
+      <i style="color:red" class="fas fa-heart" v-if="(articleRoute.boardResponse.boardILike && clicklike==0) || clicklike == 1" @click="unlike"></i>
       <i class="far fa-heart" v-if="(!articleRoute.boardResponse.boardILike && clicklike ==0) || clicklike == -1" @click="like"></i>
     </div>
   </div>
-  <div>
-    <div style="font-weight:bold; margin: 20px 0">{{articleRoute.boardResponse.boardTitle}}</div>
-    <div>{{articleRoute.routeResponse.routeContent}}</div>
+    <!-- <div style="font-weight:bold; margin: 20px 0">{{articleRoute.boardResponse.boardTitle}}</div>
+    <div>{{articleRoute.routeResponse.routeContent}}</div> -->
+
+  <div class="article-content">
+    <div class="article-title">
+      <div>
+        {{articleRoute.boardResponse.boardTitle}}
+      </div>
+      <div>
+        <button v-if="myNickname == articleRoute.userDto.userNickname" class="article-delete-btn" @click="deleteBoard">삭제</button>
+      </div>
+    </div>
+    <div class="article-content">
+      {{articleRoute.routeResponse.routeContent}}
+    </div>
   </div>
+
 </div>
 </template>
 
 <script>
 import '@/components/css/article/article-content.css';
 import {like, unlike} from '@/compositions/article/like.js'
+import {deleteBoard} from '@/compositions/article/delete.js'
+import jwt from 'jsonwebtoken'
+import {BASE_URL} from '@/compositions/global.js'
 // import { ref } from 'vue'
 
 export default {
@@ -43,12 +61,16 @@ export default {
       this.clicklike = -1;
       this.likeChange--;
       unlike(this.articleRoute.boardResponse.bid);
+    },
+    deleteBoard(){
+      deleteBoard(this.articleRoute.boardResponse.bid);
     }
   },
   data: function(){
     return{
       clicklike : 0,
-      likeChange : 0
+      likeChange : 0,
+      myNickname : jwt.decode(BASE_URL().token.substr(7)).userNickname,
     }
   }
 

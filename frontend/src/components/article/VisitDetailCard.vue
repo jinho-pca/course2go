@@ -1,13 +1,14 @@
 <template>
   <div>
     <div class="content">
-      <div class="visit-title">
+
+      <!-- <div class="visit-title">
         {{articleVisit.boardResponse.boardTitle}}
       </div>
       <div class="visit-content">
         {{articleVisit.visitResponse.visitContent}}
+      </div> -->
 
-      </div>
       <div class="images">
         <div class="slideshow-container">
           <!-- Full-width images with number and caption text -->

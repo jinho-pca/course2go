@@ -10,6 +10,17 @@ details summary{
   text-align: end;
 }
 
+details summary a{
+  color: grey;
+  text-decoration: none;
+}
+
+details summary a :hover{
+  color: black;
+  text-decoration: none;
+}
+
+
 /* details summary router-link{
   text-align: left;
 } */

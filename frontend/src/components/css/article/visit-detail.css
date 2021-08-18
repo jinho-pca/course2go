@@ -1,20 +1,5 @@
 
-.content{
-  text-align: left;
-}
 
-.content .visit-title{
-  padding: 10px 0;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.content .visit-content{
-  padding: 10px 5px;
-  margin: 5px 0 10px;
-  border: solid 1px #71717131;
-  border-radius: 10px;
-}
 
 /* Slideshow container */
 .slideshow-container {
