@@ -10,11 +10,6 @@
   font-size: 5px;
 }
 
-body {
-  /* font: 600 16px/18px "Open Sans", sans-serif; */
-  padding-bottom: 40px;
-}
-
 a {
   color: inherit;
   text-decoration: none;
@@ -208,7 +203,7 @@ a {
   min-height: 100%;
   transform: translateX(-50%) translateY(-50%);
   z-index: -100;
-  /* background-image: url(assets/astro.jpg); */
+  background-image: url("../../images/beach.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
