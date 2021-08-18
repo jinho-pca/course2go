@@ -5,20 +5,39 @@
   height: 7%;
   display: flex;
   justify-content: center;
-  border-top: 1px solid black;
+  border-top: 0.1px solid rgba(0, 0, 0, 0.322);
   background: white;
   z-index: 1;
 }
 
 .nav-bottom .nav-items {
-  width: 95%;
+  width: 100%;
   height: 100%;
-  /* padding: 15px 0; */
+  display: flex;
 }
 
-.nav-bottom .nav-items > span {
+.nav-bottom .nav-items > div {
+  display: inline-block;
   height: 100%;
-  /* padding: 15px 0; */
+  width: 20%;
+}
+
+.nav-bottom .nav-items > div > a {
+  position: relative;
+  top: 30%;
+  left: 0;
+}
+
+.nav-bottom .nav-items > div:last-child {
+  border: none;
+}
+
+.nav-bottom .nav-items > .active > a > i {
+  color: rgb(0, 102, 255);
+}
+
+.nav-bottom .nav-items > div:active {
+  background: rgba(0, 0, 0, 0.637);
 }
 
 .nav-bottom .far {
@@ -26,6 +45,6 @@
   color: rgb(0, 0, 0);
 }
 
-.nav-bottom .active {
+/* .nav-bottom .active {
 
-}
+} */

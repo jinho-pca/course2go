@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="write-title"> 
-    글쓰기
+    동선 게시글 쓰기
   </div>
 </div>
 </template>

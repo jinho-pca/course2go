@@ -20,8 +20,8 @@
                 >프로필 편집</router-link
               >
             </div>
-            <div>
-              ㅎㅇ
+            <div class="profile-follow" @click="logout">
+              로그아웃
             </div>
           </div>
 
@@ -83,6 +83,8 @@
 <script>
 import "@/components/css/profile/profileCard.css";
 import { requestFollow, unfollow } from "@/compositions/follow/follow";
+import { userLogout } from "@/compositions/user/logout";
+
 export default {
   name: "ProfileCard",
   props: {
@@ -110,6 +112,10 @@ export default {
     return {
       followState: -1,
     };
+  },
+  setup() {
+    const { logout } = userLogout();
+    return { logout };
   },
 };
 </script>

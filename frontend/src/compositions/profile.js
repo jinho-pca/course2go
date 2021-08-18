@@ -60,7 +60,6 @@ export const profile = () => {
     })
     .then((res) => {
       routeListData.value = res.data.object;
-      console.log(routeListData.value.length)
       articleAmount.value += routeListData.value.length;
       return res
     })
@@ -87,7 +86,6 @@ export const profile = () => {
     })
     .then((res) => {
       visitListData.value = res.data.object;
-      console.log(visitListData.value.length)
       articleAmount.value += visitListData.value.length;
       return res
     })

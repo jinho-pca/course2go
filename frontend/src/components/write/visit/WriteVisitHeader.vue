@@ -4,7 +4,7 @@
   </div>
   
   <div class="write-title"> 
-    글쓰기
+    장소 게시글 쓰기
   </div>
   
 </template>

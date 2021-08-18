@@ -1,6 +1,5 @@
-body{
+.comment-input {
     font-size: small;
-    /* margin: auto 0; */
 }
 .comment-input-main {
     display: flex;
