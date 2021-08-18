@@ -66,6 +66,8 @@ export default {
       if (route.query.nickname != me.userNickname || route.query.userNickname) {
         await router.push('/profile')
         await location.reload()
+      } else {
+        await router.push('/profile')
       }
     }
     myProfile()
