@@ -8,7 +8,7 @@
         <button style="border: 1px solid black; box-shadow: 2px 2px 2px grey;">팔로잉</button>
         <button>팔로워</button>
       </div> -->
-      <FollowHeader @select="select" />
+      <FollowHeader :isFollowing="selectFollowing" @select="select" />
     </div>
     <div v-show="!selectFollowing">
       <FollowCard v-for="(userInfo, index) in followerListData" :key="index" :userInfo="userInfo" />
@@ -48,7 +48,11 @@ export default {
     const { followerListData, followerList, followingList, followingListData } = follow();
     followerList(route.query.userNickname);
     followingList(route.query.userNickname);
-    return { back, followerListData, followerList, followingList, followingListData };
+    const isFollowing = (route.query.isfollowing=="true")
+    return { back, followerListData, followerList, followingList, followingListData, isFollowing };
+  },
+  mounted() {
+    this.selectFollowing = this.isFollowing
   },
   methods: {
     select(select) {

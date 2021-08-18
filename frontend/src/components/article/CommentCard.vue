@@ -11,7 +11,7 @@
         </div>
         <div class="comment-footer">
           <span>{{timestamp}}</span>&nbsp;&nbsp;
-          <span>좋아요 {{comment.commentLike}}</span>&nbsp;&nbsp;
+          <!-- <span>좋아요 {{comment.commentLike}}</span>&nbsp;&nbsp; -->
           <span v-if="!writingreply" v-on:click="writingreply=true">답글</span>&nbsp;&nbsp;
           <span v-if="isMyComment()" v-on:click="deleteComment">삭제</span>
         </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="comment-footer">
           <span>{{timestamp}}</span>&nbsp;&nbsp;
-          <span>좋아요 {{comment.commentLike}}</span>&nbsp;&nbsp;
+          <!-- <span>좋아요 {{comment.commentLike}}</span>&nbsp;&nbsp; -->
           <span v-if="!writingreply" v-on:click="writingreply=true">답글</span>&nbsp;&nbsp;
           <span v-if="isMyComment()" v-on:click="deleteComment">삭제</span>
         </div>
@@ -97,7 +97,7 @@ export default {
       this.setReplyParent();
     },
     setTimestamp() {
-      var gap = new Date().getTime() - new Date(this.comment.commentTime).getTime();
+      var gap = new Date().getTime() - new Date(this.comment.commentTime).getTime()-32400000;
       gap = gap /1000 /60;
       var text = "";
       if (gap<1) {

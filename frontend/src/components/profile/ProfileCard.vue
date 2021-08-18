@@ -64,13 +64,13 @@
         <span class="tag">게시물</span>
         <span>{{ articleAmount }}</span>
       </div>
-      <router-link :to="{ path: '/follow', query: { userNickname: profileData.userNickname } }">
+      <router-link :to="{ path: '/follow', query: { userNickname: profileData.userNickname, isfollowing: true } }">
         <div>
           <span class="tag">팔로잉</span>
           <span>{{ profileData.userFollowing }}</span>
         </div>
       </router-link>
-      <router-link :to="{ path: '/follow', query: { userNickname: profileData.userNickname } }">
+      <router-link :to="{ path: '/follow', query: { userNickname: profileData.userNickname, isfollowing: false } }">
         <div>
           <span class="tag">팔로워</span>
           <span>{{ profileData.userFollower }}</span>
