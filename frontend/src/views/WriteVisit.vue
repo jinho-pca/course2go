@@ -60,6 +60,9 @@ export default {
       } else if(!this.visitTime){
         alert("보낸 시간을 입력하세요.");
         return;
+      } else if(!this.visitImage1){
+        alert("사진을 1개 이상 첨부하세요.");
+        return;
       } else{
         await writeVisit(this.rid,this.title, this.visitPid, this.visitCost, this.visitTime, this.visitContent, this.visitImage1, this.visitImage2, this.visitImage3);
 		this.$router.push({name: 'Newsfeed'});
