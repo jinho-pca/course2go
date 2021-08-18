@@ -1,10 +1,10 @@
 <template>
   <div class="notice-category">
-    <div class="notice-name">
+    <div class="notice-name" >
       확인한 알림
     </div>
     <div class="notice-list">
-      <div class="notice-item" v-for="(notice) in noticeList" :key="notice" @click="test(notice)">
+      <div class="notice-item" v-for="(notice) in noticeList" :key="notice" @click="goArticle(notice)">
         <div class="notice-left">
           <span class="notice-nickname">
               {{notice.noticeFromUserNickname}}
@@ -35,6 +35,14 @@ export default {
         this.noticeList = res.object;
       })
     },
+    goArticle(notice){
+      console.log(notice);
+      if(notice.vid == -1){
+        this.$router.push({name: 'RouteArticle', query: { bid: notice.bid }});
+      } else{
+        this.$router.push( {name: 'VisitArticle', query: { vid: notice.vid }});
+      }
+    },
     getTimeStamp(time){
       var gap = new Date().getTime() - new Date(time).getTime() -32400000;
         gap = gap /1000 /60;
@@ -56,9 +64,7 @@ export default {
         timestamp = gap + text;
         return timestamp
     },
-    test(notice){
-      console.log(notice);
-    }
+    
 
     
   },
