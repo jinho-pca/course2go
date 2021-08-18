@@ -16,4 +16,5 @@ public interface RouteService {
 	public List<RouteReadResponse> getMyRouteList(String uid1, String uid);
 	public List<RouteReadResponse> getRouteList(String userNickname, String uid);
 	public List<RouteReadResponse> getRouteContainPids(List<Integer> pids, String uid);
+	public void deleteRoute(Integer rid);
 }
