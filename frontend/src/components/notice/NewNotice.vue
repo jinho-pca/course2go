@@ -34,7 +34,7 @@ export default {
     initComponent(){
       getNewNotice().then(res =>{
         console.log(res.object[0]);
-        this.noticeList = res.object;
+        this.noticeList = res.object.reverse();
         checkNotice();
       })  
     },

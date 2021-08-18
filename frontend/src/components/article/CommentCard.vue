@@ -2,7 +2,7 @@
   <div class="comment-card">
     <div class="comment-main" v-if="!isreply && !comment.commentDeleted">
       <div class="comment-writer-imagebox">
-        <img :src="comment.commentWriterDto.userImage" alt="profile image" class="profile-image">
+        <img :src="comment.commentWriterDto.userImage" alt="profile image" class="comment-image">
       </div>
       <div class="comment-content">
         <div class="comment-text">
@@ -26,7 +26,7 @@
 
     <div class="comment-reply-main" v-if="isreply">
       <div class="comment-writer-imagebox">
-        <img :src="comment.commentWriterDto.userImage" alt="profile image" class="profile-image">
+        <img :src="comment.commentWriterDto.userImage" alt="profile image" class="comment-image">
       </div>
       <div class="comment-content">
         <div class="comment-text">

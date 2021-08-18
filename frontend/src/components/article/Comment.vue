@@ -2,7 +2,7 @@
   <div id="comments">
     <h2>댓글</h2>
     <CommentInput :vid="vid" :bid="bid" :parent="nonreply" :direct="nonreply" @reload="reload"/>
-    <CommentCard v-for="(comment, index) in commentlist" :key="index" :vid="vid" :bid="bid" :comment="comment" @reload="reload"/>
+    <CommentCard style="margin:15px 0" v-for="(comment, index) in commentlist" :key="index" :vid="vid" :bid="bid" :comment="comment" @reload="reload"/>
   </div>
 </template>
 <script>

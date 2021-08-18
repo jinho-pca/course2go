@@ -26,6 +26,9 @@
             거부
           </button>
         </div>
+        <div class="notice-right" v-if="notice.noticeType == 2">
+          {{getTimeStamp(notice.noticeTime)}}
+        </div>
       </div>
     </div>
   </div>
@@ -43,7 +46,7 @@ export default {
   methods:{
     initComponent(){
       getNewRequest().then(res =>{
-        this.noticeList = res.object;
+        this.noticeList = res.object.reverse();
         checkRequest();
       })
     },
@@ -56,6 +59,27 @@ export default {
       console.log(id);
       denyFollow(id);
       this.noticeList.splice(index, 1);
+    },
+    getTimeStamp(time){
+      var gap = new Date().getTime() - new Date(time).getTime();
+        gap = gap /1000 /60;
+        var text = "";
+        let timestamp = "";
+        if (gap<1) {
+          timestamp = "방금전";
+          return;
+        } else if (gap<60) {
+          text = "분 전"
+        } else if (gap<1440) {
+          text = "시간 전"
+          gap = gap /60;
+        } else{
+          text = "일 전"
+          gap = gap /1440;
+        }
+        gap = parseInt(gap);
+        timestamp = gap + text;
+        return timestamp
     }
   },
   data: function(){
