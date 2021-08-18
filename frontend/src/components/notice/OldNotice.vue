@@ -4,7 +4,7 @@
       확인한 알림
     </div>
     <div class="notice-list">
-      <div class="notice-item" v-for="(notice) in noticeList" :key="notice" @click="redirect()">
+      <div class="notice-item" v-for="(notice) in noticeList" :key="notice" @click="test(notice)">
         <div class="notice-left">
           <span class="notice-nickname">
               {{notice.noticeFromUserNickname}}
@@ -55,7 +55,11 @@ export default {
         gap = parseInt(gap);
         timestamp = gap + text;
         return timestamp
+    },
+    test(notice){
+      console.log(notice);
     }
+
     
   },
   data: function(){
