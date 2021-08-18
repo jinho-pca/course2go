@@ -78,7 +78,7 @@ public class ContainServiceImpl implements ContainService {
 
 	@Override
 	public void deleteContain(Integer vid) {
-		containDao.deleteAllByContainvid(vid);
+		containDao.deleteAllByContainVid(vid);
 	}
 
 }
