@@ -66,12 +66,13 @@ export default {
             write(this.parent, this.mycomment, this.bid).then(() =>{
               this.$emit('reload')
               });
-            } else{
+            } else {
               console.log(this.vid);
               writeByVid(this.parent, this.mycomment, this.vid).then(() =>{
                 this.$emit('reload')
               });
             }
+            this.mycomment = ''
         },
         isReply(){
             if (this.parent != -1) {

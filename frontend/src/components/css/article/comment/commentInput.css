@@ -40,7 +40,8 @@ body{
 
 
 .comment-input-writer-imagebox .profile-image {
-    width: 100%;
+    width: 50px;
+    height: 50px;
     height: flex;
     object-fit: fill;
     border-radius: 100%;
@@ -50,6 +51,7 @@ body{
     border: none;
     border-bottom: solid;
     width: 85%;
+    background: none;
 }
 .comment-input-contents .comment-input-content-icons{
     display: inline;
