@@ -3,6 +3,9 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
+					<div class="modal-title">
+						<span>장소 검색</span>
+					</div>
           <div class="modal-header">
             <slot name="header">
 							<input class="modal-default-input" v-model="searchKey" type="text" @keyup.enter="search" id="search-input">
@@ -41,12 +44,12 @@
 
           <div class="modal-footer">
             <slot name="footer">
-							<button class="modal-default-button modal-button-cancel" @click="$emit('close')">
-                취소하기
-              </button>
 							<button class="modal-default-button modal-button-submit" @click="$emit('place',this.placeList[this.selectBox]);">
 								추가하기
 							</button>
+							<button class="modal-default-button modal-button-cancel" @click="$emit('close')">
+                취소하기
+              </button>
             </slot>
           </div>
         </div>
