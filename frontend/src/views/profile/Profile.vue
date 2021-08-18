@@ -24,7 +24,7 @@ import ProfileRoute from '@/components/profile/ProfileRoute.vue'
 import ProfilePlace from '@/components/profile/ProfilePlace.vue'
 import { useRoute } from 'vue-router';
 import { profile } from '@/compositions/profile.js';
-
+import { jwtdecoder } from '@/compositions/utils/jwtdecoder.js'
 export default {
   name: 'Profile',
   components: {
@@ -44,6 +44,10 @@ export default {
   },
   mounted(){
     this.nickname = this.$route.query.nickname
+    const { mynickname } = jwtdecoder()
+    if (this.nickname == mynickname) {
+      this.nickname=""
+    }
   },
 
   data(){

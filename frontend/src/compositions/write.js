@@ -3,7 +3,7 @@ import { BASE_URL } from '@/compositions/global.js'
 
 const { URL, token } = BASE_URL();
 
-export const writeRoute = (title, routeStartDate, routeEndDate, routeContent, routePid, routeImage) => {
+export const writeRoute = async (title, routeStartDate, routeEndDate, routeContent, routePid, routeImage) => {
 	const req = {
 		"title" : title, 
 		"routeStartDate" : routeStartDate,
@@ -20,7 +20,7 @@ export const writeRoute = (title, routeStartDate, routeEndDate, routeContent, ro
 	frm.append("image", routeImage);
 	frm.append("request", JSON.stringify(req));
 
-	axios({
+	await axios({
 	method: 'post',
 	url: URL + 'route/write',
 	headers: headers,
@@ -36,7 +36,7 @@ export const writeRoute = (title, routeStartDate, routeEndDate, routeContent, ro
 	})
 }
 
-export const writeVisit = (rid, title, visitPid, visitCost, visitTime, visitContent, visitImage1, visitImage2, visitImage3) => {
+export const writeVisit = async (rid, title, visitPid, visitCost, visitTime, visitContent, visitImage1, visitImage2, visitImage3) => {
 	const req = {
 		"title" : title, 
 		"visitPid" : visitPid,
@@ -59,7 +59,7 @@ export const writeVisit = (rid, title, visitPid, visitCost, visitTime, visitCont
 	frm.append("image3", visitImage3);
 	frm.append("rid", rid);
 	frm.append("request", JSON.stringify(req));
-	axios({
+	await axios({
 		method: 'post',
 		headers: headers,
 		url: URL + 'visit/write',

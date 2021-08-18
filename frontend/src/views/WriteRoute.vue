@@ -42,7 +42,7 @@ export default {
     WriteRouteImage
   },
   methods: {
-		write(){
+		async write(){
       console.log("글 작성 ============================\n" + 
       "제목 : " + this.title + "\n" +
       "시작일 : " + this.routeStartDate + "\n" +
@@ -64,7 +64,7 @@ export default {
         alert("여행 경로를 하나 이상 입력하세요.");
         return;
       } else{
-        writeRoute(this.title, this.routeStartDate, this.routeEndDate, this.routeContent, this.routePid, this.routeImage);
+        await writeRoute(this.title, this.routeStartDate, this.routeEndDate, this.routeContent, this.routePid, this.routeImage);
         this.$router.push({name: 'Newsfeed'});
       }
 

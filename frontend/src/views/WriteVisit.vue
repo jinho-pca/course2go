@@ -38,7 +38,7 @@ export default {
 			WriteVisitImage
 	},
 	methods: {
-		write(){
+		async write(){
       console.log("============ 글 작성 ==============\n" + 
       "제목 : " + this.title + "\n" +
 			"PID : " + this.visitPid + "\n" +
@@ -61,8 +61,8 @@ export default {
         alert("보낸 시간을 입력하세요.");
         return;
       } else{
-        writeVisit(this.rid,this.title, this.visitPid, this.visitCost, this.visitTime, this.visitContent, this.visitImage1, this.visitImage2, this.visitImage3);
-				this.$router.push({name: 'Newsfeed'});
+        await writeVisit(this.rid,this.title, this.visitPid, this.visitCost, this.visitTime, this.visitContent, this.visitImage1, this.visitImage2, this.visitImage3);
+		this.$router.push({name: 'Newsfeed'});
       }
 
 
