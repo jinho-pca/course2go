@@ -4,7 +4,7 @@
       새로운 알림
     </div>
     <div class="notice-list">
-      <div class="notice-item" v-for="(notice) in noticeList" :key="notice" @click="redirect()">
+      <div class="notice-item" v-for="(notice) in noticeList" :key="notice" @click="goArticle(notice)">
         <div class="notice-left">
           <span class="notice-nickname">
             {{notice.noticeFromUserNickname}}
@@ -61,7 +61,15 @@ export default {
         gap = parseInt(gap);
         timestamp = gap + text;
         return timestamp
-    }
+    },
+    goArticle(notice){
+      console.log(notice);
+      if(notice.vid == -1){
+        this.$router.push({name: 'RouteArticle', query: { bid: notice.bid }});
+      } else{
+        this.$router.push( {name: 'VisitArticle', query: { vid: notice.vid }});
+      }
+    },
   },
   data: function(){
     return{
