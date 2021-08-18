@@ -13,5 +13,5 @@ public interface ContainDao extends JpaRepository<Contain, Integer> {
 	List<Contain> findAllByContainPid(Integer containPid);
 	List<Contain> findAllByContainRidInAndContainPid(Iterable<Integer> containRids, Integer containPid);
 	void deleteAllByContainRid(Integer rid);
-	void deleteAllByContainvid(Integer vid);
+	void deleteAllByContainVid(Integer vid);
 }
