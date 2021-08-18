@@ -36,14 +36,14 @@ public class RouteServiceImpl implements RouteService {
 	UserService userService;
 	
 	@Override
-	public void writeRoute(String uid, RouteWriteRequest request) {
-		writeRoute(uid, request.getTitle(), request.getRouteStartDate(), request.getRouteEndDate(), request.getRouteContent(), request.getRoutePid());
+	public void writeRoute(String uid, RouteWriteRequest request, String imageUrl) {
+		writeRoute(uid, request.getTitle(), request.getRouteStartDate(), request.getRouteEndDate(), request.getRouteContent(), request.getRoutePid(), imageUrl);
 	}
 
 	@Override
 	public void writeRoute(String uid, String title, LocalDate routeStartDate, LocalDate routeEndDate, String routeContent,
-			List<Integer> routePid) {
-		int boardRid = routeDao.save(Route.builder(routeStartDate, routeEndDate, routeContent).build()).getRid();
+			List<Integer> routePid, String imageUrl) {
+		int boardRid = routeDao.save(Route.builder(routeStartDate, routeEndDate, routeContent, imageUrl).build()).getRid();
 		boardService.writeBoard(uid, title, 0, 0, boardRid, true);
 		int order = 1;
 		for (Integer pid : routePid) {
@@ -68,6 +68,7 @@ public class RouteServiceImpl implements RouteService {
 		routeResponse.setRouteContent(route.getRouteContent());
 		routeResponse.setRouteStartDate(route.getRouteStartDate());
 		routeResponse.setRouteEndDate(route.getRouteEndDate());
+		routeResponse.setRouteImage(route.getRouteImage());
 		return routeResponse;
 	}
 

@@ -13,4 +13,5 @@ public class RouteResponse {
     private LocalDate routeStartDate;
     private LocalDate routeEndDate;
     private String routeContent;
+    private String routeImage;
 }

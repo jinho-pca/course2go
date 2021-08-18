@@ -1,5 +1,6 @@
 package com.course2go.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -17,13 +18,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.course2go.authentication.TokenUtils;
 import com.course2go.model.BasicResponse;
 import com.course2go.model.route.RouteReadResponse;
 import com.course2go.model.route.RouteWriteRequest;
+import com.course2go.service.image.S3Uploader;
 import com.course2go.service.route.RouteService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -40,15 +47,29 @@ public class RouteController {
 
 	@Autowired
 	RouteService routeService;
+    @Autowired
+	S3Uploader s3Uploader;
+    @Autowired
+    private ObjectMapper mapper;
 
 	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 	
     @PostMapping("/write")
     @ApiOperation(value = "동선작성")
-    public Object writeRoute(@Valid @RequestBody RouteWriteRequest request, @RequestHeader Map<String, Object> header) {
+    public Object writeRoute(@RequestParam(value = "request") String req, @RequestHeader Map<String, Object> header, @RequestParam(required = false, value = "image1")MultipartFile image) throws JsonMappingException, JsonProcessingException {
+//    	@Valid @RequestBody RouteWriteRequest request, 
     	logger.info("동선작성 시작");
+    	String imageUrl = null;
+    	if (image != null) {
+	    	try {
+	    		imageUrl = s3Uploader.upload(image, "visitimage");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}
+    	RouteWriteRequest request = mapper.readValue(req, RouteWriteRequest.class);
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
-    	routeService.writeRoute(uid, request);
+    	routeService.writeRoute(uid, request, imageUrl);
 		final BasicResponse result = new BasicResponse();
         result.status = true;
         result.data = "success";

@@ -28,11 +28,13 @@ public class Route {
     private LocalDate routeStartDate;
     private LocalDate routeEndDate;
     private String routeContent;
+    private String routeImage;
     
-    public static RouteBuilder builder(LocalDate routeStartDate, LocalDate routeEndDate, String routeContent) {
+    public static RouteBuilder builder(LocalDate routeStartDate, LocalDate routeEndDate, String routeContent, String routeImage) {
 		return RouteBuilder()
 				.routeStartDate(routeStartDate)
 				.routeEndDate(routeEndDate)
-				.routeContent(routeContent);
+				.routeContent(routeContent)
+				.routeImage(routeImage);
 	}
 }
