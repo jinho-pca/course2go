@@ -16,7 +16,8 @@
 .slideshow-container .image img{
   width: 100%;
   height: 300px;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
 /* Next & previous buttons */

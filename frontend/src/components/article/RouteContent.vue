@@ -28,7 +28,7 @@
         <button v-if="myNickname == articleRoute.userDto.userNickname" class="article-delete-btn" @click="deleteBoard">삭제</button>
       </div>
     </div>
-    <div class="article-content">
+    <div class="article-content-text">
       {{articleRoute.routeResponse.routeContent}}
     </div>
   </div>

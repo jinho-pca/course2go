@@ -20,15 +20,25 @@
 
 .article-content{
   text-align: left;
+  border-radius: 15px;
+  border: 1px solid rgba(68, 65, 65, 0.192);
+  padding: 0 10px;
 }
 
 .article-content .article-title{
   vertical-align: middle;
   justify-content: space-between;
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   display: flex;
+}
+
+.article-content .article-content-text{
+  vertical-align: middle;
+  justify-content: space-between;
+  padding:0 0 10px 0;
+  font-size: 12px;
 }
 
 .article-content-user .user-nickname{
