@@ -1,7 +1,9 @@
 <template>
   <div class="place-card">
+    <router-link :to="{ name: 'VisitArticle', query: { vid: place.visitResponse.vid }}">
       {{place.boardResponse.boardTitle}}
-    </div>
+    </router-link>
+  </div>
 </template>
 
 <script>
