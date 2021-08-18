@@ -15,4 +15,6 @@ public interface UserService {
 	UserDto getUserDtoByUid(String uid);
 	
 	String getUidByUserNickname(String userNickname);
+
+	String getUserImageByUid(String uid);
 }
