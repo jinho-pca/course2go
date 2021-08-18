@@ -3,7 +3,7 @@ import { BASE_URL } from '@/compositions/global.js'
 
 const { URL, token } = BASE_URL();
 
-export const writeRoute = (title, routeStartDate, routeEndDate, routeContent, routePid, routeImage) => {
+export const writeRoute = async (title, routeStartDate, routeEndDate, routeContent, routePid, routeImage) => {
 	const req = {
 		"title" : title, 
 		"routeStartDate" : routeStartDate,
@@ -20,7 +20,7 @@ export const writeRoute = (title, routeStartDate, routeEndDate, routeContent, ro
 	frm.append("image", routeImage);
 	frm.append("request", JSON.stringify(req));
 
-	axios({
+	await axios({
 	method: 'post',
 	url: URL + 'route/write',
 	headers: headers,
