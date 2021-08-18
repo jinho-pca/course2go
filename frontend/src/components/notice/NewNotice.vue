@@ -1,5 +1,5 @@
 <template>
-  <div class="notice-category">
+  <div class="notice-category" v-if="hasNewNotice">
     <div class="notice-name">
       새로운 알림
     </div>
@@ -35,11 +35,14 @@ export default {
       getNewNotice().then(res =>{
         console.log(res.object[0]);
         this.noticeList = res.object.reverse();
+        if (this.noticeList.length==0) {
+          this.hasNewNotice=false
+        }
         checkNotice();
       })  
     },
     getTimeStamp(time){
-      var gap = new Date().getTime() - new Date(time).getTime();
+      var gap = new Date().getTime() - new Date(time).getTime() - 32400000;
         gap = gap /1000 /60;
         var text = "";
         let timestamp = "";
@@ -63,7 +66,7 @@ export default {
   data: function(){
     return{
       noticeList: [],
-      
+      hasNewNotice: true,
     }
   }
 }

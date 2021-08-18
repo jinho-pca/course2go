@@ -1,5 +1,5 @@
 <template>
-  <div class="notice-category">
+  <div class="notice-category" v-if="hasNewRequest">
     <div class="notice-name">
       <!-- v-if="notice-list" -->
       새로운 요청
@@ -47,6 +47,9 @@ export default {
     initComponent(){
       getNewRequest().then(res =>{
         this.noticeList = res.object.reverse();
+        if (this.noticeList.length==0) {
+          this.hasNewRequest=false
+        }
         checkRequest();
       })
     },
@@ -85,6 +88,7 @@ export default {
   data: function(){
     return{
       noticeList: [],
+      hasNewRequest: true,
     }
   }
 }
