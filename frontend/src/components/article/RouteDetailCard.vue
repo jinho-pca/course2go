@@ -17,7 +17,7 @@
                 {{spot.place.placeName}}
               </span>
               <router-link v-if="articleRoute.userDto.userNickname == token " :to="{path:'/write/visit/', query:{pid: spot.place.pid, placeName: spot.place.placeName, rid:articleRoute.boardResponse.boardTid}}">
-                <i class="fas fa-pen"></i>
+                &nbsp; <i class="fas fa-pen"></i>
               </router-link>
             </summary>
           </details>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.course2go.authentication.TokenUtils;
 import com.course2go.model.BasicResponse;
+import com.course2go.service.board.BoardService;
 import com.course2go.service.boardlike.BoardlikeService;
 import com.course2go.service.scrap.ScrapService;
 
@@ -32,12 +33,28 @@ import io.swagger.annotations.ApiOperation;
 public class BoardController {
 
 	@Autowired
-	BoardlikeService likeService;
-	
+	BoardlikeService likeService;	
 	@Autowired
 	ScrapService scrapService;
+	@Autowired
+	BoardService boardService;
 
 	private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
+
+	@DeleteMapping("/{bid}")
+    @ApiOperation(value = "글 삭제")
+	public Object deleteBoard(@PathVariable Integer bid, @RequestHeader Map<String, Object> header) {
+		logger.info("글 삭제 시작 : bid = " +bid);
+		final BasicResponse result = new BasicResponse();
+		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
+		if (boardService.isMyBoard(bid, uid)) {
+			boardService.deleteBoard(bid);
+			result.data = "success";
+		}else {
+			result.data = "fail";
+		}
+		return new ResponseEntity<>(result,HttpStatus.OK);
+	}
 	
 	@PostMapping("/like/{bid}")
     @ApiOperation(value = "좋아요")

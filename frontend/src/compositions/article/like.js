@@ -21,3 +21,24 @@ export const like = (bid) => {
       return err
   })
 }
+
+export const unlike = (bid) => {
+  const { URL, token } = BASE_URL()
+  const headers = {
+    'Authorization' : token
+  }
+  axios({
+    method: 'delete',
+    url: URL + `board/like/` + bid,
+    headers: headers,
+  })
+  .then((res) => {
+    console.log('좋아요 취소 성공')
+
+      return res
+  })
+  .catch((err) => {
+      console.log('좋아요 취소 실패')
+      return err
+  })
+}

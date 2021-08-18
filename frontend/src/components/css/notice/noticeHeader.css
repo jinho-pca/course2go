@@ -2,11 +2,14 @@
   font-weight: 500;
   margin-bottom: 10px;
 }
-
+.notice-buttons{
+  display: flex;
+  justify-content: space-evenly;
+}
 .notice-button{
   border-radius: 20px / 100%;
   position: relative;
-  width: 50%;
+  width: 40%;
 	height: 36px;
   overflow: hidden;
   border: 0;

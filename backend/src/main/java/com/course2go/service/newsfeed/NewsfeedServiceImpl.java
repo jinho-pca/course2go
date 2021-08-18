@@ -40,6 +40,7 @@ public class NewsfeedServiceImpl implements NewsfeedService{
 		List<BoardDto> boards = boardService.getListbyUids(uids);
 		for (BoardDto boardDto : boards) {
 			boardDto.setBoardWriterNickname(userService.getUserNicknameByUid(boardDto.getBoardWriterUid()));
+			boardDto.setBoardWriterImage(userService.getUserImageByUid(boardDto.getBoardWriterUid()));
 			NewsfeedDto newsfeed = new NewsfeedDto();
 			newsfeed.setBoard(boardDto);
 			if (boardDto.isBoardType()) {

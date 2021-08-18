@@ -56,16 +56,18 @@ public class RouteController {
 	
     @PostMapping("/write")
     @ApiOperation(value = "동선작성")
-    public Object writeRoute(@RequestParam(value = "request") String req, @RequestHeader Map<String, Object> header, @RequestParam(required = false, value = "image1")MultipartFile image) throws JsonMappingException, JsonProcessingException {
+    public Object writeRoute(@RequestParam(value = "request") String req, @RequestHeader Map<String, Object> header, @RequestParam(required = false, value = "image")MultipartFile image) throws JsonMappingException, JsonProcessingException {
 //    	@Valid @RequestBody RouteWriteRequest request, 
     	logger.info("동선작성 시작");
     	String imageUrl = null;
     	if (image != null) {
+    		logger.info("이미지 입력중");
 	    	try {
 	    		imageUrl = s3Uploader.upload(image, "visitimage");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+    		logger.info(imageUrl);
     	}
     	RouteWriteRequest request = mapper.readValue(req, RouteWriteRequest.class);
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));

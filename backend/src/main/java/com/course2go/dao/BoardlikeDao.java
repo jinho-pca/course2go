@@ -11,4 +11,5 @@ public interface BoardlikeDao extends JpaRepository<Boardlike, Integer>{
 	boolean existsByLikeUidAndLikeBid(String likeUid, Integer likeBid);
 	List<Boardlike> findAllByLikeUidAndLikeBid(String likeUid, Integer likeBid);
 	Optional<Boardlike> findBoardlikeByLikeUidAndLikeBid(String likeUid, Integer likeBid);
+	void deleteAllByLikeBid(Integer likeBid);
 }

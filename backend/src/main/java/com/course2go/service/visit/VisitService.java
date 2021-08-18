@@ -17,4 +17,5 @@ public interface VisitService {
 	public List<VisitReadResponse> getMyVisitList(String uid1, String uid);
 	public List<VisitReadResponse> getVisitList(String userNickname, String uid);
 	public List<VisitReadResponse> getVisitListByPid(Integer pid, String uid);
+	public void deleteVisit(Integer vid);
 }

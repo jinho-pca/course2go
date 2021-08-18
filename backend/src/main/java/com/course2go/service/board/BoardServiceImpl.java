@@ -1,7 +1,10 @@
 package com.course2go.service.board;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -16,6 +19,7 @@ import com.course2go.model.board.BoardDto;
 import com.course2go.model.board.BoardMyList;
 import com.course2go.model.board.BoardResponse;
 import com.course2go.service.boardlike.BoardlikeService;
+import com.course2go.service.comment.CommentService;
 import com.course2go.service.route.RouteService;
 import com.course2go.service.visit.VisitService;
 
@@ -28,6 +32,8 @@ public class BoardServiceImpl implements BoardService {
 	RouteService routeService;
 	@Autowired
 	VisitService visitService;
+	@Autowired
+	CommentService commentService;
 	@Autowired
 	BoardlikeService likeService;
 	
@@ -105,5 +111,27 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Integer getBidByTidAndBoardType(Integer tid, Boolean boardType) {
 		return boardDao.findBoardByBoardTidAndBoardType(tid, boardType).getBid();
+	}
+
+	@Override
+	public boolean isMyBoard(Integer bid, String uid) {
+		Optional<Board> boardOpt = boardDao.findById(bid);
+		if (boardOpt.get().getBoardWriterUid().equals(uid)) {
+			return true;
+		}
+		return false;
+	}
+
+	@Transactional
+	@Override
+	public void deleteBoard(Integer bid) {
+		Board board = boardDao.findById(bid).get();
+		likeService.deleteBoardlike(bid);
+		commentService.deleteCommentsByBid(bid);
+		if (board.isBoardType()) { // 동선
+			routeService.deleteRoute(board.getBoardTid());
+		}
+		visitService.deleteVisit(board.getBoardTid());
+		boardDao.deleteById(bid);
 	}
 }

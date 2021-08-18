@@ -9,7 +9,7 @@
     <WriteRouteImage @routeImage="getRouteImage"/>
     <div style="text-align: center">
       <button class="write-route-btn" @click="write">글 쓰기</button>
-      <button class="write-route-btn" @click="print">지도 캡쳐</button>
+      <!-- <button class="write-route-btn" @click="print">지도 캡쳐</button> -->
     </div>
     <div class="empty-box">
       
@@ -91,6 +91,7 @@ export default {
     },
     getRouteImage(routeImage){
       this.routeImage = routeImage;
+      console.log(this.routeImage);
     },
     // print() {
     //   const el = this.$refs.printMe;

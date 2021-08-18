@@ -19,6 +19,14 @@ import '@/components/css/profile/follow-header.css'
 export default {
   emits:["select"]
   ,
+  props:{
+    isFollowing:{
+      type: Boolean,
+    }
+  },
+  updated() {
+    this.select = this.isFollowing ? "팔로잉" : "팔로워"
+  },
   methods:{
     showFollowing(){
       this.select = "팔로잉";

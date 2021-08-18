@@ -83,4 +83,10 @@ public class UserServiceImpl implements UserService {
 	public String getUidByUserNickname(String userNickname) {
 		return userDao.findUserByUserNickname(userNickname).get().getUid();
 	}
+
+	@Override
+	public String getUserImageByUid(String uid) {
+		User user = userDao.findById(uid).get();
+		return user.getUserImage();
+	}
 }

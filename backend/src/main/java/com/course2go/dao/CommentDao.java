@@ -22,5 +22,6 @@ public interface CommentDao extends JpaRepository<Comment,Integer> {
 					" WHERE c.cid = :cid"
 			, nativeQuery = true)
 	void updateDeleted(Integer cid);
+	void deleteAllByCommentBid(Integer commentBid);
 
 }

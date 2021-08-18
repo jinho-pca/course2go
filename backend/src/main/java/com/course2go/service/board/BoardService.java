@@ -15,4 +15,6 @@ public interface BoardService {
 	public BoardResponse getBoardVisit(Integer vid, String uid);
 	public BoardResponse getBoardRoute(Integer rid, String uid);
 	public Integer getBidByTidAndBoardType(Integer tid, Boolean boardType);
+	public boolean isMyBoard(Integer bid, String uid);
+	public void deleteBoard(Integer bid);
 }

@@ -57,4 +57,9 @@ public class BoardlikeServiceImpl implements BoardlikeService {
 		List<Boardlike> likeOpt = likeDao.findAllByLikeUidAndLikeBid(uid, bid);
 		return !likeOpt.isEmpty();
 	}
+
+	@Override
+	public void deleteBoardlike(Integer bid) {
+		likeDao.deleteAllByLikeBid(bid);
+	}
 }

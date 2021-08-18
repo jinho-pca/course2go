@@ -12,14 +12,46 @@
   /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
 }
 
+
 .article-content-user a{
   color: black;
   text-decoration: none;
 }
 
-.article-content-user .user-nickname{
-  
+.article-content{
+  text-align: left;
 }
+
+.article-content .article-title{
+  vertical-align: middle;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+}
+
+.article-content-user .user-nickname{
+  padding: 10px 0 0;
+}
+
+.article-content .article-title .article-delete-btn{
+  border-radius: 20%;
+  border: grey, 1px;
+}
+
+.article-content .article-title .article-delete-btn{
+  text-align: end;
+}
+
+.article-content .article-content{
+  padding: 0 0 5px;
+  margin: 0 0 5px;
+  /* border: solid 1px #71717131; */
+  /* border-radius: 10px; */
+}
+
+
 
 .article-content-user .card-left {
   display: flex;
@@ -28,9 +60,9 @@
   text-align: start;
 }
 
-.farticle-content-user .card-left > img {
+.article-content-user .card-left div > img {
   width: 40px;
-  height: 40px;
+  height: 100%;
   border-radius: 100%;
   margin: 0 10px 0 3px;
 }
@@ -44,11 +76,3 @@
   margin: auto 0;
 }
 
-.article-content-user .card-right .follow-button {
-  border: 1px solid rgba(63, 63, 63, 0.178);
-  border-radius: 10px;
-  background: #ff737dbb;
-  word-break: keep-all;
-  width: 90%;
-  height: 30px;
-}
