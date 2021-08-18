@@ -126,6 +126,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void deleteBoard(Integer bid) {
 		Board board = boardDao.findById(bid).get();
+		likeService.deleteBoardlike(bid);
 		commentService.deleteCommentsByBid(bid);
 		if (board.isBoardType()) { // 동선
 			routeService.deleteRoute(board.getBoardTid());
