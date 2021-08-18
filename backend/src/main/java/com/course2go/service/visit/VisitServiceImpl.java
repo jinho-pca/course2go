@@ -120,4 +120,10 @@ public class VisitServiceImpl implements VisitService {
 		}
 		return visitList;
 	}
+
+	@Override
+	public void deleteVisit(Integer vid) {
+		visitDao.deleteById(vid);
+		containService.deleteContain(vid);
+	}
 }
