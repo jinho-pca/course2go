@@ -18,4 +18,6 @@ public class NoticeDto {
     private Integer noticeNnid;
     private boolean noticeIsnew;
     private LocalDateTime noticeTime;
+    private Integer bid;
+    private Integer vid = -1;
 }
