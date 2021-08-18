@@ -61,11 +61,13 @@ public class RouteController {
     	logger.info("동선작성 시작");
     	String imageUrl = null;
     	if (image != null) {
+    		logger.info("이미지 입력중");
 	    	try {
 	    		imageUrl = s3Uploader.upload(image, "visitimage");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+    		logger.info(imageUrl);
     	}
     	RouteWriteRequest request = mapper.readValue(req, RouteWriteRequest.class);
 		String uid = TokenUtils.getUidFromToken((String)header.get("authorization"));
