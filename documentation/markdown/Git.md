@@ -1,4 +1,4 @@
-## 03_컨벤션
+## Convention
 
 ### 1. Commit types
 
@@ -55,3 +55,4 @@ Resolves: #231
   - 이름 그대로 사용
 - **master**
   - 이름 그대로 사용
+
