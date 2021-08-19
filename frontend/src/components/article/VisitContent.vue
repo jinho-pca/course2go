@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="article-content-user" style="border:none; background: white;">
-      <div class="card-left">
+      <div class="card-left" @click="goProfile">
         <div>
           <img :src="articleVisit.userDto.userImage" alt="profile image" class="profile-image" />
         </div>
@@ -77,8 +77,10 @@ export default {
     async deleteBoard(){
       await deleteBoard(this.articleVisit.boardResponse.bid);
       this.$router.push({name: 'Newsfeed'});
-    }
-    
+    },
+    goProfile(){
+      this.$router.push({name: 'Profile', query: {nickname: this.articleVisit.userDto.userNickname}});
+    },
   },
   data: function() {
     return {

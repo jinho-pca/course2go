@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="article-content-user" style="border:none; background: white;">
-    <div class="card-left">
+    <div class="card-left" @click="goProfile">
       <div class="card-image">
         <img :src="articleRoute.userDto.userImage" alt="profile image" class="profile-image">
       </div>
@@ -25,7 +25,8 @@
         {{articleRoute.boardResponse.boardTitle}}
       </div>
       <div>
-        <button v-if="myNickname == articleRoute.userDto.userNickname" class="article-delete-btn" @click="deleteBoard">삭제</button>
+        <i class="far fa-trash-alt" v-if="myNickname == articleRoute.userDto.userNickname" @click="deleteBoard"></i>
+        <!-- <button v-if="myNickname == articleRoute.userDto.userNickname" class="article-delete-btn" @click="deleteBoard">삭제</button> -->
       </div>
     </div>
     <div class="article-content-text">
@@ -65,7 +66,10 @@ export default {
     async deleteBoard(){
       await deleteBoard(this.articleRoute.boardResponse.bid);
       this.$router.push({name: 'Newsfeed'});
-    }
+    },
+    goProfile(){
+      this.$router.push({name: 'Profile', query: {nickname: this.articleRoute.userDto.userNickname}});
+    },
   },
   data: function(){
     return{
