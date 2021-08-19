@@ -35,9 +35,15 @@
 * [와이어 프레임](https://www.figma.com/file/MliBKOTk3dwSKhyaA3d2QX/%EA%B3%B5%ED%86%B5%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?node-id=0%3A1)
 * [기능 정의서](https://www.notion.so/5ed72c38a6ac4ed98a3b1613f12aa333?v=06ba98ba8e984949a3047d3bcaaf7aa3)
 
+## 기술스택
+#### 개발
+![TechStack](./documentation/img/icons/TechStack.png)
+#### 협업
+![CoopStack](./documentation/img/icons/CoopStack.png)
 
 ## [Architecture](./markdown/Architecture.md)
-![TechStack](./documentation/img/icons/TechStack.png)
+#### 구조도
+
 ## [Git Convention](https://www.notion.so/Git-Convention-f8d4466d57504092b7bca7abf3f1be83)
 
 ### 1. Commit types
