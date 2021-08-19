@@ -79,3 +79,8 @@
   background: rgba(135, 207, 235, 0.61);
   border-radius: 5px;
 }
+
+.search-filter .search-apply:active {
+  background: rgb(124, 189, 214);
+  box-shadow: 1px 1px grey inset;
+}

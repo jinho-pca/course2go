@@ -27,3 +27,8 @@
   color: black;
   border-radius: 5px;
 }
+
+.add-route-box .add-button:active {
+  box-shadow: 1px 1px 1px grey inset;
+  background: rgba(95, 145, 165, 0.61);
+}
