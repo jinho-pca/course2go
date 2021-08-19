@@ -28,6 +28,10 @@
   font-size: 18px;
 }
 
+.profile-page .fa-cog:active {
+  color: blue;
+}
+
 /* .profile-page .fa-unlock {
   margin: 0 20px;
 } */

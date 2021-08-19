@@ -39,6 +39,11 @@
   box-shadow: 1px 1px;
 }
 
+.update-profile .update-image .profile-image-add:active {
+  background: rgba(119, 182, 207, 0.253);
+  box-shadow: 1px 1px 5px grey inset;
+}
+
 .update-profile .update-image > div:first-child {
   font-size: 15px;
 }
@@ -100,35 +105,20 @@
 }
 
 .update-profile .update-button {
-  color: #fff;
-  border: none;
-  display: inline;
-  padding: 13px 40px;
-  border-radius: 30px;
-  background: #3177f0;
-/* .update-profile .update-message input{
-  border: none;
-  width: 100%;
-}
-
-.update-profile .update-btn{
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
-}
-
-.update-profile button {
-  
-  font-weight: 900;
-  font-size: 16px;
-  border-radius: 20px / 100%;
-  width: 60%;
-	height: 40px;
-  overflow: hidden;
-  border: 0;
-  cursor: pointer;
+  margin: 10px;
+  padding: 10px 40px;
+  text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin: 0 0 5px 0;
-	background-color: aqua; */
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: black;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+.update-profile .update-button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: black;
+  text-decoration: none;
 }

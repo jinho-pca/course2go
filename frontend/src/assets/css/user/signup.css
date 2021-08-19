@@ -70,6 +70,11 @@ body {
   background: #eb5a6491;
 }
 
+.signup-form .group .check-button:active {
+  background: #d8535c91;
+  box-shadow: 1px 1px 5px grey inset;
+}
+
 /* button 디자인 */
 /* .signup-form .group .button {
   color: #fff;
@@ -80,7 +85,6 @@ body {
   background: #3177f0;
 } */
 
-.signup-form .button {background-image: linear-gradient(to right, white 0%, wheat  51%, #white  100%)}
 .signup-form .button {
   margin: 10px;
   padding: 10px 40px;

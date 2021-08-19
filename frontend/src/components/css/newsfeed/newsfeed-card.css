@@ -1,5 +1,5 @@
 .newsfeed-card {
-  margin: 20px 10px;
+  margin: 15px 10px;
   padding: 5px 0;
   border-radius: 10px;
   /* box-shadow: 1px 1px 5px rgba(117, 143, 150, 0.726); */
@@ -20,7 +20,7 @@
 }
 
 .newsfeed-card .show-article:active {
-  box-shadow: 0 10px 4px 5px rgb(235, 235, 235);
+  box-shadow: 0 10px 4px 3px rgb(235, 235, 235);
   border-radius: 5px;
   background: rgb(235, 235, 235);
 }

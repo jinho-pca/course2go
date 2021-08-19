@@ -75,6 +75,7 @@
 }
 
 .search-filter .search-apply {
+  margin: 0 5px;
   border: 1px solid rgba(151, 151, 151, 0.281);
   /* background: skyblue; */
   background: rgba(135, 207, 235, 0.61);
@@ -83,5 +84,18 @@
 
 .search-filter .search-apply:active {
   background: rgb(124, 189, 214);
+  box-shadow: 1px 1px grey inset;
+}
+
+.search-filter .search-cancel {
+  margin: 0 5px;
+  border: 1px solid rgba(151, 151, 151, 0.281);
+  /* background: skyblue; */
+  background: rgba(250, 165, 224, 0.61);
+  border-radius: 5px;
+}
+
+.search-filter .search-cancel:active {
+  background: rgba(197, 109, 171, 0.61);
   box-shadow: 1px 1px grey inset;
 }

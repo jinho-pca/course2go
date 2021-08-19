@@ -65,6 +65,10 @@
   background: #eb5a6491;
 }
 
+.signup-form .group .check-button:active {
+  background: rgba(151, 58, 58, 0.569);
+}
+
 /* button 디자인 */
 .signup-form .button {
   margin: 10px;

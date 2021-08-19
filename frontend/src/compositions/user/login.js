@@ -54,7 +54,6 @@ export const userLogin = () => {
         return data
       })
       .then((res) => {
-        router.push("/newsfeed")
         return res
       })
       .catch((err) => {
@@ -63,6 +62,8 @@ export const userLogin = () => {
         alert('Email 혹은 Password가 틀렸습니다')
         return err
       })
+      await location.reload()
+      router.push("/newsfeed")
     }
   };
   /* Login 통신 End */

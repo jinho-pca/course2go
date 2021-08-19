@@ -18,6 +18,11 @@
   overflow: hidden;
 }
 
+.added-route:active {
+  box-shadow: 1px 1px 1px grey inset;
+  background: rgba(211, 211, 211, 0.61);
+}
+
 .add-route-box .add-button {
   background: rgba(135, 207, 235, 0.61);
   border: 1px solid black;

@@ -11,6 +11,11 @@
   box-shadow: 1px 1px grey;
 }
 
+.route-card:active {
+  background: rgba(214, 214, 214, 0.5);
+  box-shadow: 1px 1px 5px grey inset;
+}
+
 .route-card a{
   color: black;
   text-decoration: none;

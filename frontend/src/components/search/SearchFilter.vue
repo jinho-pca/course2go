@@ -43,6 +43,7 @@
     <div class="search-applybox" style="text-align:center;">
       <br />
       <button class="search-apply" @click="filterApply">적용</button>
+      <button class="search-cancel" @click="filterCancel">취소</button>
     </div>
   </details>
 </template>
@@ -55,7 +56,6 @@ export default {
   name: "SearchFilter",
   setup(_, { emit }) {
     const article = ref(1);
-    const comment = ref(1);
     const like = ref(1);
     const startDate = ref(new Date());
     const endDate = ref(new Date());
@@ -63,16 +63,24 @@ export default {
     const clickArticle = () => {
       article.value = article.value < 3 ? article.value + 1 : 1;
     };
-    const clickComment = () => {
-      comment.value = comment.value < 3 ? comment.value + 1 : 1;
-    };
     const clickLike = () => {
       like.value = like.value < 3 ? like.value + 1 : 1;
     };
     const filterApply = () => {
       emit("getFilter", {
         article: article,
-        comment: comment,
+        like: like,
+        startDate: startDate,
+        endDate: endDate,
+      });
+    };
+    const filterCancel = () => {
+      article.value = 1
+      like.value = 1
+      startDate.value = new Date()
+      endDate.value = new Date()
+      emit("getFilter", {
+        article: article,
         like: like,
         startDate: startDate,
         endDate: endDate,
@@ -81,14 +89,13 @@ export default {
 
     return {
       article,
-      comment,
       like,
       startDate,
       endDate,
       clickArticle,
-      clickComment,
       clickLike,
-      filterApply
+      filterApply,
+      filterCancel
     };
   },
 };

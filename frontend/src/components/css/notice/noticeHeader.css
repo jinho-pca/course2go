@@ -3,6 +3,7 @@
   justify-content: space-evenly;
   margin: 20px 0;
 }
+
 .notice-button{
   border-radius: 20px / 100%;
   position: relative;
@@ -14,4 +15,10 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0 0 5px 0;
+}
+
+.notice-buttons > button:active {
+  color: blue;
+  border: 1px solid grey;
+  box-shadow: 1px 1px solid grey;
 }

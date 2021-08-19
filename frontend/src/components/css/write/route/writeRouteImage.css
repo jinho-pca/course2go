@@ -40,5 +40,9 @@
     border-radius: 4px;
     color: #666;
     cursor: pointer;
-      
+}
+
+.write-route-image-add:active {
+    background: rgb(233, 232, 232);
+    box-shadow: 1px 1px 5px grey inset;
 }

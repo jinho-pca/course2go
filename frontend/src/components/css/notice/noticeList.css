@@ -20,6 +20,10 @@
   background: rgb(236, 235, 234);
 }
 
+.notice-item:active {
+  background: rgb(207, 207, 206);
+  box-shadow: 1px 1px 5px grey inset;
+}
 
 .notice-nickname{
   font-weight: 700;

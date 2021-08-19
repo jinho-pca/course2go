@@ -84,12 +84,16 @@ Resolves: #231
 - **master**
   - 이름 그대로 사용
 
-##
+
 
 ## Front-end
 * [세부사항](./frontend/README.md)
 ## Back-end
 * [세부사항](./backend/README.md)
+
+## Android
+
+* [세부사항](./android/Readme.md)
 
 #### DB - ERD
 

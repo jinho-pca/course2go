@@ -29,7 +29,7 @@
         </div> -->
 
       </div>
-      <div @click="showArticle">
+      <div @click="showArticle" class="show-article">
         <div class="newsfeed-image">
           <img v-if="article.visitResponse.visitImage1" :src="article.visitResponse.visitImage1" alt="map image" class="newsfeed-image">
           <img v-else src="@/assets/images/map.jpg" alt="map image" class="newsfeed-image">

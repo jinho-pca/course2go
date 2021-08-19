@@ -9,8 +9,10 @@
       @place="addPlace"
     />
     <div class="added-route" v-for="(place, idx) in placeList" :key="idx" :place="place">
-      <span class="added-place">{{ place.placeName }}</span>
-      <span class="remove-route" @click="removeRoute">x</span>
+      <div @click="removeRoute" style="width: 100%;display:flex; justify-content:space-between">
+        <span class="added-place">{{ place.placeName }}</span>
+        <span class="remove-route">x</span>
+      </div>
     </div>
     <div>
       <button class="add-button" @click="showModal = true" v-if="placeList.length < 9">

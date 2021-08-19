@@ -90,7 +90,9 @@ export default {
         await router.push('/profile')
       }
     }
-    myProfile()
+    onMounted(() => {
+      myProfile()
+    })
     return { goProfile, me, myProfile, loc }
   }
   // setup() {
