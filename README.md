@@ -87,15 +87,11 @@ Resolves: #231
 ##
 
 ## Front-end
-* [개요](./documentation/markdown/Front-end.md)
 * [세부사항](./frontend/README.md)
 ## Back-end
-* [개요](./documentation/markdown/Back-end.md)
 * [세부사항](./backend/README.md)
 
-### DB
-
-#### ERD
+#### DB - ERD
 
 ![logo](./documentation/img/ERD.png)
 
