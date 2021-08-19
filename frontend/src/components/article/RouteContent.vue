@@ -2,7 +2,7 @@
 <div>
   <div class="article-content-user" style="border:none; background: white;">
     <div class="card-left">
-      <div>
+      <div class="card-image">
         <img :src="articleRoute.userDto.userImage" alt="profile image" class="profile-image">
       </div>
       <div class="user-nickname">

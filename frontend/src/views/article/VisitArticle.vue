@@ -1,6 +1,6 @@
 <template>
   <div class="visit">
-    <div class="visit-tab" style="background:white;">
+    <div class="visit-tab">
       <span @click="click">
         <i class="fas fa-chevron-left"></i>
       </span>
@@ -8,9 +8,9 @@
         <span>장소 게시글</span>
       </span>
     </div>
-      <visit-content :articleVisit="articleVisit" />
-      <visit-detail-card :articleVisit="articleVisit"/> 
-      <Comment :vid="vid"/>
+    <visit-content :articleVisit="articleVisit" />
+    <visit-detail-card :articleVisit="articleVisit"/> 
+    <Comment :vid="vid"/>
   </div>
 </template>
 
@@ -49,7 +49,7 @@ export default {
 }
 
 .visit-tab {
-  text-align: start;
+  text-align: center;
   position: fixed;
   top: 0;
   height: 7%;
@@ -63,14 +63,14 @@ export default {
 }
 
 .visit-tab > span:first-child {
-  padding: 0 115px 0 10px;
+  position: fixed;
+  left: 0;
+  padding: 0 0 0 10px;
 }
 
 .visit-tab > span:last-child {
   font-weight: bold;
   font-size: 19px;
+  text-align: center;
 }
-
-
-
 </style>
