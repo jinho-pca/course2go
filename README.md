@@ -46,7 +46,7 @@
 ![Architecture](./documentation/img/Architecture.png)
 
 ## Git Convention
-> [git history](https://www.notion.so/GitHistory.md)
+> [세부사항](https://www.notion.so/Git.md)
 
 ### 1. Commit types
 
