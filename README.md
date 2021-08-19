@@ -73,8 +73,10 @@ Resolves: #231
 
 ##
 
-## Back-end
+## [Back-end](./Back-end.md)
 
  ### DB
   #### ERD
   ![logo](./documentation/img/ERD.png)
+  
+## [Getting Started](./GettingStarted.md)
