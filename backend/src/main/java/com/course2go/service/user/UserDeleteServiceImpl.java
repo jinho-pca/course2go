@@ -2,6 +2,8 @@ package com.course2go.service.user;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ public class UserDeleteServiceImpl implements UserDeleteService{
 	BCryptPasswordEncoder passwordEncoder;
 	
 	@Override
+	@Transactional
 	public int userDelete(String tokenEmail) {
 
 		// 회원탈퇴 요청한 유저가 존재하는 경우
@@ -31,7 +34,6 @@ public class UserDeleteServiceImpl implements UserDeleteService{
 			String uid = result.get().getUid();
 			followDao.deleteAllByFollowFromUid(uid);
 			followDao.deleteAllByFollowToUid(uid);
-			
 			userDao.delete(result.get());
 			return 1;
 
