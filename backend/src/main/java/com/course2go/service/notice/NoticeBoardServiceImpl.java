@@ -2,13 +2,18 @@ package com.course2go.service.notice;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.course2go.dao.BoardDao;
+import com.course2go.dao.CommentDao;
 import com.course2go.dao.NoticeDao;
+import com.course2go.model.board.Board;
+import com.course2go.model.comment.Comment;
 import com.course2go.model.notice.Notice;
 import com.course2go.model.notice.NoticeDto;
 import com.course2go.service.user.UserService;
@@ -22,6 +27,12 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	NoticeService noticeService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	CommentDao commentDao;
+	@Autowired
+	BoardDao boardDao;
+	
+	
 	ModelMapper modelmapper;
 	
 	private final boolean isnew=true;
@@ -39,21 +50,85 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	}
 	@Override
 	public List<NoticeDto> noticeNewBoard(String noticeUid) {
-		List<Notice> newBoardList = noticeDao.findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(isnew, board, noticeUid);
-		List<NoticeDto> newBoardListDto = newBoardList.stream().map(entityList -> modelmapper.map(entityList, NoticeDto.class)).collect(Collectors.toList());
-		for (NoticeDto noticeDto : newBoardListDto) {
-			noticeDto.setNoticeFromUserNickname(userService.getUserNicknameByUid(noticeDto.getNoticeFromUid()));
+		List<Notice> noticeList = noticeDao.findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(isnew, board, noticeUid);
+		List<NoticeDto> noticeDtoList = new ArrayList<NoticeDto>();
+		
+		for (Notice notice : noticeList) {
+			Optional<Comment> comment = commentDao.findById(notice.getNoticeNnid());
+			if(!comment.isPresent()) {
+				noticeDao.delete(notice);
+				continue;
+			}
+			
+			Optional<Board> board = boardDao.findById(comment.get().getCommentBid());
+			if(!board.isPresent()) {
+				noticeDao.delete(notice);
+				continue;
+			}
+			
+			String userNickname = userService.getUserNicknameByUid(notice.getNoticeFromUid());
+			if(userNickname == null) {
+				noticeDao.delete(notice);
+				continue;
+			}
+			
+			if(board.get().getBoardType()) {
+				noticeDtoList.add(new NoticeDto(notice,userNickname, board.get().getBid()));				
+			} else {
+				noticeDtoList.add(new NoticeDto(notice,userNickname, board.get().getBid(), board.get().getBoardTid()));
+			}
 		}
-		return newBoardListDto;
+		return noticeDtoList;
 	}
+	
 	@Override
 	public List<NoticeDto> noticeOldBoard(String noticeUid) {
-		List<Notice> newBoardList = noticeDao.findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(!isnew, board, noticeUid);
-		List<NoticeDto> newBoardListDto = newBoardList.stream().map(entityList -> modelmapper.map(entityList, NoticeDto.class)).collect(Collectors.toList());
-		for (NoticeDto noticeDto : newBoardListDto) {
-			noticeDto.setNoticeFromUserNickname(userService.getUserNicknameByUid(noticeDto.getNoticeFromUid()));
+		List<Notice> noticeList = noticeDao.findAllByNoticeIsnewAndNoticeTypeInAndNoticeUid(!isnew, board, noticeUid);
+		List<NoticeDto> noticeDtoList = new ArrayList<NoticeDto>();
+		
+		for (Notice notice : noticeList) {
+			Optional<Comment> comment = commentDao.findById(notice.getNoticeNnid());
+			if(!comment.isPresent()) {
+				noticeDao.delete(notice);
+				continue;
+			}
+			
+			Optional<Board> board = boardDao.findById(comment.get().getCommentBid());
+			if(!board.isPresent()) {
+				noticeDao.delete(notice);
+				continue;
+			}
+			
+			String userNickname = userService.getUserNicknameByUid(notice.getNoticeFromUid());
+			if(userNickname == null) {
+				noticeDao.delete(notice);
+				continue;
+			}
+			
+			if(board.get().getBoardType()) {
+				noticeDtoList.add(new NoticeDto(notice,userNickname, board.get().getBid()));				
+			} else {
+				noticeDtoList.add(new NoticeDto(notice,userNickname, board.get().getBid(), board.get().getBoardTid()));
+			}
 		}
-		return newBoardListDto;
+		
+//		List<NoticeDto> newBoardListDto = newBoardList.stream().map(entityList -> modelmapper.map(entityList, NoticeDto.class)).collect(Collectors.toList());
+//		for (NoticeDto noticeDto : newBoardListDto) {
+//			noticeDto.setNoticeFromUserNickname(userService.getUserNicknameByUid(noticeDto.getNoticeFromUid()));
+//			Optional<Comment> comment = commentDao.findById(noticeDto.getNoticeNnid());
+//			if(comment.isPresent()) {
+//				noticeDto.setBid(comment.getCommentBid());
+//				Board board = boardDao.getById(comment.getCommentBid());
+//				if(!board.isBoardType()) {
+//					noticeDto.setVid(board.getBoardTid());
+//				}				
+//			} else {
+//				noticeDto = null;
+//			}
+//			
+//		}
+		
+		return noticeDtoList;
 	}
 	@Override
 	public List<Notice> noticeNewScrap(String noticeUid){		

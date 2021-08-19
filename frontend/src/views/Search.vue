@@ -1,6 +1,7 @@
 <template>
   <div class="search">
     <div class="search-position">
+      <!-- <i class="fas fa-chevron-left" @click="back"></i> -->
       <div class="search-tab">
         <div class="search-select" @click="onClickSelect">
           <span class="search-select-span">

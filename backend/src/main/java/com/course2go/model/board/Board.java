@@ -32,7 +32,7 @@ public class Board {
     private Integer boardLike;
     private Integer boardStar;
     private Integer boardTid;
-    private boolean	boardType;
+    private Boolean	boardType;
 
     @Column(insertable = false, updatable = false)
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")

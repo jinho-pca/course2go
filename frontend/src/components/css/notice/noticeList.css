@@ -27,7 +27,7 @@
 
 .notice-right{
   display: inline-flex;
-  width: 35%;
+  margin-right: 10px;
 }
 
 .notice-btn{
