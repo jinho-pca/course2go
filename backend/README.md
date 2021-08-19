@@ -27,6 +27,121 @@ Architecture는 다음과 같은 절차를 따른다.
 
 ## JPA
 
-
+## Dependancy
+* swagger
+```
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger2</artifactId>
+    <version>2.9.2</version>
+</dependency>
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger-ui</artifactId>
+    <version>2.6.1</version>
+</dependency>
+```
+* hibernate
+```
+<dependency>
+    <groupId>javax.validation</groupId>
+    <artifactId>validation-api</artifactId>
+    <version>2.0.1.Final</version>
+</dependency>
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.0.1.Final</version>
+</dependency>
+```
+* jwt
+```
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt</artifactId>
+    <version>0.9.1</version>
+</dependency>
+```
+* mariaDB
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jdbc</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.mariadb.jdbc</groupId>
+    <artifactId>mariadb-java-client</artifactId>
+    <scope>runtime</scope>
+</dependency>
+```
+* lombok
+```
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <optional>true</optional>
+</dependency>
+```
+* modelmapper
+```
+<dependency>
+    <groupId>org.modelmapper</groupId>
+    <artifactId>modelmapper</artifactId>
+    <version>2.3.8</version>
+</dependency>
+```
+* slack
+```
+<dependency>
+    <groupId>com.github.maricn</groupId>
+    <artifactId>logback-slack-appender</artifactId>
+    <version>1.4.0</version>
+</dependency>
+```
+* aws
+```
+<dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-java-sdk-s3</artifactId>
+    <version>1.12.25</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-aws</artifactId>
+    <version>2.0.1.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-aws-context</artifactId>
+    <version>1.2.1.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-aws-autoconfigure</artifactId>
+    <version>1.2.1.RELEASE</version>
+</dependency>
+```
+* email
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-mail</artifactId>
+    <version>2.0.1.RELEASE</version>
+</dependency>
+```
 ## MVC design
+
+### model
+* Entity의 경우 getter는 선언하되 setter는 선언하지 않는다. create를 위한 생성의 경우 builder를 사용하도록 한다.
+* Entity는 해당 entity의 DB의 데이터를 Dao(JPARepository)에서 받아와 Service로 보낼때 혹은 그 반대의 경우에만 사용한다.
+
+### Service
+* 실질적인 logic이 구현되는 곳
+
+### controller
+* 권한 확인, S3 호출, Service 호출, 예외처리를 진행한다.
+* RequestMapping 어노테이션을 잘 구분해서 사용하도록 한다.
+    * Get 방식의 경우 동일한 입력으로 연속해서 호출할 경우 캐싱된 데이터를 사용하므로 데이터에 변화를 주는 경우 사용하지 않아야 한다.
+
+### Back-end logic 흐름도
 ![Classes](../documentation/img/BackendFlow.png)
