@@ -1,12 +1,12 @@
 <template>
   <div class="comment-card">
     <div class="comment-main" v-if="!isreply && !comment.commentDeleted">
-      <div class="comment-writer-imagebox">
+      <div class="comment-writer-imagebox" @click="goProfile">
         <img :src="comment.commentWriterDto.userImage" alt="profile image" class="comment-image">
       </div>
       <div class="comment-content">
         <div class="comment-text">
-          <span class="conmment-writer-nickname">{{comment.commentWriterDto.userNickname}}&nbsp;</span>
+          <span class="conmment-writer-nickname" @click="goProfile">{{comment.commentWriterDto.userNickname}}&nbsp;</span>
           <span>{{comment.commentContent}}</span> 
         </div>
         <div class="comment-footer">
@@ -25,12 +25,12 @@
     </div>
 
     <div class="comment-reply-main" v-if="isreply">
-      <div class="comment-writer-imagebox">
+      <div class="comment-writer-imagebox" @click="goProfile">
         <img :src="comment.commentWriterDto.userImage" alt="profile image" class="comment-image">
       </div>
       <div class="comment-content">
         <div class="comment-text">
-          <span class="conmment-writer-nickname">{{comment.commentWriterDto.userNickname}}&nbsp;</span>
+          <span class="conmment-writer-nickname" @click="goProfile">{{comment.commentWriterDto.userNickname}}&nbsp;</span>
           <span>{{comment.commentContent}}</span> 
         </div>
         <div class="comment-footer">
@@ -148,7 +148,10 @@ export default {
       deleteComment(this.comment.cid).then(() =>{
         this.$emit('reload')
       });
-    }
+    },
+    goProfile(){
+      this.$router.push({name: 'Profile', query: {nickname: this.comment.commentWriterDto.userNickname}});
+    },
   },
 }
 </script>
