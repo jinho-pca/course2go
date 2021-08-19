@@ -26,6 +26,7 @@ Architecture는 다음과 같은 절차를 따른다.
 
 
 ## JPA
+[공식문서](https://docs.spring.io/spring-data/jpa/docs/1.4.1.RELEASE/reference/html/jpa.repositories.html)
 
 ## Dependancy
 * swagger
