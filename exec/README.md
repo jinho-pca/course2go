@@ -1,6 +1,6 @@
 ### 1-1) 사용한 tool 종류 및 설정값, 버전
-> JVM :  11.0.11
-> nginx : 1.18.0
+> JVM :  11.0.11<br />
+> nginx : 1.18.0<br />
 > IDE : STS(3.9.14, 4), IntelliJ(2021.2, 2019.3.5), VSCode(1.59.0)
 ### 1-2)
 * application.properties (backend/src/main/resources/)
