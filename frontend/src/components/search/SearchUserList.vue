@@ -18,11 +18,11 @@
         <div>팔로우</div>
       </div>
       
-      <div class="follow-button" v-if="(user.followState == 1 && followState == -1) || followState == 1" @click="unfollow">
+      <div class="unfollow-button" v-if="(user.followState == 1 && followState == -1) || followState == 1" @click="unfollow">
         <div>언팔로우</div>
       </div>
 
-      <div class="follow-button" v-if="(user.followState == 2 && followState == -1) || followState == 2">
+      <div class="nowfollow-button" v-if="(user.followState == 2 && followState == -1) || followState == 2">
         <div>신청중</div>
       </div>
     </div>

@@ -34,7 +34,21 @@
 .search-user-card .card-right .follow-button {
   border: 1px solid rgba(63, 63, 63, 0.178);
   border-radius: 10px;
+  background: rgba(135, 207, 235, 0.61);
+  word-break: keep-all;
+  padding: 2px 3px 2px 3px;
+}
+.search-user-card .card-right .unfollow-button {
+  border: 1px solid rgba(63, 63, 63, 0.178);
+  border-radius: 10px;
   background: #ff737dbb;
+  word-break: keep-all;
+  padding: 2px 3px 2px 3px;
+}
+.search-user-card .card-right .nowfollow-button {
+  border: 1px solid rgba(63, 63, 63, 0.178);
+  border-radius: 10px;
+  background: rgba(255, 238, 0, 0.432);
   word-break: keep-all;
   padding: 2px 3px 2px 3px;
 }
