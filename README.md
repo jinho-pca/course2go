@@ -1,4 +1,4 @@
-# Course2go
+# [Course2go](http://i5a106.p.ssafy.io/)
 
 ![logo](./documentation/img/logo_course2go.png)
 
@@ -26,13 +26,23 @@
 
 > Course2go developer
 
-|                     **🙋 [이진호](https://github.com/dk-master)**                     |                  **🙋‍ [안기훈](https://github.com/)**                   |          **🙋 [나희승](https://github.com/sjsjsjghkdwp)**           |                      **🙋‍ [조규홍](https://github.com/)**                      |
+|                     **🙋 [이진호](https://github.com/dk-master)**                     |                  **🙋‍ [안기훈](https://github.com/)**                   |          **🙋 [나희승](https://github.com/sjsjsjghkdwp)**           |                      **🙋‍ [조규홍](https://github.com/sitan516/)**                      |
 | :-----------------------------------------------------------------------------------: | :----------------------------------------------------------------------: | :-----------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
 |                        ![logo](./documentation/img/이진호.png)                        |                 ![logo](./documentation/img/안기훈.png)                  |               ![logo](./documentation/img/나희승.png)               |                     ![logo](./documentation/img/조규홍.png)                     |
 |                                     백엔드 개발자                                     |                            프론트엔드 개발자                             |                            백엔드 개발자                            |                                  백엔드 개발자                                  |
 | 배포 환경 구축 <br /> 추가요함 <br /> 추가요함 <br /> 추가요함 <br /> 추가요함 <br /> | 추가요함 <br /> 추가요함 <br /> 추가요함 <br /> 추가요함 <br /> 추가요함 | 게시글 <br /> 좋아요 <br /> 뉴스피드 <br /> 알림 <br /> 댓글 <br /> | Spring Security <br /> 추가요함 <br /> 추가요함 <br /> 추가요함 <br /> 추가요함 |
+## 기획
+* [와이어 프레임](https://www.figma.com/file/MliBKOTk3dwSKhyaA3d2QX/%EA%B3%B5%ED%86%B5%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?node-id=0%3A1)
+* [기능 정의서](https://www.notion.so/5ed72c38a6ac4ed98a3b1613f12aa333?v=06ba98ba8e984949a3047d3bcaaf7aa3)
 
-## [Architecture](./markdown/Architecture.md)
+## 기술스택
+#### 개발
+![TechStack](./documentation/img/icons/TechStack.png)
+#### 협업
+![CoopStack](./documentation/img/icons/CoopStack.png)
+
+## [Architecture](./documentation/markdown/Architecture.md)
+#### 구조도
 
 ## [Git Convention](https://www.notion.so/Git-Convention-f8d4466d57504092b7bca7abf3f1be83)
 
@@ -74,9 +84,12 @@ Resolves: #231
 
 ##
 
-## [Front-end](./markdown/Front-end.md)
-
-## [Back-end](./markdown/Back-end.md)
+## Front-end
+* [개요](./documentation/markdown/Front-end.md)
+* [세부사항](./frontend/README.md)
+## Back-end
+* [개요](./documentation/markdown/Back-end.md)
+* [세부사항](./backend/README.md)
 
 ### DB
 
@@ -84,4 +97,9 @@ Resolves: #231
 
 ![logo](./documentation/img/ERD.png)
 
-## [Getting Started](./markdown/GettingStarted.md)
+## Getting Started
+* [시작하기](./documentation/markdown/GettingStarted.md)
+
+## 참고자료
+
+[UCC](./documentation/UCC/Course2go.mp4)

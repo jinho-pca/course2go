@@ -14,15 +14,15 @@
       </div>
     </router-link>
     <div class="card-right">
-      <div class="follow-button" v-if="(userInfo.followState == 0 && followState == -1) || followState == 0" @click="follow">
+      <div class="follow-button follow-btn" v-if="(userInfo.followState == 0 && followState == -1) || followState == 0" @click="follow">
         <div>팔로우</div>
       </div>
       
-      <div class="follow-button" v-if="(userInfo.followState == 1 && followState == -1) || followState == 1" @click="unfollow">
+      <div class="follow-button unfollow-btn" v-if="(userInfo.followState == 1 && followState == -1) || followState == 1" @click="unfollow">
         <div>언팔로우</div>
       </div>
 
-      <div class="follow-button" v-if="(userInfo.followState == 2 && followState == -1) || followState == 2">
+      <div class="follow-button following-btn" v-if="(userInfo.followState == 2 && followState == -1) || followState == 2">
         <div>신청중</div>
       </div>
     </div>
