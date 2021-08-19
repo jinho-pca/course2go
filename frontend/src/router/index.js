@@ -47,11 +47,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "Follow" */ '../views/profile/Follow.vue')
   },
   {
-    path: '/alert',
-    name: 'Alert',
-    component: () => import(/* webpackChunkName: "Alert" */ '../views/Alert.vue')
-  },
-  {
     path: '/routeArticle',
     name: 'RouteArticle',
     component: () => import(/* webpackChunkName: "RouteArticle" */ '../views/article/RouteArticle.vue')

@@ -11,7 +11,7 @@
         </router-link>
       </span>
     </div>
-    <ProfileCard :profileData="profileData" :nickname="nickname" :articleAmount="articleAmount" :me="me" />
+    <ProfileCard :profileData="profileData" :nickname="nickname" :articleAmount="articleAmount" />
     <ProfileRoute :routeListData="routeListData" />
     <ProfilePlace :visitListData="visitListData" />
   </div>
@@ -33,14 +33,13 @@ export default {
     ProfilePlace,
   },
   setup() {
-    const { myProfile, who, profileData, routeList, routeListData, visitList, visitListData, articleAmount, me } = profile();
+    const { myProfile, who, profileData, routeList, routeListData, visitList, visitListData, articleAmount } = profile();
     const route = useRoute();
     myProfile(route.query.nickname);
     routeList(route.query.nickname);
     visitList(route.query.nickname);
     console.log(routeListData)
-    console.log(me)
-    return { myProfile, who, profileData, routeList, routeListData, visitList, visitListData, articleAmount, me }
+    return { myProfile, who, profileData, routeList, routeListData, visitList, visitListData, articleAmount }
   },
   mounted(){
     this.nickname = this.$route.query.nickname

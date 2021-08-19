@@ -52,7 +52,7 @@
         <div class="profile-introduction">
           <span>{{ profileData.userComment }}</span>
         </div>
-        <div class="profile-edit" v-if="profileData.userNickname == props.me.userNickname">
+        <div class="profile-edit" v-if="!nickname">
           <router-link :to="{ name: 'UpdateProfile', query: { profileData: profileData } }">
             프로필 편집
           </router-link>
@@ -97,9 +97,6 @@ export default {
     articleAmount: {
       type: Number,
     },
-    me: {
-      type: Object
-    }
   },
   methods: {
     follow() {

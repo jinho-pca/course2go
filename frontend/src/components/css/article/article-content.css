@@ -86,3 +86,6 @@
   margin: auto 0;
 }
 
+.article-content-user .card-right .fas {
+  color:red;
+}

@@ -1,6 +1,6 @@
 .newsfeed-card {
   margin: 20px 10px;
-  padding: 5px;
+  padding: 5px 0;
   border-radius: 10px;
   /* box-shadow: 1px 1px 5px rgba(117, 143, 150, 0.726); */
   box-shadow: 0px 0px 2px grey;
@@ -15,7 +15,7 @@
 
 .newsfeed-card .newsfeed-card-top {
   align-items: center;
-  padding: 0 3px 0 3px;
+  padding: 0 8px;
   margin: 5px 0 5px 0;
 }
 
@@ -104,7 +104,7 @@
 .newsfeed-description {
   font-size: 13px;
   font-weight: 500;
-  margin: 5px 10px 10px 10px;
+  margin: 5px 15px 10px 15px;
 }
 
 .newsfeed-card-bottom {
