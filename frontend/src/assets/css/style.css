@@ -1,7 +1,4 @@
-@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -12,6 +9,7 @@
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 10%; /* 하단 navbar와 겹치지 않도록 */
+  font-family: 'Gowun Dodum', sans-serif;
 }
 
 #app .display {

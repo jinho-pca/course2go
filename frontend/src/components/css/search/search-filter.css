@@ -43,7 +43,8 @@
 }
 
 .search-filter .filter-name:active {
-  background: orange;
+  background: rgba(226, 226, 226, 0.589);
+  box-shadow: 1px 1px 4px grey inset;
 }
 
 .search-filter .filter-date {

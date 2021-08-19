@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { mapkey } from '@/compositions/hidden/mapkey.js';
+import { mapkey } from '../../../../mapkey.js';
 export default {
   mounted() { 
     window.kakao && window.kakao.maps ? this.initMap() : this.addScript(); 

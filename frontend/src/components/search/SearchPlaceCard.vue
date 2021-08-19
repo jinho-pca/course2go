@@ -14,7 +14,7 @@
                   <span class="newsfeed-writerNickname">{{ article.userDto.userNickname }}</span>
                 </div>
                 <div>
-                  <span class="newsfeed-type">동선</span>
+                  <span class="newsfeed-type">장소</span>
                 </div>
               </div>
             </span>
@@ -31,13 +31,13 @@
       </div>
       <div @click="showArticle">
         <div class="newsfeed-image">
-          <img v-if="article.routeResponse.routeImage" :src="article.routeResponse.routeImage" alt="map image" class="newsfeed-image">
+          <img v-if="article.visitResponse.visitImage1" :src="article.visitResponse.visitImage1" alt="map image" class="newsfeed-image">
           <img v-else src="@/assets/images/map.jpg" alt="map image" class="newsfeed-image">
         </div>
 
         <div class="newsfeed-description" style="display:flex; justify-content:space-between;">
           <span>
-            {{ article.routeResponse.routeContent }}
+            {{ article.visitResponse.visitContent }}
           </span>
         </div>
       </div>
@@ -51,12 +51,12 @@ import '../css/newsfeed/newsfeed-card.css'
 import { useRouter } from 'vue-router'
 
 export default {
-  name: 'SearchRouteCard',
+  name: 'SearchPlaceCard',
     setup(props) {
     const router = useRouter()
 
     const showArticle = () => {
-      router.push({name: 'RouteArticle', query: { bid: props.article.boardResponse.bid }});
+      router.push( {name: 'VisitArticle', query: { vid: props.article.visitResponse.vid }});
     }
     return { showArticle }
   },

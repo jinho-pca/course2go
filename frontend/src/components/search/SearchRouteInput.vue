@@ -36,7 +36,7 @@ export default {
     async function addPlace(place) {
       if (placePidList.value.includes(place.pid)) {
         alert("이미 추가한 장소 입니다.");
-        return;
+        return
       }
       showModal.value = false;
       placePidList.value.push(place.pid);

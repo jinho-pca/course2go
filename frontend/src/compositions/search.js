@@ -78,13 +78,13 @@ export const search = () => {
 	const articles = ref([])
 	const filteredArticles = ref([])
 
-	const searchRoute = (route) => {
-		
+	const searchRoute = async (route) => {
 		if (route.value.length < 1) {
 			articles.value = []
+			filteredArticles.value = []
 			return
 		}
-		
+
 		const places = ref({
 			pid1: -1,
 			pid2: -1,
@@ -96,10 +96,12 @@ export const search = () => {
 			pid8: -1,
 			pid9: -1,
 		})
+
 		for (let i=0; i < route.value.length; i++) {
 			places.value[`pid${i+1}`] = parseInt(route.value[i])
 		}
-		axios({
+		
+		await axios({
 			method: 'get',
 			url: URL + 'search/route',
 			params: places.value,
@@ -116,8 +118,32 @@ export const search = () => {
 			console.log(err)
 			return err
 		})
+		
+		if (route.value.length == 1) {
+			await axios({
+				method: 'get',
+				url: URL + `search/visit/${places.value.pid1}`,
+				headers: {
+					Authorization: token,
+				},
+			})
+			.then((res) => {
+				console.log(articles.value)
+				console.log('res', res.data.object)
+				if (articles.value) {
+					articles.value = [...articles.value.concat(res.data.object)].reverse()
+					filteredArticles.value = articles.value
+				} else {
+					articles.value = res.data.object
+					filteredArticles.value = articles.value
+				}
+				return res
+			})
+			.catch((err) => {
+				return err
+			})
+		}
 	}
-
 	return { onClickSelect, onClickOption, page,
 		searchUser, users,
 		searchRoute, routes, showModal, placeList, placePidList, articles, filteredArticles }

@@ -1,8 +1,5 @@
 <template>
   <div class="notice-header">
-    <div class="notice-title">
-      {{select}}
-    </div>
     <div class="notice-buttons">
       <button class="notice-button" @click="showNotice()" :style="selectNotice()">
         알림
@@ -34,7 +31,7 @@ export default {
       if(this.select == "알림"){
         return{
           'font-weight': 'bold',
-          border: 'solid'
+          border: 'solid',
         } 
       } else{
         return{

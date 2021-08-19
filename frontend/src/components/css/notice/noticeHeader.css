@@ -1,10 +1,7 @@
-.notice-title{
-  font-weight: 500;
-  margin-bottom: 10px;
-}
 .notice-buttons{
   display: flex;
   justify-content: space-evenly;
+  margin: 20px 0;
 }
 .notice-button{
   border-radius: 20px / 100%;
@@ -17,5 +14,4 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0 0 5px 0;
-	
 }

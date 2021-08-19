@@ -4,36 +4,38 @@
     <hr />
     <div class="content" style="text-align:center;">
       <div class="filter-namebox" style="display:inline-block;">
-        <span class="filter-name" v-if="article == 1" @click="clickArticle">동선 + 장소</span>
-        <span class="filter-name active" v-else-if="article == 2" @click="clickArticle"
-          >동선 게시물</span
-        >
-        <span class="filter-name active" v-else-if="article == 3" @click="clickArticle"
+        <span class="filter-name" v-show="article == 1" @click="clickArticle">동선 + 장소</span>
+        <span class="filter-name active" v-show="article == 2" @click="clickArticle">
+          동선 게시물
+        </span>
+        <span class="filter-name active" v-show="article == 3" @click="clickArticle"
           >장소 게시물</span
         >
       </div>
       &nbsp;&nbsp;&nbsp;
       <div class="filter-namebox" style="display:inline-block;">
-        <span class="filter-name" v-if="like == 1" @click="clickLike">등록시간순</span>
-        <span class="filter-name active" v-else-if="like == 2" @click="clickLike"
+        <span class="filter-name" v-show="like == 1" @click="clickLike">등록시간순</span>
+        <span class="filter-name active" v-show="like == 2" @click="clickLike"
           >좋아요낮은순</span
         >
-        <span class="filter-name active" v-else-if="like == 3" @click="clickLike"
+        <span class="filter-name active" v-show="like == 3" @click="clickLike"
           >좋아요높은순</span
         >
       </div>
-      <hr />
-      <div class="filter-date">
-        <div>
-          <label for="start">start date</label>
+      <div v-show="article != 3" id="filter-date">
+        <hr />
+        <div class="filter-date" style="visibility:block;">
           <div>
-            <input type="date" name="start" v-model="startDate" />
+            <label for="start">start date</label>
+            <div>
+              <input type="date" name="start" v-model="startDate" />
+            </div>
           </div>
-        </div>
-        <div>
-          <label for="end">end date</label>
           <div>
-            <input type="date" name="end" v-model="endDate" />
+            <label for="end">end date</label>
+            <div>
+              <input type="date" name="end" v-model="endDate" />
+            </div>
           </div>
         </div>
       </div>
@@ -86,7 +88,7 @@ export default {
       clickArticle,
       clickComment,
       clickLike,
-      filterApply,
+      filterApply
     };
   },
 };
