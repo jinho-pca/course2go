@@ -12,14 +12,39 @@ git clone https://lab.ssafy.com/s05-webmobile2-sub3/S05P13A106.git
 
 ## 2. Backend Setting
 
-### DB 설정
+### 각종 설정
 #### application.properties
-backend/src/main/ 내부에 resources폴더를 생성하여 application.properties 파일을 만들어 DB를 세팅해야 합니다.
+backend/src/main/ 내부에 resources폴더를 생성하여 application.properties 파일을 만들어 세팅해야 합니다.
 ```
+# db
 spring.datasource.driverClassName={클래스이름}
 spring.datasource.url={DB URL}
 spring.datasource.username={유저이름}
 spring.datasource.password={비밀번호}
+
+# find pw using email
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username= {구글 이메일주소}
+spring.mail.password={구글 이메일 2차 비밀번호}
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.timeout=5000
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+# aws s3
+cloud.aws.credentials.accessKey={accessKey}
+cloud.aws.credentials.secretKey={secretKey}
+cloud.aws.stack.auto=false
+cloud.aws.s3.bucket={bucket명}
+cloud.aws.region.static=ap-northeast-2
+cloud.aws.s3.bucket.url={s3 bucket url}
+spring.servlet.multipart.maxFileSize=50MB
+spring.servlet.multipart.maxRequestSize=50MB
+
+# slack
+logging.level.root=info
+logging.config=classpath:logback.xml
+logging.slack.webhook-uri={webhook-url}
 ```
 #### Database
 documentation/db/course2go.mwb 파일을 MySQL 워크벤치로 실행하면 ERD를 통해 DB를 구성할 수 있습니다.
