@@ -30,6 +30,7 @@
 | ![logo](./documentation/img/이진호.png) |![logo](./documentation/img/안기훈.png)| ![logo](./documentation/img/나희승.png) |![logo](./documentation/img/조규홍.png)|
 | 백엔드 개발자 | 프론트엔드 개발자 | 백엔드 개발자 | 백엔드 개발자 |
 | 배포 환경 구축 <br /> 추가요함 <br /> 추가요함 <br /> 추가요함  <br /> 추가요함 <br />| 추가요함 <br /> 추가요함 <br /> 추가요함 <br /> 추가요함 <br /> 추가요함 | 게시글 <br /> 좋아요 <br /> 뉴스피드 <br /> 알림  <br /> 댓글 <br />| Spring Security <br /> 추가요함 <br /> 추가요함 <br /> 추가요함 <br /> 추가요함 |
+## [Architecture](./Architecture.md)
 
 ## [Git Convention](https://www.notion.so/Git-Convention-f8d4466d57504092b7bca7abf3f1be83)
 
@@ -72,6 +73,8 @@ Resolves: #231
   - 이름 그대로 사용
 
 ##
+
+## [Front-end](./Front-end.md)
 
 ## [Back-end](./Back-end.md)
 
