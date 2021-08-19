@@ -84,9 +84,12 @@ Resolves: #231
 
 ##
 
-## [Front-end](./documentation/markdown/Front-end.md)
-
-## [Back-end](./documentation/markdown/Back-end.md)
+## Front-end
+* [개요](./documentation/markdown/Front-end.md)
+* [세부사항](./frontend/README.md)
+## Back-end
+* [개요](./documentation/markdown/Back-end.md)
+* [세부사항](./backend/README.md)
 
 ### DB
 
@@ -94,7 +97,8 @@ Resolves: #231
 
 ![logo](./documentation/img/ERD.png)
 
-## [Getting Started](./documentation/markdown/GettingStarted.md)
+## Getting Started
+* [시작하기](./documentation/markdown/GettingStarted.md)
 
 ## 참고자료
 
