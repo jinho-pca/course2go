@@ -3,6 +3,8 @@
 ## JWT
 ![Classes](../documentation/img/SecurityFlow.png)
 
+(출처: https://springbootdev.com/)
+
 최초 로그인 시 위와같은 Architecture에 따라 발급되고 사용자의 LocalStorage에 저장하여 사용한다.
 
 Architecture는 다음과 같은 절차를 따른다.
