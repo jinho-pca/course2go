@@ -1,7 +1,8 @@
 <template>
   <div class = "write-visit-time-box">
     <div class="write-visit-label"> 장소 </div>
-    <input v-model="placeName" class = "write-input" type="text" disabled style="background: white; border: none">
+    <div class = "write-input" style="border: none">{{placeName}}</div>
+    <!-- <input v-model="placeName" class = "write-input" type="text" disabled style="background: white; border: none"> -->
   </div>
 </template>
 

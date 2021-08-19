@@ -14,7 +14,7 @@
           <details v-if="spot.visit==null">
             <summary class="novisitsummery">
               <span>
-                {{spot.place.placeName}}
+                {{substringof(spot.place.placeName)}}
               </span>
               <router-link v-if="articleRoute.userDto.userNickname == token " :to="{path:'/write/visit/', query:{pid: spot.place.pid, placeName: spot.place.placeName, rid:articleRoute.boardResponse.boardTid}}">
                 &nbsp; <i class="fas fa-pen"></i>
@@ -22,7 +22,7 @@
             </summary>
           </details>
           <details v-else>
-            <summary><span class="centersummary">{{spot.place.placeName}}</span></summary>
+            <summary><span class="centersummary">{{substringof(spot.place.placeName)}}</span></summary>
             <hr>
             소요비용 : {{ spot.visit.visitCost }}원<br />
             소요시간 : {{ spot.visit.visitTime }}시간<br />
@@ -60,6 +60,12 @@ export default {
     goVisit(vid) {
       this.$router.push({name: 'VisitArticle', query:{vid : vid}});
     },
+    substringof(text){
+      if (text.length>12) {
+        return text.substr(0,11)+"..."
+      }
+      return text
+    }
   },
   data() {
     return {
