@@ -65,7 +65,8 @@ public class User implements Serializable {
 				.userNickname(userNickname)
 				.userSalt(userSalt)
 				.userBirthday(userBirthday)
-				.userGender(userGender);
+				.userGender(userGender)
+				.userImage("https://ssafy-5th.s3.ap-northeast-2.amazonaws.com/profile/profile.png");
 	}
 	
 	

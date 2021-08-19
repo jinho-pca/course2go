@@ -39,8 +39,8 @@
 
 
 .comment-input-writer-imagebox .profile-image {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     height: flex;
     object-fit: fill;
     border-radius: 100%;

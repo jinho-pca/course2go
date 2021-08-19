@@ -10,6 +10,32 @@
     transition: opacity .3s ease;
   }
   
+  .modal-title{
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  
+  .modal-header{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .modal-title .modal-title-left{
+    /* margin-left: 50px; */
+    margin-left: 20px;
+  }
+
+  .modal-title .modal-title-center{
+    /* margin-left: 50px; */
+    margin-right: -20px;
+  }
+  
+  .modal-title .modal-title-right{
+    /* margin-left: 50px; */
+    margin-right: 25px;
+  }
+
   .modal-wrapper {
     display: table-cell;
     vertical-align: middle;
@@ -18,7 +44,7 @@
   .modal-default-input{
     font-family: 'Jeju Myeongjo', serif;
     border-radius: 5px;
-    
+    width: 70%;
   }
 
   .modal-container {
@@ -50,7 +76,6 @@
   
   .modal-default-button {
     float: right;
-    font-family: 'Source Sans Pro', sans-serif;
     font-weight: 900;
     font-size: 18px;
     border-radius: 20px;
@@ -63,19 +88,13 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin: 2px 0;
-  }
-  
-  .modal-footer {
-    
+    width: 10%;
   }
 
-  .modal-button-cancel{
-    background-color: pink;
-  }
-  
+
+
   .modal-button-submit{
-    background-color: aqua;
-    margin-right: 10px;
+    background-color: rgba(135, 207, 235, 0.61);
   }
 
   /*
