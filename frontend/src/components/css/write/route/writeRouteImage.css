@@ -34,11 +34,11 @@
     width: 100%;
     height: 100%;
     position: static;
-    
+    border: 1px #666 solid;
     padding: 6px 25px;
-    background-color:aqua;
+    background-color:#fafafa;
     border-radius: 4px;
-    color: white;
+    color: #666;
     cursor: pointer;
       
 }

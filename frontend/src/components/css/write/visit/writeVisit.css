@@ -15,8 +15,8 @@
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin: 10px 0 5px 0;
-	background-color: aqua;
+  margin: 20px 0 5px 0;
+	background-color: rgba(135, 207, 235, 0.61);
 }
 
 .empty-box{

@@ -4,7 +4,9 @@
       <div class="modal-wrapper">
         <div class="modal-container">
 					<div class="modal-title">
-						<span>장소 검색</span>
+						<span class="modal-title-left" ></span>
+						<span class="modal-title-center">장소 검색</span>
+						<span class="modal-title-right" @click="$emit('close')">X</span>
 					</div>
           <div class="modal-header">
             <slot name="header">
@@ -44,12 +46,14 @@
 
           <div class="modal-footer">
             <slot name="footer">
-							<button class="modal-default-button modal-button-submit" @click="$emit('place',this.placeList[this.selectBox]);">
-								추가하기
+							<button class="modal-default-button modal-button-submit" 
+							@click="$emit('place',this.placeList[this.selectBox]);"
+							style="justify-content:center; width:50%">
+								추가
 							</button>
-							<button class="modal-default-button modal-button-cancel" @click="$emit('close')">
-                취소하기
-              </button>
+							<!-- <button class="modal-default-button modal-button-cancel" @click="$emit('close')">
+                취소
+              </button> -->
             </slot>
           </div>
         </div>
