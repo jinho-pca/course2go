@@ -67,3 +67,86 @@ export const mapkey = () => {
     return { jskey }
 }
 ```
+
+## 4. 배포
+
+### 1) ec2 접속
+```
+sudo ssh -i ‘{pemKeyName}.pem’ ubuntu@{EIP}
+```
+### 2) java 11 설치
+```
+sudo amazon-linux-extras install java-openjdk11
+```
+### 3) git clone
+```
+git clone {repository 주소}
+```
+### 4) nginx install
+```
+sudo apt-get install nginx
+```
+### 5) nginx setting
+> https://velog.io/@jinho_pca/AWS-EC2-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4%EC%97%90-NGINX-%EA%B5%AC%EC%B6%95
+> 참고하여 진행
+### 6) pm2 install
+```
+npm install pm2
+```
+### 7) module download
+```
+cd {frontend 프로젝트 최상단 디렉터리}
+npm install
+```
+### 8) frontend build
+```
+npm run build
+```
+### 9) frontend build file 이동
+```
+sudo cp -r ~/{repository}/{frontend 최상위 디렉터리}/dist /var/www/html
+```
+### 10) backend build (maven)
+```
+cd {backend프로젝트 최상단 주소}
+./mvnw clean package
+```
+위 명령어를 실행하면 ./target 위치에 .jar로 된 spring boot 빌드파일이 생성된다.
+### 11) app.json파일 생성
+```
+cd ~/{repository}/{backend 최상위 디렉터리}/target
+vi app.json
+```
+위의 명령어로 디렉터리 이동 후 편집기를 열어 아래 코드를 붙여넣기 한다.
+```
+{
+  "apps": [{
+    "name": "Jar",
+    "cwd": ".",
+    "args": [
+      "-jar",
+      "./backend-0.0.1-SNAPSHOT.jar"
+    ],
+    "env": {
+    },
+    "script": "/usr/bin/java",
+    "node_args": [],
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "exec_interpreter": "none",
+    "exec_mode": "fork"
+  }]
+}
+```
+:wq 를 누르고 Enter 입력을 해서 저장 후 나간다.
+### 12) pm2 start
+```
+pm2 start app.json
+```
+### 13) mginx start
+```
+sudo service nginx start
+```
+### 14) pm2 log 보기
+```
+pm2 log
+```
