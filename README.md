@@ -41,10 +41,12 @@
 #### 협업
 ![CoopStack](./documentation/img/icons/CoopStack.png)
 
-## [Architecture](./documentation/markdown/Architecture.md)
-#### 구조도
+## Architecture
 
-## [Git Convention](https://www.notion.so/Git-Convention-f8d4466d57504092b7bca7abf3f1be83)
+![Architecture](./documentation/img/Architecture.png)
+
+## Git Convention
+> [git history](https://www.notion.so/GitHistory.md)
 
 ### 1. Commit types
 
