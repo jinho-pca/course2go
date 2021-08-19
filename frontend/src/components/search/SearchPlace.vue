@@ -72,7 +72,20 @@ export default {
 	
 	emits: ["close", "place"],
 	
+	created () {
+    window.addEventListener('scroll', this.handleScroll);
+		this.scrollY = window.scrollY;
+  },
+  unmounted () {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+
+
 	methods: {
+		handleScroll () {
+			window.scrollTo(0, this.scrollY);
+    },
+
 		search(){
 			this.page = 0;
 			searchPlace(this.searchKey, this.page).then( res => {
@@ -159,6 +172,7 @@ export default {
 			placeList : [],
 			selectBox : -1,
 			page : 0,
+			scrollY : 0
 		}
 	}
 }

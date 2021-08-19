@@ -93,6 +93,9 @@ export default {
       this.routeImage = routeImage;
       console.log(this.routeImage);
     },
+
+    
+
     // print() {
     //   const el = this.$refs.printMe;
     //   // add option type to get the image version
