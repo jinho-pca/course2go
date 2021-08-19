@@ -27,17 +27,21 @@
 
 .notice-right{
   display: inline-flex;
+  /* width: 40%; */
   margin-right: 10px;
 }
 
-.notice-btn{
+.notice-right-request{
   width: 40%;
+}
+
+.notice-btn{
+  width: 50%;
   height: 30px;
   margin-top: 5px;
   line-height: 30px;
   border: none;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 3px;
-  
+  /* box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 3px; */
 }
 
 .notice-allow{

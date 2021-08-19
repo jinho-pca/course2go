@@ -17,7 +17,7 @@
             님이 팔로우를 수락하셨습니다.
           </span>
         </div>
-        <div class="notice-right" v-if="notice.noticeType == 1">
+        <div class="notice-right notice-right-request" v-if="notice.noticeType == 1">
           <button class="notice-btn notice-allow" @click="allow(notice.id, index)">
             수락
           </button>
