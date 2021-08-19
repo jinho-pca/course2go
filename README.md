@@ -41,7 +41,7 @@
 #### 협업
 ![CoopStack](./documentation/img/icons/CoopStack.png)
 
-## [Architecture](./markdown/Architecture.md)
+## [Architecture](./documentation/markdown/Architecture.md)
 #### 구조도
 
 ## [Git Convention](https://www.notion.so/Git-Convention-f8d4466d57504092b7bca7abf3f1be83)
@@ -84,9 +84,9 @@ Resolves: #231
 
 ##
 
-## [Front-end](./markdown/Front-end.md)
+## [Front-end](./documentation/markdown/Front-end.md)
 
-## [Back-end](./markdown/Back-end.md)
+## [Back-end](./documentation/markdown/Back-end.md)
 
 ### DB
 
@@ -94,7 +94,7 @@ Resolves: #231
 
 ![logo](./documentation/img/ERD.png)
 
-## [Getting Started](./markdown/GettingStarted.md)
+## [Getting Started](./documentation/markdown/GettingStarted.md)
 
 ## 참고자료
 
