@@ -74,12 +74,15 @@ export default {
       this.likeChange--;
       unlike(this.articleVisit.boardResponse.bid);
     },
-    async deleteBoard(){
+    async deleteBoard() {
       await deleteBoard(this.articleVisit.boardResponse.bid);
-      this.$router.push({name: 'Newsfeed'});
+      this.$router.push({ name: "Newsfeed" });
     },
-    goProfile(){
-      this.$router.push({name: 'Profile', query: {nickname: this.articleVisit.userDto.userNickname}});
+    goProfile() {
+      this.$router.push({
+        name: "Profile",
+        query: { nickname: this.articleVisit.userDto.userNickname },
+      });
     },
   },
   data: function() {
