@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { mapkey } from '@/compositions/hidden/mapkey.js';
 export default {
   mounted() { 
     window.kakao && window.kakao.maps ? this.initMap() : this.addScript(); 
@@ -132,9 +133,10 @@ export default {
     addScript() { 
       // console.log("애드스크립트");
       const script = document.createElement('script'); 
+      const { jskey } = mapkey()
       /* global kakao */ 
       script.onload = () => kakao.maps.load(this.initMap); 
-      script.src = '//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=3024c56c5a90d08aa30c4d941e4beba1'; 
+      script.src = '//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=' + jskey; 
       document.head.appendChild(script); 
     },
     levelMeasure() {
