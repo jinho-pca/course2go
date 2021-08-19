@@ -142,7 +142,7 @@ vi app.json
 ```
 pm2 start app.json
 ```
-### 13) mginx start
+### 13) nginx start
 ```
 sudo service nginx start
 ```
