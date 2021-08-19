@@ -16,6 +16,7 @@ target/
 .springBeans
 .sts4-cache
 backend/src/main/resources/application.properties
+frontend/src/compositions/hidden/mapkey.js
 ### IntelliJ IDEA ###
 .idea
 *.iws
