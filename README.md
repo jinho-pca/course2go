@@ -37,11 +37,7 @@
 
 
 ## [Architecture](./markdown/Architecture.md)
-| | | |
-| :--: | :--: | :--: |
-| ![SpringBoot](./documentation/img/icons/SpringBoot1.png) | ![Vue](./documentation/img/icons/Vue.png) | ![Ec2](./documentation/img/icons/EC2.png) |
-| ![SpringSecurity](./documentation/img/icons/SpringSecurity.png) | ![Android](./documentation/img/icons/Android.png) | ![PM2](./documentation/img/icons/PM2.png)|
-| ![](./documentation/img/icons/.png)|
+![TechStack](./documentation/img/icons/TechStack.png)
 ## [Git Convention](https://www.notion.so/Git-Convention-f8d4466d57504092b7bca7abf3f1be83)
 
 ### 1. Commit types
