@@ -23,16 +23,14 @@
         >
       </div>
       <hr />
-      <div class="filter-date" style="text-align:center;">
-        <br />
-        <div style="display:inline-block">
+      <div class="filter-date">
+        <div>
           <label for="start">start date</label>
           <div>
             <input type="date" name="start" v-model="startDate" />
           </div>
         </div>
-        &nbsp;&nbsp;&nbsp;
-        <div style="display:inline-block;">
+        <div>
           <label for="end">end date</label>
           <div>
             <input type="date" name="end" v-model="endDate" />
