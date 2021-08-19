@@ -38,8 +38,12 @@
   left: 0;
 }
 
-.nav-bottom .nav-items > .active > a > i {
+.nav-bottom .nav-items > .active i {
   color: rgb(0, 102, 255);
+}
+
+.nav-bottom .nav-items > div {
+  transition: all .3s;
 }
 
 .nav-bottom .nav-items > div:active {

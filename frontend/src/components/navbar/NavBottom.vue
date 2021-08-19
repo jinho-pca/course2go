@@ -32,35 +32,55 @@
 
 <script>
 import '@/components/css/navbar/nav-bottom.css'
-import { onMounted, watchEffect } from 'vue'
+import { onMounted, watchEffect, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { profile } from '@/compositions/profile';
 
 export default {
   name: 'navbottom',
-  setup(props) {
+  setup() {
     const router = useRouter()
     const route = useRoute()
     const { me, myProfile } = profile()
+
+    const loc = ref(1)
     onMounted(() => {
       const items = document.querySelectorAll('#nav-items div')
       for (let i=0; i < items.length; i++) {
         let item = document.querySelector(`#${items[i].id}`)
         item.className = ''
       }
-      items[props.loc-1].className = 'active'
+      if (loc.value) {
+        items[loc.value-1].className = 'active'
+      }
     })
+
     watchEffect(() => {
-      console.log(props.loc)
+      if (route.path == '/newsfeed') {
+        loc.value = 1
+      } else if (route.path == '/search') {
+        loc.value = 2
+      } else if (route.path == '/write/route') {
+        loc.value = 3
+      } else if (route.path == '/notice') {
+        loc.value = 4
+      } else if (route.path == '/profile') {
+        loc.value = 5
+      } else {
+        loc.value = 0
+      }
+
       const items = document.querySelectorAll('#nav-items div')
-      console.log(items.length)
       if (items.length) {
         for (let i=0; i < items.length; i++) {
           let item = document.querySelector(`#${items[i].id}`)
-        item.className = '';
+          item.className = '';
         }
-        items[props.loc-1].className = 'active'
+        if (loc.value) {
+          items[loc.value-1].className = 'active'
+        }
       }
+
     })
     const goProfile = async () => {
       if (route.query.nickname != me.userNickname || route.query.userNickname) {
@@ -71,9 +91,8 @@ export default {
       }
     }
     myProfile()
-    return { props, goProfile, me, myProfile }
-  },
-  props: ['loc']
+    return { goProfile, me, myProfile, loc }
+  }
   // setup() {
   //   onMounted(() => {
   //     const { token } = BASE_URL();

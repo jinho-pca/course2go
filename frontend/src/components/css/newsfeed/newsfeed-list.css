@@ -24,6 +24,14 @@
   display: inline;
 }
 
+.select .select-span {
+  transition: all .2s;
+}
+
+.select .select-span:active {
+  background: grey;
+}
+
 .select .option-list {
   position: absolute;
   top: 100%;
@@ -35,6 +43,11 @@
 
 .select.active .option-list {
   max-height: none;
+  transition: all .2s;
+}
+
+.select.active .option-list > li:hover {
+  background: grey;
 }
 
 /* 테마 적용하기 */

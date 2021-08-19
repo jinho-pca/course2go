@@ -1,7 +1,7 @@
 <template>
-  <div class="route">
-    <div class="route-tab" style="background:white;">
-      <span @click="click">
+  <div class="route-article">
+    <div class="route-article-tab">
+      <span @click="click" class="back">
         <i class="fas fa-chevron-left"></i>
       </span>
       <span class="route-tab-title">
@@ -44,13 +44,13 @@ export default {
 </script>
 
 <style>
-.route {
+.route-article {
   padding: 0;
   margin: 50px 0 0 0;
 }
 
-.route-tab {
-  text-align: start;
+.route-article-tab {
+  text-align: center;
   position: fixed;
   top: 0;
   height: 7%;
@@ -63,13 +63,16 @@ export default {
   z-index: 2;
 }
 
-.route-tab .route-tab-title {
-  
+.route-article-tab > span:first-child {
+  position: fixed;
+  left: 0;
+  padding: 0 0 0 10px;
 }
 
-.route-tab > span:last-child {
+.route-article-tab > span:last-child {
   font-weight: bold;
   font-size: 19px;
+  text-align: center;
 }
 
 
