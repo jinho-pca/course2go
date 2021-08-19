@@ -56,5 +56,14 @@
   word-break: keep-all;
   width: 90%;
   height: 30px;
-  
 }
+
+.follow-card .card-right .follow-btn{
+  background: rgba(135, 207, 235, 0.61);
+} 
+.follow-card .card-right .unfollow-btn{
+  background: #ff737dbb;
+} 
+.follow-card .card-right .following-btn{
+  background: rgba(255, 238, 0, 0.432);
+} 
