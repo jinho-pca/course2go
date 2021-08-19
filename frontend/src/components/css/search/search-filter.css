@@ -75,6 +75,7 @@
 
 .search-filter .search-apply {
   border: 1px solid rgba(151, 151, 151, 0.281);
-  background: skyblue;
+  /* background: skyblue; */
+  background: rgba(135, 207, 235, 0.61);
   border-radius: 5px;
 }
