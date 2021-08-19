@@ -19,9 +19,6 @@ public class UserDeleteServiceImpl implements UserDeleteService{
 	private UserDao userDao;
 	
 	@Autowired
-	private FollowDao followDao;
-	
-	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	
 	@Override
@@ -31,10 +28,15 @@ public class UserDeleteServiceImpl implements UserDeleteService{
 		// 회원탈퇴 요청한 유저가 존재하는 경우
 		if(userDao.findUserByUserEmail(tokenEmail).isPresent()) {
 			Optional<User> result = userDao.findUserByUserEmail(tokenEmail);
-			String uid = result.get().getUid();
-			followDao.deleteAllByFollowFromUid(uid);
-			followDao.deleteAllByFollowToUid(uid);
-			userDao.delete(result.get());
+			User newUser = result.get();
+			//			String uid = result.get().getUid();
+//			followDao.deleteAllByFollowFromUid(uid);
+//			followDao.deleteAllByFollowToUid(uid);
+//			userDao.delete(result.get());
+			
+			newUser.setUserNickname(null);
+			newUser.setUserEmail(null);
+			userDao.save(newUser);
 			return 1;
 
 		} else return 0; // 회원탈퇴 요청한 유저가 존재하지 않는 경우
