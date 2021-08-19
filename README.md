@@ -1,4 +1,6 @@
-# Sub PJT 2
+# Course2go
+
+![logo](./documentation/img/logo_course2go.png)
 
 ## 2021.07.19 ~ 2021.07.30
 
