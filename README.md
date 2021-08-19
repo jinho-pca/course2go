@@ -37,7 +37,7 @@
 
 
 ## [Architecture](./markdown/Architecture.md)
-
+![TechStack](./documentation/img/icons/TechStack.png)
 ## [Git Convention](https://www.notion.so/Git-Convention-f8d4466d57504092b7bca7abf3f1be83)
 
 ### 1. Commit types
