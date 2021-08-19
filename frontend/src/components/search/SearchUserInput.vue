@@ -5,8 +5,8 @@
       name="search"
       id="search"
       v-model="word"
-      @enter="getWord"
       placeholder="이름 또는 닉네임을 입력해주세요"
+      @keyup="getWordInput"
     />
     <i class="fas fa-search" @click="getWord"></i>
   </div>
@@ -27,7 +27,12 @@ export default {
         alert("회원 이름을 입력해주세요");
       }
     };
-    return { word, getWord };
+    const getWordInput = () => {
+      if (word.value) {
+        emit("getWord", word.value);
+      }
+    }
+    return { word, getWord, getWordInput };
   },
   emits: ["getWord"],
 };

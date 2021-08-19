@@ -8,16 +8,16 @@
 					</div>
           <div class="modal-header">
             <slot name="header">
-							<input class="modal-default-input" v-model="searchKey" type="text" @keyup.enter="search" id="search-input">
-							<button class="modal-default-button"  @click="search">검색</button>
+							<input class="modal-default-input" v-model="searchKey" type="text" @keyup="keyupSearch" id="search-input">
+							<button class="modal-default-button" @click="search">검색</button>
             </slot>
           </div>
 
           <div class="modal-body">
             <slot name="body">
 							<div class="place-item-list">
-								<div class="place-item" 
-								@click="select(index)" 
+								<div class="place-item"
+								@click="select(index)"
 								v-for="(place, index) in placeList" :key="place"
 								:style="setColor(index)">
 									<div class="place-name">{{place.placeName}}</div>
@@ -74,6 +74,15 @@ export default {
 			searchPlace(this.searchKey, this.page).then( res => {
 				this.placeList = res;
 			});	
+		},
+
+		keyupSearch(){
+			this.page = 0;
+			if (this.searchKey) {
+				searchPlace(this.searchKey, this.page).then( res => {
+					this.placeList = res;
+				});
+			}
 		},
 
 		nextPage(){

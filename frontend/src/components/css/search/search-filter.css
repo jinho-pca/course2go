@@ -78,3 +78,8 @@
   background: skyblue;
   border-radius: 5px;
 }
+
+.search-filter .search-apply:active {
+  background: rgb(124, 189, 214);
+  box-shadow: 1px 1px grey inset;
+}
