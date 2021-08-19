@@ -29,7 +29,7 @@ export const userLogin = () => {
 
   /* login 통신 Start */
   const email = ref('');
-  const password = ref('test1234@!');
+  const password = ref('');
   const login = async ()=> {
     if(isSubmit.value) {
       const data = {
