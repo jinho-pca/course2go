@@ -49,7 +49,7 @@
 }
 
 .profile-content .profile-edit {
-  background: #96eaff;
+  background: rgba(135, 207, 235, 0.61);
   font-size: 10px;
   width: 50%;
   border: 1px solid rgba(129, 120, 120, 0.596);
