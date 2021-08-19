@@ -26,11 +26,11 @@
 
 > Course2go developer
 
-|                     **🙋 [이진호](https://github.com/dk-master)**                     |                  **🙋‍ [안기훈](https://github.com/)**                   |          **🙋 [나희승](https://github.com/sjsjsjghkdwp)**           |                      **🙋‍ [조규홍](https://github.com/sitan516/)**                      |
+|                     **🙋 [이진호](https://github.com/jinho-pca)**                     |                  **🙋‍ [안기훈](https://github.com/KiHoonAhn1)**                   |          **🙋 [나희승](https://github.com/sjsjsjghkdwp)**           |                      **🙋‍ [조규홍](https://github.com/sitan516/)**                      |
 | :-----------------------------------------------------------------------------------: | :----------------------------------------------------------------------: | :-----------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
 |                        ![logo](./documentation/img/이진호.png)                        |                 ![logo](./documentation/img/안기훈.png)                  |               ![logo](./documentation/img/나희승.png)               |                     ![logo](./documentation/img/조규홍.png)                     |
 |                                     백엔드 개발자                                     |                            프론트엔드 개발자                             |                            백엔드 개발자                            |                                  백엔드 개발자                                  |
-| 유저 관리 <br /> AWS(EC2, S3) <br /> SpringBoot + (SMTP, Slack) <br /> 배포환경구축(NginX, PM2) <br />| 추가요함 <br /> 추가요함 <br />|  <br /> 뉴스피드 <br /> 알림 <br /> 댓글 <br /> | Spring Security <br /> 추가요함 <br />|
+| 유저 관리 <br /> AWS(EC2, S3) <br /> SpringBoot + (SMTP, Slack) <br /> 배포환경구축(NginX, PM2) <br />| 추가요함 <br /> 추가요함 <br />| 게시판 관련 기능구현 <br /> 뉴스피드 <br /> DB설계 및 관리 <br /> KakaoMap <br /> | Spring Security <br /> 추가요함 <br />|
 ## 기획
 * [와이어 프레임](https://www.figma.com/file/MliBKOTk3dwSKhyaA3d2QX/%EA%B3%B5%ED%86%B5%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?node-id=0%3A1)
 * [기능 정의서](https://www.notion.so/5ed72c38a6ac4ed98a3b1613f12aa333?v=06ba98ba8e984949a3047d3bcaaf7aa3)
@@ -87,15 +87,11 @@ Resolves: #231
 ##
 
 ## Front-end
-* [개요](./documentation/markdown/Front-end.md)
 * [세부사항](./frontend/README.md)
 ## Back-end
-* [개요](./documentation/markdown/Back-end.md)
 * [세부사항](./backend/README.md)
 
-### DB
-
-#### ERD
+#### DB - ERD
 
 ![logo](./documentation/img/ERD.png)
 
