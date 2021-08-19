@@ -30,7 +30,7 @@
         </div> -->
 
       </div>
-      <div @click="showArticle">
+      <div @click="showArticle" class="show-article">
         <div class="newsfeed-image" v-if="newsfeed.board.boardType">
           <img v-if="newsfeed.thing.routeImage" :src="newsfeed.thing.routeImage" alt="map image" class="newsfeed-image">
           <img v-else src="@/assets/images/map.jpg" alt="map image" class="newsfeed-image">

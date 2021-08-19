@@ -19,6 +19,16 @@
   margin: 5px 0 5px 0;
 }
 
+.newsfeed-card .show-article:active {
+  box-shadow: 0 10px 4px 5px rgb(235, 235, 235);
+  border-radius: 5px;
+  background: rgb(235, 235, 235);
+}
+
+.newsfeed-title > a:active {
+  background: rgb(235, 235, 235);
+  border-radius: 5px;
+}
 
 .newsfeed-title .fa-heart {
   margin: 0 0 0 5px;
