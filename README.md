@@ -2,6 +2,10 @@
 
 ![logo](./documentation/img/logo_course2go.png)
 
+|Android|Mobile|
+|:--:|:--:|
+|![QR_A](./documentation/img/QR/Android.png)|![QR_M](./documentation/img/QR/Mobile.png)|
+
 > <b> 프로젝트 기간: 2021.07.12 ~ 2021.08.20 </b>
 
 ![StyleCI](https://img.shields.io/badge/vue-3-brightgreen)
