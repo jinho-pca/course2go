@@ -88,12 +88,10 @@ Resolves: #231
 
 ## Front-end
 * [세부사항](./frontend/README.md)
+## Android
+* [세부사항](./android/Readme.md)
 ## Back-end
 * [세부사항](./backend/README.md)
-
-## Android
-
-* [세부사항](./android/Readme.md)
 
 #### DB - ERD
 
