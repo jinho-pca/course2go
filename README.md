@@ -35,7 +35,8 @@
 |           ![logo](./documentation/img/이진호.png)            |    ![logo](./documentation/img/안기훈.png)    |           ![logo](./documentation/img/나희승.png)            |           ![logo](./documentation/img/조규홍.png)            |
 |                        백엔드 개발자                         |               프론트엔드 개발자               |                        백엔드 개발자                         |                        백엔드 개발자                         |
 | 유저 관리 <br /> AWS(EC2, S3) <br /> SpringBoot + (SMTP, Slack) <br /> 배포환경구축(NginX, PM2) <br /> |  프론트엔드 개발<br /> 안드로이드 개발<br />  | 동선글, 방문글, 댓글 기능구현 <br /> 검색, 알림, 뉴스피드 기능구현 <br /> DB설계 및 관리 <br /> KakaoMap <br /> | Spring Security <br /> SNS 관련 기능 구현 <br /> 검색 기능 구현 <br /> |
-|                           ## 기획                            |                                               |                                                              |                                                              |
+
+## 기획
 * [와이어 프레임](https://www.figma.com/file/MliBKOTk3dwSKhyaA3d2QX/%EA%B3%B5%ED%86%B5%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?node-id=0%3A1)
 * [기능 정의서](https://www.notion.so/5ed72c38a6ac4ed98a3b1613f12aa333?v=06ba98ba8e984949a3047d3bcaaf7aa3)
 
