@@ -90,12 +90,12 @@ Resolves: #231
 - **master**
   - 이름 그대로 사용
 
-## Android
 
-* [세부사항](./android/Readme.md)
 
 ## Front-end
 * [세부사항](./frontend/README.md)
+## Android
+* [세부사항](./android/Readme.md)
 ## Back-end
 * [세부사항](./backend/README.md)
 
