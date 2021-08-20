@@ -4,14 +4,14 @@
     <div>
       <div class="newsfeed-card-top">
         <div class="newsfeed-title">
-          <router-link :to="{path : '/profile', query: {nickname : newsfeed.board.boardWriterNickname} }">
+          <router-link v-if="newsfeed.board.boardWriterNickname" :to="{path : '/profile', query: {nickname : newsfeed.board.boardWriterNickname} }">
             <span class="newsfeed-writer">
               <div>
                 <img :src="newsfeed.board.boardWriterImage" class="newsfeed-writerImage">
               </div>
               <div class="newsfeed-right">
                 <div>
-                  <span class="newsfeed-writerNickname">{{ newsfeed.board.boardWriterNickname }}</span>
+                  <span class="newsfeed-writerNickname" v-if="newsfeed.board.boardWriterNickname">{{ newsfeed.board.boardWriterNickname }}</span>
                 </div>
                 <div>
                   <span class="newsfeed-type" v-if="newsfeed.board.boardType">동선</span>
@@ -20,6 +20,20 @@
               </div>
             </span>
           </router-link>
+          <span class="newsfeed-writer" v-else>
+            <div>
+              <img :src="newsfeed.board.boardWriterImage" class="newsfeed-writerImage">
+            </div>
+            <div class="newsfeed-right">
+              <div>
+                <span class="newsfeed-writerNickname">탈퇴한 사용자입니다</span>
+              </div>
+              <div>
+                <span class="newsfeed-type" v-if="newsfeed.board.boardType">동선</span>
+                <span class="newsfeed-type" v-else>장소</span>
+              </div>
+            </div>
+          </span>
           <div class="newsfeed-like">
             <span>{{ newsfeed.board.boardLike }}</span>
             <i class="fas fa-heart active"></i>

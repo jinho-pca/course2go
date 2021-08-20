@@ -57,7 +57,13 @@ place 테이블에 데이터를 넣어줘야 프로그램을 정상적으로 사
 
 ```bash
 $ npm install
+# 서버 포트 설정을 위해 yarn 사용
+$ yarn serve --port 3000
 ```
+
+
+
+
 
 
 
