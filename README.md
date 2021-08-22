@@ -6,6 +6,10 @@
 |:--:|:--:|
 |![QR_A](./documentation/img/QR/Android.png)|![QR_M](./documentation/img/QR/Mobile.png)|
 
+<img src="./documentation/img/playstore.jpg" alt="playstore" style="zoom: 25%;" />
+
+
+
 > <b> 프로젝트 기간: 2021.07.12 ~ 2021.08.20 </b>
 
 ![StyleCI](https://img.shields.io/badge/vue-3-brightgreen)
@@ -110,7 +114,36 @@ Resolves: #231
 
 ![logo](./documentation/img/ERD.png)
 
+
+
+## 서비스 사진
+
+* 로그인 / 회원가입 / 뉴스피드
+
+<img src="./documentation/img/pic1.png" alt="pic1" style="zoom: 67%;" />
+
+
+
+* 뉴스피드(필터링) / 동선 게시글 / 장소 게시글
+
+<img src="./documentation/img/pic2.png" alt="pic2" style="zoom:67%;" />
+
+
+
+* 동선 게시글 쓰기 / 동선 게시글 필터링 / 팔로우 알림 / 
+
+<img src="./documentation/img/pic3.png" alt="pic3" style="zoom:67%;" />
+
+
+
+* 동선 검색 / 회원 검색 / 프로필
+
+<img src="./documentation/img/pic4.png" alt="pic4" style="zoom:67%;" />
+
+
+
 ## Getting Started
+
 * [시작하기](./documentation/markdown/GettingStarted.md)
 
 ## 참고자료
